@@ -1,0 +1,227 @@
+---
+export const prerender = false;
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { servicesBySlug, services } from '../../data/services';
+
+const { slug } = Astro.params;
+const service = slug ? servicesBySlug[slug] : null;
+
+if (!service) {
+  return Astro.redirect('/404');
+}
+
+const breadcrumbs = [
+  { name: 'Home', url: 'https://hristijannajcheski.com/' },
+  { name: 'Services', url: 'https://hristijannajcheski.com/services/' },
+  { name: service.title, url: `https://hristijannajcheski.com/services/${service.slug}/` },
+];
+
+// Other services for the "More Services" section
+const otherServices = services.filter((s) => s.slug !== service.slug);
+---
+
+<BaseLayout
+  title={service.metaTitle}
+  description={service.metaDescription}
+  schemaType="service"
+  breadcrumbs={breadcrumbs}
+  faqItems={service.faq}
+>
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <div class="page-header-content">
+        <a href="/services/" class="section-label" style="text-decoration: none;">← All Services</a>
+        <h1>
+          <span style="font-size: 2rem; margin-right: 0.5rem;">{service.icon}</span>
+          {service.title}
+        </h1>
+        <p>{service.tagline}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section class="section">
+    <div class="container">
+      <div class="service-page-layout">
+        <div class="service-page-main">
+          <p class="service-page-intro">{service.description}</p>
+
+          <!-- What's Included -->
+          <h2 style="margin-top: var(--space-10); margin-bottom: var(--space-6);">What's included</h2>
+          <div class="service-includes-grid">
+            {service.includes.map((item) => (
+              <div class="service-include-card">
+                <h3>{item.heading}</h3>
+                <p>{item.body}</p>
+              </div>
+            ))}
+          </div>
+
+          <!-- FAQ -->
+          <h2 style="margin-top: var(--space-12); margin-bottom: var(--space-6);">Frequently asked questions</h2>
+          <div class="faq-list">
+            {service.faq.map((item) => (
+              <div class="faq-item">
+                <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+                  {item.question}
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  <div class="faq-answer-inner">{item.answer}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="service-page-sidebar">
+          <div class="service-sidebar-card">
+            <h3>Key deliverables</h3>
+            <ul class="service-features-list">
+              {service.features.map((f) => (
+                <li>{f}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="service-sidebar-card" style="margin-top: var(--space-6);">
+            <h3>Ready to get started?</h3>
+            <p style="font-size: 0.9rem; color: var(--color-text-muted); margin-bottom: var(--space-4);">
+              Let's discuss how {service.title} can help your business grow.
+            </p>
+            <a href="/contact/" class="btn btn-primary" style="width: 100%; text-align: center; display: block;">
+              Get in Touch →
+            </a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- More Services -->
+  <section class="section" style="background: var(--color-bg-secondary);">
+    <div class="container">
+      <span class="section-label">More Services</span>
+      <h2 class="section-title">Explore other <span class="text-gradient">SEO services</span></h2>
+      <div class="services-grid" style="margin-top: var(--space-8);">
+        {otherServices.slice(0, 3).map((s) => (
+          <a href={`/services/${s.slug}/`} class="card" style="text-decoration: none; display: block;">
+            <div class="card-icon">{s.icon}</div>
+            <h3 class="card-title">{s.title}</h3>
+            <p class="card-text">{s.tagline}</p>
+            <span style="color: var(--color-accent-blue); font-size: 0.9rem; margin-top: var(--space-2); display: inline-block;">Learn more →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-card">
+        <h2>Ready to improve your <span class="text-gradient-orange">{service.title}</span>?</h2>
+        <p>Let's discuss your specific challenges and build a strategy that works for you.</p>
+        <a href="/contact/" class="btn btn-orange btn-lg">Let's Talk →</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .service-page-layout {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  @media (max-width: 900px) {
+    .service-page-layout {
+      grid-template-columns: 1fr;
+    }
+    .service-page-sidebar {
+      order: -1;
+    }
+  }
+
+  .service-page-intro {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+  }
+
+  .service-includes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+  }
+
+  @media (max-width: 600px) {
+    .service-includes-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .service-include-card {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: var(--space-6);
+  }
+
+  .service-include-card h3 {
+    font-size: 1rem;
+    margin-bottom: var(--space-2);
+  }
+
+  .service-include-card p {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .service-sidebar-card {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: var(--space-6);
+  }
+
+  .service-sidebar-card h3 {
+    font-size: 1rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .service-features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .service-features-list li {
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .service-features-list li:last-child {
+    border-bottom: none;
+  }
+
+  .service-features-list li::before {
+    content: '✓';
+    color: var(--color-accent-blue);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+</style>
