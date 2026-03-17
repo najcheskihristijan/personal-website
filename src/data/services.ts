@@ -75,7 +75,7 @@ export const services: Service[] = [
     icon: '📝',
     tagline: 'Content that ranks, converts, and compounds',
     description:
-      'Content is the engine of organic growth — but only when it's built around the right strategy. I develop content plans grounded in keyword research, competitive analysis, and a deep understanding of your audience's intent.',
+      'Content is the engine of organic growth — but only when it\'s built around the right strategy. I develop content plans grounded in keyword research, competitive analysis, and a deep understanding of your audience\'s intent.',
     features: [
       'Keyword research & mapping',
       'Topic cluster strategy',
