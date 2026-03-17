@@ -1,0 +1,107 @@
+---
+// Enable SSR for dynamic date checking
+export const prerender = false;
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { posts } from '../../data/blog-posts';
+
+const { slug } = Astro.params;
+const post = slug ? posts[slug] : null;
+
+// Return 404 if post doesn't exist OR is scheduled for the future (unless in DEV mode)
+if (!post || (!import.meta.env.DEV && new Date(post.date) > new Date())) {
+  return Astro.redirect('/404');
+}
+
+// Get related articles (exclude current, sort by date, limit to 3)
+const allSlugs = Object.keys(posts);
+const relatedSlugs = allSlugs.filter((s) => s !== slug);
+const relatedPosts = relatedSlugs
+  .map((s) => ({ slug: s, ...posts[s] }))
+  .filter((p) => import.meta.env.DEV || new Date(p.date) <= new Date())
+  .sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf())
+  .slice(0, 3);
+
+function formatDate(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+
+
+---
+
+<BaseLayout
+  title={`${post.title} — Hristijan Najcheski`}
+  description={post.description}
+  schemaType="blogPost"
+  datePublished={post.date}
+>
+  <section class="page-header">
+    <div class="container">
+      <div class="page-header-content">
+        <a href="/blog/" class="section-label" style="text-decoration: none;">← Back to Blog</a>
+        <h1>{post.title}</h1>
+        <div class="blog-post-meta" style="margin-top: var(--space-4);">
+          <span class="blog-card-tag">{post.tag}</span>
+          <span style="color: var(--color-text-muted);">{formatDate(post.date)}</span>
+          <span style="color: var(--color-text-muted);">·</span>
+          <span style="color: var(--color-text-muted);">{post.readTime}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: var(--space-8);">
+    <div class="container">
+      <article class="blog-post">
+        <div class="blog-post-content" set:html={post.content} />
+
+        <!-- Author Byline -->
+        <div class="blog-author-byline">
+          <img src="https://www.gravatar.com/avatar/7be017822cfe92e132a03733f068aba4?s=400" alt="Hristijan Najcheski" width="48" height="48" loading="lazy" />
+          <div>
+            <div class="author-name">
+              Written by <a href="/author/hristijan-najcheski/">Hristijan Najcheski</a>
+            </div>
+            <div class="author-desc">Fractional SEO Consultant · 8+ years in SEO</div>
+          </div>
+        </div>
+
+        <!-- Related Articles -->
+        <div class="related-articles">
+          <h3>Related <span class="text-gradient">Articles</span></h3>
+          <div class="related-articles-grid">
+            {relatedPosts.map((related) => (
+              <a href={`/blog/${related.slug}/`} class="blog-card">
+                <div class="blog-card-image">📄</div>
+                <div class="blog-card-body">
+                  <div class="blog-card-meta">
+                    <span class="blog-card-tag">{related.tag}</span>
+                    <span>{formatDate(related.date)}</span>
+                  </div>
+                  <h3>{related.title}</h3>
+                  <p>{related.description}</p>
+                  <span class="blog-read-more">Read article →</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-card">
+        <h2>Want help with <span class="text-gradient">your SEO</span>?</h2>
+        <p>Let's discuss how I can help your business grow through organic search.</p>
+        <a href="/contact/" class="btn btn-primary btn-lg">Get in Touch →</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

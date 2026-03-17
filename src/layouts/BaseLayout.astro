@@ -1,0 +1,66 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Schema from '../components/Schema.astro';
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  schemaType?: 'website' | 'person' | 'service' | 'blogPost';
+  datePublished?: string;
+  dateModified?: string;
+  breadcrumbs?: Array<{ name: string; url: string }>;
+  faqItems?: Array<{ question: string; answer: string }>;
+}
+
+const {
+  title,
+  description,
+  image,
+  schemaType = 'website',
+  datePublished,
+  dateModified,
+  breadcrumbs,
+  faqItems,
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} image={image} />
+    <Schema
+      type={schemaType}
+      title={title}
+      description={description}
+      datePublished={datePublished}
+      dateModified={dateModified}
+      image={image}
+      breadcrumbs={breadcrumbs}
+      faqItems={faqItems}
+    />
+    <script is:inline>
+      // Prevent flash of wrong theme
+      (function() {
+        const stored = localStorage.getItem('theme');
+        if (stored === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        } else if (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <Header currentPath={currentPath} />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

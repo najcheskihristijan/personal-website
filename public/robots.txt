@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hristijannajcheski.com/sitemap-index.xml

@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Contact — Hristijan Najcheski | Fractional SEO Consultant"
+  description="Get in touch with Hristijan Najcheski for fractional SEO consulting. Let's discuss how to grow your business through strategic search engine optimization."
+>
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <div class="page-header-content">
+        <span class="section-label">Contact</span>
+        <h1>Let's grow your<br /><span class="text-gradient-orange">organic traffic</span></h1>
+        <p>
+          Ready to work together? Reach out and let's discuss your SEO goals.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Content -->
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h2>Get in <span class="text-gradient">touch</span></h2>
+          <p>
+            Whether you're looking for a comprehensive SEO audit, ongoing
+            fractional consulting, or just want to pick my brain — I'd love
+            to hear from you.
+          </p>
+
+          <div class="contact-methods">
+            <div class="contact-method">
+              <div class="contact-method-icon">✉️</div>
+              <div>
+                <div class="contact-method-label">Email</div>
+                <div class="contact-method-value">
+                  <a href="mailto:najcheski.hristijan@gmail.com">najcheski.hristijan@gmail.com</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-method">
+              <div class="contact-method-icon">🌍</div>
+              <div>
+                <div class="contact-method-label">Availability</div>
+                <div class="contact-method-value">Worldwide (Remote)</div>
+              </div>
+            </div>
+
+            <div class="contact-method">
+              <div class="contact-method-icon">⏱️</div>
+              <div>
+                <div class="contact-method-label">Response Time</div>
+                <div class="contact-method-value">Within 24 hours</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <h3 style="font-size: var(--text-xl); margin-bottom: var(--space-6);">Send a message</h3>
+          <form action="https://formsubmit.co/najcheski.hristijan@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="New Contact from Website" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_next" value="https://hristijannajcheski.com/thank-you/" />
+            <input type="text" name="_honey" style="display:none" />
+
+            <div class="form-group">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" id="name" name="name" class="form-input" placeholder="Your name" required />
+            </div>
+
+            <div class="form-group">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" id="email" name="email" class="form-input" placeholder="your@email.com" required />
+            </div>
+
+            <div class="form-group">
+              <label for="subject" class="form-label">Subject</label>
+              <input type="text" id="subject" name="subject" class="form-input" placeholder="How can I help?" />
+            </div>
+
+            <div class="form-group">
+              <label for="message" class="form-label">Message</label>
+              <textarea id="message" name="message" class="form-textarea" placeholder="Tell me about your project and SEO goals..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg form-submit">
+              Send Message →
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,153 @@
+---
+export interface Props {
+  type?: 'website' | 'person' | 'service' | 'blogPost';
+  title?: string;
+  description?: string;
+  datePublished?: string;
+  dateModified?: string;
+  image?: string;
+  breadcrumbs?: Array<{ name: string; url: string }>;
+  faqItems?: Array<{ question: string; answer: string }>;
+}
+
+const {
+  type = 'website',
+  title,
+  description,
+  datePublished,
+  dateModified,
+  image,
+  breadcrumbs,
+  faqItems,
+} = Astro.props;
+
+const baseUrl = Astro.site?.href || 'https://hristijannajcheski.com';
+const currentUrl = new URL(Astro.url.pathname, baseUrl).href;
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Hristijan Najcheski",
+  "jobTitle": "Fractional SEO Consultant",
+  "url": baseUrl + "author/hristijan-najcheski/",
+  "image": "https://www.gravatar.com/avatar/7be017822cfe92e132a03733f068aba4?s=400",
+  "sameAs": [
+    "https://www.linkedin.com/in/najcheski/",
+    "https://x.com/HNajcheski",
+    "https://gravatar.com/najcheski"
+  ],
+  "knowsAbout": [
+    "Search Engine Optimization",
+    "Technical SEO",
+    "Content Strategy",
+    "Link Building",
+    "SEO Audits",
+    "Analytics",
+    "Keyword Research",
+    "On-Page SEO",
+    "Off-Page SEO",
+    "E-Commerce SEO",
+    "Local SEO"
+  ],
+  "description": "Fractional SEO Consultant with 8+ years of experience helping businesses grow organic traffic through data-driven strategies."
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Hristijan Najcheski — Fractional SEO Consultant",
+  "url": baseUrl,
+  "description": "Fractional SEO Consultant helping businesses grow organic traffic and revenue through data-driven SEO strategies.",
+  "author": personSchema
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Hristijan Najcheski SEO Consulting",
+  "description": "Fractional SEO consulting services including technical SEO, content strategy, link building, and analytics.",
+  "url": baseUrl,
+  "provider": personSchema,
+  "serviceType": "SEO Consulting",
+  "areaServed": "Worldwide"
+};
+
+const blogPostSchema = title ? {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "description": description,
+  "author": {
+    "@type": "Person",
+    "name": "Hristijan Najcheski",
+    "url": baseUrl + "author/hristijan-najcheski/"
+  },
+  "datePublished": datePublished,
+  "dateModified": dateModified || datePublished,
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": currentUrl
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Hristijan Najcheski"
+  },
+  ...(image ? { "image": image } : {})
+} : null;
+
+// Breadcrumb schema
+const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": breadcrumbs.map((item, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": item.name,
+    "item": item.url
+  }))
+} : null;
+
+// FAQ schema
+const faqSchema = faqItems && faqItems.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map((item) => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer
+    }
+  }))
+} : null;
+
+function getSchema() {
+  const schemas: any[] = [websiteSchema];
+
+  switch (type) {
+    case 'person':
+      schemas.push(personSchema);
+      break;
+    case 'service':
+      schemas.push(serviceSchema);
+      break;
+    case 'blogPost':
+      if (blogPostSchema) schemas.push(blogPostSchema);
+      break;
+    default:
+      schemas.push(personSchema);
+      break;
+  }
+
+  if (breadcrumbSchema) schemas.push(breadcrumbSchema);
+  if (faqSchema) schemas.push(faqSchema);
+
+  return schemas;
+}
+
+const schemas = getSchema();
+---
+
+{schemas.map((schema) => (
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+))}

@@ -1,0 +1,79 @@
+---
+// Enable SSR for dynamic date checking
+export const prerender = false;
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { posts as postsData } from '../../data/blog-posts';
+
+// Get all blog posts from the data file, filtering out future posts (unless in DEV mode)
+const posts = Object.entries(postsData)
+  .map(([slug, data]) => ({
+    slug,
+    ...data,
+  }))
+  .filter((post) => import.meta.env.DEV || new Date(post.date) <= new Date())
+  .sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf());
+
+function formatDate(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+<BaseLayout
+  title="SEO Blog — Hristijan Najcheski | Fractional SEO Consultant"
+  description="SEO insights, strategies, and tips from Hristijan Najcheski. Stay up to date with the latest in technical SEO, content strategy, and organic growth."
+>
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <div class="page-header-content">
+        <span class="section-label">Blog</span>
+        <h1>SEO insights &<br /><span class="text-gradient">strategies</span></h1>
+        <p>
+          Actionable SEO knowledge, industry insights, and strategies to help your business grow organically.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Grid -->
+  <section class="section">
+    <div class="container">
+      <div class="blog-grid">
+        {posts.map((post) => (
+          <a href={`/blog/${post.slug}/`} class="blog-card">
+            <div class="blog-card-image">📄</div>
+            <div class="blog-card-body">
+              <div class="blog-card-meta">
+                <span class="blog-card-tag">{post.tag}</span>
+                <span>{formatDate(post.date)}</span>
+                <span>·</span>
+                <span>{post.readTime}</span>
+              </div>
+              <h3>{post.title}</h3>
+              <p>{post.description}</p>
+              <span class="blog-read-more">Read Article →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-card">
+        <h2>Want personalized <span class="text-gradient">SEO advice</span>?</h2>
+        <p>
+          These articles are just the tip of the iceberg. Let's discuss your specific SEO challenges.
+        </p>
+        <a href="/contact/" class="btn btn-primary btn-lg">Get in Touch →</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

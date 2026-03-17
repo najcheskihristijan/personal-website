@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const blogPosts = [
+  {
+    slug: 'why-fractional-seo',
+    title: 'Why Fractional SEO Consulting Is the Future',
+    description: 'Discover why businesses are choosing fractional SEO consultants over traditional agencies.',
+    tag: 'Strategy',
+  },
+  {
+    slug: 'technical-seo-checklist-2026',
+    title: 'The Ultimate Technical SEO Checklist for 2026',
+    description: 'A comprehensive checklist covering Core Web Vitals, crawlability, and structured data.',
+    tag: 'Technical SEO',
+  },
+  {
+    slug: 'content-strategy-eeat',
+    title: 'How to Build E-E-A-T Into Your Content Strategy',
+    description: 'Learn how to demonstrate Experience, Expertise, Authoritativeness, and Trustworthiness.',
+    tag: 'Content',
+  },
+];
+---
+
+<BaseLayout
+  title="404 — Page Not Found | Hristijan Najcheski"
+  description="The page you're looking for doesn't exist. But don't worry — here are some helpful resources to get you back on track."
+>
+  <section class="error-page">
+    <div class="container">
+      <div class="error-code">
+        <span class="text-gradient">4</span>0<span class="text-gradient-orange">4</span>
+      </div>
+      <h1>This page wandered off the SERPs</h1>
+      <p>
+        The page you're looking for doesn't exist — it might have been moved,
+        renamed, or it never existed in the first place. Kind of like ranking
+        on page 2 of Google. 😉
+      </p>
+      <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
+        <a href="/" class="btn btn-primary btn-lg">Back to Homepage</a>
+        <a href="/services/" class="btn btn-secondary btn-lg">View Services →</a>
+      </div>
+
+      <div class="error-suggestions">
+        <h2>While you're here, check out <span class="text-gradient">these articles</span></h2>
+        <div class="blog-grid" style="margin-top: var(--space-6);">
+          {blogPosts.map((post) => (
+            <a href={`/blog/${post.slug}/`} class="blog-card">
+              <div class="blog-card-image">📄</div>
+              <div class="blog-card-body">
+                <div class="blog-card-meta">
+                  <span class="blog-card-tag">{post.tag}</span>
+                </div>
+                <h3>{post.title}</h3>
+                <p>{post.description}</p>
+                <span class="blog-read-more">Read article →</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

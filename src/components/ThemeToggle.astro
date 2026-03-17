@@ -1,0 +1,56 @@
+---
+---
+
+<button
+  class="theme-toggle"
+  id="themeToggle"
+  aria-label="Toggle dark mode"
+  title="Toggle dark mode"
+>
+  <!-- Moon icon (shown in light mode → click to go dark) -->
+  <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+  </svg>
+  <!-- Sun icon (shown in dark mode → click to go light) -->
+  <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+  </svg>
+</button>
+
+<script>
+  function initTheme() {
+    const toggle = document.getElementById('themeToggle');
+    const stored = localStorage.getItem('theme');
+
+    // Set initial theme
+    if (stored) {
+      document.documentElement.setAttribute('data-theme', stored);
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+
+    toggle?.addEventListener('click', () => {
+      // Add transition class
+      document.documentElement.classList.add('theme-transition');
+
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+
+      if (next === 'light') {
+        document.documentElement.removeAttribute('data-theme');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+      localStorage.setItem('theme', next);
+
+      // Remove transition class after animation
+      setTimeout(() => {
+        document.documentElement.classList.remove('theme-transition');
+      }, 350);
+    });
+  }
+
+  // Run on initial load and on Astro page transitions
+  initTheme();
+  document.addEventListener('astro:after-swap', initTheme);
+</script>
