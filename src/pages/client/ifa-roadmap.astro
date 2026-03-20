@@ -1,0 +1,448 @@
+---
+export const prerender = false;
+import BaseHead from '../../components/BaseHead.astro';
+import '../../styles/global.css';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title="6-Month Cross-Brand SEO Roadmap — IFATactical & IncognitoConcealment"
+      description="A 6-month cross-brand SEO roadmap covering IFATactical.com and IncognitoConcealment.com."
+      noindex={true}
+    />
+    <style>
+      body {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem 4rem;
+      }
+
+      .doc-header {
+        padding: 2.5rem 0 2rem;
+        border-bottom: 2px solid var(--color-border);
+        margin-bottom: 3rem;
+      }
+
+      .doc-meta {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .doc-logo {
+        font-family: var(--font-heading);
+        font-size: 1.25rem;
+        font-weight: 800;
+        color: var(--color-text-primary);
+      }
+
+      .doc-logo span {
+        color: var(--color-accent-blue);
+      }
+
+      .doc-badge {
+        padding: 0.25rem 0.75rem;
+        background: var(--badge-bg);
+        border: 1px solid var(--badge-border);
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--color-accent-blue);
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .doc-title {
+        font-family: var(--font-heading);
+        font-size: 2.5rem;
+        font-weight: 800;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+        color: var(--color-text-primary);
+        margin-bottom: 1rem;
+      }
+
+      .doc-subtitle {
+        color: var(--color-text-secondary);
+        font-size: 1rem;
+        line-height: 1.7;
+        max-width: 680px;
+      }
+
+      .context-box {
+        background: var(--color-bg-secondary);
+        border: 1px solid var(--color-border);
+        border-left: 3px solid var(--color-accent-blue);
+        border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+        padding: 1.25rem 1.5rem;
+        margin-bottom: 3rem;
+      }
+
+      .context-box p {
+        font-size: 0.9rem;
+        margin: 0;
+        color: var(--color-text-secondary);
+      }
+
+      .context-box p + p {
+        margin-top: 0.5rem;
+      }
+
+      .context-box strong {
+        color: var(--color-text-primary);
+      }
+
+      .brand-section {
+        margin-bottom: 4rem;
+      }
+
+      .brand-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid var(--color-border);
+      }
+
+      .brand-emoji {
+        font-size: 1.75rem;
+      }
+
+      .brand-title {
+        font-family: var(--font-heading);
+        font-size: 1.75rem;
+        font-weight: 800;
+        color: var(--color-text-primary);
+      }
+
+      .brand-url {
+        font-size: 0.85rem;
+        color: var(--color-accent-blue);
+        font-weight: 500;
+      }
+
+      .month-card {
+        background: var(--gradient-card);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-xl);
+        padding: 1.75rem;
+        margin-bottom: 1.25rem;
+        transition: border-color 250ms ease;
+      }
+
+      .month-card:hover {
+        border-color: var(--color-border-hover);
+      }
+
+      .month-header {
+        display: flex;
+        align-items: baseline;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .month-label {
+        font-family: var(--font-heading);
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--color-accent-blue);
+        background: var(--badge-bg);
+        border: 1px solid var(--badge-border);
+        border-radius: 999px;
+        padding: 0.2rem 0.65rem;
+        white-space: nowrap;
+      }
+
+      .month-title {
+        font-family: var(--font-heading);
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--color-text-primary);
+      }
+
+      .month-focus {
+        font-size: 0.85rem;
+        color: var(--color-text-muted);
+        margin-bottom: 1rem;
+        font-style: italic;
+      }
+
+      .month-tasks {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+
+      .month-tasks li {
+        display: flex;
+        gap: 0.75rem;
+        font-size: 0.9rem;
+        color: var(--color-text-secondary);
+        line-height: 1.6;
+      }
+
+      .month-tasks li::before {
+        content: '→';
+        color: var(--color-accent-blue);
+        font-weight: 700;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+
+      .month-tasks strong {
+        color: var(--color-text-primary);
+        font-weight: 600;
+      }
+
+      .note-box {
+        background: rgba(234, 88, 12, 0.05);
+        border: 1px solid rgba(234, 88, 12, 0.2);
+        border-radius: var(--radius-lg);
+        padding: 1rem 1.25rem;
+        margin-bottom: 2rem;
+        font-size: 0.875rem;
+        color: var(--color-text-secondary);
+        font-style: italic;
+      }
+
+      .doc-footer {
+        margin-top: 4rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--color-border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 0.8rem;
+        color: var(--color-text-muted);
+      }
+
+      .divider {
+        height: 2px;
+        background: linear-gradient(90deg, var(--color-accent-blue), var(--color-accent-orange), transparent);
+        border: none;
+        margin: 3rem 0;
+        border-radius: 999px;
+      }
+
+      @media (max-width: 600px) {
+        .doc-title { font-size: 1.75rem; }
+        .month-header { flex-wrap: wrap; gap: 0.5rem; }
+        .doc-footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="doc-header">
+      <div class="doc-meta">
+        <div class="doc-logo"><span>H</span>N · Hristijan Najcheski</div>
+        <div class="doc-badge">Client Document</div>
+      </div>
+      <h1 class="doc-title">6-Month Cross-Brand<br />SEO Roadmap</h1>
+      <p class="doc-subtitle">March – September · IFATactical.com & IncognitoConcealment.com</p>
+    </div>
+
+    <div class="context-box">
+      <p><strong>Resource Allocation:</strong> 40 hours maximum per month (up to 20 hours/month per site when running concurrently).</p>
+      <p><strong>Milestone Exception:</strong> For the entirety of <strong>March</strong>, 100% of the budget is dedicated to finalizing the IFATactical.com BigCommerce migration, redesign, and extensive Image SEO. IncognitoConcealment.com SEO will strictly commence in <strong>April</strong>.</p>
+    </div>
+
+    <!-- IFATactical -->
+    <div class="brand-section">
+      <div class="brand-header">
+        <span class="brand-emoji">🎯</span>
+        <div>
+          <div class="brand-title">IFATactical.com</div>
+          <div class="brand-url">Migration Completion & Aggressive SEO</div>
+        </div>
+      </div>
+
+      <div class="month-card">
+        <div class="month-header">
+          <span class="month-label">Month 1 · March</span>
+          <span class="month-title">Migration, Redesign & Image SEO Sprint</span>
+        </div>
+        <div class="month-focus">Focus: Finalizing the BigCommerce Transition & Visual Overhaul</div>
+        <ul class="month-tasks">
+          <li><span><strong>Platform Transfer & Redesign:</strong> Exporting all catalog items, categories, and core static pages, and integrating them into the newly redesigned BigCommerce structure.</span></li>
+          <li><span><strong>Extensive Image SEO:</strong> Manually downloading existing product imagery, converting formats to next-gen WebP to dramatically increase site speed, and optimizing file names/alt text with target keywords.</span></li>
+          <li><span><strong>Domain Verification:</strong> Complete domain pointing (DNS), SSL setup, and execute all 301 redirects for legacy URLs to preserve rankings.</span></li>
+          <li><span><strong>Launch & QA:</strong> Cross-browser testing, functional checkout validation, and final Go-Live by the end of March.</span></li>
+        </ul>
+      </div>
+
+      <div class="month-card">
+        <div class="month-header">
+          <span class="month-label">Month 2 · April</span>
+          <span class="month-title">Post-Launch Stability & Baseline SEO</span>
+        </div>
+        <div class="month-focus">Focus: Search engine indexing of the new BigCommerce structure</div>
+        <ul class="month-tasks">
+          <li><span><strong>Technical Integrity Check:</strong> Submit the new XML Sitemaps to Google Search Console. Monitor daily for 404 crawl errors.</span></li>
+          <li><span><strong>Analytics Alignment:</strong> Ensure Google Analytics 4 (GA4) and Tag Manager are firing correctly on all checkout and product pages.</span></li>
+          <li><span><strong>On-Page Optimization (Phase 1):</strong> Review and optimize Title Tags, Meta Descriptions, and H1s for the top 20 revenue-driving product/category pages.</span></li>
+        </ul>
+      </div>
+
+      <div class="month-card">
+        <div class="month-header">
+          <span class="month-label">Month 3 · May</span>
+          <span class="month-title">Content Mapping & Architecture</span>
+        </div>
+        <div class="month-focus">Focus: Building topical authority</div>
+        <ul class="month-tasks">
+          <li><span><strong>Keyword Gap Analysis:</strong> Identify high-volume, low-competition tactical keywords the new site is currently missing.</span></li>
+          <li><span><strong>Internal Linking Strategy:</strong> Build strong structural silos linking your blog content directly to high-margin product categories.</span></li>
+          <li><span><strong>Schema Markup:</strong> Implement Product and FAQ structured data to improve visual rich snippets in Google search results.</span></li>
+        </ul>
+      </div>
+
+      <div class="month-card">
+        <div class="month-header">
+          <span class="month-label">Month 4 · June</span>
+          <span class="month-title">Content Expansion & Off-Page SEO</span>
+        </div>
+        <div class="month-focus">Focus: Backlink profile and new traffic acquisition</div>
+        <ul class="month-tasks">
+          <li><span><strong>Content Generation:</strong> Publish 2–3 long-form, highly-optimized blog posts targeting informational queries in the tactical niche.</span></li>
+          <li><span><strong>Backlink Audit & Cleanup:</strong> Identify and disavow toxic links pointing to the old domains.</span></li>
+          <li><span><strong>Link Building Outreach:</strong> Begin acquiring high-quality backlinks from relevant outdoor, sporting, and tactical industry sites.</span></li>
+        </ul>
+      </div>
+
+      <div class="month-card">
+        <div class="month-header">
+          <span class="month-label">Month 5 · July</span>
+          <span class="month-title">Conversion & UX Enhancements</span>
+        </div>
+        <div class="month-focus">Focus: Capitalizing on the incoming traffic</div>
+        <ul class="month-tasks">
+          <li><span><strong>Conversion Rate Optimization (CRO):</strong> Analyze BigCommerce user flow to reduce cart abandonment.</span></li>
+          <li><span><strong>Page Speed Optimization:</strong> Compress images, leverage caching, and minify scripts on the new platform.</span></li>
+          <li><span><strong>On-Page Optimization (Phase 2):</strong> Expand keyword targeting to mid-tier categories and deep product pages.</span></li>
+        </ul>
+      </div>
+
+      <div class="month-card">
+        <div class="month-header">
+          <span class="month-label">Month 6 · August</span>
+          <span class="month-title">Performance Review & Q4 Prep</span>
+        </div>
+        <div class="month-focus">Focus: Gearing up for the holiday season</div>
+        <ul class="month-tasks">
+          <li><span><strong>Performance Evaluation:</strong> 6-month ranking review against initial benchmarks for target keywords.</span></li>
+          <li><span><strong>Content Refresh:</strong> Update and expand underperforming category descriptions.</span></li>
+          <li><span><strong>Q4 Strategy Planning:</strong> Mapping out promotional content and targeting seasonal, high-intent keywords.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- IncognitoConcealment -->
+    <div class="brand-section">
+      <div class="brand-header">
+        <span class="brand-emoji">🎯</span>
+        <div>
+          <div class="brand-title">IncognitoConcealment.com</div>
+          <div class="brand-url">SEO Focused — commencing April</div>
+        </div>
+      </div>
+
+      <div class="note-box">
+        Work on IncognitoConcealment begins in April following the IFATactical migration completion.
+      </div>
+
+      <div class="month-card">
+        <div class="month-header">
+          <span class="month-label">Month 1 · April</span>
+          <span class="month-title">Audit & Foundation</span>
+        </div>
+        <div class="month-focus">Focus: Identifying the technical shortcomings</div>
+        <ul class="month-tasks">
+          <li><span><strong>Comprehensive Site Audit:</strong> Run deep crawls to identify broken links, duplicate content, and indexing issues.</span></li>
+          <li><span><strong>Competitor Benchmarking:</strong> Analyze top 3 competitors in the holster/concealment space to reverse-engineer their traffic sources.</span></li>
+          <li><span><strong>Initial Fixes:</strong> Resolve any immediate critical technical errors hindering Google's crawlability.</span></li>
+        </ul>
+      </div>
+
+      <div class="month-card">
+        <div class="month-header">
+          <span class="month-label">Month 2 · May</span>
+          <span class="month-title">On-Page Restructuring</span>
+        </div>
+        <div class="month-focus">Focus: Making the site visually and structurally understandable to Google</div>
+        <ul class="month-tasks">
+          <li><span><strong>Keyword Research:</strong> Map target keywords to every major category and product page.</span></li>
+          <li><span><strong>Metadata Overhaul:</strong> Rewrite all Meta titles, descriptions, and header structures aligning with focus keywords.</span></li>
+          <li><span><strong>URL Optimization:</strong> Clean up any messy URL structures (using proper 301 redirects where necessary).</span></li>
+        </ul>
+      </div>
+
+      <div class="month-card">
+        <div class="month-header">
+          <span class="month-label">Month 3 · June</span>
+          <span class="month-title">Content Strategy Execution</span>
+        </div>
+        <div class="month-focus">Focus: Answering the user's search intent</div>
+        <ul class="month-tasks">
+          <li><span><strong>Blog Blueprint:</strong> Develop a 3-month editorial calendar covering holsters, gun safety, concealed carry laws, etc.</span></li>
+          <li><span><strong>Content Enhancements:</strong> Expand thin category pages with 300–500 words of optimized, buyer-focused content.</span></li>
+          <li><span><strong>Image SEO:</strong> Implement descriptive alt-tags and file name structures across the product catalog.</span></li>
+        </ul>
+      </div>
+
+      <div class="month-card">
+        <div class="month-header">
+          <span class="month-label">Month 4 · July</span>
+          <span class="month-title">Authority Building</span>
+        </div>
+        <div class="month-focus">Focus: Proving trustworthiness to search engines</div>
+        <ul class="month-tasks">
+          <li><span><strong>Local SEO & Citations:</strong> If applicable, optimize Google Business Profile and ensure NAP (Name, Address, Phone) consistency across local directories.</span></li>
+          <li><span><strong>Backlink Acquisition:</strong> Focus on niche-relevant link building (firearms blogs, defense forums, review sites).</span></li>
+          <li><span><strong>PR Outreach:</strong> Pitch products to outdoor and concealment reviewers/influencers.</span></li>
+        </ul>
+      </div>
+
+      <div class="month-card">
+        <div class="month-header">
+          <span class="month-label">Month 5 · August</span>
+          <span class="month-title">Technical Refinements</span>
+        </div>
+        <div class="month-focus">Focus: Maximizing crawl budget and user experience</div>
+        <ul class="month-tasks">
+          <li><span><strong>Core Web Vitals:</strong> Address specific LCP (Largest Contentful Paint) and CLS (Cumulative Layout Shift) speed issues.</span></li>
+          <li><span><strong>Mobile Usability:</strong> Fix any interactive elements that perform poorly on mobile devices.</span></li>
+          <li><span><strong>Internal Link Pruning:</strong> Ensure link equity flows to the primary money pages rather than low-value pages.</span></li>
+        </ul>
+      </div>
+
+      <div class="month-card">
+        <div class="month-header">
+          <span class="month-label">Month 6 · September</span>
+          <span class="month-title">Data-Driven Iteration</span>
+        </div>
+        <div class="month-focus">Focus: Doubling down on what works for Q4</div>
+        <ul class="month-tasks">
+          <li><span><strong>Analytics Deep-Dive:</strong> Review GA4 conversion paths to see which organic terms are actually driving sales.</span></li>
+          <li><span><strong>Striking Distance Keywords:</strong> Identify terms ranking on page 2 of Google and do aggressive on-page tweaks to push them to page 1.</span></li>
+          <li><span><strong>Pre-Holiday Content:</strong> Prep buyer guides and comparison content intended to intercept upcoming holiday shoppers.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doc-footer">
+      <span>Prepared by Hristijan Najcheski · hristijannajcheski.com</span>
+      <span>Confidential — not for distribution</span>
+    </div>
+  </body>
+</html>

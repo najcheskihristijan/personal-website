@@ -1,10 +1,27 @@
 ---
+export const prerender = false;
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { posts } from '../data/blog-posts';
+
+const recentPosts = Object.entries(posts)
+  .filter(([, post]) => new Date(post.date) <= new Date())
+  .sort(([, a], [, b]) => new Date(b.date).valueOf() - new Date(a.date).valueOf())
+  .slice(0, 3)
+  .map(([slug, post]) => ({ slug, ...post }));
+
+function formatDate(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
 ---
 
 <BaseLayout
   title="Thank You — Hristijan Najcheski | Fractional SEO Consultant"
   description="Thank you for reaching out. I'll get back to you within 24 hours."
+  noindex={true}
 >
   <section class="thankyou-page">
     <div class="container">
@@ -15,9 +32,33 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         within 24 hours. In the meantime, here are some things you can explore:
       </p>
       <div class="thankyou-actions">
-        <a href="/blog/" class="btn btn-primary btn-lg">Read the Blog</a>
         <a href="/services/" class="btn btn-secondary btn-lg">Explore Services →</a>
         <a href="/" class="btn btn-secondary btn-lg">Back to Home</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recent Blog Articles -->
+  <section class="section" style="background: var(--color-bg-secondary);">
+    <div class="container">
+      <span class="section-label">While you wait</span>
+      <h2 class="section-title">Explore the <span class="text-gradient">blog</span></h2>
+      <p class="section-subtitle">Latest SEO insights and strategies to grow your organic traffic.</p>
+      <div class="blog-grid" style="margin-top: var(--space-10);">
+        {recentPosts.map((post) => (
+          <a href={`/blog/${post.slug}/`} class="blog-card">
+            <div class="blog-card-image">📄</div>
+            <div class="blog-card-body">
+              <div class="blog-card-meta">
+                <span class="blog-card-tag">{post.tag}</span>
+                <span>{formatDate(post.date)}</span>
+              </div>
+              <h3>{post.title}</h3>
+              <p>{post.description}</p>
+              <span class="blog-read-more">Read article →</span>
+            </div>
+          </a>
+        ))}
       </div>
     </div>
   </section>

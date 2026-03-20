@@ -14,6 +14,7 @@ export interface Props {
   dateModified?: string;
   breadcrumbs?: Array<{ name: string; url: string }>;
   faqItems?: Array<{ question: string; answer: string }>;
+  noindex?: boolean;
 }
 
 const {
@@ -25,6 +26,7 @@ const {
   dateModified,
   breadcrumbs,
   faqItems,
+  noindex = false,
 } = Astro.props;
 
 const currentPath = Astro.url.pathname;
@@ -33,7 +35,7 @@ const currentPath = Astro.url.pathname;
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={title} description={description} image={image} />
+    <BaseHead title={title} description={description} image={image} noindex={noindex} />
     <Schema
       type={schemaType}
       title={title}

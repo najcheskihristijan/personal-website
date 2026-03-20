@@ -1,4 +1,6 @@
 ---
+import { services } from '../data/services';
+
 export interface Props {
   currentPath: string;
 }
@@ -8,7 +10,6 @@ const { currentPath } = Astro.props;
 const navItems = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about/' },
-  { label: 'Services', href: '/services/' },
   { label: 'Blog', href: '/blog/' },
   { label: 'Contact', href: '/contact/' },
 ];
@@ -21,7 +22,7 @@ const navItems = [
     </a>
 
     <nav class="nav-links" aria-label="Main navigation">
-      {navItems.map((item) => (
+      {navItems.slice(0, 2).map((item) => (
         <a
           href={item.href}
           class:list={['nav-link', { active: currentPath === item.href }]}
@@ -29,12 +30,49 @@ const navItems = [
           {item.label}
         </a>
       ))}
+
+      <!-- Services dropdown -->
+      <div class="nav-dropdown" id="servicesDropdown">
+        <a
+          href="/services/"
+          class:list={['nav-link', { active: currentPath.startsWith('/services') }]}
+          aria-haspopup="true"
+          aria-expanded="false"
+          id="servicesDropdownBtn"
+        >
+          Services
+          <svg class="dropdown-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div class="nav-dropdown-menu" role="menu">
+          <a href="/services/" class="nav-dropdown-all" role="menuitem">
+            All Services
+          </a>
+          <div class="nav-dropdown-divider"></div>
+          {services.map((s) => (
+            <a href={`/services/${s.slug}/`} class="nav-dropdown-item" role="menuitem">
+              <span class="nav-dropdown-icon">{s.icon}</span>
+              <span>{s.title}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      {navItems.slice(2).map((item) => (
+        <a
+          href={item.href}
+          class:list={['nav-link', { active: currentPath === item.href }]}
+        >
+          {item.label}
+        </a>
+      ))}
+
       <a href="/contact/" class="btn btn-primary nav-cta">Get in Touch</a>
     </nav>
 
     <div style="display: flex; align-items: center; gap: 0;">
       <Fragment>
-        {/* Theme toggle imported as component */}
         <button
           class="theme-toggle"
           id="themeToggle"
@@ -60,16 +98,152 @@ const navItems = [
 </header>
 
 <div class="mobile-nav" id="mobileNav">
-  {navItems.map((item) => (
-    <a href={item.href}>{item.label}</a>
-  ))}
+  <a href="/">Home</a>
+  <a href="/about/">About</a>
+  <div class="mobile-nav-services">
+    <a href="/services/" class="mobile-nav-services-heading">Services</a>
+    <div class="mobile-nav-services-list">
+      {services.map((s) => (
+        <a href={`/services/${s.slug}/`} class="mobile-nav-service-item">
+          <span>{s.icon}</span> {s.title}
+        </a>
+      ))}
+    </div>
+  </div>
+  <a href="/blog/">Blog</a>
+  <a href="/contact/">Contact</a>
   <a href="/contact/" class="btn btn-primary" style="margin-top: auto; text-align: center;">
     Get in Touch
   </a>
 </div>
 
+<style>
+  /* Dropdown wrapper */
+  .nav-dropdown {
+    position: relative;
+  }
+
+  .dropdown-chevron {
+    display: inline-block;
+    margin-left: 3px;
+    vertical-align: middle;
+    transition: transform 250ms ease;
+  }
+
+  .nav-dropdown:hover .dropdown-chevron,
+  .nav-dropdown.open .dropdown-chevron {
+    transform: rotate(180deg);
+  }
+
+  /* Dropdown menu */
+  .nav-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 240px;
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: var(--space-2);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateX(-50%) translateY(-8px);
+    transition: opacity 200ms ease, transform 200ms ease, visibility 200ms;
+    z-index: 999;
+  }
+
+  .nav-dropdown:hover .nav-dropdown-menu,
+  .nav-dropdown.open .nav-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .nav-dropdown-all {
+    display: block;
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-accent-blue);
+    border-radius: var(--radius-md);
+    transition: background var(--transition-fast);
+  }
+
+  .nav-dropdown-all:hover {
+    background: var(--icon-bg);
+  }
+
+  .nav-dropdown-divider {
+    height: 1px;
+    background: var(--color-border);
+    margin: var(--space-2) var(--space-1);
+  }
+
+  .nav-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+  }
+
+  .nav-dropdown-item:hover {
+    background: var(--icon-bg);
+    color: var(--color-text-primary);
+  }
+
+  .nav-dropdown-icon {
+    font-size: 1rem;
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  /* Mobile services */
+  .mobile-nav-services {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .mobile-nav-services-heading {
+    font-family: var(--font-heading);
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    color: var(--color-text-secondary);
+  }
+
+  .mobile-nav-services-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding-left: var(--space-4);
+  }
+
+  .mobile-nav-service-item {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    transition: color var(--transition-fast);
+  }
+
+  .mobile-nav-service-item:hover {
+    color: var(--color-text-primary);
+  }
+</style>
+
 <script>
-  // Theme toggle
   function initTheme() {
     const toggle = document.getElementById('themeToggle');
     const stored = localStorage.getItem('theme');
@@ -84,24 +258,20 @@ const navItems = [
 
     toggle?.addEventListener('click', () => {
       document.documentElement.classList.add('theme-transition');
-
       const current = document.documentElement.getAttribute('data-theme');
       const next = current === 'dark' ? 'light' : 'dark';
-
       if (next === 'light') {
         document.documentElement.removeAttribute('data-theme');
       } else {
         document.documentElement.setAttribute('data-theme', 'dark');
       }
       localStorage.setItem('theme', next);
-
       setTimeout(() => {
         document.documentElement.classList.remove('theme-transition');
       }, 350);
     });
   }
 
-  // Mobile menu
   function initMobileMenu() {
     const btn = document.getElementById('mobileMenuBtn');
     const nav = document.getElementById('mobileNav');

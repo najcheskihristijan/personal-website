@@ -25,6 +25,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="container">
       <div class="about-content">
         <div class="about-text">
+          <div class="about-photo">
+            <img
+              src="/images/author-avatar.webp"
+              alt="Hristijan Najcheski — Fractional SEO Consultant"
+              width="200"
+              height="200"
+              loading="lazy"
+            />
+          </div>
           <h2>Hi, I'm <span class="text-gradient">Hristijan</span></h2>
           <p>
             I'm a Fractional SEO Consultant who works as an extension of your
@@ -140,6 +149,23 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
     </div>
   </section>
+
+  <style>
+    .about-photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid var(--color-border);
+      box-shadow: var(--shadow-lg);
+      margin-bottom: var(--space-6);
+    }
+    .about-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
 
   <!-- CTA -->
   <section class="cta-section">
