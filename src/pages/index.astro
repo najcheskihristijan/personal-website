@@ -1,10 +1,35 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const faqItems = [
+  {
+    question: "How is a fractional SEO consultant different from an agency?",
+    answer: "A fractional SEO consultant embeds directly with your team, giving you senior-level expertise without the agency overhead, long-term contracts, or account manager layers. You get one expert fully focused on your business — not a rotating team juggling 50+ accounts."
+  },
+  {
+    question: "How much does fractional SEO consulting cost?",
+    answer: "Fractional SEO engagements typically range from a focused project to an ongoing monthly retainer. This model is significantly more cost-effective than hiring a full-time SEO director or a full-service agency, while delivering the same level of strategic depth. Reach out for a tailored proposal."
+  },
+  {
+    question: "How quickly will I see results from SEO?",
+    answer: "Most businesses see meaningful improvements in organic traffic within 3–6 months, with compounding results over 12+ months. Technical fixes and quick wins can show results faster, while content and link building strategies build lasting authority over time."
+  },
+  {
+    question: "What types of businesses do you work with?",
+    answer: "Hristijan works primarily with SaaS companies, e-commerce brands, publishing and media businesses, and enterprise teams. The fractional model is ideal for growing companies that need senior SEO strategy without the cost of a full-time hire."
+  },
+  {
+    question: "What does 'fractional' actually mean?",
+    answer: "Fractional means you get a senior SEO consultant working as part of your team — without the full-time salary, benefits, or overhead. You pay for the expertise and time you actually need, making it a smart, scalable model for businesses at any growth stage."
+  }
+];
 ---
 
 <BaseLayout
-  title="Hristijan Najcheski — Fractional SEO Consultant"
-  description="Fractional SEO Consultant helping businesses grow organic traffic and revenue through data-driven strategies. Technical SEO, content strategy, link building, and more."
+  title="Fractional SEO Consultant | Hristijan Najcheski"
+  description="Hire a Fractional SEO Consultant with 8+ years of experience. Senior-level SEO strategy for SaaS, e-commerce, and enterprise — without the full-time cost."
+  schemaType="person"
+  faqItems={faqItems}
 >
   <!-- Hero Section -->
   <section class="hero">
@@ -16,16 +41,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <div class="hero-content">
           <span class="hero-badge">Available for Fractional Engagements</span>
           <h1>
-            I help businesses<br />
-            <span class="text-gradient">dominate search</span>
+            Senior SEO Strategy,<br />
+            <span class="text-gradient">Without the Full-Time Hire</span>
           </h1>
           <p class="hero-description">
-            Fractional SEO Consultant delivering enterprise-level search strategies
-            to growing businesses. Data-driven, results-focused, and built for
-            sustainable organic growth.
+            Enterprise-level SEO expertise embedded directly in your team.
+            Data-driven, results-focused, and built for sustainable organic growth —
+            without the agency overhead.
           </p>
           <div class="hero-actions">
-            <a href="/contact/" class="btn btn-primary btn-lg">Start a Project</a>
+            <a href="/contact/" class="btn btn-primary btn-lg">Book a Free Strategy Call</a>
             <a href="/services/" class="btn btn-secondary btn-lg">View Services →</a>
           </div>
           <div class="hero-stats">
@@ -109,6 +134,111 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         display: none;
       }
     }
+
+    /* Who I Work With */
+    .icp-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-6);
+      margin-top: var(--space-10);
+    }
+
+    .icp-card {
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+      transition: border-color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .icp-card:hover {
+      border-color: var(--color-accent-blue);
+      transform: translateY(-2px);
+    }
+
+    .icp-icon {
+      font-size: 2rem;
+      margin-bottom: var(--space-3);
+    }
+
+    .icp-title {
+      font-family: var(--font-heading);
+      font-size: var(--text-lg);
+      font-weight: 700;
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-2);
+    }
+
+    .icp-desc {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 1024px) {
+      .icp-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      .icp-grid { grid-template-columns: 1fr; }
+    }
+
+    /* FAQ */
+    .faq-list {
+      margin-top: var(--space-10);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .faq-item {
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+    }
+
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+      padding: var(--space-5) var(--space-6);
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--font-heading);
+      font-size: var(--text-base);
+      font-weight: 600;
+      color: var(--color-text-primary);
+    }
+
+    .faq-chevron {
+      flex-shrink: 0;
+      transition: transform 0.25s ease;
+      color: var(--color-text-muted);
+    }
+
+    .faq-item.open .faq-chevron {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      display: none;
+      padding: 0 var(--space-6) var(--space-5);
+      font-size: var(--text-base);
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+    }
+
+    .faq-item.open .faq-answer {
+      display: block;
+    }
   </style>
 
   <!-- Services Overview -->
@@ -182,8 +312,42 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <!-- About Snippet -->
+  <!-- Who I Work With -->
   <section class="section" style="background: var(--color-bg-secondary);">
+    <div class="container">
+      <span class="section-label">Who I Work With</span>
+      <h2 class="section-title">Built for <span class="text-gradient">growth-focused</span> teams</h2>
+      <p class="section-subtitle">
+        The fractional model works best when you need senior strategy without the full-time overhead.
+        Here's who I typically work with:
+      </p>
+      <div class="icp-grid">
+        <div class="icp-card">
+          <div class="icp-icon">🚀</div>
+          <div class="icp-title">SaaS Companies</div>
+          <p class="icp-desc">Growing platforms that need sustainable organic acquisition to reduce CAC and compound over time.</p>
+        </div>
+        <div class="icp-card">
+          <div class="icp-icon">🛒</div>
+          <div class="icp-title">E-commerce Brands</div>
+          <p class="icp-desc">Online stores ready to reduce paid spend by building strong organic product and category page rankings.</p>
+        </div>
+        <div class="icp-card">
+          <div class="icp-icon">📰</div>
+          <div class="icp-title">Publishing & Media</div>
+          <p class="icp-desc">Content-driven businesses scaling organic traffic, ad revenue, and audience reach through search.</p>
+        </div>
+        <div class="icp-card">
+          <div class="icp-icon">🏢</div>
+          <div class="icp-title">Enterprise Teams</div>
+          <p class="icp-desc">Large organisations that need a senior SEO strategist to lead, audit, and align cross-functional teams.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Snippet -->
+  <section class="section">
     <div class="container">
       <div class="about-content">
         <div class="about-text">
@@ -227,7 +391,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
 
   <!-- Testimonials -->
-  <section class="section">
+  <section class="section" style="background: var(--color-bg-secondary);">
     <div class="container">
       <span class="section-label">Testimonials</span>
       <h2 class="section-title">What clients <span class="text-gradient-orange">say about me</span></h2>
@@ -287,6 +451,56 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
+  <!-- FAQ Section -->
+  <section class="section">
+    <div class="container">
+      <span class="section-label">FAQ</span>
+      <h2 class="section-title">Common <span class="text-gradient">questions</span></h2>
+      <p class="section-subtitle">
+        Everything you need to know before reaching out.
+      </p>
+
+      <div class="faq-list">
+        {faqItems.map((item, i) => (
+          <div class="faq-item" id={`faq-${i}`}>
+            <button class="faq-question" aria-expanded="false" aria-controls={`faq-answer-${i}`}>
+              {item.question}
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-answer" id={`faq-answer-${i}`}>
+              {item.answer}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div style="text-align: center; margin-top: var(--space-8);">
+        <a href="/contact/" class="btn btn-secondary">Still have questions? Get in touch →</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.querySelectorAll('.faq-question').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item') as HTMLElement;
+        const isOpen = item.classList.contains('open');
+        // Close all
+        document.querySelectorAll('.faq-item').forEach((el) => {
+          el.classList.remove('open');
+          el.querySelector('.faq-question')?.setAttribute('aria-expanded', 'false');
+        });
+        // Toggle clicked
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  </script>
+
   <!-- CTA Section -->
   <section class="cta-section">
     <div class="container">
@@ -296,7 +510,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           Let's discuss how a fractional SEO consultant can help your
           business reach its full potential in search.
         </p>
-        <a href="/contact/" class="btn btn-orange btn-lg">Let's Work Together →</a>
+        <a href="/contact/" class="btn btn-orange btn-lg">Book a Free Strategy Call →</a>
       </div>
     </div>
   </section>

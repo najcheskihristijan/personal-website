@@ -1585,6 +1585,33 @@ p {
   font-size: var(--text-sm);
 }
 
+/* ---- Buy Me a Coffee ---- */
+.footer-bmc {
+  margin-top: var(--space-5);
+}
+
+.bmc-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: #FFDD00;
+  color: #000000;
+  border-radius: var(--radius-lg);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.bmc-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.bmc-icon {
+  font-size: 1rem;
+}
+
 /* ---- Author Page ---- */
 .author-profile {
   display: grid;
