@@ -3,6 +3,7 @@ export const prerender = false;
 import type { APIRoute } from 'astro';
 import satori from 'satori';
 import { Resvg } from '@resvg/resvg-js';
+import sharp from 'sharp';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
@@ -233,10 +234,11 @@ export const GET: APIRoute = async () => {
 
   const resvg = new Resvg(svg, { fitTo: { mode: 'width', value: 1200 } });
   const png = resvg.render().asPng();
+  const webp = await sharp(png).webp({ quality: 90 }).toBuffer();
 
-  return new Response(png, {
+  return new Response(webp, {
     headers: {
-      'Content-Type': 'image/png',
+      'Content-Type': 'image/webp',
       'Cache-Control': 'public, max-age=86400',
     },
   });
