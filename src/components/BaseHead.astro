@@ -11,13 +11,19 @@ export interface Props {
 const {
   title,
   description,
-  image = '/og-default.png',
+  image,
   canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
   type = 'website',
   noindex = false,
 } = Astro.props;
 
 const siteName = 'Hristijan Najcheski — Fractional SEO Consultant';
+
+// Auto-generate OG image from title unless a custom image is provided
+const shortTitle = title.replace(/\s*[—–-]\s*Hristijan Najcheski.*$/, '').trim();
+const ogImage = image
+  ? new URL(image, Astro.site).href
+  : new URL(`/og/image.webp?title=${encodeURIComponent(shortTitle)}&label=${encodeURIComponent('Fractional SEO Consultant')}`, Astro.site).href;
 ---
 
 <meta charset="UTF-8" />
@@ -37,7 +43,10 @@ const siteName = 'Hristijan Najcheski — Fractional SEO Consultant';
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.site).href} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:type" content="image/webp" />
 <meta property="og:site_name" content={siteName} />
 <meta property="og:locale" content="en_US" />
 
@@ -46,7 +55,7 @@ const siteName = 'Hristijan Najcheski — Fractional SEO Consultant';
 <meta property="twitter:url" content={canonicalURL} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image, Astro.site).href} />
+<meta property="twitter:image" content={ogImage} />
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />

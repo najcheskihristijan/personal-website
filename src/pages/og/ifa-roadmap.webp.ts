@@ -44,10 +44,8 @@ export const GET: APIRoute = async () => {
                     style: {
                       display: 'flex',
                       alignItems: 'center',
-                      gap: '6px',
                       fontSize: '20px',
                       fontWeight: '700',
-                      color: '#ffffff',
                     },
                     children: [
                       {
@@ -56,7 +54,15 @@ export const GET: APIRoute = async () => {
                       },
                       {
                         type: 'span',
-                        props: { style: { color: '#ffffff' }, children: 'N · SEO Consulting' },
+                        props: { style: { color: '#ffffff' }, children: 'N' },
+                      },
+                      {
+                        type: 'span',
+                        props: { style: { color: '#64748b', marginLeft: '10px' }, children: '·' },
+                      },
+                      {
+                        type: 'span',
+                        props: { style: { color: '#94a3b8', marginLeft: '10px', fontSize: '16px' }, children: 'hristijannajcheski.com' },
                       },
                     ],
                   },
