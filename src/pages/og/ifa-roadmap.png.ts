@@ -7,16 +7,9 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 
 export const GET: APIRoute = async () => {
-  // Load a font for rendering
-  const fontPath = join(process.cwd(), 'node_modules/@fontsource/inter/files/inter-latin-700-normal.woff');
-  let fontData: Buffer;
-  try {
-    fontData = readFileSync(fontPath);
-  } catch {
-    // Fallback: use system font path on Linux (server)
-    const fallbackPath = join(process.cwd(), 'public/fonts/inter-700.woff');
-    fontData = readFileSync(fallbackPath);
-  }
+  const fontData = readFileSync(
+    join(process.cwd(), 'node_modules/@fontsource/inter/files/inter-latin-700-normal.woff')
+  );
 
   const svg = await satori(
     {
@@ -31,10 +24,10 @@ export const GET: APIRoute = async () => {
           justifyContent: 'space-between',
           padding: '60px 72px',
           fontFamily: 'Inter',
-          position: 'relative',
         },
         children: [
-          // Top: logo + confidential badge
+
+          // ── Top bar ──────────────────────────────────────────────
           {
             type: 'div',
             props: {
@@ -48,14 +41,22 @@ export const GET: APIRoute = async () => {
                   type: 'div',
                   props: {
                     style: {
-                      fontSize: '22px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      fontSize: '20px',
                       fontWeight: '700',
                       color: '#ffffff',
-                      letterSpacing: '-0.5px',
                     },
                     children: [
-                      { type: 'span', props: { style: { color: '#3b82f6' }, children: 'H' } },
-                      'N · SEO Consulting',
+                      {
+                        type: 'span',
+                        props: { style: { color: '#3b82f6' }, children: 'H' },
+                      },
+                      {
+                        type: 'span',
+                        props: { style: { color: '#ffffff' }, children: 'N · SEO Consulting' },
+                      },
                     ],
                   },
                 },
@@ -63,53 +64,66 @@ export const GET: APIRoute = async () => {
                   type: 'div',
                   props: {
                     style: {
-                      fontSize: '13px',
-                      fontWeight: '600',
+                      fontSize: '12px',
+                      fontWeight: '700',
                       color: '#94a3b8',
                       background: 'rgba(255,255,255,0.06)',
                       border: '1px solid rgba(255,255,255,0.12)',
                       borderRadius: '999px',
-                      padding: '6px 16px',
-                      letterSpacing: '0.05em',
-                      textTransform: 'uppercase',
+                      padding: '6px 18px',
+                      letterSpacing: '0.1em',
                     },
-                    children: 'Confidential',
+                    children: 'CONFIDENTIAL',
                   },
                 },
               ],
             },
           },
 
-          // Center: title block
+          // ── Main title block ─────────────────────────────────────
           {
             type: 'div',
             props: {
-              style: { display: 'flex', flexDirection: 'column', gap: '20px' },
+              style: {
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '16px',
+              },
               children: [
                 {
                   type: 'div',
                   props: {
                     style: {
                       fontSize: '13px',
-                      fontWeight: '600',
+                      fontWeight: '700',
                       color: '#3b82f6',
                       letterSpacing: '0.12em',
-                      textTransform: 'uppercase',
                     },
-                    children: '6-Month Cross-Brand SEO Roadmap',
+                    children: '6-MONTH CROSS-BRAND SEO ROADMAP',
                   },
                 },
                 {
                   type: 'div',
                   props: {
                     style: {
-                      fontSize: '52px',
+                      fontSize: '54px',
                       fontWeight: '700',
                       color: '#ffffff',
                       lineHeight: '1.1',
                       letterSpacing: '-1.5px',
+                      display: 'flex',
+                      flexDirection: 'column',
                     },
-                    children: 'IFA Tactical & Incognito\nConcealment',
+                    children: [
+                      {
+                        type: 'span',
+                        props: { style: { color: '#ffffff' }, children: 'IFA Tactical &' },
+                      },
+                      {
+                        type: 'span',
+                        props: { style: { color: '#ffffff' }, children: 'Incognito Concealment' },
+                      },
+                    ],
                   },
                 },
                 {
@@ -118,7 +132,7 @@ export const GET: APIRoute = async () => {
                     style: {
                       fontSize: '20px',
                       color: '#94a3b8',
-                      fontWeight: '400',
+                      fontWeight: '700',
                     },
                     children: 'February 2026 – September 2026',
                   },
@@ -127,7 +141,7 @@ export const GET: APIRoute = async () => {
             },
           },
 
-          // Bottom: two brand pills
+          // ── Brand pills ──────────────────────────────────────────
           {
             type: 'div',
             props: {
@@ -155,12 +169,13 @@ export const GET: APIRoute = async () => {
                             borderRadius: '50%',
                             background: '#3b82f6',
                           },
+                          children: '',
                         },
                       },
                       {
                         type: 'span',
                         props: {
-                          style: { color: '#93c5fd', fontSize: '16px', fontWeight: '600' },
+                          style: { color: '#93c5fd', fontSize: '16px', fontWeight: '700' },
                           children: 'IFATactical.com',
                         },
                       },
@@ -189,12 +204,13 @@ export const GET: APIRoute = async () => {
                             borderRadius: '50%',
                             background: '#f97316',
                           },
+                          children: '',
                         },
                       },
                       {
                         type: 'span',
                         props: {
-                          style: { color: '#fdba74', fontSize: '16px', fontWeight: '600' },
+                          style: { color: '#fdba74', fontSize: '16px', fontWeight: '700' },
                           children: 'IncognitoConcealment.com',
                         },
                       },
@@ -204,20 +220,14 @@ export const GET: APIRoute = async () => {
               ],
             },
           },
+
         ],
       },
     },
     {
       width: 1200,
       height: 630,
-      fonts: [
-        {
-          name: 'Inter',
-          data: fontData,
-          weight: 700,
-          style: 'normal',
-        },
-      ],
+      fonts: [{ name: 'Inter', data: fontData, weight: 700, style: 'normal' }],
     }
   );
 
