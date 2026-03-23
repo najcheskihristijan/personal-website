@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoWork Prilep — Business Plan</title>
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --surface2: #1e1e1e;
+            --border: #2a2a2a;
+            --text: #e5e5e5;
+            --text-muted: #888;
+            --accent: #3b82f6;
+            --accent2: #8b5cf6;
+            --green: #22c55e;
+            --red: #ef4444;
+            --yellow: #eab308;
+            --orange: #f97316;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 3rem;
+        }
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        .header .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+        }
+        .header .tagline {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--accent);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            background: rgba(10,10,10,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            padding: 0.75rem 2rem;
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            justify-content: center;
+        }
+        .nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            transition: color 0.2s;
+        }
+        .nav a:hover { color: var(--accent); }
+
+        /* Sections */
+        section {
+            margin-bottom: 3rem;
+            scroll-margin-top: 4rem;
+        }
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+        }
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.75rem;
+            color: var(--accent);
+        }
+        h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 1rem 0 0.5rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .card-highlight {
+            border-color: var(--accent);
+            background: linear-gradient(135deg, rgba(59,130,246,0.05), rgba(139,92,246,0.05));
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        th {
+            background: var(--surface2);
+            font-weight: 600;
+            color: var(--accent);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        tr:hover { background: var(--surface2); }
+        .text-right { text-align: right; }
+        .text-center { text-align: center; }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .badge-green { background: rgba(34,197,94,0.15); color: var(--green); }
+        .badge-red { background: rgba(239,68,68,0.15); color: var(--red); }
+        .badge-yellow { background: rgba(234,179,8,0.15); color: var(--yellow); }
+        .badge-blue { background: rgba(59,130,246,0.15); color: var(--accent); }
+        .badge-purple { background: rgba(139,92,246,0.15); color: var(--accent2); }
+        .badge-orange { background: rgba(249,115,22,0.15); color: var(--orange); }
+
+        /* Stats */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .stat {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.25rem;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        /* Pricing Cards */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .pricing-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        .pricing-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+        }
+        .pricing-card.featured {
+            border-color: var(--accent);
+            background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(139,92,246,0.08));
+            position: relative;
+        }
+        .pricing-card.featured::before {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .pricing-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .pricing-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+        .pricing-price span {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+        .pricing-features {
+            list-style: none;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+        .pricing-features li {
+            padding: 0.4rem 0;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .pricing-features li::before {
+            content: '✓ ';
+            color: var(--green);
+            font-weight: bold;
+        }
+
+        /* Progress bars */
+        .progress-bar {
+            background: var(--surface2);
+            border-radius: 4px;
+            height: 8px;
+            overflow: hidden;
+            margin: 0.5rem 0;
+        }
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s;
+        }
+
+        /* IKEA Links */
+        a.ikea-link {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent);
+        }
+        a.ikea-link:hover {
+            color: #60a5fa;
+            border-bottom-style: solid;
+        }
+
+        /* Social media handles table */
+        .handle-available { color: var(--green); }
+        .handle-check { color: var(--yellow); }
+        .handle-taken { color: var(--red); }
+
+        /* Tabs */
+        .tabs { display: flex; gap: 0; margin-bottom: 0; border-bottom: 1px solid var(--border); }
+        .tab {
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            color: var(--text-muted);
+            border-bottom: 2px solid transparent;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        .tab:hover { color: var(--text); }
+        .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2rem; }
+            .container { padding: 1rem; }
+            .stat-grid { grid-template-columns: repeat(2, 1fr); }
+            .pricing-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Print */
+        @media print {
+            body { background: white; color: black; }
+            .nav { display: none; }
+            .card, .stat { border: 1px solid #ccc; }
+        }
+
+        .note {
+            background: rgba(234,179,8,0.1);
+            border-left: 3px solid var(--yellow);
+            padding: 1rem 1.25rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+        }
+        .note-green {
+            background: rgba(34,197,94,0.1);
+            border-left-color: var(--green);
+        }
+        .note-red {
+            background: rgba(239,68,68,0.1);
+            border-left-color: var(--red);
+        }
+        .note-blue {
+            background: rgba(59,130,246,0.1);
+            border-left-color: var(--accent);
+        }
+
+        .total-row td, .total-row th {
+            font-weight: 700;
+            border-top: 2px solid var(--accent);
+            font-size: 1rem;
+        }
+
+        .comparison-winner { background: rgba(34,197,94,0.08); }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="tagline">Business Plan 2026</div>
+    <h1>CoWork Prilep</h1>
+    <div class="subtitle">The First Coworking Space in Prilep, North Macedonia</div>
+    <div style="margin-top:1.5rem; color: var(--text-muted); font-size:0.85rem;">
+        Main Korzo &bull; Between Onyx & DiCaprio (A1 Shop) &bull; Two Floors &bull; ~80-95m&sup2;
+    </div>
+</div>
+
+<nav class="nav">
+    <a href="#overview">Overview</a>
+    <a href="#space">Space</a>
+    <a href="#investment">Investment</a>
+    <a href="#furniture">Furniture</a>
+    <a href="#rent">Rent Deal</a>
+    <a href="#operations">Operations</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#financials">Financials</a>
+    <a href="#competitors">Competitors</a>
+    <a href="#domains">Domains</a>
+</nav>
+
+<div class="container">
+
+    <!-- OVERVIEW -->
+    <section id="overview">
+        <h2>Executive Overview</h2>
+
+        <div class="stat-grid">
+            <div class="stat">
+                <div class="stat-value">&euro;26,500</div>
+                <div class="stat-label">Total Investment</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">&euro;9,600</div>
+                <div class="stat-label">Year 1 Rent (upfront)</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">&euro;36,100</div>
+                <div class="stat-label">Total Cash Needed</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">&euro;12,033</div>
+                <div class="stat-label">Per Partner (3)</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">10-13</div>
+                <div class="stat-label">Desk Capacity</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">15-16</div>
+                <div class="stat-label">Members to Break-Even</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Why Prilep?</h3>
+            <div class="card-grid" style="margin-top:1rem;">
+                <div>
+                    <h4>The Opportunity</h4>
+                    <ul style="list-style:none; padding:0;">
+                        <li style="padding:0.3rem 0;">&#9679; Zero coworking spaces in Prilep (first mover)</li>
+                        <li style="padding:0.3rem 0;">&#9679; Population: ~66,000 (4th largest city)</li>
+                        <li style="padding:0.3rem 0;">&#9679; IT companies: IWConnect (200+ staff), GrabIT (~20 staff)</li>
+                        <li style="padding:0.3rem 0;">&#9679; 3,100+ university students (Faculty of Economics)</li>
+                        <li style="padding:0.3rem 0;">&#9679; ~60-70 estimated active freelancers</li>
+                        <li style="padding:0.3rem 0;">&#9679; Prime Korzo location with foot traffic</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Key Risks</h4>
+                    <ul style="list-style:none; padding:0;">
+                        <li style="padding:0.3rem 0;">&#9679; Small addressable market</li>
+                        <li style="padding:0.3rem 0;">&#9679; Rent is 53% of operating costs (ideal: 30-40%)</li>
+                        <li style="padding:0.3rem 0;">&#9679; Declining population trend</li>
+                        <li style="padding:0.3rem 0;">&#9679; Break-even requires near-full occupancy</li>
+                        <li style="padding:0.3rem 0;">&#9679; Renovation investment on landlord&rsquo;s property</li>
+                        <li style="padding:0.3rem 0;">&#9679; Seasonal fluctuation (students leave in summer)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPACE LAYOUT -->
+    <section id="space">
+        <h2>Space Layout</h2>
+
+        <div class="card">
+            <h3>Ground Floor &mdash; &ldquo;The Hub&rdquo;</h3>
+            <table>
+                <thead>
+                    <tr><th>Zone</th><th>Est. Size</th><th>Purpose</th><th>Desks</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Front Section</strong></td>
+                        <td>~25m&sup2; (2.5m &times; 10m)</td>
+                        <td>Reception + Open Coworking (hot desks)</td>
+                        <td>4-5 hot desks</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Back Room</strong></td>
+                        <td>~25-30m&sup2; (4-5m &times; 5-6m)</td>
+                        <td>Kitchen/Break + Lounge + Meeting Table</td>
+                        <td>4-seat meeting</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="note-blue note" style="margin-top:1rem;">
+                The front section faces the Korzo with full glass storefront &mdash; maximum visibility. People walking by see a modern, vibrant workspace. This is your best marketing asset.
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Upper Floor &mdash; &ldquo;The Focus Zone&rdquo;</h3>
+            <table>
+                <thead>
+                    <tr><th>Zone</th><th>Est. Size</th><th>Purpose</th><th>Desks</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Dedicated Desk Area</strong></td>
+                        <td>~25-30m&sup2; (3m &times; 8-10m)</td>
+                        <td>Quiet focused work, monthly members</td>
+                        <td>6-8 dedicated desks</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="note-green note" style="margin-top:1rem;">
+                Natural noise separation between floors = premium product. Dedicated desk members pay more and get a quiet environment away from the social ground floor.
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Additional Spaces</h3>
+            <table>
+                <thead>
+                    <tr><th>Zone</th><th>Notes</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Staircase Area</strong></td><td>Separate sq. footage. Has 2 restrooms.</td></tr>
+                    <tr><td><strong>Gallery (Phase 2)</strong></td><td>Removing dropped ceiling in back room creates ~10-15m&sup2; mezzanine. Private office for 2-3 person team at &euro;250-300/month.</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="stat-grid">
+            <div class="stat">
+                <div class="stat-value">~80-95m&sup2;</div>
+                <div class="stat-label">Total Usable Space</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">10-13</div>
+                <div class="stat-label">Desk Capacity</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">16-18</div>
+                <div class="stat-label">Max Memberships (hot desk rotation)</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">2</div>
+                <div class="stat-label">Restrooms</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INVESTMENT BUDGET -->
+    <section id="investment">
+        <h2>Investment Budget</h2>
+
+        <div class="card">
+            <h3>Renovation</h3>
+            <table>
+                <thead>
+                    <tr><th>Item</th><th>Details</th><th class="text-right">Cost (EUR)</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Laminate Flooring</td><td>~80m&sup2; usable area</td><td class="text-right">2,500</td></tr>
+                    <tr><td>Wall Repainting</td><td>All surfaces, both floors, double ceiling</td><td class="text-right">4,000</td></tr>
+                    <tr><td>Electrical Installation</td><td>Full rewiring, outlets per desk, LED lighting</td><td class="text-right">2,500</td></tr>
+                    <tr class="total-row"><td colspan="2"><strong>Renovation Total</strong></td><td class="text-right"><strong>9,000</strong></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h3>HVAC (Heating & Cooling)</h3>
+            <div class="note-red note">Currently NO heating or cooling exists. This is critical for Macedonia&rsquo;s climate (-10&deg;C winters, 40&deg;C summers).</div>
+            <table>
+                <thead>
+                    <tr><th>Item</th><th>Details</th><th class="text-right">Cost (EUR)</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Split AC/Heat Pump Unit #1</td><td>Front section (ground floor)</td><td class="text-right">700</td></tr>
+                    <tr><td>Split AC/Heat Pump Unit #2</td><td>Back room (ground floor)</td><td class="text-right">700</td></tr>
+                    <tr><td>Split AC/Heat Pump Unit #3</td><td>Upper floor</td><td class="text-right">700</td></tr>
+                    <tr class="total-row"><td colspan="2"><strong>HVAC Total</strong></td><td class="text-right"><strong>2,100</strong></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h3>Tech & Infrastructure</h3>
+            <table>
+                <thead>
+                    <tr><th>Item</th><th>Details</th><th class="text-right">Cost (EUR)</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>WiFi (2x Ubiquiti UniFi APs + PoE switch + router)</td><td>1 per floor, enterprise-grade</td><td class="text-right">400</td></tr>
+                    <tr><td>Network Cabling (Cat6)</td><td>Both floors</td><td class="text-right">250</td></tr>
+                    <tr><td>Electronic Door Lock</td><td>Nuki/Yale keypad, 24/7 member access</td><td class="text-right">250</td></tr>
+                    <tr><td>IP Cameras (2x)</td><td>Entry + main area</td><td class="text-right">200</td></tr>
+                    <tr><td>Laser Printer/Scanner</td><td>Multifunction</td><td class="text-right">300</td></tr>
+                    <tr><td>TV/Monitor for Meeting Area</td><td>Screen sharing, presentations</td><td class="text-right">250</td></tr>
+                    <tr><td>UPS for Network Equipment</td><td>Protects against power outages</td><td class="text-right">150</td></tr>
+                    <tr class="total-row"><td colspan="2"><strong>Tech Total</strong></td><td class="text-right"><strong>1,800</strong></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h3>Setup & Legal</h3>
+            <table>
+                <thead>
+                    <tr><th>Item</th><th class="text-right">Cost (EUR)</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Business Registration</td><td class="text-right">200</td></tr>
+                    <tr><td>Legal (lease review, partnership agreement)</td><td class="text-right">300</td></tr>
+                    <tr><td>Signage (exterior, Korzo-facing)</td><td class="text-right">400</td></tr>
+                    <tr><td>Initial Supplies (coffee, paper, cleaning)</td><td class="text-right">200</td></tr>
+                    <tr><td>Insurance (Year 1)</td><td class="text-right">400</td></tr>
+                    <tr><td>Website & Booking System</td><td class="text-right" style="color:var(--green);">0 (in-house)</td></tr>
+                    <tr><td>Marketing Launch</td><td class="text-right" style="color:var(--green);">0 (in-house agency)</td></tr>
+                    <tr class="total-row"><td><strong>Setup Total</strong></td><td class="text-right"><strong>1,500</strong></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card card-highlight">
+            <h3>Total Investment Summary</h3>
+            <table>
+                <thead>
+                    <tr><th>Category</th><th class="text-right">EUR</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Renovation</td><td class="text-right">9,000</td></tr>
+                    <tr><td>HVAC</td><td class="text-right">2,100</td></tr>
+                    <tr><td>IKEA Furniture (see below)</td><td class="text-right">8,917</td></tr>
+                    <tr><td>Furniture Transport (IKEA Thessaloniki &rarr; Prilep)</td><td class="text-right">1,000</td></tr>
+                    <tr><td>Tech & Infrastructure</td><td class="text-right">1,800</td></tr>
+                    <tr><td>Setup & Legal</td><td class="text-right">1,500</td></tr>
+                    <tr style="border-top:1px solid var(--border);"><td>Subtotal</td><td class="text-right">24,317</td></tr>
+                    <tr><td>10% Contingency</td><td class="text-right">2,432</td></tr>
+                    <tr class="total-row"><td><strong>Total Investment</strong></td><td class="text-right"><strong>&euro;26,749</strong></td></tr>
+                    <tr><td>+ Year 1 Rent Upfront (12 &times; &euro;800)</td><td class="text-right">9,600</td></tr>
+                    <tr class="total-row"><td><strong>Total Cash Needed at Launch</strong></td><td class="text-right"><strong>&euro;36,349</strong></td></tr>
+                    <tr><td><strong>Per Partner (3 partners)</strong></td><td class="text-right"><strong>&euro;12,116</strong></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- FURNITURE -->
+    <section id="furniture">
+        <h2>IKEA Furniture — Itemized</h2>
+        <div class="note">All prices from IKEA Greece (ikea.gr) — nearest IKEA to Macedonia (Thessaloniki). Click product names to view on ikea.gr.</div>
+
+        <div class="card">
+            <h3>Desks (12 workstations + 2 standing)</h3>
+            <table>
+                <thead>
+                    <tr><th>Product</th><th>Size</th><th class="text-right">Unit Price</th><th class="text-center">Qty</th><th class="text-right">Subtotal</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a class="ikea-link" href="https://www.ikea.gr/en/products/lagkapten-adils-desk-140x60-cm/59417252" target="_blank">LAGKAPTEN / ADILS</a></td>
+                        <td>140&times;60cm</td>
+                        <td class="text-right">&euro;50</td>
+                        <td class="text-center">5</td>
+                        <td class="text-right">&euro;250</td>
+                    </tr>
+                    <tr>
+                        <td><a class="ikea-link" href="https://www.ikea.gr/en/products/bekant-desk/19022808" target="_blank">BEKANT Desk</a></td>
+                        <td>160&times;80cm</td>
+                        <td class="text-right">&euro;250</td>
+                        <td class="text-center">7</td>
+                        <td class="text-right">&euro;1,750</td>
+                    </tr>
+                    <tr>
+                        <td><a class="ikea-link" href="https://www.ikea.gr/en/products/trotten-desk-sit-stand-160x80-cm/29434130" target="_blank">TROTTEN Sit/Stand</a></td>
+                        <td>160&times;80cm</td>
+                        <td class="text-right">&euro;254</td>
+                        <td class="text-center">2</td>
+                        <td class="text-right">&euro;508</td>
+                    </tr>
+                    <tr class="total-row"><td colspan="4"><strong>Desks Total</strong></td><td class="text-right"><strong>&euro;2,508</strong></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h3>Office Chairs (14 total)</h3>
+            <table>
+                <thead>
+                    <tr><th>Product</th><th>Features</th><th class="text-right">Unit Price</th><th class="text-center">Qty</th><th class="text-right">Subtotal</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a class="ikea-link" href="https://www.ikea.gr/en/products/chairs/desk-chairs/office-chairs-on-castors/markus-swivel-chair/40103100" target="_blank">MARKUS</a></td>
+                        <td>High-back, ergonomic, 10yr warranty</td>
+                        <td class="text-right">&euro;169</td>
+                        <td class="text-center">5</td>
+                        <td class="text-right">&euro;845</td>
+                    </tr>
+                    <tr>
+                        <td><a class="ikea-link" href="https://www.ikea.gr/en/products/jarvfjallet-office-chair-with-armrests/80510639" target="_blank">J&Auml;RVFJ&Auml;LLET</a></td>
+                        <td>Premium ergonomic, lumbar support, mesh</td>
+                        <td class="text-right">&euro;239</td>
+                        <td class="text-center">4</td>
+                        <td class="text-right">&euro;956</td>
+                    </tr>
+                    <tr>
+                        <td><a class="ikea-link" href="https://www.ikea.gr/en/products/langfjall-swivel-chair/79177642" target="_blank">L&Aring;NGFJ&Auml;LL</a></td>
+                        <td>Comfortable, good for meetings too</td>
+                        <td class="text-right">&euro;164</td>
+                        <td class="text-center">3</td>
+                        <td class="text-right">&euro;492</td>
+                    </tr>
+                    <tr>
+                        <td><a class="ikea-link" href="https://www.ikea.gr/en/products/millberget-swivel-chair" target="_blank">MILLBERGET</a></td>
+                        <td>Budget option</td>
+                        <td class="text-right">&euro;75</td>
+                        <td class="text-center">2</td>
+                        <td class="text-right">&euro;150</td>
+                    </tr>
+                    <tr class="total-row"><td colspan="4"><strong>Chairs Total</strong></td><td class="text-right"><strong>&euro;2,443</strong></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h3>Storage</h3>
+            <table>
+                <thead>
+                    <tr><th>Product</th><th class="text-right">Unit Price</th><th class="text-center">Qty</th><th class="text-right">Subtotal</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><a class="ikea-link" href="https://www.ikea.gr/en/products/storage-furniture/bookcases-shelving-units/kallax-system" target="_blank">KALLAX 4&times;4</a> (147&times;147cm)</td><td class="text-right">&euro;89</td><td class="text-center">2</td><td class="text-right">&euro;178</td></tr>
+                    <tr><td><a class="ikea-link" href="https://www.ikea.gr/en/products/storage-furniture/bookcases-shelving-units/kallax-system" target="_blank">KALLAX 2&times;4</a> (77&times;147cm)</td><td class="text-right">&euro;59</td><td class="text-center">2</td><td class="text-right">&euro;118</td></tr>
+                    <tr><td>KALLAX Inserts (doors + drawers)</td><td class="text-right">&euro;15-30</td><td class="text-center">12</td><td class="text-right">&euro;240</td></tr>
+                    <tr><td><a class="ikea-link" href="https://www.ikea.gr/en/products/alex-drawer-unit-with-9-drawers-36x116-cm/90486139" target="_blank">ALEX Drawer Unit</a> (under-desk)</td><td class="text-right">&euro;89</td><td class="text-center">10</td><td class="text-right">&euro;890</td></tr>
+                    <tr><td>IVAR Cabinet (lockable)</td><td class="text-right">&euro;65</td><td class="text-center">2</td><td class="text-right">&euro;130</td></tr>
+                    <tr class="total-row"><td colspan="3"><strong>Storage Total</strong></td><td class="text-right"><strong>&euro;1,556</strong></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h3>Meeting Area, Lounge & Kitchen</h3>
+            <table>
+                <thead>
+                    <tr><th>Product</th><th class="text-right">Unit Price</th><th class="text-center">Qty</th><th class="text-right">Subtotal</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td colspan="4" style="color:var(--accent); font-weight:600;">Meeting Area</td></tr>
+                    <tr><td>BEKANT Conference Table (4-person)</td><td class="text-right">&euro;350</td><td class="text-center">1</td><td class="text-right">&euro;350</td></tr>
+                    <tr><td>L&Aring;NGFJ&Auml;LL Conference Chairs</td><td class="text-right">&euro;164</td><td class="text-center">4</td><td class="text-right">&euro;656</td></tr>
+
+                    <tr><td colspan="4" style="color:var(--accent); font-weight:600; padding-top:1rem;">Lounge</td></tr>
+                    <tr><td><a class="ikea-link" href="https://www.ikea.gr/en/products/kivik-3-seat-sofa" target="_blank">KIVIK 3-seat Sofa</a></td><td class="text-right">&euro;549</td><td class="text-center">1</td><td class="text-right">&euro;549</td></tr>
+                    <tr><td>STRANDMON Armchairs</td><td class="text-right">&euro;249</td><td class="text-center">2</td><td class="text-right">&euro;498</td></tr>
+                    <tr><td>LACK Coffee + Side Tables</td><td class="text-right">&euro;30</td><td class="text-center">2</td><td class="text-right">&euro;60</td></tr>
+
+                    <tr><td colspan="4" style="color:var(--accent); font-weight:600; padding-top:1rem;">Kitchen</td></tr>
+                    <tr><td><a class="ikea-link" href="https://www.ikea.gr/en/products/kitchen-worktops/kitchens/knoxhult" target="_blank">KNOXHULT Cabinets</a></td><td class="text-right">&euro;135</td><td class="text-center">2</td><td class="text-right">&euro;270</td></tr>
+                    <tr><td>SUNNERSTA Mini Kitchen (sink)</td><td class="text-right">&euro;135</td><td class="text-center">1</td><td class="text-right">&euro;135</td></tr>
+                    <tr><td>Fridge + Microwave + Induction Hob</td><td class="text-right">&euro;315</td><td class="text-center">1</td><td class="text-right">&euro;315</td></tr>
+
+                    <tr class="total-row"><td colspan="3"><strong>Meeting/Lounge/Kitchen Total</strong></td><td class="text-right"><strong>&euro;2,833</strong></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h3>Accessories & Reception</h3>
+            <table>
+                <thead>
+                    <tr><th>Product</th><th class="text-right">Unit Price</th><th class="text-center">Qty</th><th class="text-right">Subtotal</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>TERTIAL Desk Lamps</td><td class="text-right">&euro;12</td><td class="text-center">12</td><td class="text-right">&euro;144</td></tr>
+                    <tr><td>SIGNUM Cable Management</td><td class="text-right">&euro;10</td><td class="text-center">14</td><td class="text-right">&euro;140</td></tr>
+                    <tr><td>ELLOVEN Monitor Stands</td><td class="text-right">&euro;30</td><td class="text-center">12</td><td class="text-right">&euro;360</td></tr>
+                    <tr><td>Whiteboards + Notice Boards</td><td class="text-right">&euro;30</td><td class="text-center">3</td><td class="text-right">&euro;90</td></tr>
+                    <tr><td>Power Strips</td><td class="text-right">&euro;15</td><td class="text-center">10</td><td class="text-right">&euro;150</td></tr>
+                    <tr><td>Waste Bins (FNISS)</td><td class="text-right">&euro;5</td><td class="text-center">6</td><td class="text-right">&euro;30</td></tr>
+                    <tr><td colspan="4" style="color:var(--accent); font-weight:600; padding-top:1rem;">Reception Desk (IKEA Hack)</td></tr>
+                    <tr><td>LAGKAPTEN Tabletop 200cm + ALEX Units + ADILS Legs</td><td class="text-right">&euro;263</td><td class="text-center">1</td><td class="text-right">&euro;263</td></tr>
+                    <tr class="total-row"><td colspan="3"><strong>Accessories Total</strong></td><td class="text-right"><strong>&euro;1,177</strong></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card card-highlight">
+            <h3>Furniture Grand Total</h3>
+            <table>
+                <tbody>
+                    <tr><td>Desks</td><td class="text-right">&euro;2,508</td></tr>
+                    <tr><td>Chairs</td><td class="text-right">&euro;2,443</td></tr>
+                    <tr><td>Storage</td><td class="text-right">&euro;1,556</td></tr>
+                    <tr><td>Meeting / Lounge / Kitchen</td><td class="text-right">&euro;2,833</td></tr>
+                    <tr><td>Accessories & Reception</td><td class="text-right">&euro;1,177</td></tr>
+                    <tr class="total-row"><td><strong>IKEA Furniture Total</strong></td><td class="text-right"><strong>&euro;10,517</strong></td></tr>
+                    <tr><td>Transport from IKEA Thessaloniki (~200km)</td><td class="text-right">&euro;1,000</td></tr>
+                    <tr class="total-row"><td><strong>Furniture Delivered</strong></td><td class="text-right"><strong>&euro;11,517</strong></td></tr>
+                </tbody>
+            </table>
+            <div class="note" style="margin-top:1rem;">
+                <strong>Tip:</strong> Register an IKEA Business account at the Thessaloniki store for potential 10-15% bulk discount. Could save &euro;1,000-1,500.
+            </div>
+        </div>
+    </section>
+
+    <!-- RENT DEAL -->
+    <section id="rent">
+        <h2>Rent Deal Analysis</h2>
+
+        <div class="card">
+            <h3>Comparing Offers</h3>
+            <table>
+                <thead>
+                    <tr><th>Metric</th><th>Owner&rsquo;s Offer</th><th class="comparison-winner">Your Counter-Offer</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Grace Period</td><td>3 months free</td><td class="comparison-winner">None</td></tr>
+                    <tr><td>Monthly Rent</td><td>&euro;1,000</td><td class="comparison-winner">&euro;800</td></tr>
+                    <tr><td>Payment</td><td>Monthly</td><td class="comparison-winner">Annual upfront</td></tr>
+                    <tr><td><strong>Year 1 Cost</strong></td><td>&euro;9,000 (9 months)</td><td class="comparison-winner"><strong>&euro;9,600</strong></td></tr>
+                    <tr><td><strong>Year 2 Cost</strong></td><td>&euro;12,000</td><td class="comparison-winner"><strong>&euro;9,600</strong></td></tr>
+                    <tr><td><strong>Year 1+2 Total</strong></td><td>&euro;21,000</td><td class="comparison-winner"><strong>&euro;19,200</strong></td></tr>
+                    <tr><td><strong>5-Year Total</strong></td><td>&euro;57,000</td><td class="comparison-winner"><strong>&euro;48,000</strong></td></tr>
+                    <tr class="total-row"><td><strong>5-Year Savings</strong></td><td>&mdash;</td><td class="comparison-winner" style="color:var(--green);"><strong>&euro;9,000 saved</strong></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="note-red note">
+            <strong>Critical:</strong> You are investing &euro;9,000+ in renovation on the landlord&rsquo;s property. Negotiate:<br>
+            &bull; Minimum 5-year lease with max 3% annual rent increase<br>
+            &bull; Right of first refusal if he sells the property<br>
+            &bull; Written clause that renovations become tenant improvements (deductible if you leave early)<br>
+            Without these protections, you could renovate and lose the space.
+        </div>
+
+        <div class="note note-blue">
+            <strong>Alternative counter:</strong> &euro;750/month paid annually (&euro;9,000) — matches owner&rsquo;s Year 1 cost exactly, saves &euro;3,000/year from Year 2. Worth trying before settling on &euro;800.
+        </div>
+    </section>
+
+    <!-- OPERATIONS -->
+    <section id="operations">
+        <h2>Monthly Operations</h2>
+
+        <div class="card">
+            <table>
+                <thead>
+                    <tr><th>Expense</th><th class="text-right">Low (EUR)</th><th class="text-right">High (EUR)</th><th>Notes</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Rent</td><td class="text-right">800</td><td class="text-right">800</td><td>Fixed (counter-offer)</td></tr>
+                    <tr><td>Electricity</td><td class="text-right">150</td><td class="text-right">250</td><td>HVAC is the variable</td></tr>
+                    <tr><td>Water</td><td class="text-right">15</td><td class="text-right">25</td><td></td></tr>
+                    <tr><td>Internet (2 ISPs)</td><td class="text-right">50</td><td class="text-right">70</td><td>Fiber + backup</td></tr>
+                    <tr><td>Cleaning</td><td class="text-right">100</td><td class="text-right">200</td><td>Part-time, 2-3 hrs/day</td></tr>
+                    <tr><td>Coffee & Supplies</td><td class="text-right">50</td><td class="text-right">100</td><td></td></tr>
+                    <tr><td>Insurance</td><td class="text-right">30</td><td class="text-right">50</td><td></td></tr>
+                    <tr><td>Accounting</td><td class="text-right">50</td><td class="text-right">70</td><td></td></tr>
+                    <tr><td>Software</td><td class="text-right">20</td><td class="text-right">40</td><td>Booking/management system</td></tr>
+                    <tr><td>Maintenance Reserve</td><td class="text-right">30</td><td class="text-right">50</td><td></td></tr>
+                    <tr><td>Marketing</td><td class="text-right" colspan="2" style="color:var(--green);">0 (in-house agency)</td><td></td></tr>
+                    <tr class="total-row"><td><strong>Total Monthly</strong></td><td class="text-right"><strong>&euro;1,295</strong></td><td class="text-right"><strong>&euro;1,655</strong></td><td><strong>Mid: ~&euro;1,500</strong></td></tr>
+                </tbody>
+            </table>
+
+            <div style="margin-top: 1.5rem;">
+                <h4>Cost Breakdown</h4>
+                <div style="margin: 0.5rem 0;">
+                    <div style="display:flex; justify-content:space-between; font-size:0.85rem;"><span>Rent (53%)</span><span>&euro;800</span></div>
+                    <div class="progress-bar"><div class="progress-fill" style="width:53%; background:var(--red);"></div></div>
+                </div>
+                <div style="margin: 0.5rem 0;">
+                    <div style="display:flex; justify-content:space-between; font-size:0.85rem;"><span>Utilities (18%)</span><span>&euro;270</span></div>
+                    <div class="progress-bar"><div class="progress-fill" style="width:18%; background:var(--yellow);"></div></div>
+                </div>
+                <div style="margin: 0.5rem 0;">
+                    <div style="display:flex; justify-content:space-between; font-size:0.85rem;"><span>Operations (29%)</span><span>&euro;430</span></div>
+                    <div class="progress-bar"><div class="progress-fill" style="width:29%; background:var(--accent);"></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING / PACKAGES -->
+    <section id="pricing">
+        <h2>Membership Packages</h2>
+        <p style="color:var(--text-muted); margin-bottom:1.5rem;">How they&rsquo;d appear on the website and marketing materials.</p>
+
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-name">Day Pass</div>
+                <div class="pricing-price">&euro;5<span>/day</span></div>
+                <ul class="pricing-features">
+                    <li>Any available hot desk</li>
+                    <li>High-speed WiFi</li>
+                    <li>Coffee & tea included</li>
+                    <li>Kitchen access</li>
+                    <li>Access 8AM &ndash; 10PM</li>
+                </ul>
+                <div style="font-size:0.8rem; color:var(--text-muted);">Perfect for trying us out</div>
+            </div>
+
+            <div class="pricing-card">
+                <div class="pricing-name">Student Pass</div>
+                <div class="pricing-price">&euro;35<span>/month</span></div>
+                <ul class="pricing-features">
+                    <li>Hot desk access</li>
+                    <li>Weekdays 9AM &ndash; 5PM</li>
+                    <li>High-speed WiFi</li>
+                    <li>Coffee & tea included</li>
+                    <li>Valid student ID required</li>
+                </ul>
+                <div style="font-size:0.8rem; color:var(--text-muted);">For university students</div>
+            </div>
+
+            <div class="pricing-card">
+                <div class="pricing-name">10-Day Pack</div>
+                <div class="pricing-price">&euro;40<span>/pack</span></div>
+                <ul class="pricing-features">
+                    <li>10 day passes</li>
+                    <li>Use within 2 months</li>
+                    <li>Any available hot desk</li>
+                    <li>Full amenities</li>
+                    <li>Save &euro;10 vs day passes</li>
+                </ul>
+                <div style="font-size:0.8rem; color:var(--text-muted);">Flexible &mdash; no commitment</div>
+            </div>
+
+            <div class="pricing-card featured">
+                <div class="pricing-name">Hot Desk</div>
+                <div class="pricing-price">&euro;70<span>/month</span></div>
+                <ul class="pricing-features">
+                    <li>Unlimited hot desk access</li>
+                    <li>24/7 access with keycard</li>
+                    <li>High-speed WiFi</li>
+                    <li>Coffee & tea included</li>
+                    <li>2 hrs meeting room/month</li>
+                    <li>Locker included</li>
+                    <li>Member events access</li>
+                </ul>
+                <div style="font-size:0.8rem; color:var(--green);">Best value for freelancers</div>
+            </div>
+
+            <div class="pricing-card">
+                <div class="pricing-name">Dedicated Desk</div>
+                <div class="pricing-price">&euro;110<span>/month</span></div>
+                <ul class="pricing-features">
+                    <li>Your own permanent desk</li>
+                    <li>Upper floor (quiet zone)</li>
+                    <li>24/7 access with keycard</li>
+                    <li>Personal storage drawer</li>
+                    <li>5 hrs meeting room/month</li>
+                    <li>All amenities included</li>
+                    <li>Monitor stand provided</li>
+                    <li>Priority support</li>
+                </ul>
+                <div style="font-size:0.8rem; color:var(--accent2);">For serious professionals</div>
+            </div>
+
+            <div class="pricing-card">
+                <div class="pricing-name">Team Package</div>
+                <div class="pricing-price">&euro;60<span>/person/mo</span></div>
+                <ul class="pricing-features">
+                    <li>3+ people from same company</li>
+                    <li>Hot desk access each</li>
+                    <li>24/7 access</li>
+                    <li>Shared meeting room hours</li>
+                    <li>Company invoice</li>
+                    <li>Bulk discount applied</li>
+                </ul>
+                <div style="font-size:0.8rem; color:var(--text-muted);">For IWConnect, GrabIT teams</div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top:2rem;">
+            <h3>Additional Revenue Streams</h3>
+            <table>
+                <thead>
+                    <tr><th>Service</th><th class="text-right">Price</th><th>Notes</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Meeting Room (hourly)</td><td class="text-right">&euro;5/hr</td><td>Non-members welcome; bookable online</td></tr>
+                    <tr><td>Meeting Room (full day)</td><td class="text-right">&euro;30/day</td><td>Workshops, trainings, client meetings</td></tr>
+                    <tr><td>Virtual Address / Mail</td><td class="text-right">&euro;20/mo</td><td>Business address on Korzo for registration</td></tr>
+                    <tr><td>Printing / Scanning</td><td class="text-right">&euro;0.05-0.20/pg</td><td>B&W / Color</td></tr>
+                    <tr><td>Event Hosting (evenings)</td><td class="text-right">&euro;50-100</td><td>Tech meetups, workshops, launches</td></tr>
+                    <tr><td>Weekend Pass</td><td class="text-right">&euro;25/mo</td><td>Sat-Sun only access</td></tr>
+                    <tr><td>Locker Only (non-member)</td><td class="text-right">&euro;10/mo</td><td>Storage without desk</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h3>Marketing Messaging Ideas</h3>
+            <div class="card-grid">
+                <div>
+                    <h4>Taglines</h4>
+                    <ul style="list-style:none; padding:0; font-size:0.9rem; color:var(--text-muted);">
+                        <li style="padding:0.3rem 0;">&bull; &ldquo;Your office on the Korzo&rdquo;</li>
+                        <li style="padding:0.3rem 0;">&bull; &ldquo;Work smarter. Together.&rdquo;</li>
+                        <li style="padding:0.3rem 0;">&bull; &ldquo;Prilep&rsquo;s first coworking space&rdquo;</li>
+                        <li style="padding:0.3rem 0;">&bull; &ldquo;Stop working from cafes&rdquo;</li>
+                        <li style="padding:0.3rem 0;">&bull; &ldquo;From &euro;5/day &mdash; everything included&rdquo;</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Target Campaigns</h4>
+                    <ul style="list-style:none; padding:0; font-size:0.9rem; color:var(--text-muted);">
+                        <li style="padding:0.3rem 0;">&bull; IWConnect / GrabIT employee outreach</li>
+                        <li style="padding:0.3rem 0;">&bull; Faculty of Economics student events</li>
+                        <li style="padding:0.3rem 0;">&bull; Upwork/Fiverr freelancer Facebook groups</li>
+                        <li style="padding:0.3rem 0;">&bull; Instagram reels: renovation journey</li>
+                        <li style="padding:0.3rem 0;">&bull; Free launch week (try before you buy)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINANCIALS -->
+    <section id="financials">
+        <h2>Financial Projections</h2>
+
+        <div class="card">
+            <h3>Revenue Scenarios (Monthly)</h3>
+            <table>
+                <thead>
+                    <tr><th>Scenario</th><th>Timeline</th><th>Members</th><th class="text-right">Revenue</th><th class="text-right">Costs</th><th class="text-right">Profit/Loss</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="badge badge-red">Startup</span></td>
+                        <td>Month 1-3</td>
+                        <td>5-6 members</td>
+                        <td class="text-right">&euro;500</td>
+                        <td class="text-right">&euro;1,500</td>
+                        <td class="text-right" style="color:var(--red);">&minus;&euro;1,000</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-yellow">Growing</span></td>
+                        <td>Month 4-6</td>
+                        <td>8-10 members</td>
+                        <td class="text-right">&euro;900</td>
+                        <td class="text-right">&euro;1,500</td>
+                        <td class="text-right" style="color:var(--red);">&minus;&euro;600</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-blue">Established</span></td>
+                        <td>Month 7-12</td>
+                        <td>12-14 members</td>
+                        <td class="text-right">&euro;1,300</td>
+                        <td class="text-right">&euro;1,500</td>
+                        <td class="text-right" style="color:var(--yellow);">&minus;&euro;200</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-green">Target</span></td>
+                        <td>Year 2</td>
+                        <td>15-16 members</td>
+                        <td class="text-right">&euro;1,700</td>
+                        <td class="text-right">&euro;1,500</td>
+                        <td class="text-right" style="color:var(--green);">+&euro;200</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-purple">Optimistic</span></td>
+                        <td>Year 2+</td>
+                        <td>18+ members + events</td>
+                        <td class="text-right">&euro;2,100</td>
+                        <td class="text-right">&euro;1,500</td>
+                        <td class="text-right" style="color:var(--green);">+&euro;600</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h3>Target Revenue Breakdown</h3>
+            <table>
+                <thead>
+                    <tr><th>Source</th><th>Calculation</th><th class="text-right">Monthly EUR</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Hot Desk members</td><td>8 &times; &euro;70</td><td class="text-right">560</td></tr>
+                    <tr><td>Dedicated Desk members</td><td>5 &times; &euro;110</td><td class="text-right">550</td></tr>
+                    <tr><td>Day passes</td><td>~20 &times; &euro;5</td><td class="text-right">100</td></tr>
+                    <tr><td>Student memberships</td><td>3 &times; &euro;35</td><td class="text-right">105</td></tr>
+                    <tr><td>Meeting room rental</td><td>~15 hrs &times; &euro;5</td><td class="text-right">75</td></tr>
+                    <tr><td>Events / workshops</td><td>1-2 per month</td><td class="text-right">100</td></tr>
+                    <tr><td>Virtual address + misc</td><td></td><td class="text-right">60</td></tr>
+                    <tr class="total-row"><td colspan="2"><strong>Target Monthly Revenue</strong></td><td class="text-right"><strong>&euro;1,550</strong></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h3>Year 1 Cash Flow</h3>
+            <table>
+                <thead>
+                    <tr><th>Item</th><th class="text-right">EUR</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Initial Investment</td><td class="text-right" style="color:var(--red);">&minus;26,749</td></tr>
+                    <tr><td>Year 1 Rent (upfront)</td><td class="text-right" style="color:var(--red);">&minus;9,600</td></tr>
+                    <tr><td>Year 1 Operating Losses (est. &euro;500/mo avg &times; 12)</td><td class="text-right" style="color:var(--red);">&minus;6,000</td></tr>
+                    <tr class="total-row"><td><strong>Total Cash Needed Through Year 1</strong></td><td class="text-right" style="color:var(--red);"><strong>&minus;&euro;42,349</strong></td></tr>
+                    <tr><td><strong>Per Partner</strong></td><td class="text-right"><strong>&euro;14,116</strong></td></tr>
+                </tbody>
+            </table>
+            <div class="note" style="margin-top:1rem;">
+                Year 1 revenue (~&euro;12,000) offsets some operating costs. Net new cash needed beyond initial investment is ~&euro;6,000 for operating losses during ramp-up. Budget &euro;15k per partner to be safe.
+            </div>
+        </div>
+
+        <div class="stat-grid">
+            <div class="stat">
+                <div class="stat-value">15-16</div>
+                <div class="stat-label">Members to Break-Even</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">~&euro;85</div>
+                <div class="stat-label">Avg Revenue Per Member</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">12-18 mo</div>
+                <div class="stat-label">Time to Profitability</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">3-4 yrs</div>
+                <div class="stat-label">Full Payback Period</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPETITORS -->
+    <section id="competitors">
+        <h2>Competitive Landscape</h2>
+
+        <div class="card">
+            <h3>Macedonia Coworking Pricing Comparison</h3>
+            <table>
+                <thead>
+                    <tr><th>Space</th><th>City</th><th>Day Pass</th><th>Hot Desk /mo</th><th>Dedicated /mo</th><th>Notable</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>INNOX</strong></td><td>Skopje</td><td>&euro;5</td><td>&euro;80</td><td>&euro;100-120</td><td>Tiered passes, community events</td></tr>
+                    <tr><td><strong>Konnectivity</strong></td><td>Skopje</td><td>&mdash;</td><td>&euro;200</td><td>&euro;250</td><td>Premium, mentorship, corporate</td></tr>
+                    <tr><td><strong>Coffice</strong></td><td>Skopje</td><td>&mdash;</td><td>&euro;350</td><td>&euro;350</td><td>Premium, long-term discounts</td></tr>
+                    <tr><td><strong>Sky Office</strong></td><td>Skopje</td><td>&euro;15</td><td>&mdash;</td><td>&mdash;</td><td>Premium highrise, 2Gbit internet</td></tr>
+                    <tr><td><strong>Ignition Hive</strong></td><td>Skopje</td><td>&euro;8</td><td>&euro;100</td><td>&mdash;</td><td>Business services bundle</td></tr>
+                    <tr><td><strong>MiMa Coworks</strong></td><td>Skopje</td><td>&mdash;</td><td>&euro;100</td><td>&mdash;</td><td>Apple Vision Pro, gaming, podcast</td></tr>
+                    <tr><td><strong>Freedom Lounge</strong></td><td>Skopje</td><td>&mdash;</td><td>&euro;65-80</td><td>&mdash;</td><td>Team-oriented (up to 20)</td></tr>
+                    <tr><td><strong>Regus/IWG</strong></td><td>Skopje</td><td>&mdash;</td><td>&euro;127</td><td>&mdash;</td><td>Global brand, app-based</td></tr>
+                    <tr><td><strong>Qworkingo</strong></td><td>Bitola</td><td>~&euro;8</td><td>~&euro;50-97</td><td>&mdash;</td><td>Hour-based packages, 24/7</td></tr>
+                    <tr><td><strong>IT Crowd</strong></td><td>Bitola</td><td>Minimal</td><td>Minimal</td><td>&mdash;</td><td>Hybrid: coworking + restaurant</td></tr>
+                    <tr style="background: rgba(59,130,246,0.08);">
+                        <td><strong>CoWork Prilep</strong></td>
+                        <td><strong>Prilep</strong></td>
+                        <td><strong>&euro;5</strong></td>
+                        <td><strong>&euro;70</strong></td>
+                        <td><strong>&euro;110</strong></td>
+                        <td><strong>First in Prilep, Korzo location</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="note-green note" style="margin-top:1rem;">
+                Pricing positioned below Skopje average, at/slightly below Bitola. Competitive for a prime Korzo location with two floors.
+            </div>
+        </div>
+    </section>
+
+    <!-- DOMAINS & SOCIAL HANDLES -->
+    <section id="domains">
+        <h2>Domain & Social Media Monopoly Strategy</h2>
+        <p style="color:var(--text-muted); margin-bottom:1rem;">Register &ldquo;cowork&rdquo; + city name handles across all platforms for every city in Macedonia. First-mover digital land grab.</p>
+
+        <div class="card">
+            <h3>.MK Domain Info</h3>
+            <div class="card-grid">
+                <div>
+                    <h4>Registry</h4>
+                    <p style="font-size:0.9rem; color:var(--text-muted);">MARnet (Macedonian Academic Research Network)</p>
+                    <h4 style="margin-top:1rem;">Cost</h4>
+                    <p style="font-size:0.9rem; color:var(--text-muted);">&euro;13-50/year per domain</p>
+                </div>
+                <div>
+                    <h4>Registrars</h4>
+                    <ul style="list-style:none; padding:0; font-size:0.9rem; color:var(--text-muted);">
+                        <li>&bull; registrar.mk (local, MARnet accredited)</li>
+                        <li>&bull; EuroDNS (eurodns.com)</li>
+                        <li>&bull; INWX (inwx.com)</li>
+                        <li>&bull; Gandi (gandi.net)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Handle Registration Matrix</h3>
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">
+                Pattern: <code style="background:var(--surface2); padding:0.2rem 0.5rem; border-radius:4px;">cowork{city}</code> &mdash; Register on Instagram, Facebook, YouTube, TikTok, Twitter/X for each city.
+            </p>
+            <div style="overflow-x:auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>City</th>
+                            <th>Pop.</th>
+                            <th>Domain (.mk)</th>
+                            <th>Instagram</th>
+                            <th>Facebook</th>
+                            <th>TikTok</th>
+                            <th>YouTube</th>
+                            <th>X/Twitter</th>
+                            <th>Priority</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td><strong>Skopje</strong></td><td>526k</td><td>coworkskopje.mk</td><td>@coworkskopje</td><td>/coworkskopje</td><td>@coworkskopje</td><td>@coworkskopje</td><td>@coworkskopje</td><td><span class="badge badge-red">HIGH</span></td></tr>
+                        <tr><td>2</td><td><strong>Kumanovo</strong></td><td>75k</td><td>coworkkumanovo.mk</td><td>@coworkkumanovo</td><td>/coworkkumanovo</td><td>@coworkkumanovo</td><td>@coworkkumanovo</td><td>@coworkkumanovo</td><td><span class="badge badge-red">HIGH</span></td></tr>
+                        <tr><td>3</td><td><strong>Bitola</strong></td><td>69k</td><td>coworkbitola.mk</td><td>@coworkbitola</td><td>/coworkbitola</td><td>@coworkbitola</td><td>@coworkbitola</td><td>@coworkbitola</td><td><span class="badge badge-red">HIGH</span></td></tr>
+                        <tr style="background:rgba(59,130,246,0.08);"><td>4</td><td><strong>Prilep</strong></td><td>63k</td><td>coworkprilep.mk</td><td>@coworkprilep</td><td>/coworkprilep</td><td>@coworkprilep</td><td>@coworkprilep</td><td>@coworkprilep</td><td><span class="badge badge-green">YOURS</span></td></tr>
+                        <tr><td>5</td><td><strong>Tetovo</strong></td><td>63k</td><td>coworktetovo.mk</td><td>@coworktetovo</td><td>/coworktetovo</td><td>@coworktetovo</td><td>@coworktetovo</td><td>@coworktetovo</td><td><span class="badge badge-red">HIGH</span></td></tr>
+                        <tr><td>6</td><td><strong>Ohrid</strong></td><td>39k</td><td>coworkohrid.mk</td><td>@coworkohrid</td><td>/coworkohrid</td><td>@coworkohrid</td><td>@coworkohrid</td><td>@coworkohrid</td><td><span class="badge badge-red">HIGH</span></td></tr>
+                        <tr><td>7</td><td><strong>Strumica</strong></td><td>34k</td><td>coworkstrumica.mk</td><td>@coworkstrumica</td><td>/coworkstrumica</td><td>@coworkstrumica</td><td>@coworkstrumica</td><td>@coworkstrumica</td><td><span class="badge badge-orange">MED</span></td></tr>
+                        <tr><td>8</td><td><strong>Veles</strong></td><td>41k</td><td>coworkveles.mk</td><td>@coworkveles</td><td>/coworkveles</td><td>@coworkveles</td><td>@coworkveles</td><td>@coworkveles</td><td><span class="badge badge-orange">MED</span></td></tr>
+                        <tr><td>9</td><td><strong>Shtip</strong></td><td>42k</td><td>coworkshtip.mk</td><td>@coworkshtip</td><td>/coworkshtip</td><td>@coworkshtip</td><td>@coworkshtip</td><td>@coworkshtip</td><td><span class="badge badge-orange">MED</span></td></tr>
+                        <tr><td>10</td><td><strong>Gostivar</strong></td><td>33k</td><td>coworkgostivar.mk</td><td>@coworkgostivar</td><td>/coworkgostivar</td><td>@coworkgostivar</td><td>@coworkgostivar</td><td>@coworkgostivar</td><td><span class="badge badge-orange">MED</span></td></tr>
+                        <tr><td>11</td><td><strong>Kavadarci</strong></td><td>32k</td><td>coworkkavadarci.mk</td><td>@coworkkavadarci</td><td>/coworkkavadarci</td><td>@coworkkavadarci</td><td>@coworkkavadarci</td><td>@coworkkavadarci</td><td><span class="badge badge-orange">MED</span></td></tr>
+                        <tr><td>12</td><td><strong>Kochani</strong></td><td>25k</td><td>coworkkochani.mk</td><td>@coworkkochani</td><td>/coworkkochani</td><td>@coworkkochani</td><td>@coworkkochani</td><td>@coworkkochani</td><td><span class="badge badge-yellow">LOW</span></td></tr>
+                        <tr><td>13</td><td><strong>Kichevo</strong></td><td>23k</td><td>coworkkichevo.mk</td><td>@coworkkichevo</td><td>/coworkkichevo</td><td>@coworkkichevo</td><td>@coworkkichevo</td><td>@coworkkichevo</td><td><span class="badge badge-yellow">LOW</span></td></tr>
+                        <tr><td>14</td><td><strong>Struga</strong></td><td>17k</td><td>coworkstruga.mk</td><td>@coworkstruga</td><td>/coworkstruga</td><td>@coworkstruga</td><td>@coworkstruga</td><td>@coworkstruga</td><td><span class="badge badge-yellow">LOW</span></td></tr>
+                        <tr><td>15</td><td><strong>Radovish</strong></td><td>16k</td><td>coworkradovish.mk</td><td>@coworkradovish</td><td>/coworkradovish</td><td>@coworkradovish</td><td>@coworkradovish</td><td>@coworkradovish</td><td><span class="badge badge-yellow">LOW</span></td></tr>
+                        <tr><td>16</td><td><strong>Gevgelija</strong></td><td>16k</td><td>coworkgevgelija.mk</td><td>@coworkgevgelija</td><td>/coworkgevgelija</td><td>@coworkgevgelija</td><td>@coworkgevgelija</td><td>@coworkgevgelija</td><td><span class="badge badge-yellow">LOW</span></td></tr>
+                        <tr><td>17</td><td><strong>Debar</strong></td><td>15k</td><td>coworkdebar.mk</td><td>@coworkdebar</td><td>/coworkdebar</td><td>@coworkdebar</td><td>@coworkdebar</td><td>@coworkdebar</td><td><span class="badge badge-yellow">LOW</span></td></tr>
+                        <tr><td>18</td><td><strong>Sveti Nikole</strong></td><td>14k</td><td>coworksvetinikole.mk</td><td>@coworksvetinikole</td><td>/coworksvetinikole</td><td>@coworksvetinikole</td><td>@coworksvetinikole</td><td>@coworksvetinikole</td><td><span class="badge badge-yellow">LOW</span></td></tr>
+                        <tr><td>19</td><td><strong>Negotino</strong></td><td>13k</td><td>coworknegotino.mk</td><td>@coworknegotino</td><td>/coworknegotino</td><td>@coworknegotino</td><td>@coworknegotino</td><td>@coworknegotino</td><td><span class="badge badge-yellow">LOW</span></td></tr>
+                        <tr><td>20</td><td><strong>Probishtip</strong></td><td>10k</td><td>coworkprobishtip.mk</td><td>@coworkprobishtip</td><td>/coworkprobishtip</td><td>@coworkprobishtip</td><td>@coworkprobishtip</td><td>@coworkprobishtip</td><td><span class="badge badge-yellow">LOW</span></td></tr>
+                        <tr><td>21</td><td><strong>Delchevo</strong></td><td>10k</td><td>coworkdelchevo.mk</td><td>@coworkdelchevo</td><td>/coworkdelchevo</td><td>@coworkdelchevo</td><td>@coworkdelchevo</td><td>@coworkdelchevo</td><td><span class="badge badge-yellow">LOW</span></td></tr>
+                        <tr><td>22</td><td><strong>Vinica</strong></td><td>9k</td><td>coworkvinica.mk</td><td>@coworkvinica</td><td>/coworkvinica</td><td>@coworkvinica</td><td>@coworkvinica</td><td>@coworkvinica</td><td><span class="badge badge-yellow">LOW</span></td></tr>
+                        <tr><td>23</td><td><strong>Resen</strong></td><td>8k</td><td>coworkresen.mk</td><td>@coworkresen</td><td>/coworkresen</td><td>@coworkresen</td><td>@coworkresen</td><td>@coworkresen</td><td><span class="badge badge-yellow">LOW</span></td></tr>
+                        <tr><td>24</td><td><strong>Berovo</strong></td><td>6k</td><td>coworkberovo.mk</td><td>@coworkberovo</td><td>/coworkberovo</td><td>@coworkberovo</td><td>@coworkberovo</td><td>@coworkberovo</td><td><span class="badge badge-yellow">LOW</span></td></tr>
+                        <tr><td>25</td><td><strong>Kratovo</strong></td><td>5k</td><td>coworkkratovo.mk</td><td>@coworkkratovo</td><td>/coworkkratovo</td><td>@coworkkratovo</td><td>@coworkkratovo</td><td>@coworkkratovo</td><td><span class="badge badge-yellow">LOW</span></td></tr>
+                        <tr><td>26</td><td><strong>Krushevo</strong></td><td>4k</td><td>coworkkrushevo.mk</td><td>@coworkkrushevo</td><td>/coworkkrushevo</td><td>@coworkkrushevo</td><td>@coworkkrushevo</td><td>@coworkkrushevo</td><td><span class="badge badge-yellow">LOW</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Also Register These Umbrella Handles</h3>
+            <table>
+                <thead>
+                    <tr><th>Handle</th><th>Purpose</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>@coworkmacedonia</code> / <code>cowork.mk</code></td><td>National brand / directory page</td></tr>
+                    <tr><td><code>@coworkmk</code></td><td>Short national brand</td></tr>
+                    <tr><td><code>coworkingmacedonia.mk</code></td><td>SEO-friendly domain</td></tr>
+                    <tr><td><code>coworkingprilep.mk</code></td><td>Alternative spelling with &ldquo;ing&rdquo;</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h3>Domain Cost Estimate</h3>
+            <table>
+                <thead>
+                    <tr><th>What</th><th class="text-center">Qty</th><th class="text-right">Cost/yr</th><th class="text-right">Total/yr</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>.mk domains (cities + umbrella)</td><td class="text-center">30</td><td class="text-right">~&euro;25</td><td class="text-right">&euro;750</td></tr>
+                    <tr><td>Social media handles</td><td class="text-center">130+</td><td class="text-right">Free</td><td class="text-right">&euro;0</td></tr>
+                    <tr class="total-row"><td colspan="3"><strong>Total Annual Cost</strong></td><td class="text-right"><strong>&euro;750</strong></td></tr>
+                </tbody>
+            </table>
+            <div class="note-green note" style="margin-top:1rem;">
+                <strong>Strategy:</strong> Domains are cheap to hold. If you expand to other cities or franchise the brand, you already own the digital real estate. If someone else wants to open a coworking space in Ohrid or Bitola, they&rsquo;d need to negotiate with you for the domain/handles. This is a &euro;750/year insurance policy for national brand dominance.
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <div style="text-align:center; padding:3rem 2rem; border-top:1px solid var(--border); margin-top:3rem; color:var(--text-muted); font-size:0.85rem;">
+        <p>CoWork Prilep Business Plan &bull; Generated March 2026</p>
+        <p style="margin-top:0.5rem;">3 Partners &bull; Main Korzo, Prilep &bull; First Coworking Space in Prilep</p>
+        <p style="margin-top:1rem; font-size:0.75rem; color:#555;">Note: All figures are estimates based on market research. IKEA prices from ikea.gr (March 2026). Actual costs may vary. Consult a local accountant before investing.</p>
+    </div>
+</div>
+
+<script>
+    // Smooth scroll for nav links
+    document.querySelectorAll('.nav a').forEach(a => {
+        a.addEventListener('click', e => {
+            e.preventDefault();
+            document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+</script>
+</body>
+</html>
