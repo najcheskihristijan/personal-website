@@ -4,34 +4,11 @@ export const prerender = false;
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
-const PASSWORD = 'CoWork2026';
 const COOKIE_NAME = 'cowork_auth';
-const COOKIE_VALUE = 'granted';
-
-let authenticated = false;
-let error = false;
-
-if (Astro.request.method === 'POST') {
-  const form = await Astro.request.formData();
-  const submitted = form.get('password');
-  if (submitted === PASSWORD) {
-    Astro.cookies.set(COOKIE_NAME, COOKIE_VALUE, {
-      httpOnly: true,
-      secure: true,
-      sameSite: 'strict',
-      maxAge: 60 * 60 * 24 * 7, // 7 days
-      path: '/client/coworking-plan',
-    });
-    return Astro.redirect('/client/coworking-plan/');
-  } else {
-    error = true;
-  }
-}
 
 const cookie = Astro.cookies.get(COOKIE_NAME);
-if (cookie?.value === COOKIE_VALUE) {
-  authenticated = true;
-}
+const authenticated = cookie?.value === 'granted';
+const error = Astro.url.searchParams.get('error') === '1';
 
 // Read the business plan HTML body content
 let planHTML = '';
@@ -155,7 +132,7 @@ if (authenticated) {
         <div class="lock-badge">Confidential Document</div>
         <div class="lock-title">CoWork Prilep</div>
         <p class="lock-sub">This document is password protected.<br />Enter the password to continue.</p>
-        <form method="POST" class="lock-form">
+        <form method="POST" action="/api/cowork-auth" class="lock-form">
           <input
             type="password"
             name="password"
