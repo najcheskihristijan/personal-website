@@ -4,22 +4,11 @@ export const prerender = false;
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
-const COOKIE_NAME = 'cowork_auth';
-
-const cookie = Astro.cookies.get(COOKIE_NAME);
-const authenticated = cookie?.value === 'granted';
-const error = Astro.url.searchParams.get('error') === '1';
-
-// Read the business plan HTML body content
-let planHTML = '';
-if (authenticated) {
-  const raw = readFileSync(join(process.cwd(), 'src/private/coworking-plan.html'), 'utf-8');
-  // Extract everything inside <body> ... </body>
-  const bodyMatch = raw.match(/<body[^>]*>([\s\S]*)<\/body>/i);
-  const styleMatch = raw.match(/<style[^>]*>([\s\S]*?)<\/style>/gi);
-  const styles = styleMatch ? styleMatch.join('\n') : '';
-  planHTML = styles + (bodyMatch ? bodyMatch[1] : raw);
-}
+const raw = readFileSync(join(process.cwd(), 'src/private/coworking-plan.html'), 'utf-8');
+const bodyMatch = raw.match(/<body[^>]*>([\s\S]*)<\/body>/i);
+const styleMatch = raw.match(/<style[^>]*>([\s\S]*?)<\/style>/gi);
+const styles = styleMatch ? styleMatch.join('\n') : '';
+const planHTML = styles + (bodyMatch ? bodyMatch[1] : raw);
 ---
 
 <!doctype html>
@@ -29,122 +18,8 @@ if (authenticated) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex, nofollow" />
     <title>CoWork Prilep — Business Plan</title>
-    {authenticated && (
-      <style>
-        /* Reset injected content margins */
-        body { margin: 0; padding: 0; }
-      </style>
-    )}
-    {!authenticated && (
-      <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-          background: #0a0f1e;
-          min-height: 100vh;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 2rem;
-        }
-        .lock-card {
-          background: #111827;
-          border: 1px solid #1f2937;
-          border-radius: 16px;
-          padding: 3rem 2.5rem;
-          width: 100%;
-          max-width: 400px;
-          text-align: center;
-        }
-        .lock-icon {
-          font-size: 2.5rem;
-          margin-bottom: 1.5rem;
-        }
-        .lock-title {
-          font-size: 1.4rem;
-          font-weight: 700;
-          color: #f9fafb;
-          margin-bottom: 0.5rem;
-        }
-        .lock-sub {
-          font-size: 0.9rem;
-          color: #6b7280;
-          margin-bottom: 2rem;
-        }
-        .lock-form {
-          display: flex;
-          flex-direction: column;
-          gap: 0.75rem;
-        }
-        .lock-input {
-          width: 100%;
-          padding: 0.75rem 1rem;
-          background: #1f2937;
-          border: 1px solid #374151;
-          border-radius: 8px;
-          color: #f9fafb;
-          font-size: 1rem;
-          outline: none;
-          text-align: center;
-          letter-spacing: 0.1em;
-        }
-        .lock-input:focus {
-          border-color: #3b82f6;
-        }
-        .lock-btn {
-          padding: 0.75rem;
-          background: #3b82f6;
-          color: #fff;
-          border: none;
-          border-radius: 8px;
-          font-size: 1rem;
-          font-weight: 600;
-          cursor: pointer;
-          transition: background 0.2s;
-        }
-        .lock-btn:hover { background: #2563eb; }
-        .lock-error {
-          color: #ef4444;
-          font-size: 0.875rem;
-          margin-top: 0.5rem;
-        }
-        .lock-badge {
-          display: inline-block;
-          font-size: 0.7rem;
-          font-weight: 700;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          color: #6b7280;
-          border: 1px solid #1f2937;
-          border-radius: 999px;
-          padding: 3px 10px;
-          margin-bottom: 1.5rem;
-        }
-      </style>
-    )}
   </head>
   <body>
-    {authenticated ? (
-      <Fragment set:html={planHTML} />
-    ) : (
-      <div class="lock-card">
-        <div class="lock-icon">🔒</div>
-        <div class="lock-badge">Confidential Document</div>
-        <div class="lock-title">CoWork Prilep</div>
-        <p class="lock-sub">This document is password protected.<br />Enter the password to continue.</p>
-        <form method="POST" action="/api/cowork-auth" class="lock-form">
-          <input
-            type="password"
-            name="password"
-            class="lock-input"
-            placeholder="Enter password"
-            autofocus
-            required
-          />
-          <button type="submit" class="lock-btn">View Document →</button>
-          {error && <p class="lock-error">Incorrect password. Please try again.</p>}
-        </form>
-      </div>
-    )}
+    <Fragment set:html={planHTML} />
   </body>
 </html>
