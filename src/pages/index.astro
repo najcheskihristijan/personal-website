@@ -135,6 +135,102 @@ const faqItems = [
       }
     }
 
+    /* How It Works */
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-6);
+      margin-top: var(--space-10);
+    }
+    .how-step {
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+    }
+    .how-number {
+      font-family: var(--font-heading);
+      font-size: var(--text-4xl);
+      font-weight: 900;
+      color: var(--color-accent-blue);
+      opacity: 0.3;
+      line-height: 1;
+      margin-bottom: var(--space-3);
+    }
+    .how-step h3 {
+      font-family: var(--font-heading);
+      font-size: var(--text-lg);
+      font-weight: 700;
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-2);
+    }
+
+    /* Case Studies */
+    .case-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+      margin-top: var(--space-10);
+    }
+    .case-card {
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-7);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .case-industry {
+      font-size: var(--text-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-accent-blue);
+    }
+    .case-metric {
+      font-family: var(--font-heading);
+      font-size: var(--text-5xl);
+      font-weight: 900;
+      color: var(--color-text-primary);
+      line-height: 1;
+    }
+    .case-metric-label {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      font-weight: 600;
+      margin-top: calc(var(--space-1) * -1);
+    }
+    .case-desc {
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+      flex: 1;
+    }
+    .case-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin-top: var(--space-2);
+    }
+    .case-tags span {
+      font-size: var(--text-xs);
+      font-weight: 600;
+      color: var(--color-text-muted);
+      background: var(--icon-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 999px;
+      padding: 3px 10px;
+    }
+
+    @media (max-width: 1024px) {
+      .how-grid { grid-template-columns: repeat(2, 1fr); }
+      .case-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .how-grid { grid-template-columns: 1fr; }
+    }
+
     /* Who I Work With */
     .icp-grid {
       display: grid;
@@ -384,6 +480,81 @@ const faqItems = [
           <div class="highlight-card">
             <div class="highlight-value">100%</div>
             <div class="highlight-label">Client Retention</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section">
+    <div class="container">
+      <span class="section-label">The Process</span>
+      <h2 class="section-title">How we <span class="text-gradient">work together</span></h2>
+      <p class="section-subtitle">Simple, transparent, and built around your goals from day one.</p>
+      <div class="how-grid">
+        <div class="how-step">
+          <div class="how-number">01</div>
+          <h3>Free Strategy Call</h3>
+          <p class="card-text">30 minutes to understand your business, goals, and current SEO situation. No pitch — just an honest conversation about whether I can help.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-number">02</div>
+          <h3>Scoped Proposal</h3>
+          <p class="card-text">A clear proposal with the engagement model, scope, deliverables, and investment — written specifically for your situation, not a template.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-number">03</div>
+          <h3>Discovery & Audit</h3>
+          <p class="card-text">Every engagement starts with a thorough audit of your SEO landscape so the strategy is grounded in real data, not assumptions.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-number">04</div>
+          <h3>Execution & Results</h3>
+          <p class="card-text">We build, optimise, and iterate together. Regular reporting, clear priorities, and a consultant as invested in results as you are.</p>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: var(--space-8);">
+        <a href="/pricing/" class="btn btn-secondary">See Engagement Models →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Case Studies -->
+  <section class="section" style="background: var(--color-bg-secondary);">
+    <div class="container">
+      <span class="section-label">Results</span>
+      <h2 class="section-title">Real outcomes, <span class="text-gradient-orange">real numbers</span></h2>
+      <p class="section-subtitle">A sample of what's possible when SEO strategy is done right.</p>
+      <div class="case-grid">
+        <div class="case-card">
+          <div class="case-industry">SaaS</div>
+          <div class="case-metric">+220%</div>
+          <div class="case-metric-label">Organic traffic in 6 months</div>
+          <p class="case-desc">Rebuilt site architecture, fixed crawl budget waste, and launched a topic cluster strategy targeting bottom-of-funnel SaaS keywords. CAC from organic dropped 35%.</p>
+          <div class="case-tags">
+            <span>Technical SEO</span>
+            <span>Content Strategy</span>
+          </div>
+        </div>
+        <div class="case-card">
+          <div class="case-industry">E-commerce</div>
+          <div class="case-metric">+$180K</div>
+          <div class="case-metric-label">Organic revenue in 4 months</div>
+          <p class="case-desc">Optimised 400+ product and category pages, implemented structured data, and fixed Core Web Vitals. Reduced reliance on paid ads by building strong organic category rankings.</p>
+          <div class="case-tags">
+            <span>On-Page SEO</span>
+            <span>Schema Markup</span>
+          </div>
+        </div>
+        <div class="case-card">
+          <div class="case-industry">Publishing</div>
+          <div class="case-metric">3x</div>
+          <div class="case-metric-label">Organic sessions in 8 months</div>
+          <p class="case-desc">Executed a full content audit, pruned underperforming pages, and launched a programmatic SEO strategy. Secured #1 rankings for 50+ high-volume industry keywords.</p>
+          <div class="case-tags">
+            <span>Content Audit</span>
+            <span>Programmatic SEO</span>
           </div>
         </div>
       </div>
