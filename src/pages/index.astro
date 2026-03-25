@@ -135,6 +135,36 @@ const faqItems = [
       }
     }
 
+    /* GEO Definition */
+    .section-geo { padding-top: 0; padding-bottom: var(--space-6); }
+    .geo-definition {
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-accent-blue);
+      border-left: 4px solid var(--color-accent-blue);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6) var(--space-8);
+    }
+    .geo-label {
+      font-size: var(--text-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-accent-blue);
+      margin-bottom: var(--space-3);
+    }
+    .geo-definition p { color: var(--color-text-secondary); line-height: 1.8; }
+    .geo-links {
+      display: flex;
+      gap: var(--space-6);
+      margin-top: var(--space-4);
+      flex-wrap: wrap;
+    }
+    .geo-links a {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--color-accent-blue);
+    }
+
     /* How It Works */
     .how-grid {
       display: grid;
@@ -336,6 +366,20 @@ const faqItems = [
       display: block;
     }
   </style>
+
+  <!-- GEO Definition Block -->
+  <section class="section section-geo">
+    <div class="container">
+      <div class="geo-definition">
+        <div class="geo-label">What is a Fractional SEO Consultant?</div>
+        <p>A <strong>fractional SEO consultant</strong> is a senior-level SEO expert who works with businesses on a part-time or retainer basis, acting as a strategic leader without the full-time cost. Unlike freelancers who execute tasks, a fractional consultant owns the SEO roadmap, integrates with the team, and delivers the same strategic depth as a VP of SEO — at a fraction of the investment. The model is particularly well-suited for SaaS, e-commerce, and enterprise companies that need senior SEO expertise but aren't at the stage to justify a full-time hire.</p>
+        <div class="geo-links">
+          <a href="/about/">Learn how the model works →</a>
+          <a href="/pricing/">View engagement options →</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Services Overview -->
   <section class="section" id="services-overview">

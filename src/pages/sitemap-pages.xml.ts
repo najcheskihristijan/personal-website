@@ -11,6 +11,11 @@ export async function GET() {
     { url: `${base}/services/`, priority: '0.9', changefreq: 'monthly' },
     { url: `${base}/blog/`, priority: '0.8', changefreq: 'weekly' },
     { url: `${base}/contact/`, priority: '0.7', changefreq: 'monthly' },
+    { url: `${base}/pricing/`, priority: '0.8', changefreq: 'monthly' },
+    { url: `${base}/fractional-seo-saas/`, priority: '0.9', changefreq: 'monthly' },
+    { url: `${base}/fractional-seo-ecommerce/`, priority: '0.9', changefreq: 'monthly' },
+    { url: `${base}/fractional-seo-publishing/`, priority: '0.9', changefreq: 'monthly' },
+    { url: `${base}/fractional-seo-enterprise/`, priority: '0.9', changefreq: 'monthly' },
     { url: `${base}/author/hristijan-najcheski/`, priority: '0.6', changefreq: 'monthly' },
   ];
 

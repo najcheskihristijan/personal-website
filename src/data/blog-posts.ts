@@ -38,6 +38,7 @@ export const posts: Record<string, {
       <h2>The Bottom Line</h2>
       <p>SEO is too important to delegate to whoever's cheapest. A fractional consultant gives you the best of both worlds: senior expertise with the flexibility your growing business needs. It's not about working with someone part-time — it's about working with the right person.</p>
       <p>Building trust with search engines also means building trust with users — and that starts with <a href="/blog/content-strategy-eeat/" style="color: var(--color-accent-blue);">demonstrating E-E-A-T in your content</a>.</p>
+      <p>If you're ready to move beyond the basics, explore my <a href="/services/" style="color: var(--color-accent-blue);">full range of SEO services</a> or <a href="/pricing/" style="color: var(--color-accent-blue);">see how a fractional engagement works</a>.</p>
     `,
   },
   'technical-seo-checklist-2026': {
@@ -83,6 +84,7 @@ export const posts: Record<string, {
       <h2>Final Thoughts</h2>
       <p>Technical SEO isn't a one-time task — it's an ongoing discipline. Schedule quarterly technical audits and stay on top of Google's evolving requirements. Your organic traffic will thank you.</p>
       <p>To make the most of your technical foundation, pair it with a strong <a href="/blog/content-strategy-eeat/" style="color: var(--color-accent-blue);">E-E-A-T content strategy</a> that builds authority and trust over time.</p>
+      <p>Need help implementing this checklist? My <a href="/services/technical-seo/" style="color: var(--color-accent-blue);">Technical SEO service</a> and <a href="/services/seo-audits/" style="color: var(--color-accent-blue);">SEO Audit</a> cover every item here — plus the strategic layer on top.</p>
     `,
   },
   'content-strategy-eeat': {
@@ -130,6 +132,7 @@ export const posts: Record<string, {
       <h2>Putting It All Together</h2>
       <p>E-E-A-T isn't a switch you flip — it's built over time through consistency, quality, and genuine expertise. Make it a core part of your content strategy, and you'll see lasting improvements in how Google perceives and ranks your content.</p>
       <p>A strong <a href="/blog/technical-seo-checklist-2026/" style="color: var(--color-accent-blue);">technical foundation</a> ensures your E-E-A-T signals are properly communicated to search engines. And if you need help implementing these strategies, consider working with a <a href="/blog/why-fractional-seo/" style="color: var(--color-accent-blue);">fractional SEO consultant</a> who can guide you through the process.</p>
+      <p>My <a href="/services/content-strategy/" style="color: var(--color-accent-blue);">Content Strategy service</a> is built around exactly these E-E-A-T principles — from keyword research through to editorial execution.</p>
     `,
   },
 
@@ -166,6 +169,7 @@ export const posts: Record<string, {
       <h2>Is It Right for You?</h2>
       <p>If you have ambitious growth goals but aren't ready to commit to a full-time executive salary, fractional SEO is likely your best path. It bridges the gap between ad-hoc freelancing and enterprise hiring.</p>
       <p>Ready to explore this model? Compare it to other options in our guide on <a href="/blog/fractional-seo-vs-agency/" style="color: var(--color-accent-blue);">Fractional SEO vs. Agency Models</a>, or see the <a href="/blog/roi-of-fractional-seo/" style="color: var(--color-accent-blue);">ROI breakdown</a>.</p>
+      <p>Want to see exactly what's included? <a href="/pricing/" style="color: var(--color-accent-blue);">View the engagement models</a> or <a href="/services/" style="color: var(--color-accent-blue);">explore all SEO services</a> available under a fractional engagement.</p>
     `,
   },
   'fractional-seo-vs-agency': {
@@ -202,6 +206,7 @@ export const posts: Record<string, {
       <p><strong>Choose an Agency if:</strong> You need lower-level execution at scale (e.g., writing 50 blog posts a month) and have a marketing manager to oversee them.</p>
       <p><strong>Choose In-House if:</strong> You are a large enterprise ($10M+ ARR) with a massive site requiring daily maintenance.</p>
       <p><strong>Choose Fractional SEO if:</strong> You are a startup or SMB ($1M - $10M ARR) that needs high-level strategy and impactful execution without the overhead of a full-time executive. Read more about <a href="/blog/what-is-fractional-seo/" style="color: var(--color-accent-blue);">what a fractional SEO does</a>.</p>
+      <p>See exactly how a fractional engagement is structured on the <a href="/pricing/" style="color: var(--color-accent-blue);">pricing and engagement models page</a>.</p>
     `,
   },
   'roi-of-fractional-seo': {
@@ -228,6 +233,7 @@ export const posts: Record<string, {
       <h2>Case Study Example</h2>
       <p>A B2B SaaS client was spending $10k/mo on ads with a $200 CPA. We implemented a fractional SEO strategy costing $4k/mo. Within 6 months, organic drove same lead volume at $0 marginal cost. They cut ad spend by 50% while growing total leads.</p>
       <p>Ready to see these numbers for your business? <a href="/contact/" style="color: var(--color-accent-blue);">Let's calculate your potential ROI</a> together.</p>
+      <p>Explore the <a href="/pricing/" style="color: var(--color-accent-blue);">fractional engagement models</a> or learn about the specific <a href="/services/analytics-reporting/" style="color: var(--color-accent-blue);">analytics and reporting</a> I use to track and prove ROI throughout every engagement.</p>
     `,
   },
   // Scheduled test post (Future date)
