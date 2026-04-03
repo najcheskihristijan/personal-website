@@ -9,6 +9,29 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
+            --bg: #ffffff;
+            --surface: #f4f4f5;
+            --surface2: #e4e4e7;
+            --surface3: #d4d4d8;
+            --border: #d4d4d8;
+            --border-light: #a1a1aa;
+            --text: #09090b;
+            --text-secondary: #52525b;
+            --text-muted: #71717a;
+            --accent: #0891b2;
+            --accent-dim: rgba(8, 145, 178, 0.10);
+            --green: #16a34a;
+            --green-dim: rgba(22, 163, 74, 0.10);
+            --red: #dc2626;
+            --red-dim: rgba(220, 38, 38, 0.10);
+            --yellow: #ca8a04;
+            --yellow-dim: rgba(202, 138, 4, 0.10);
+            --orange: #ea580c;
+            --orange-dim: rgba(234, 88, 12, 0.10);
+            --purple: #7c3aed;
+            --purple-dim: rgba(124, 58, 237, 0.10);
+        }
+        [data-theme="dark"] {
             --bg: #09090b;
             --surface: #111113;
             --surface2: #18181b;
@@ -568,9 +591,27 @@
                 to { opacity: 1; transform: translateY(0); }
             }
         }
+        .theme-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 9999;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            color: var(--text);
+            font-family: var(--sans);
+            font-size: 13px;
+            padding: 0.4rem 0.8rem;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .theme-toggle:hover { background: var(--surface3); }
     </style>
 </head>
 <body>
+    <button class="theme-toggle" onclick="document.documentElement.toggleAttribute('data-theme'); let d = document.documentElement.hasAttribute('data-theme') ? 'dark' : 'light'; this.textContent = d === 'dark' ? '☀️ Light' : '🌙 Dark'; localStorage.setItem('cwtheme', d);">🌙 Dark</button>
+    <script>if(localStorage.getItem('cwtheme')==='dark'){document.documentElement.setAttribute('data-theme','dark');document.querySelector('.theme-toggle').textContent='☀️ Light';}</script>
 
 <!-- ═══════════════════════ HERO ═══════════════════════ -->
 <div class="hero">
