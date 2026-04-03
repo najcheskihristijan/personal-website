@@ -31,33 +31,6 @@
             --purple: #7c3aed;
             --purple-dim: rgba(124, 58, 237, 0.10);
         }
-        [data-theme="dark"] {
-            --bg: #09090b;
-            --surface: #111113;
-            --surface2: #18181b;
-            --surface3: #1f1f23;
-            --border: #27272a;
-            --border-light: #3f3f46;
-            --text: #fafafa;
-            --text-secondary: #a1a1aa;
-            --text-muted: #71717a;
-            --accent: #22d3ee;
-            --accent-dim: rgba(34, 211, 238, 0.12);
-            --green: #4ade80;
-            --green-dim: rgba(74, 222, 128, 0.12);
-            --red: #f87171;
-            --red-dim: rgba(248, 113, 113, 0.12);
-            --yellow: #fbbf24;
-            --yellow-dim: rgba(251, 191, 36, 0.12);
-            --orange: #fb923c;
-            --orange-dim: rgba(251, 146, 60, 0.12);
-            --purple: #a78bfa;
-            --purple-dim: rgba(167, 139, 250, 0.12);
-            --serif: 'Instrument Serif', Georgia, serif;
-            --sans: 'DM Sans', system-ui, sans-serif;
-            --mono: 'JetBrains Mono', monospace;
-        }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         html { scroll-behavior: smooth; }
@@ -158,7 +131,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(9, 9, 11, 0.88);
+            background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(16px) saturate(180%);
             -webkit-backdrop-filter: blur(16px) saturate(180%);
             border-bottom: 1px solid var(--border);
@@ -591,27 +564,9 @@
                 to { opacity: 1; transform: translateY(0); }
             }
         }
-        .theme-toggle {
-            position: fixed;
-            top: 1rem;
-            right: 1rem;
-            z-index: 9999;
-            background: var(--surface2);
-            border: 1px solid var(--border);
-            color: var(--text);
-            font-family: var(--sans);
-            font-size: 13px;
-            padding: 0.4rem 0.8rem;
-            border-radius: 999px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .theme-toggle:hover { background: var(--surface3); }
     </style>
 </head>
 <body>
-    <button class="theme-toggle" onclick="document.documentElement.toggleAttribute('data-theme'); let d = document.documentElement.hasAttribute('data-theme') ? 'dark' : 'light'; this.textContent = d === 'dark' ? '☀️ Light' : '🌙 Dark'; localStorage.setItem('cwtheme', d);">🌙 Dark</button>
-    <script>if(localStorage.getItem('cwtheme')==='dark'){document.documentElement.setAttribute('data-theme','dark');document.querySelector('.theme-toggle').textContent='☀️ Light';}</script>
 
 <!-- ═══════════════════════ HERO ═══════════════════════ -->
 <div class="hero">
