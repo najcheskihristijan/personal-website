@@ -9,28 +9,32 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #ffffff;
-            --surface: #f4f4f5;
-            --surface2: #e4e4e7;
-            --surface3: #d4d4d8;
-            --border: #d4d4d8;
-            --border-light: #a1a1aa;
-            --text: #09090b;
-            --text-secondary: #52525b;
+            --bg: #09090b;
+            --surface: #111113;
+            --surface2: #18181b;
+            --surface3: #1f1f23;
+            --border: #27272a;
+            --border-light: #3f3f46;
+            --text: #fafafa;
+            --text-secondary: #a1a1aa;
             --text-muted: #71717a;
-            --accent: #0891b2;
-            --accent-dim: rgba(8, 145, 178, 0.10);
-            --green: #16a34a;
-            --green-dim: rgba(22, 163, 74, 0.10);
-            --red: #dc2626;
-            --red-dim: rgba(220, 38, 38, 0.10);
-            --yellow: #ca8a04;
-            --yellow-dim: rgba(202, 138, 4, 0.10);
-            --orange: #ea580c;
-            --orange-dim: rgba(234, 88, 12, 0.10);
-            --purple: #7c3aed;
-            --purple-dim: rgba(124, 58, 237, 0.10);
+            --accent: #22d3ee;
+            --accent-dim: rgba(34, 211, 238, 0.12);
+            --green: #4ade80;
+            --green-dim: rgba(74, 222, 128, 0.12);
+            --red: #f87171;
+            --red-dim: rgba(248, 113, 113, 0.12);
+            --yellow: #fbbf24;
+            --yellow-dim: rgba(251, 191, 36, 0.12);
+            --orange: #fb923c;
+            --orange-dim: rgba(251, 146, 60, 0.12);
+            --purple: #a78bfa;
+            --purple-dim: rgba(167, 139, 250, 0.12);
+            --serif: 'Instrument Serif', Georgia, serif;
+            --sans: 'DM Sans', system-ui, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         html { scroll-behavior: smooth; }
@@ -131,7 +135,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(255, 255, 255, 0.92);
+            background: rgba(9, 9, 11, 0.88);
             backdrop-filter: blur(16px) saturate(180%);
             -webkit-backdrop-filter: blur(16px) saturate(180%);
             border-bottom: 1px solid var(--border);
@@ -611,6 +615,9 @@
         <a href="#financials">Financials</a>
         <a href="#competitors">Competitors</a>
         <a href="#domains">Domains</a>
+        <a href="#swot">SWOT</a>
+        <a href="#4p">4P Analysis</a>
+        <a href="#questions">Partner Questions</a>
     </div>
 </nav>
 
@@ -1547,6 +1554,328 @@
                 Cheap digital land grab. If you expand or franchise, you own the namespace. If competitors emerge, they negotiate with you.
             </div>
         </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════ SWOT ═══════════════════════ -->
+<section id="swot">
+    <div class="section-label">Strategic Analysis</div>
+    <h2>SWOT Analysis</h2>
+
+    <div class="grid-2">
+        <div class="card card-success">
+            <h3 style="color: var(--green);">Strengths</h3>
+            <ul style="list-style: none; padding: 0;">
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; First mover &mdash; zero coworking spaces in Prilep</li>
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; 300m&sup2;+ space at &euro;3.70/m&sup2; &mdash; excellent value</li>
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; No upfront rent &mdash; low cash barrier to launch</li>
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; In-house marketing agency (EUR 0 marketing cost)</li>
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; In-house tech team (EUR 0 website/booking system)</li>
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; Two-floor separation creates natural premium tier</li>
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; Backyard &mdash; unique amenity competitors can&rsquo;t easily replicate</li>
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; Worst-case monthly burn is survivable (&euro;428/partner)</li>
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; 3 partners = distributed risk and diverse skills</li>
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; Minimal renovation needed &mdash; space is in good condition</li>
+            </ul>
+        </div>
+
+        <div class="card card-danger">
+            <h3 style="color: var(--red);">Weaknesses</h3>
+            <ul style="list-style: none; padding: 0;">
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; Rent is 56% of operating costs (industry ideal: 30-40%)</li>
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; Break-even requires 18-19 members &mdash; nearly 60% occupancy</li>
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; No proven demand &mdash; coworking is untested in Prilep</li>
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; 3-partner decision making can slow execution</li>
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; None of the partners run this full-time (assumption)</li>
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; Renovation investment on landlord&rsquo;s property</li>
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; No track record in hospitality/space management</li>
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; 300m&sup2; may be oversized for initial demand</li>
+            </ul>
+        </div>
+
+        <div class="card card-accent">
+            <h3 style="color: var(--accent);">Opportunities</h3>
+            <ul style="list-style: none; padding: 0;">
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; IWConnect (200+ staff) could become anchor tenant</li>
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; Growing remote work trend in Macedonia</li>
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; 3,100+ university students &mdash; untapped pipeline</li>
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; Event hosting revenue (backyard + ground floor)</li>
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; Private office rental on upper floor for steady income</li>
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; National &ldquo;CoWork&rdquo; brand expansion / franchising</li>
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; Domain monopoly across 26 cities = future leverage</li>
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; Government/EU grants for innovation spaces</li>
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; Corporate partnerships (training venue, offsites)</li>
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; Summer tourism angle &mdash; digital nomads passing through</li>
+            </ul>
+        </div>
+
+        <div class="card card-warn">
+            <h3 style="color: var(--yellow);">Threats</h3>
+            <ul style="list-style: none; padding: 0;">
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; Declining population in Prilep (long-term trend)</li>
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; Economic downturn could reduce freelancer income</li>
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; Landlord could refuse to renew lease after build-out</li>
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; A competitor could open with more capital</li>
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; Cafes adding &ldquo;coworking corners&rdquo; as a low-cost alternative</li>
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; Seasonal student exodus in summer months</li>
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; IWConnect or GrabIT building their own internal spaces</li>
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; Energy price increases (HVAC is a major cost driver)</li>
+                <li style="padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.88rem;">&#9679; Partner disagreements or one partner exiting</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════ 4P ANALYSIS ═══════════════════════ -->
+<section id="4p">
+    <div class="section-label">Marketing Framework</div>
+    <h2>4P Analysis</h2>
+
+    <div class="grid-2">
+        <div class="card">
+            <h3>Product</h3>
+            <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 1rem;">What exactly are we selling?</p>
+            <table>
+                <tbody>
+                    <tr><td><strong>Core product</strong></td><td>A professional workspace with fast internet, ergonomic furniture, and a quiet environment</td></tr>
+                    <tr><td><strong>Extended product</strong></td><td>Community, networking, meeting rooms, events, business address, kitchen, backyard</td></tr>
+                    <tr><td><strong>Premium tier</strong></td><td>Upper floor dedicated desks &mdash; quiet zone, personal storage, priority access</td></tr>
+                    <tr><td><strong>Differentiator</strong></td><td>Only option in Prilep. Two-floor separation. Backyard. Modern premium feel.</td></tr>
+                </tbody>
+            </table>
+            <h4 style="margin-top: 1.25rem; color: var(--yellow);">Open Questions</h4>
+            <ul style="list-style: none; padding: 0; font-size: 0.85rem; color: var(--text-muted);">
+                <li style="padding: 0.3rem 0;">&#9744; Do we offer coffee/tea as included or as a paid add-on?</li>
+                <li style="padding: 0.3rem 0;">&#9744; Do we install a vending machine or a proper espresso machine?</li>
+                <li style="padding: 0.3rem 0;">&#9744; Do we offer printing as included (with limits) or strictly pay-per-page?</li>
+                <li style="padding: 0.3rem 0;">&#9744; What are our operating hours? 24/7 for members or fixed hours?</li>
+                <li style="padding: 0.3rem 0;">&#9744; Do we allow members to bring guests? Under what terms?</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Price</h3>
+            <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 1rem;">Are we priced right for this market?</p>
+            <table>
+                <tbody>
+                    <tr><td><strong>Strategy</strong></td><td>Below Skopje average, competitive with Bitola &mdash; value positioning</td></tr>
+                    <tr><td><strong>Anchor</strong></td><td>EUR 5/day makes trial frictionless</td></tr>
+                    <tr><td><strong>Core revenue</strong></td><td>Hot Desk (EUR 70) + Dedicated (EUR 110)</td></tr>
+                    <tr><td><strong>Volume play</strong></td><td>Student Pass (EUR 35) + Team Package (EUR 60/person)</td></tr>
+                </tbody>
+            </table>
+            <h4 style="margin-top: 1.25rem; color: var(--yellow);">Open Questions</h4>
+            <ul style="list-style: none; padding: 0; font-size: 0.85rem; color: var(--text-muted);">
+                <li style="padding: 0.3rem 0;">&#9744; Is EUR 70 hot desk affordable for Prilep freelancers? What&rsquo;s the average monthly income here?</li>
+                <li style="padding: 0.3rem 0;">&#9744; Should we offer a &ldquo;founders rate&rdquo; discount for the first 10 members?</li>
+                <li style="padding: 0.3rem 0;">&#9744; Do we require contracts (3/6/12 month) or go month-to-month?</li>
+                <li style="padding: 0.3rem 0;">&#9744; Annual membership discount &mdash; what % discount for paying 12 months upfront?</li>
+                <li style="padding: 0.3rem 0;">&#9744; How do we handle late payments? Grace period? Automatic lock-out?</li>
+                <li style="padding: 0.3rem 0;">&#9744; Do we accept cash, card, bank transfer, or all? Recurring billing?</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Place</h3>
+            <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 1rem;">Where and how do customers find and access us?</p>
+            <table>
+                <tbody>
+                    <tr><td><strong>Physical</strong></td><td>300m&sup2; ground + 100m&sup2; upper floor, Prilep</td></tr>
+                    <tr><td><strong>Access</strong></td><td>Smart lock / keycard system for 24/7 member access</td></tr>
+                    <tr><td><strong>Digital</strong></td><td>Website with booking, Google Maps listing, social media</td></tr>
+                    <tr><td><strong>Discovery</strong></td><td>Walk-in foot traffic, Instagram, word of mouth, events</td></tr>
+                </tbody>
+            </table>
+            <h4 style="margin-top: 1.25rem; color: var(--yellow);">Open Questions</h4>
+            <ul style="list-style: none; padding: 0; font-size: 0.85rem; color: var(--text-muted);">
+                <li style="padding: 0.3rem 0;">&#9744; What is the exact address of the new space? Is it on a main street with foot traffic?</li>
+                <li style="padding: 0.3rem 0;">&#9744; Is there street-level signage visibility? Can people see inside?</li>
+                <li style="padding: 0.3rem 0;">&#9744; Parking &mdash; is there nearby parking for members who drive?</li>
+                <li style="padding: 0.3rem 0;">&#9744; Public transport &mdash; how accessible is the location by bus?</li>
+                <li style="padding: 0.3rem 0;">&#9744; Can we put exterior signage/banner on the building?</li>
+                <li style="padding: 0.3rem 0;">&#9744; Is the backyard visible from the street? Can it attract walk-ins?</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Promotion</h3>
+            <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 1rem;">How do we get our first 20 members?</p>
+            <table>
+                <tbody>
+                    <tr><td><strong>Pre-launch</strong></td><td>Instagram renovation journey, early-bird pricing, waitlist</td></tr>
+                    <tr><td><strong>Launch</strong></td><td>Free launch week, open house event, local press</td></tr>
+                    <tr><td><strong>Ongoing</strong></td><td>Referral program, community events, social media, partnerships</td></tr>
+                    <tr><td><strong>Cost</strong></td><td>EUR 0 (in-house agency handles everything)</td></tr>
+                </tbody>
+            </table>
+            <h4 style="margin-top: 1.25rem; color: var(--yellow);">Open Questions</h4>
+            <ul style="list-style: none; padding: 0; font-size: 0.85rem; color: var(--text-muted);">
+                <li style="padding: 0.3rem 0;">&#9744; Have we spoken directly to anyone at IWConnect or GrabIT about interest?</li>
+                <li style="padding: 0.3rem 0;">&#9744; Do we have a referral program? (e.g., &ldquo;bring a friend, get 1 week free&rdquo;)</li>
+                <li style="padding: 0.3rem 0;">&#9744; Do we partner with the university (Faculty of Economics) for student outreach?</li>
+                <li style="padding: 0.3rem 0;">&#9744; Launch event plan &mdash; who do we invite? Budget for catering?</li>
+                <li style="padding: 0.3rem 0;">&#9744; Do we sponsor or host local tech meetups from day one?</li>
+                <li style="padding: 0.3rem 0;">&#9744; Google Business Profile &mdash; who sets it up and manages reviews?</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════ PARTNER QUESTIONS ═══════════════════════ -->
+<section id="questions">
+    <div class="section-label">Meeting Prep</div>
+    <h2>Partner Discussion Questions</h2>
+    <p style="color: var(--text-secondary); margin-bottom: 2rem; max-width: 700px;">
+        These questions need answers before the business plan is final. Each partner should come to the next meeting with their position on every item. Disagree openly &mdash; that&rsquo;s the point.
+    </p>
+
+    <!-- PARTNERSHIP & LEGAL -->
+    <div class="card">
+        <h3>Partnership &amp; Legal Structure</h3>
+        <table>
+            <thead><tr><th>#</th><th>Question</th><th>Why It Matters</th></tr></thead>
+            <tbody>
+                <tr><td>1</td><td>What is each partner&rsquo;s ownership split? Equal 33/33/33 or different?</td><td>Determines profit sharing, voting power, and exit valuation</td></tr>
+                <tr><td>2</td><td>What happens if one partner wants to exit in Year 1? Year 3? Year 5?</td><td>Need a buy-out formula agreed before money goes in</td></tr>
+                <tr><td>3</td><td>Who has decision-making authority for expenses under &euro;500? Under &euro;2,000? Above?</td><td>Prevents deadlock on daily operations</td></tr>
+                <tr><td>4</td><td>What legal entity do we register? DOO (LLC equivalent)? Who is the director?</td><td>Affects tax obligations, personal liability, and admin burden</td></tr>
+                <tr><td>5</td><td>Do we need a formal partnership agreement written by a lawyer?</td><td>Verbal agreements fail when money or disagreements are involved</td></tr>
+                <tr><td>6</td><td>What is each partner&rsquo;s specific role and responsibility? (operations, marketing, finance, tech)</td><td>Prevents duplication, finger-pointing, and things falling through cracks</td></tr>
+                <tr><td>7</td><td>What if a partner stops contributing time/effort but still holds ownership?</td><td>Need a &ldquo;sweat equity&rdquo; or &ldquo;active participation&rdquo; clause</td></tr>
+                <tr><td>8</td><td>How do we handle disagreements? Majority vote (2 of 3)? Or unanimous for big decisions?</td><td>3 partners = 2-vs-1 scenario is inevitable</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- LEASE & LANDLORD -->
+    <div class="card">
+        <h3>Lease &amp; Landlord</h3>
+        <table>
+            <thead><tr><th>#</th><th>Question</th><th>Why It Matters</th></tr></thead>
+            <tbody>
+                <tr><td>9</td><td>What is the minimum lease duration we require? (3 years? 5 years?)</td><td>Short lease = risk of losing renovation investment</td></tr>
+                <tr><td>10</td><td>Is there a maximum annual rent increase cap in the contract? (e.g., 3%)</td><td>Uncapped increases could destroy the business model</td></tr>
+                <tr><td>11</td><td>Do we have right of first refusal if the landlord sells the building?</td><td>New owner could terminate lease or raise rent</td></tr>
+                <tr><td>12</td><td>Are renovations classified as tenant improvements? Can we recoup costs if we leave early?</td><td>EUR 10-15k in renovation on someone else&rsquo;s property</td></tr>
+                <tr><td>13</td><td>Who is responsible for structural repairs? (roof leaks, plumbing, etc.)</td><td>Must be landlord&rsquo;s responsibility &mdash; get it in writing</td></tr>
+                <tr><td>14</td><td>Can we sublease part of the space if needed? (e.g., private office to a company)</td><td>Flexibility to pivot if coworking alone doesn&rsquo;t fill the space</td></tr>
+                <tr><td>15</td><td>What is the notice period for either party to terminate?</td><td>Need enough time to find alternative space or wind down</td></tr>
+                <tr><td>16</td><td>Is the landlord willing to put the lease under the company name (DOO) vs personal?</td><td>Limits personal liability</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- FINANCIAL DECISIONS -->
+    <div class="card">
+        <h3>Financial Decisions</h3>
+        <table>
+            <thead><tr><th>#</th><th>Question</th><th>Why It Matters</th></tr></thead>
+            <tbody>
+                <tr><td>17</td><td>What is each partner&rsquo;s maximum total investment? (not just initial &mdash; through Year 1)</td><td>Need to know the true runway before starting</td></tr>
+                <tr><td>18</td><td>What if we need additional capital mid-year? Do all partners contribute equally?</td><td>One partner unable to contribute = crisis</td></tr>
+                <tr><td>19</td><td>At what point do we pull the plug? (e.g., less than X members after 18 months?)</td><td>Agree on the &ldquo;kill switch&rdquo; criteria before emotions get involved</td></tr>
+                <tr><td>20</td><td>When do partners start taking salary/profit distributions?</td><td>Premature distributions kill cash flow. Set a clear threshold.</td></tr>
+                <tr><td>21</td><td>Do we open a separate business bank account from day one?</td><td>Mixing personal and business finances is a legal and accounting nightmare</td></tr>
+                <tr><td>22</td><td>Who handles bookkeeping and financial reporting? How often do partners get updates?</td><td>Transparency prevents trust erosion</td></tr>
+                <tr><td>23</td><td>Do we have a cash reserve policy? (e.g., always keep 3 months of opex in the account)</td><td>Prevents panic decisions during slow months</td></tr>
+                <tr><td>24</td><td>Tax implications &mdash; have we consulted an accountant about VAT, income tax, profit tax?</td><td>Macedonia has specific rules for DOO taxation</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- SPACE & OPERATIONS -->
+    <div class="card">
+        <h3>Space &amp; Day-to-Day Operations</h3>
+        <table>
+            <thead><tr><th>#</th><th>Question</th><th>Why It Matters</th></tr></thead>
+            <tbody>
+                <tr><td>25</td><td>Who manages the space day-to-day? Is anyone there full-time or is it self-service?</td><td>Unmanned spaces feel empty and have security/maintenance issues</td></tr>
+                <tr><td>26</td><td>Do we hire a part-time community manager / receptionist? When?</td><td>A human presence builds community. Budget: EUR 200-400/month part-time</td></tr>
+                <tr><td>27</td><td>What are the operating hours? Staffed hours vs. 24/7 keycard access?</td><td>24/7 is a selling point but has security and cost implications</td></tr>
+                <tr><td>28</td><td>Security: cameras, smart lock, alarm system &mdash; what do we install?</td><td>Members leave laptops and personal items. Trust = retention.</td></tr>
+                <tr><td>29</td><td>How do we handle the cleaning? Hire a cleaner? Which partner oversees this?</td><td>A dirty space kills reputation faster than anything</td></tr>
+                <tr><td>30</td><td>Internet: which 2 ISPs do we use? What speed is guaranteed? Do we need an SLA?</td><td>Internet is the #1 reason people come. It must be fast and reliable.</td></tr>
+                <tr><td>31</td><td>What is our noise/conduct policy? How do we handle phone calls on the ground floor?</td><td>Noise complaints are the #1 issue in coworking spaces</td></tr>
+                <tr><td>32</td><td>Backyard &mdash; do we allow smoking? Designated zone only?</td><td>Smokers love it, non-smokers hate it. Must decide upfront.</td></tr>
+                <tr><td>33</td><td>Do we allow food delivery to the space? What about cooking in the kitchen?</td><td>Smells travel. Need clear kitchen rules.</td></tr>
+                <tr><td>34</td><td>How do we partition the upper floor into 2 meeting rooms + desks? Drywall? Glass?</td><td>Glass looks premium but costs 2-3x more than drywall</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- PRODUCT & MEMBER EXPERIENCE -->
+    <div class="card">
+        <h3>Product &amp; Member Experience</h3>
+        <table>
+            <thead><tr><th>#</th><th>Question</th><th>Why It Matters</th></tr></thead>
+            <tbody>
+                <tr><td>35</td><td>What booking/management software do we use? (Nexudus, Cobot, Optix, custom-built?)</td><td>Handles billing, access control, meeting room booking, reporting</td></tr>
+                <tr><td>36</td><td>Do members sign a membership agreement / terms of use?</td><td>Protects against liability, sets expectations, enables enforcement</td></tr>
+                <tr><td>37</td><td>What happens if a member damages furniture or equipment?</td><td>Need a policy before it happens, not after</td></tr>
+                <tr><td>38</td><td>Do we offer a free trial day? Free first week? What&rsquo;s the conversion hook?</td><td>Getting people through the door is the hardest part</td></tr>
+                <tr><td>39</td><td>Meeting rooms &mdash; can non-members book them? At what rate?</td><td>External bookings = extra revenue + exposure to potential members</td></tr>
+                <tr><td>40</td><td>Do we serve coffee ourselves (espresso machine) or install a capsule machine?</td><td>Espresso machine = barista needed or self-serve mess. Capsule = easy but lower quality.</td></tr>
+                <tr><td>41</td><td>Do we provide monitors, keyboards, mice &mdash; or just desks and chairs?</td><td>Monitors increase stickiness but add EUR 100-150/desk cost</td></tr>
+                <tr><td>42</td><td>What is our onboarding process for new members? Tour? Slack/WhatsApp group? Welcome email?</td><td>First impression determines if they stay past month 1</td></tr>
+                <tr><td>43</td><td>Do we have a member feedback mechanism? Monthly survey? Suggestion box?</td><td>Members who feel heard stay longer</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- RENOVATION & TIMELINE -->
+    <div class="card">
+        <h3>Renovation &amp; Launch Timeline</h3>
+        <table>
+            <thead><tr><th>#</th><th>Question</th><th>Why It Matters</th></tr></thead>
+            <tbody>
+                <tr><td>44</td><td>What is our target opening date?</td><td>Everything works backwards from this. Delays cost rent with zero revenue.</td></tr>
+                <tr><td>45</td><td>How long will renovation take? 2 weeks? 4 weeks? 2 months?</td><td>Every month of renovation = EUR 1,100 rent paid with no income</td></tr>
+                <tr><td>46</td><td>Can we negotiate free rent during renovation period?</td><td>Even 1 month free saves EUR 1,100</td></tr>
+                <tr><td>47</td><td>Do we do renovation ourselves (DIY) or hire contractors?</td><td>DIY saves money but takes longer and may have quality issues</td></tr>
+                <tr><td>48</td><td>When do we make the IKEA Thessaloniki trip? Who goes? With what vehicle?</td><td>Need a van or truck. 200km each way. Customs at the border.</td></tr>
+                <tr><td>49</td><td>Do we need any permits or licenses to operate a coworking space in Prilep?</td><td>Municipal regulations, fire safety, building usage permits</td></tr>
+                <tr><td>50</td><td>Do we do a soft launch (invite-only) before the public launch?</td><td>Iron out issues with friendly users before opening to everyone</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- GROWTH & STRATEGY -->
+    <div class="card">
+        <h3>Growth &amp; Long-Term Strategy</h3>
+        <table>
+            <thead><tr><th>#</th><th>Question</th><th>Why It Matters</th></tr></thead>
+            <tbody>
+                <tr><td>51</td><td>What does success look like in 1 year? 3 years? 5 years?</td><td>Aligning on vision prevents diverging expectations later</td></tr>
+                <tr><td>52</td><td>Do we want to stay in Prilep or expand to other Macedonian cities?</td><td>Expansion requires different capital and operational structures</td></tr>
+                <tr><td>53</td><td>If a corporate client wants to rent 50% of the space exclusively, do we say yes?</td><td>Guaranteed revenue vs. community diversity trade-off</td></tr>
+                <tr><td>54</td><td>Do we pursue government grants or EU funding for innovation/startup spaces?</td><td>Free money exists but requires paperwork and compliance</td></tr>
+                <tr><td>55</td><td>Could the space double as an event venue on evenings/weekends?</td><td>300m&sup2; + backyard is a great event space. Could be a significant revenue stream.</td></tr>
+                <tr><td>56</td><td>Are we open to bringing in a 4th partner or investor if needed?</td><td>Dilution vs. additional capital &mdash; set the rules now</td></tr>
+                <tr><td>57</td><td>What is our brand identity? Name, logo, colors, tone of voice &mdash; who decides?</td><td>Inconsistent branding looks amateur. One person should own this.</td></tr>
+                <tr><td>58</td><td>Do we want to build a community or just rent desks?</td><td>Community-driven spaces have higher retention but require more effort</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- RISK & CONTINGENCY -->
+    <div class="card">
+        <h3>Risk &amp; Contingency</h3>
+        <table>
+            <thead><tr><th>#</th><th>Question</th><th>Why It Matters</th></tr></thead>
+            <tbody>
+                <tr><td>59</td><td>What if we have only 5 members after 6 months? What changes?</td><td>Need a pivot plan, not just &ldquo;hope for more members&rdquo;</td></tr>
+                <tr><td>60</td><td>What if a pipe bursts, the roof leaks, or HVAC fails mid-winter?</td><td>Emergency fund and landlord responsibility clause needed</td></tr>
+                <tr><td>61</td><td>What if one partner has a personal financial emergency and can&rsquo;t contribute?</td><td>The other 2 need to cover. Is that agreed? For how long?</td></tr>
+                <tr><td>62</td><td>What if someone gets injured in the space? (trips, falls, electrical)</td><td>Liability insurance is non-negotiable. What coverage amount?</td></tr>
+                <tr><td>63</td><td>What if a member&rsquo;s laptop is stolen from the space?</td><td>Are we liable? Insurance? Cameras? Locker policy?</td></tr>
+                <tr><td>64</td><td>What is our insurance coverage? Property, liability, contents?</td><td>EUR 30-60/month is budgeted but what does it actually cover?</td></tr>
+                <tr><td>65</td><td>Exit strategy &mdash; if we close, how do we liquidate furniture and settle the lease?</td><td>Knowing the exit path makes the entry less scary</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="note note-warn" style="margin-top: 1.5rem;">
+        <strong>Rule for the meeting:</strong> No question gets skipped. If you don&rsquo;t have an answer, write down &ldquo;need to research&rdquo; and assign an owner with a deadline. Unresolved questions become unresolved problems.
     </div>
 </section>
 
