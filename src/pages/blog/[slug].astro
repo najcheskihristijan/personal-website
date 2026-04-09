@@ -57,6 +57,16 @@ function formatDate(dateStr: string) {
   <section class="section" style="padding-top: var(--space-8);">
     <div class="container">
       <article class="blog-post">
+        {post.image && (
+          <img
+            src={post.image}
+            alt={post.title}
+            width="1200"
+            height="630"
+            loading="eager"
+            style="width: 100%; height: auto; border-radius: 12px; margin-bottom: var(--space-8); border: 1px solid var(--color-border);"
+          />
+        )}
         <div class="blog-post-content" set:html={post.content} />
 
         <!-- Author Byline -->
@@ -76,7 +86,11 @@ function formatDate(dateStr: string) {
           <div class="related-articles-grid">
             {relatedPosts.map((related) => (
               <a href={`/blog/${related.slug}/`} class="blog-card">
-                <div class="blog-card-image">📄</div>
+                {related.image ? (
+                  <img src={related.image} alt={related.title} width="600" height="315" loading="lazy" class="blog-card-image" style="width: 100%; height: auto; object-fit: cover;" />
+                ) : (
+                  <div class="blog-card-image">📄</div>
+                )}
                 <div class="blog-card-body">
                   <div class="blog-card-meta">
                     <span class="blog-card-tag">{related.tag}</span>

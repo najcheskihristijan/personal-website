@@ -48,6 +48,38 @@ const otherServices = services.filter((s) => s.slug !== service.slug);
       <div class="service-page-layout">
         <div class="service-page-main">
           <p class="service-page-intro">{service.description}</p>
+          <p class="service-page-intro" style="margin-top: var(--space-4);">{service.longDescription}</p>
+
+          <!-- Who It's For -->
+          {service.whoItsFor && service.whoItsFor.length > 0 && (
+            <div style="margin-top: var(--space-10);">
+              <h2 style="margin-bottom: var(--space-6);">Who this is for</h2>
+              <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: var(--space-3);">
+                {service.whoItsFor.map((item) => (
+                  <li style="display: flex; align-items: flex-start; gap: var(--space-3); font-size: 0.95rem; color: var(--color-text-secondary);">
+                    <span style="color: var(--color-accent-blue); font-weight: 700; flex-shrink: 0;">→</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <!-- Process -->
+          {service.process && service.process.length > 0 && (
+            <div style="margin-top: var(--space-10);">
+              <h2 style="margin-bottom: var(--space-6);">How it works</h2>
+              <div class="service-process-grid">
+                {service.process.map((step, i) => (
+                  <div class="service-process-step">
+                    <div class="service-process-number">{i + 1}</div>
+                    <h3>{step.step}</h3>
+                    <p>{step.detail}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           <!-- What's Included -->
           <h2 style="margin-top: var(--space-10); margin-bottom: var(--space-6);">What's included</h2>
@@ -223,5 +255,51 @@ const otherServices = services.filter((s) => s.slug !== service.slug);
     color: var(--color-accent-blue);
     font-weight: 700;
     flex-shrink: 0;
+  }
+
+  .service-process-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+  }
+
+  @media (max-width: 600px) {
+    .service-process-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .service-process-step {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: var(--space-6);
+    position: relative;
+  }
+
+  .service-process-number {
+    width: 32px;
+    height: 32px;
+    background: var(--color-accent-blue);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: var(--space-3);
+  }
+
+  .service-process-step h3 {
+    font-size: 1rem;
+    margin-bottom: var(--space-2);
+  }
+
+  .service-process-step p {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
   }
 </style>
