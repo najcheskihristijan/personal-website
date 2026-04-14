@@ -39,8 +39,8 @@ export const contentCalendar: ContentPiece[] = [
     wordCountTarget: 2000,
     cluster: 'seo-audits',
     internalLinksTo: ['services/seo-audits', 'blog/technical-seo-checklist-2026', 'pricing'],
-    publishDate: '2026-04-14',
-    status: 'planned',
+    publishDate: '2026-04-15',
+    status: 'published',
     notes: 'Pairs with the SEO Audits service page. Educates potential clients on the audit process.',
   },
   {

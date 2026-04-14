@@ -877,6 +877,139 @@ export const posts: Record<string, {
       <p>Explore the <a href="/pricing/" style="color: var(--color-accent-blue);">fractional engagement models</a> or learn about the specific <a href="/services/analytics-reporting/" style="color: var(--color-accent-blue);">analytics and reporting</a> I use to track and prove ROI throughout every engagement.</p>
     `,
   },
+  'seo-audit-checklist-what-to-expect': {
+    title: 'What Does an SEO Audit Actually Cover? (And What to Expect)',
+    description: 'A plain-English walkthrough of what a proper SEO audit covers, how long it takes, what deliverables you should receive, and how to act on the findings.',
+    date: '2026-04-15',
+    readTime: '11 min read',
+    tag: 'SEO Audits',
+    image: '/images/blog/seo-audit-checklist-what-to-expect.webp',
+    content: `
+      <p>If you've ever been pitched an "SEO audit" and felt unsure whether you were getting a deep strategic review or a 40-page PDF exported from a crawler, you're not alone. Audits vary enormously in depth, methodology, and — most importantly — usefulness. This guide walks through what a proper SEO audit actually covers, what you should expect as a client, and how to evaluate whether the one you're buying is worth the money.</p>
+
+      <h2>What an SEO Audit Is (and Isn't)</h2>
+      <p>An SEO audit is a diagnostic review of your website's ability to rank in organic search. It answers three questions: <em>what's working, what's broken, and what's missing</em>. A good audit ends with a prioritised roadmap — not a spreadsheet of 3,000 issues dumped from a crawler.</p>
+      <p>What an audit is <strong>not</strong>: a deliverable you implement yourself based on vague recommendations. The value of an audit comes from senior judgement applied to your specific business context — not from listing every 301 redirect chain on the site.</p>
+
+      <h2>The Five Layers of a Complete SEO Audit</h2>
+      <p>Any audit worth paying for covers these five layers. If yours skips one, you're getting a partial picture.</p>
+
+      <h3>1. Technical SEO</h3>
+      <p>This is the foundation. If Google can't crawl, render, and index your pages reliably, nothing else matters. A thorough technical review covers:</p>
+      <ul>
+        <li><strong>Crawlability:</strong> robots.txt, XML sitemaps, internal linking depth, orphan pages, crawl budget waste</li>
+        <li><strong>Indexability:</strong> noindex tags, canonical setup, duplicate content, parameter handling</li>
+        <li><strong>Rendering:</strong> JavaScript dependency, hydration issues, server-side vs client-side rendering</li>
+        <li><strong>Core Web Vitals:</strong> LCP, INP, CLS — measured on real user data, not just lab tests</li>
+        <li><strong>HTTPS and security:</strong> mixed content, certificate validity, HSTS</li>
+        <li><strong>Structured data:</strong> schema validity, eligible rich result types, implementation errors</li>
+        <li><strong>Log file analysis (for larger sites):</strong> how Googlebot actually spends its crawl budget on your domain</li>
+      </ul>
+      <p>For a deeper dive on the technical side, see the <a href="/blog/technical-seo-checklist-2026/" style="color: var(--color-accent-blue);">technical SEO checklist for 2026</a>.</p>
+
+      <h3>2. On-Page & Content</h3>
+      <p>Technical health gets you eligible to rank. Content is what actually ranks. An audit should review:</p>
+      <ul>
+        <li><strong>Keyword mapping:</strong> is every target query mapped to a single best page, or are multiple URLs competing?</li>
+        <li><strong>Content cannibalisation:</strong> pages splitting ranking signals that should be consolidated</li>
+        <li><strong>Intent alignment:</strong> does each page actually satisfy the query it's targeting, or is it mismatched?</li>
+        <li><strong>Content depth & E-E-A-T signals:</strong> experience, expertise, author credibility, original insight</li>
+        <li><strong>Thin, outdated, or low-quality pages:</strong> candidates for pruning, consolidating, or rewriting</li>
+        <li><strong>Metadata hygiene:</strong> title tags, meta descriptions, H1 usage, heading hierarchy</li>
+      </ul>
+
+      <h3>3. Off-Page & Authority</h3>
+      <p>Backlinks still matter — a lot. An audit should assess:</p>
+      <ul>
+        <li>Link profile quality (authoritative, relevant, diverse — not just high DR/DA)</li>
+        <li>Toxic or spammy links that may need disavowing (rare but worth checking)</li>
+        <li>Competitor link gap — where are they getting links you aren't?</li>
+        <li>Digital PR, unlinked brand mentions, and reclaimable opportunities</li>
+        <li>Internal linking — often the highest-leverage lever most sites ignore</li>
+      </ul>
+
+      <h3>4. Competitive & Keyword Landscape</h3>
+      <p>Your site doesn't rank in a vacuum. A proper audit benchmarks you against the competitive set: share of voice, keyword gaps, SERP feature ownership, content cluster coverage. This is where the audit shifts from "what's broken" to "where's the opportunity."</p>
+
+      <h3>5. Analytics & Measurement</h3>
+      <p>If you can't measure SEO correctly, you can't improve it. Your audit should verify:</p>
+      <ul>
+        <li>GA4 and Search Console setup, filters, and attribution</li>
+        <li>Conversion tracking for organic traffic</li>
+        <li>Goal/revenue alignment — is organic tied to real business outcomes, or just sessions?</li>
+        <li>Reporting cadence and dashboards — does leadership actually see and understand the data?</li>
+      </ul>
+
+      <h2>What a Good Audit Deliverable Looks Like</h2>
+      <p>The deliverable is where most audits disappoint. A good one contains:</p>
+      <ol>
+        <li><strong>Executive summary</strong> — 1–2 pages that a non-SEO stakeholder (CEO, founder, CMO) can read and understand</li>
+        <li><strong>Prioritised roadmap</strong> — every finding ranked by impact vs effort, sequenced into the first 90 days</li>
+        <li><strong>Detailed findings</strong> — grouped by layer, with screenshots, examples, and specific affected URLs</li>
+        <li><strong>Recommendations, not just issues</strong> — every problem should have a clear, implementable fix</li>
+        <li><strong>A presentation walkthrough</strong> — a live session with you and your team to explain, debate, and align on priorities</li>
+      </ol>
+
+      <h2>How Long Should an Audit Take?</h2>
+      <p>For a small site (under 500 pages), a proper audit takes 2–3 weeks of calendar time and roughly 25–40 hours of consultant work. For a mid-market site (500–10,000 pages), expect 3–5 weeks and 60–100 hours. Enterprise audits can stretch to 8+ weeks because they include log file analysis, international architecture review, and cross-functional interviews.</p>
+      <p>Be sceptical of "24-hour SEO audits" or anything delivered in under a week. That's a crawler export with a cover page, not an audit.</p>
+
+      <h2>How Much Should an Audit Cost?</h2>
+      <p>Pricing varies by site complexity and consultant seniority, but useful benchmarks:</p>
+      <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0;">
+        <thead>
+          <tr style="border-bottom: 2px solid var(--color-border);">
+            <th style="text-align: left; padding: 0.75rem;">Site Size</th>
+            <th style="text-align: left; padding: 0.75rem;">Typical Range</th>
+            <th style="text-align: left; padding: 0.75rem;">What to Expect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 0.75rem;">Small (&lt;500 pages)</td>
+            <td style="padding: 0.75rem;">£2,500–£5,000</td>
+            <td style="padding: 0.75rem;">Full 5-layer audit, 90-day roadmap</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 0.75rem;">Mid (500–10k pages)</td>
+            <td style="padding: 0.75rem;">£5,000–£12,000</td>
+            <td style="padding: 0.75rem;">Adds competitive analysis, deeper tech review</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.75rem;">Enterprise (10k+)</td>
+            <td style="padding: 0.75rem;">£12,000–£30,000+</td>
+            <td style="padding: 0.75rem;">Log file analysis, international, stakeholder interviews</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>See current <a href="/pricing/" style="color: var(--color-accent-blue);">engagement models and audit pricing</a> for specifics.</p>
+
+      <h2>Red Flags When Buying an Audit</h2>
+      <ul>
+        <li><strong>"Free SEO audit"</strong> — almost always a sales tool, not a real diagnostic</li>
+        <li><strong>Deliverable is only a PDF export from Screaming Frog or Ahrefs</strong> — that's a tool output, not analysis</li>
+        <li><strong>No presentation or walkthrough included</strong> — you need the thinking, not just the file</li>
+        <li><strong>No prioritisation</strong> — a list of 2,000 issues with no sequencing is unusable</li>
+        <li><strong>No follow-up options</strong> — good auditors want to see their recommendations implemented, or at least offer implementation support</li>
+      </ul>
+
+      <h2>What to Do After the Audit</h2>
+      <p>The audit is the beginning, not the end. The most common failure mode isn't a bad audit — it's a good audit that sits in a Google Drive folder while the team gets pulled into other priorities. To avoid this:</p>
+      <ol>
+        <li><strong>Assign an owner</strong> for each roadmap phase — usually the head of marketing or a senior SEO</li>
+        <li><strong>Convert findings into tickets</strong> in your project tracker within 2 weeks</li>
+        <li><strong>Book a 30-day check-in</strong> with the auditor to review progress</li>
+        <li><strong>Consider a retainer</strong> — often the most cost-effective way to actually ship the roadmap is to keep the person who wrote it involved</li>
+      </ol>
+
+      <h2>Should You Get a One-Off Audit or Ongoing Support?</h2>
+      <p>A one-off audit is the right starting point for most businesses — it gives you clarity before committing to a longer engagement. But if the audit reveals significant structural issues (migration needed, content library overhaul, programmatic SEO opportunity), it usually makes sense to continue with the same consultant on a <a href="/blog/what-is-fractional-seo/" style="color: var(--color-accent-blue);">fractional engagement</a> rather than starting over with someone new. The audit is essentially the consultant's onboarding — losing that context is expensive.</p>
+
+      <h2>Ready to Find Out What's Actually Holding Your Site Back?</h2>
+      <p>If you're weighing an audit, the fastest way to decide is a 30-minute conversation about your site, your business goals, and your current setup. <a href="/contact/" style="color: var(--color-accent-blue);">Book a free strategy call</a> or learn more about the <a href="/services/seo-audits/" style="color: var(--color-accent-blue);">SEO audit service</a>.</p>
+    `,
+  },
+
   // Scheduled test post (Future date)
   'future-scheduled-post': {
     title: 'Future Scheduled Post (Test)',

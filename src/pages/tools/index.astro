@@ -1,0 +1,150 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const tools = [
+  {
+    slug: 'serp-snippet-previewer',
+    title: 'SERP Snippet Previewer',
+    description: 'See how your title and meta description will appear in Google — desktop and mobile — with pixel-width and character-count warnings.',
+    icon: '🔍',
+    status: 'live',
+  },
+  {
+    slug: 'robots-txt-tester',
+    title: 'Robots.txt Tester',
+    description: 'Paste your robots.txt and a URL to check which rules apply for Googlebot, Bingbot, and other crawlers.',
+    icon: '🤖',
+    status: 'soon',
+  },
+  {
+    slug: 'schema-generator',
+    title: 'Schema Markup Generator',
+    description: 'Generate copy-ready JSON-LD for Organization, LocalBusiness, FAQ, Article, Product, and Breadcrumb schema.',
+    icon: '🧩',
+    status: 'soon',
+  },
+  {
+    slug: 'hreflang-generator',
+    title: 'Hreflang Tag Generator',
+    description: 'Input your languages and regions, get valid hreflang link tags — ready to drop into your <head>.',
+    icon: '🌍',
+    status: 'soon',
+  },
+  {
+    slug: 'core-web-vitals-checker',
+    title: 'Core Web Vitals Checker',
+    description: 'Run any URL through PageSpeed Insights and get a plain-English breakdown of LCP, INP, and CLS.',
+    icon: '⚡',
+    status: 'soon',
+  },
+  {
+    slug: 'roi-calculator',
+    title: 'Fractional SEO ROI Calculator',
+    description: 'Plug in your current traffic and conversion data to model projected revenue lift from a fractional SEO engagement.',
+    icon: '📈',
+    status: 'soon',
+  },
+];
+---
+
+<BaseLayout
+  title="Free SEO Tools | Hristijan Najcheski"
+  description="A growing set of free, no-signup SEO tools — SERP snippet previewer, schema generators, robots.txt tester, and more. Built by a fractional SEO consultant."
+>
+  <section class="page-header">
+    <div class="container">
+      <div class="page-header-content">
+        <span class="section-label">Free SEO Tools</span>
+        <h1>Practical tools<br /><span class="text-gradient">for real SEO work</span></h1>
+        <p>A growing collection of free, no-signup tools for the day-to-day of SEO — previewing snippets, generating schema, checking vitals. Built because the existing versions are either bloated, paywalled, or broken.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="tools-grid">
+        {tools.map((tool) => (
+          tool.status === 'live' ? (
+            <a href={`/tools/${tool.slug}/`} class="tool-card">
+              <div class="tool-icon">{tool.icon}</div>
+              <h3 class="tool-title">{tool.title}</h3>
+              <p class="tool-desc">{tool.description}</p>
+              <span class="tool-cta">Open tool →</span>
+            </a>
+          ) : (
+            <div class="tool-card tool-card-soon">
+              <div class="tool-icon">{tool.icon}</div>
+              <h3 class="tool-title">{tool.title}</h3>
+              <p class="tool-desc">{tool.description}</p>
+              <span class="tool-cta tool-cta-soon">Coming soon</span>
+            </div>
+          )
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-card">
+        <h2>Need more than a tool? <span class="text-gradient-orange">Let's talk strategy.</span></h2>
+        <p>These tools help with the tactical work. If you need senior SEO leadership embedded in your team, that's what fractional SEO is for.</p>
+        <a href="/contact/" class="btn btn-orange btn-lg">Book a Free Strategy Call →</a>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: var(--space-6);
+      margin-top: var(--space-8);
+    }
+    .tool-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-7);
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    a.tool-card:hover {
+      border-color: var(--color-accent-blue);
+      transform: translateY(-2px);
+    }
+    .tool-card-soon {
+      opacity: 0.65;
+    }
+    .tool-icon {
+      font-size: 2rem;
+      margin-bottom: var(--space-3);
+    }
+    .tool-title {
+      font-family: var(--font-heading);
+      font-size: var(--text-lg);
+      font-weight: 700;
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-2);
+    }
+    .tool-desc {
+      color: var(--color-text-secondary);
+      font-size: var(--text-sm);
+      line-height: 1.6;
+      flex-grow: 1;
+      margin-bottom: var(--space-4);
+    }
+    .tool-cta {
+      color: var(--color-accent-blue);
+      font-size: var(--text-sm);
+      font-weight: 600;
+    }
+    .tool-cta-soon {
+      color: var(--color-text-muted);
+    }
+  </style>
+</BaseLayout>

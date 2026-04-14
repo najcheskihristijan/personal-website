@@ -1,0 +1,361 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Free SERP Snippet Previewer — Google Desktop & Mobile | Hristijan Najcheski"
+  description="Preview how your page title and meta description will appear in Google's desktop and mobile search results. Pixel-width and character-count warnings included, no signup."
+>
+  <section class="page-header">
+    <div class="container">
+      <div class="page-header-content">
+        <span class="section-label">SEO Tool</span>
+        <h1>SERP Snippet <span class="text-gradient">Previewer</span></h1>
+        <p>See exactly how your page will appear in Google — desktop and mobile — before it goes live. Catches truncated titles and descriptions by both character count and pixel width.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="tool-layout">
+        <!-- Form -->
+        <div class="tool-form">
+          <div class="form-field">
+            <label for="title">Page title</label>
+            <input type="text" id="title" maxlength="120" placeholder="e.g. Free SERP Snippet Previewer — Hristijan Najcheski" />
+            <div class="field-meter">
+              <span id="titleChars">0</span> chars ·
+              <span id="titlePx">0</span>px
+              <span id="titleStatus" class="status"></span>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="url">URL</label>
+            <input type="text" id="url" placeholder="https://hristijannajcheski.com/tools/serp-snippet-previewer/" />
+          </div>
+
+          <div class="form-field">
+            <label for="description">Meta description</label>
+            <textarea id="description" rows="4" maxlength="320" placeholder="Preview how your page will appear in Google's search results. Get pixel-width and character-count warnings for titles and meta descriptions."></textarea>
+            <div class="field-meter">
+              <span id="descChars">0</span> chars ·
+              <span id="descPx">0</span>px
+              <span id="descStatus" class="status"></span>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="date">Show date in snippet?</label>
+            <select id="date">
+              <option value="">None</option>
+              <option value="Apr 15, 2026 — ">Today</option>
+              <option value="3 days ago — ">3 days ago</option>
+              <option value="Mar 1, 2026 — ">Mar 1, 2026</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Preview -->
+        <div class="tool-preview">
+          <div class="preview-tabs">
+            <button class="preview-tab active" data-view="desktop">Desktop</button>
+            <button class="preview-tab" data-view="mobile">Mobile</button>
+          </div>
+
+          <div id="desktopPreview" class="preview-pane active">
+            <div class="serp-snippet serp-desktop">
+              <div class="serp-site">
+                <div class="serp-favicon">H</div>
+                <div class="serp-site-info">
+                  <div class="serp-sitename" id="dSiteName">hristijannajcheski.com</div>
+                  <div class="serp-url" id="dUrl">https://hristijannajcheski.com › tools › serp-snippet-previewer</div>
+                </div>
+              </div>
+              <h3 class="serp-title" id="dTitle">Your page title will appear here</h3>
+              <p class="serp-desc" id="dDesc"><span class="serp-date" id="dDate"></span>Your meta description will appear here. Start typing in the form to see the preview update in real time.</p>
+            </div>
+          </div>
+
+          <div id="mobilePreview" class="preview-pane">
+            <div class="serp-snippet serp-mobile">
+              <div class="serp-site">
+                <div class="serp-favicon">H</div>
+                <div class="serp-site-info">
+                  <div class="serp-sitename" id="mSiteName">hristijannajcheski.com</div>
+                  <div class="serp-url" id="mUrl">https://hristijannajcheski.com › tools</div>
+                </div>
+              </div>
+              <h3 class="serp-title" id="mTitle">Your page title will appear here</h3>
+              <p class="serp-desc" id="mDesc"><span class="serp-date" id="mDate"></span>Your meta description will appear here. Start typing in the form to see the preview update in real time.</p>
+            </div>
+          </div>
+
+          <div class="preview-notes">
+            <h4>How the limits work</h4>
+            <ul>
+              <li><strong>Title:</strong> Google truncates at ~600px (desktop), roughly 50–60 characters. This tool measures pixel width directly — more accurate than character count alone.</li>
+              <li><strong>Meta description:</strong> ~920px desktop (~155–160 chars), ~680px mobile (~120 chars). Google rewrites ~70% of meta descriptions anyway, so focus on titles first.</li>
+              <li><strong>Important:</strong> Google picks what to display. A compelling snippet increases CTR; a truncated one reduces it.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-bg-secondary);">
+    <div class="container">
+      <div style="max-width: 760px; margin: 0 auto;">
+        <span class="section-label">Related resources</span>
+        <h2 class="section-title" style="margin-bottom: var(--space-6);">Going <span class="text-gradient">beyond snippets</span></h2>
+        <p style="color: var(--color-text-secondary); line-height: 1.8;">A good snippet helps CTR, but real SEO gains come from the page underneath. If you want a full read on what's helping — or hurting — your rankings, an <a href="/services/seo-audits/" style="color: var(--color-accent-blue);">SEO audit</a> is the starting point. For ongoing support, see <a href="/blog/what-is-fractional-seo/" style="color: var(--color-accent-blue);">what a fractional SEO consultant does</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .tool-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+      gap: var(--space-8);
+    }
+    @media (max-width: 900px) {
+      .tool-layout { grid-template-columns: 1fr; }
+    }
+
+    .tool-form {
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-7);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+      align-self: start;
+    }
+    .form-field label {
+      display: block;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: var(--text-sm);
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-2);
+    }
+    .form-field input,
+    .form-field textarea,
+    .form-field select {
+      width: 100%;
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-3) var(--space-4);
+      color: var(--color-text-primary);
+      font-family: inherit;
+      font-size: var(--text-base);
+    }
+    .form-field input:focus,
+    .form-field textarea:focus,
+    .form-field select:focus {
+      outline: none;
+      border-color: var(--color-accent-blue);
+    }
+    .field-meter {
+      margin-top: var(--space-2);
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      font-family: var(--font-mono, ui-monospace, monospace);
+    }
+    .status { margin-left: var(--space-2); font-weight: 600; }
+    .status.ok { color: #10b981; }
+    .status.warn { color: #f59e0b; }
+    .status.bad { color: #ef4444; }
+
+    .tool-preview { display: flex; flex-direction: column; gap: var(--space-5); }
+    .preview-tabs {
+      display: inline-flex;
+      gap: 4px;
+      background: var(--color-bg-secondary);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 4px;
+      width: fit-content;
+    }
+    .preview-tab {
+      background: transparent;
+      border: none;
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius-sm);
+      color: var(--color-text-muted);
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: var(--text-sm);
+      cursor: pointer;
+    }
+    .preview-tab.active {
+      background: var(--color-bg-primary);
+      color: var(--color-text-primary);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+    }
+    .preview-pane { display: none; }
+    .preview-pane.active { display: block; }
+
+    /* Google-like snippet styling */
+    .serp-snippet {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 20px 24px;
+      max-width: 652px;
+      color: #202124;
+      font-family: arial, sans-serif;
+    }
+    .serp-mobile { max-width: 412px; padding: 16px 18px; border-radius: 16px; }
+    .serp-site { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+    .serp-favicon {
+      width: 26px; height: 26px;
+      background: #1a73e8;
+      color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 700;
+    }
+    .serp-sitename { font-size: 14px; color: #202124; line-height: 1.2; }
+    .serp-url { font-size: 12px; color: #4d5156; line-height: 1.2; }
+    .serp-title {
+      color: #1a0dab;
+      font-size: 20px;
+      line-height: 1.3;
+      font-weight: 400;
+      margin: 4px 0 4px;
+      font-family: arial, sans-serif;
+    }
+    .serp-mobile .serp-title { font-size: 18px; }
+    .serp-desc {
+      color: #4d5156;
+      font-size: 14px;
+      line-height: 1.58;
+      margin: 0;
+    }
+    .serp-date { color: #70757a; }
+
+    .preview-notes {
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+    }
+    .preview-notes h4 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: var(--text-base);
+      color: var(--color-text-primary);
+      margin: 0 0 var(--space-3);
+    }
+    .preview-notes ul { color: var(--color-text-secondary); font-size: var(--text-sm); line-height: 1.7; padding-left: 1.25rem; }
+    .preview-notes li { margin-bottom: var(--space-2); }
+  </style>
+
+  <script>
+    // Measure pixel width using a canvas so we can predict truncation
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d')!;
+
+    function measure(text: string, font: string): number {
+      ctx.font = font;
+      return Math.round(ctx.measureText(text).width);
+    }
+
+    const titleInput = document.getElementById('title') as HTMLInputElement;
+    const urlInput = document.getElementById('url') as HTMLInputElement;
+    const descInput = document.getElementById('description') as HTMLTextAreaElement;
+    const dateSelect = document.getElementById('date') as HTMLSelectElement;
+
+    const dTitle = document.getElementById('dTitle')!;
+    const dDesc = document.getElementById('dDesc')!;
+    const dUrl = document.getElementById('dUrl')!;
+    const dSiteName = document.getElementById('dSiteName')!;
+    const dDate = document.getElementById('dDate')!;
+
+    const mTitle = document.getElementById('mTitle')!;
+    const mDesc = document.getElementById('mDesc')!;
+    const mUrl = document.getElementById('mUrl')!;
+    const mSiteName = document.getElementById('mSiteName')!;
+    const mDate = document.getElementById('mDate')!;
+
+    const titleChars = document.getElementById('titleChars')!;
+    const titlePx = document.getElementById('titlePx')!;
+    const titleStatus = document.getElementById('titleStatus')!;
+    const descChars = document.getElementById('descChars')!;
+    const descPx = document.getElementById('descPx')!;
+    const descStatus = document.getElementById('descStatus')!;
+
+    const TITLE_FONT = '400 20px arial, sans-serif';
+    const DESC_FONT = '400 14px arial, sans-serif';
+    const TITLE_MAX_PX = 600;
+    const DESC_DESKTOP_MAX_PX = 920;
+
+    function setStatus(el: HTMLElement, px: number, max: number) {
+      el.classList.remove('ok', 'warn', 'bad');
+      if (px === 0) { el.textContent = ''; return; }
+      if (px <= max * 0.85) { el.textContent = '· Good length'; el.classList.add('ok'); }
+      else if (px <= max) { el.textContent = '· Close to limit'; el.classList.add('warn'); }
+      else { el.textContent = '· Too long (will be truncated)'; el.classList.add('bad'); }
+    }
+
+    function formatUrlForSerp(raw: string): { sitename: string; breadcrumb: string } {
+      try {
+        const u = new URL(raw);
+        const host = u.hostname.replace(/^www\./, '');
+        const parts = u.pathname.split('/').filter(Boolean);
+        const breadcrumb = `${u.protocol}//${host}${parts.length ? ' › ' + parts.join(' › ') : ''}`;
+        return { sitename: host, breadcrumb };
+      } catch {
+        return { sitename: 'hristijannajcheski.com', breadcrumb: raw || 'https://hristijannajcheski.com' };
+      }
+    }
+
+    function update() {
+      const title = titleInput.value || 'Your page title will appear here';
+      const desc = descInput.value || 'Your meta description will appear here. Start typing in the form to see the preview update in real time.';
+      const { sitename, breadcrumb } = formatUrlForSerp(urlInput.value);
+      const datePrefix = dateSelect.value;
+
+      dTitle.textContent = title;
+      mTitle.textContent = title;
+      dDesc.innerHTML = `<span class="serp-date">${datePrefix}</span>${desc}`;
+      mDesc.innerHTML = `<span class="serp-date">${datePrefix}</span>${desc}`;
+      dUrl.textContent = breadcrumb;
+      mUrl.textContent = breadcrumb;
+      dSiteName.textContent = sitename;
+      mSiteName.textContent = sitename;
+
+      const tPx = measure(titleInput.value, TITLE_FONT);
+      const dPx = measure(descInput.value, DESC_FONT);
+      titleChars.textContent = String(titleInput.value.length);
+      titlePx.textContent = String(tPx);
+      setStatus(titleStatus, tPx, TITLE_MAX_PX);
+      descChars.textContent = String(descInput.value.length);
+      descPx.textContent = String(dPx);
+      setStatus(descStatus, dPx, DESC_DESKTOP_MAX_PX);
+    }
+
+    [titleInput, urlInput, descInput, dateSelect].forEach((el) => {
+      el.addEventListener('input', update);
+      el.addEventListener('change', update);
+    });
+    update();
+
+    // Tab switching
+    document.querySelectorAll('.preview-tab').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const view = (btn as HTMLElement).dataset.view;
+        document.querySelectorAll('.preview-tab').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelectorAll('.preview-pane').forEach(p => p.classList.remove('active'));
+        document.getElementById(view + 'Preview')?.classList.add('active');
+      });
+    });
+  </script>
+</BaseLayout>
