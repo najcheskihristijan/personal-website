@@ -1010,6 +1010,136 @@ export const posts: Record<string, {
     `,
   },
 
+  'fractional-cmo-vs-fractional-seo': {
+    title: 'Fractional CMO vs Fractional SEO: Which Does Your Business Need?',
+    description: 'Understand the difference between a fractional CMO and a fractional SEO consultant — what each role owns, when you need which, and how they can work together.',
+    date: '2026-04-22',
+    readTime: '10 min read',
+    tag: 'Comparison',
+    image: '/images/blog/fractional-cmo-vs-fractional-seo.webp',
+    content: `
+      <p>You know you need senior marketing help but can't justify a full-time executive hire. The fractional model solves that — but now you're choosing between a fractional CMO and a fractional SEO consultant. They sound similar. They're not. This guide breaks down what each role actually does, when you need one versus the other, and when you might need both.</p>
+
+      <h2>What a Fractional CMO Does</h2>
+      <p>A fractional CMO is a part-time Chief Marketing Officer. They own your entire marketing strategy — brand positioning, demand generation, paid media, content, email, events, partnerships, and yes, SEO. The emphasis is on <strong>orchestration across channels</strong>.</p>
+      <p>A good fractional CMO:</p>
+      <ul>
+        <li>Sets the overall go-to-market strategy</li>
+        <li>Owns the marketing budget and allocates across channels</li>
+        <li>Manages or oversees agencies, freelancers, and in-house marketers</li>
+        <li>Reports to the CEO on pipeline, revenue attribution, and brand metrics</li>
+        <li>Makes channel trade-off decisions (e.g. more SEO budget vs more paid)</li>
+      </ul>
+      <p>Their value is breadth: they see the full marketing picture. Their limitation is depth: they won't personally optimise your crawl budget, build your link profile, or restructure your content architecture.</p>
+
+      <h2>What a Fractional SEO Consultant Does</h2>
+      <p>A <a href="/blog/what-is-fractional-seo/" style="color: var(--color-accent-blue);">fractional SEO consultant</a> is a senior specialist who owns your organic search strategy end to end. They go deep on one channel — SEO — rather than wide across many.</p>
+      <p>A good fractional SEO consultant:</p>
+      <ul>
+        <li>Audits and fixes technical foundations (crawlability, indexation, Core Web Vitals)</li>
+        <li>Builds the keyword strategy, content roadmap, and topic cluster architecture</li>
+        <li>Owns link building, internal linking, and domain authority growth</li>
+        <li>Collaborates directly with developers, content writers, and product teams</li>
+        <li>Reports on organic traffic, rankings, and revenue attribution from search</li>
+      </ul>
+      <p>Their value is depth: they solve problems a generalist CMO would escalate to an agency. Their limitation is scope: they aren't managing your email sequences or planning your brand campaign.</p>
+
+      <h2>Head-to-Head Comparison</h2>
+      <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0;">
+        <thead>
+          <tr style="border-bottom: 2px solid var(--color-border);">
+            <th style="text-align: left; padding: 0.75rem;">Dimension</th>
+            <th style="text-align: left; padding: 0.75rem;">Fractional CMO</th>
+            <th style="text-align: left; padding: 0.75rem;">Fractional SEO</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 0.75rem;"><strong>Scope</strong></td>
+            <td style="padding: 0.75rem;">All marketing channels</td>
+            <td style="padding: 0.75rem;">Organic search only</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 0.75rem;"><strong>Depth</strong></td>
+            <td style="padding: 0.75rem;">Strategic oversight</td>
+            <td style="padding: 0.75rem;">Hands-on strategy + technical</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 0.75rem;"><strong>Reports to</strong></td>
+            <td style="padding: 0.75rem;">CEO / Board</td>
+            <td style="padding: 0.75rem;">CMO / VP Marketing / CEO</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 0.75rem;"><strong>Team management</strong></td>
+            <td style="padding: 0.75rem;">Oversees entire marketing team</td>
+            <td style="padding: 0.75rem;">Collaborates with devs, writers, PMs</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 0.75rem;"><strong>Typical engagement</strong></td>
+            <td style="padding: 0.75rem;">1–2 days/week</td>
+            <td style="padding: 0.75rem;">2–4 days/month</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 0.75rem;"><strong>Monthly cost</strong></td>
+            <td style="padding: 0.75rem;">£5,000–£12,000</td>
+            <td style="padding: 0.75rem;">£2,000–£6,000</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.75rem;"><strong>Best for</strong></td>
+            <td style="padding: 0.75rem;">No marketing leadership at all</td>
+            <td style="padding: 0.75rem;">Has marketing team, needs SEO depth</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>When You Need a Fractional CMO</h2>
+      <p>A fractional CMO is the right call when:</p>
+      <ul>
+        <li><strong>You have no marketing leadership.</strong> The founder is running marketing by gut, and nobody owns the strategy. A CMO builds the function from scratch.</li>
+        <li><strong>You need channel orchestration.</strong> You're running paid, SEO, email, and events — but nobody is looking at the full picture and making trade-off decisions.</li>
+        <li><strong>You're pre-PMF or pivoting.</strong> You need someone who can rapidly test positioning, messaging, and channels. SEO is too slow for this phase.</li>
+        <li><strong>You're raising a round.</strong> Investors want to see a marketing strategy with revenue projections. A CMO speaks that language.</li>
+      </ul>
+
+      <h2>When You Need a Fractional SEO Consultant</h2>
+      <p>A fractional SEO consultant is the right call when:</p>
+      <ul>
+        <li><strong>You already have marketing leadership</strong> (CMO, VP, Head of Marketing) but nobody with deep SEO expertise. The team can execute once they have a roadmap.</li>
+        <li><strong>Organic is your primary growth channel</strong> and it needs senior-level attention — not the junior analyst running basic keyword reports.</li>
+        <li><strong>You're facing a technical SEO challenge</strong> — a <a href="/services/seo-migration/" style="color: var(--color-accent-blue);">site migration</a>, platform change, international expansion, or content cannibalisation problem. These are specialist problems.</li>
+        <li><strong>You're scaling content</strong> and need the strategy layer — topic clusters, content architecture, <a href="/blog/content-strategy-eeat/" style="color: var(--color-accent-blue);">E-E-A-T frameworks</a> — not just "write more blog posts."</li>
+        <li><strong>Your agency isn't delivering.</strong> You suspect the strategy is wrong but lack the internal expertise to evaluate it. A <a href="/blog/fractional-seo-vs-agency/" style="color: var(--color-accent-blue);">fractional SEO consultant can audit your agency's work</a> and take over the strategic layer.</li>
+      </ul>
+
+      <h2>When You Need Both</h2>
+      <p>It's not always either/or. The most effective pattern for growth-stage companies (£5M–£30M ARR) is:</p>
+      <ol>
+        <li><strong>Fractional CMO</strong> owns the overall marketing strategy, budget, and cross-channel orchestration</li>
+        <li><strong>Fractional SEO consultant</strong> reports to the CMO and owns organic search strategy, execution oversight, and technical SEO</li>
+      </ol>
+      <p>This gives you senior leadership at both the strategic (marketing-wide) and specialist (SEO) levels — without two full-time salaries. The CMO decides <em>how much</em> to invest in SEO relative to other channels; the SEO consultant decides <em>how</em> to invest it.</p>
+
+      <h2>Common Mistakes When Choosing</h2>
+      <h3>Hiring a CMO when you need SEO depth</h3>
+      <p>A CMO who "does SEO" typically means they'll hire an agency and review monthly reports. If organic search is your primary growth lever, that's not enough. You need someone who can personally evaluate whether your agency's link building is working, whether your site architecture is leaking crawl budget, and whether your content strategy has cannibalisation issues.</p>
+
+      <h3>Hiring an SEO consultant when you have no marketing strategy</h3>
+      <p>If you don't have product-market fit, clear positioning, or basic demand generation, SEO is premature. SEO compounds over months — it needs a stable foundation to build on. Get the fundamentals in place first (CMO territory), then layer in SEO.</p>
+
+      <h3>Expecting either to be a full-time replacement</h3>
+      <p>Fractional means part-time. Both roles work best when there's a team or agency to execute. If you need someone 5 days a week writing content, managing campaigns, <em>and</em> setting strategy, you don't need a fractional — you need a hire.</p>
+
+      <h2>How to Decide</h2>
+      <p>Ask yourself these three questions:</p>
+      <ol>
+        <li><strong>Do I have anyone owning marketing strategy today?</strong> If no → start with a fractional CMO.</li>
+        <li><strong>Is organic search a critical channel for my business?</strong> If yes → you need a fractional SEO consultant, either alone or alongside a CMO.</li>
+        <li><strong>Do I have the team to execute once strategy is set?</strong> If no → consider which role also brings execution capability. SEO consultants tend to be more hands-on; CMOs tend to build teams and hire agencies.</li>
+      </ol>
+      <p>If you're leaning toward fractional SEO, <a href="/contact/" style="color: var(--color-accent-blue);">book a free strategy call</a> to talk through your specific situation. Or compare fractional SEO with the agency model in <a href="/blog/fractional-seo-vs-agency/" style="color: var(--color-accent-blue);">this comparison guide</a>. For pricing details, see <a href="/pricing/" style="color: var(--color-accent-blue);">engagement models</a>.</p>
+    `,
+  },
+
   // Scheduled test post (Future date)
   'future-scheduled-post': {
     title: 'Future Scheduled Post (Test)',

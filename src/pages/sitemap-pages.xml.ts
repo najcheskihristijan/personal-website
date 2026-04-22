@@ -14,6 +14,7 @@ export async function GET() {
     { url: `${base}/pricing/`, priority: '0.8', changefreq: 'monthly' },
     { url: `${base}/tools/`, priority: '0.8', changefreq: 'monthly' },
     { url: `${base}/tools/serp-snippet-previewer/`, priority: '0.7', changefreq: 'monthly' },
+    { url: `${base}/tools/robots-txt-tester/`, priority: '0.7', changefreq: 'monthly' },
     { url: `${base}/fractional-seo-saas/`, priority: '0.9', changefreq: 'monthly' },
     { url: `${base}/fractional-seo-ecommerce/`, priority: '0.9', changefreq: 'monthly' },
     { url: `${base}/fractional-seo-publishing/`, priority: '0.9', changefreq: 'monthly' },

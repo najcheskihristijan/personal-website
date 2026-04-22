@@ -53,8 +53,8 @@ export const contentCalendar: ContentPiece[] = [
     wordCountTarget: 2000,
     cluster: 'fractional-seo',
     internalLinksTo: ['blog/what-is-fractional-seo', 'blog/fractional-seo-vs-agency', 'pricing'],
-    publishDate: '2026-04-21',
-    status: 'planned',
+    publishDate: '2026-04-22',
+    status: 'published',
     notes: 'Targets people aware of fractional model but unsure which fractional role they need.',
   },
   {

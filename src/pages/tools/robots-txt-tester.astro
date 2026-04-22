@@ -1,0 +1,412 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Free Robots.txt Tester — Check Crawl Rules Instantly | Hristijan Najcheski"
+  description="Paste your robots.txt and a URL path to instantly check if Googlebot, Bingbot, or any crawler is allowed or blocked. Free, no signup."
+>
+  <section class="page-header">
+    <div class="container">
+      <div class="page-header-content">
+        <span class="section-label">SEO Tool</span>
+        <h1>Robots.txt <span class="text-gradient">Tester</span></h1>
+        <p>Paste your robots.txt content and a URL path to check which crawlers are allowed or blocked. Runs entirely in your browser — nothing is sent to a server.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="tool-layout">
+        <div class="tool-form">
+          <div class="form-field">
+            <label for="robotsTxt">Robots.txt content</label>
+            <textarea id="robotsTxt" rows="14" placeholder="User-agent: *
+Disallow: /admin/
+Disallow: /private/
+Allow: /
+
+User-agent: Googlebot
+Disallow: /tmp/
+
+Sitemap: https://example.com/sitemap.xml"></textarea>
+          </div>
+
+          <div class="form-field">
+            <label for="testPath">URL path to test</label>
+            <input type="text" id="testPath" placeholder="/admin/settings" />
+          </div>
+
+          <div class="form-field">
+            <label for="userAgent">User-agent</label>
+            <select id="userAgent">
+              <option value="*">* (All crawlers)</option>
+              <option value="Googlebot" selected>Googlebot</option>
+              <option value="Googlebot-Image">Googlebot-Image</option>
+              <option value="Bingbot">Bingbot</option>
+              <option value="GPTBot">GPTBot (ChatGPT)</option>
+              <option value="Applebot">Applebot</option>
+              <option value="Bytespider">Bytespider (TikTok)</option>
+              <option value="ClaudeBot">ClaudeBot (Anthropic)</option>
+              <option value="facebookexternalhit">Facebook</option>
+              <option value="Twitterbot">Twitterbot</option>
+            </select>
+          </div>
+
+          <button class="btn btn-primary" id="testBtn" style="width:100%;margin-top:var(--space-2);">Test URL →</button>
+        </div>
+
+        <div class="tool-results">
+          <div id="resultBox" class="result-box result-empty">
+            <div class="result-icon" id="resultIcon">?</div>
+            <div class="result-label" id="resultLabel">Paste your robots.txt and enter a path to test</div>
+            <div class="result-detail" id="resultDetail"></div>
+          </div>
+
+          <div id="parsedRules" class="parsed-rules" style="display:none;">
+            <h4>Parsed rules for <span id="parsedAgent"></span></h4>
+            <div id="rulesList"></div>
+          </div>
+
+          <div id="sitemapList" class="parsed-rules" style="display:none;">
+            <h4>Sitemaps found</h4>
+            <div id="sitemaps"></div>
+          </div>
+
+          <div class="preview-notes">
+            <h4>How robots.txt works</h4>
+            <ul>
+              <li><strong>User-agent blocks</strong> target specific crawlers. The <code>*</code> wildcard applies to all crawlers not matched by a specific block.</li>
+              <li><strong>Allow/Disallow</strong> rules are matched by prefix. <code>Disallow: /admin/</code> blocks <code>/admin/settings</code>, <code>/admin/users</code>, etc.</li>
+              <li><strong>Specificity wins:</strong> longer matching paths take priority. <code>Allow: /admin/public</code> overrides <code>Disallow: /admin/</code> for paths under <code>/admin/public</code>.</li>
+              <li><strong>Robots.txt is advisory</strong> — well-behaved crawlers follow it, but it's not a security mechanism.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-bg-secondary);">
+    <div class="container">
+      <div style="max-width: 760px; margin: 0 auto;">
+        <span class="section-label">Related resources</span>
+        <h2 class="section-title" style="margin-bottom: var(--space-6);">Get crawling <span class="text-gradient">right</span></h2>
+        <p style="color: var(--color-text-secondary); line-height: 1.8;">Robots.txt is just one piece of the crawlability puzzle. For a full technical review — including indexation, rendering, and Core Web Vitals — see the <a href="/blog/technical-seo-checklist-2026/" style="color: var(--color-accent-blue);">2026 technical SEO checklist</a> or get a comprehensive <a href="/services/seo-audits/" style="color: var(--color-accent-blue);">SEO audit</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .tool-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+      gap: var(--space-8);
+    }
+    @media (max-width: 900px) {
+      .tool-layout { grid-template-columns: 1fr; }
+    }
+    .tool-form {
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-7);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+      align-self: start;
+    }
+    .form-field label {
+      display: block;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: var(--text-sm);
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-2);
+    }
+    .form-field input,
+    .form-field textarea,
+    .form-field select {
+      width: 100%;
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-3) var(--space-4);
+      color: var(--color-text-primary);
+      font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+      font-size: var(--text-sm);
+    }
+    .form-field select {
+      font-family: inherit;
+      font-size: var(--text-base);
+    }
+    .form-field input:focus,
+    .form-field textarea:focus,
+    .form-field select:focus {
+      outline: none;
+      border-color: var(--color-accent-blue);
+    }
+
+    .tool-results { display: flex; flex-direction: column; gap: var(--space-5); }
+
+    .result-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: var(--space-8);
+      border-radius: var(--radius-xl);
+      border: 2px solid var(--color-border);
+      background: var(--color-bg-elevated);
+    }
+    .result-icon { font-size: 2.5rem; margin-bottom: var(--space-3); }
+    .result-label {
+      font-family: var(--font-heading);
+      font-size: var(--text-lg);
+      font-weight: 700;
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-2);
+    }
+    .result-detail {
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      font-family: ui-monospace, monospace;
+    }
+    .result-allowed { border-color: #10b981; background: rgba(16, 185, 129, 0.06); }
+    .result-allowed .result-label { color: #10b981; }
+    .result-blocked { border-color: #ef4444; background: rgba(239, 68, 68, 0.06); }
+    .result-blocked .result-label { color: #ef4444; }
+    .result-empty { border-style: dashed; }
+
+    .parsed-rules {
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+    }
+    .parsed-rules h4 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: var(--text-base);
+      color: var(--color-text-primary);
+      margin: 0 0 var(--space-3);
+    }
+    .rule-line {
+      font-family: ui-monospace, monospace;
+      font-size: var(--text-sm);
+      padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-sm);
+      margin-bottom: 4px;
+    }
+    .rule-allow { color: #10b981; background: rgba(16, 185, 129, 0.08); }
+    .rule-disallow { color: #ef4444; background: rgba(239, 68, 68, 0.08); }
+    .rule-match { font-weight: 700; outline: 2px solid currentColor; outline-offset: 1px; }
+
+    .sitemap-link {
+      display: block;
+      font-size: var(--text-sm);
+      color: var(--color-accent-blue);
+      margin-bottom: 4px;
+      word-break: break-all;
+    }
+
+    .preview-notes {
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+    }
+    .preview-notes h4 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: var(--text-base);
+      color: var(--color-text-primary);
+      margin: 0 0 var(--space-3);
+    }
+    .preview-notes ul { color: var(--color-text-secondary); font-size: var(--text-sm); line-height: 1.7; padding-left: 1.25rem; }
+    .preview-notes li { margin-bottom: var(--space-2); }
+    .preview-notes code { background: var(--color-bg-secondary); padding: 2px 6px; border-radius: 4px; font-size: 0.85em; }
+  </style>
+
+  <script>
+    interface Rule {
+      type: 'allow' | 'disallow';
+      path: string;
+    }
+
+    interface AgentBlock {
+      agents: string[];
+      rules: Rule[];
+    }
+
+    function parseRobotsTxt(content: string): { blocks: AgentBlock[]; sitemaps: string[] } {
+      const lines = content.split('\n');
+      const blocks: AgentBlock[] = [];
+      const sitemaps: string[] = [];
+      let current: AgentBlock | null = null;
+
+      for (const rawLine of lines) {
+        const line = rawLine.trim();
+        if (!line || line.startsWith('#')) continue;
+
+        const lower = line.toLowerCase();
+        if (lower.startsWith('sitemap:')) {
+          sitemaps.push(line.slice(8).trim());
+          continue;
+        }
+
+        if (lower.startsWith('user-agent:')) {
+          const agent = line.slice(11).trim();
+          // If previous block has no rules yet, add agent to it
+          if (current && current.rules.length === 0) {
+            current.agents.push(agent);
+          } else {
+            current = { agents: [agent], rules: [] };
+            blocks.push(current);
+          }
+          continue;
+        }
+
+        if (!current) continue;
+
+        if (lower.startsWith('disallow:')) {
+          const path = line.slice(9).trim();
+          if (path) current.rules.push({ type: 'disallow', path });
+        } else if (lower.startsWith('allow:')) {
+          const path = line.slice(6).trim();
+          if (path) current.rules.push({ type: 'allow', path });
+        }
+      }
+
+      return { blocks, sitemaps };
+    }
+
+    function getRulesForAgent(blocks: AgentBlock[], agent: string): Rule[] {
+      // First look for a specific match
+      const specific = blocks.find(b =>
+        b.agents.some(a => a.toLowerCase() === agent.toLowerCase())
+      );
+      if (specific) return specific.rules;
+
+      // Fall back to wildcard
+      const wildcard = blocks.find(b => b.agents.includes('*'));
+      return wildcard ? wildcard.rules : [];
+    }
+
+    function testPath(rules: Rule[], path: string): { allowed: boolean; matchedRule: Rule | null } {
+      // Find the longest matching rule (specificity wins)
+      let bestMatch: Rule | null = null;
+      let bestLen = -1;
+
+      for (const rule of rules) {
+        // Handle wildcard patterns
+        let pattern = rule.path;
+        if (pattern.includes('*') || pattern.endsWith('$')) {
+          const regex = new RegExp(
+            '^' + pattern
+              .replace(/[.+?^{}()|[\]\\]/g, '\\$&')
+              .replace(/\*/g, '.*')
+              .replace(/\\\$$/g, '$')
+          );
+          if (regex.test(path) && pattern.length > bestLen) {
+            bestMatch = rule;
+            bestLen = pattern.length;
+          }
+        } else {
+          if (path.startsWith(pattern) && pattern.length > bestLen) {
+            bestMatch = rule;
+            bestLen = pattern.length;
+          }
+        }
+      }
+
+      if (!bestMatch) return { allowed: true, matchedRule: null };
+      return { allowed: bestMatch.type === 'allow', matchedRule: bestMatch };
+    }
+
+    const robotsInput = document.getElementById('robotsTxt') as HTMLTextAreaElement;
+    const pathInput = document.getElementById('testPath') as HTMLInputElement;
+    const agentSelect = document.getElementById('userAgent') as HTMLSelectElement;
+    const testButton = document.getElementById('testBtn')!;
+
+    const resultBox = document.getElementById('resultBox')!;
+    const resultIcon = document.getElementById('resultIcon')!;
+    const resultLabel = document.getElementById('resultLabel')!;
+    const resultDetail = document.getElementById('resultDetail')!;
+    const parsedRulesBox = document.getElementById('parsedRules')!;
+    const parsedAgent = document.getElementById('parsedAgent')!;
+    const rulesListEl = document.getElementById('rulesList')!;
+    const sitemapBox = document.getElementById('sitemapList')!;
+    const sitemapsEl = document.getElementById('sitemaps')!;
+
+    function runTest() {
+      const content = robotsInput.value.trim();
+      const path = pathInput.value.trim();
+      const agent = agentSelect.value;
+
+      if (!content) {
+        resultBox.className = 'result-box result-empty';
+        resultIcon.textContent = '?';
+        resultLabel.textContent = 'Paste your robots.txt first';
+        resultDetail.textContent = '';
+        parsedRulesBox.style.display = 'none';
+        sitemapBox.style.display = 'none';
+        return;
+      }
+
+      const { blocks, sitemaps } = parseRobotsTxt(content);
+      const rules = getRulesForAgent(blocks, agent);
+
+      // Show parsed rules
+      parsedAgent.textContent = agent;
+      if (rules.length > 0) {
+        parsedRulesBox.style.display = '';
+        const result = path ? testPath(rules, path) : null;
+        rulesListEl.innerHTML = rules.map(r => {
+          const isMatch = result?.matchedRule === r;
+          return `<div class="rule-line ${r.type === 'allow' ? 'rule-allow' : 'rule-disallow'}${isMatch ? ' rule-match' : ''}">${r.type === 'allow' ? 'Allow' : 'Disallow'}: ${r.path}</div>`;
+        }).join('');
+      } else {
+        parsedRulesBox.style.display = '';
+        rulesListEl.innerHTML = '<div style="color:var(--color-text-muted);font-size:var(--text-sm);">No rules found for this user-agent (everything is allowed by default).</div>';
+      }
+
+      // Show sitemaps
+      if (sitemaps.length > 0) {
+        sitemapBox.style.display = '';
+        sitemapsEl.innerHTML = sitemaps.map(s => `<span class="sitemap-link">${s}</span>`).join('');
+      } else {
+        sitemapBox.style.display = 'none';
+      }
+
+      if (!path) {
+        resultBox.className = 'result-box result-empty';
+        resultIcon.textContent = '?';
+        resultLabel.textContent = 'Enter a URL path to test';
+        resultDetail.textContent = `${rules.length} rule${rules.length !== 1 ? 's' : ''} found for ${agent}`;
+        return;
+      }
+
+      const { allowed, matchedRule } = testPath(rules, path);
+
+      if (allowed) {
+        resultBox.className = 'result-box result-allowed';
+        resultIcon.textContent = '\u2705';
+        resultLabel.textContent = 'ALLOWED';
+        resultDetail.textContent = matchedRule
+          ? `Matched: Allow: ${matchedRule.path}`
+          : `No matching Disallow rule — allowed by default`;
+      } else {
+        resultBox.className = 'result-box result-blocked';
+        resultIcon.textContent = '\u26D4';
+        resultLabel.textContent = 'BLOCKED';
+        resultDetail.textContent = `Matched: Disallow: ${matchedRule!.path}`;
+      }
+    }
+
+    testButton.addEventListener('click', runTest);
+    pathInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') runTest(); });
+    agentSelect.addEventListener('change', runTest);
+  </script>
+</BaseLayout>
