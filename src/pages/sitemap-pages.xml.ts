@@ -20,6 +20,7 @@ export async function GET() {
     { url: `${base}/fractional-seo-publishing/`, priority: '0.9', changefreq: 'monthly' },
     { url: `${base}/fractional-seo-enterprise/`, priority: '0.9', changefreq: 'monthly' },
     { url: `${base}/author/hristijan-najcheski/`, priority: '0.6', changefreq: 'monthly' },
+    { url: `${base}/cookie-policy/`, priority: '0.3', changefreq: 'yearly' },
   ];
 
   const servicePages = services.map((s) => ({
