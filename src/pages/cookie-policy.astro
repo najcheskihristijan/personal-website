@@ -42,12 +42,23 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               <td>Remembers your light/dark theme preference so the site loads with your chosen appearance</td>
               <td>Until cleared</td>
             </tr>
+            <tr>
+              <td><code>_ga</code></td>
+              <td>Cookie</td>
+              <td>Google Analytics — distinguishes unique visitors to understand site traffic</td>
+              <td>2 years</td>
+            </tr>
+            <tr>
+              <td><code>_ga_*</code></td>
+              <td>Cookie</td>
+              <td>Google Analytics (GA4) — maintains session state</td>
+              <td>2 years</td>
+            </tr>
           </tbody>
         </table>
 
         <h2>What we don't use</h2>
         <ul>
-          <li><strong>No tracking cookies</strong> — we do not use Google Analytics, Facebook Pixel, or any third-party tracking</li>
           <li><strong>No advertising cookies</strong> — we do not serve ads or participate in ad networks</li>
           <li><strong>No cross-site cookies</strong> — we do not share data with third-party advertisers</li>
           <li><strong>No fingerprinting</strong> — we do not use browser fingerprinting techniques</li>
@@ -56,6 +67,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <h2>Third-party services</h2>
         <p>This site may load resources from the following external services:</p>
         <ul>
+          <li><strong>Google Analytics (GA4)</strong> — we use Google Analytics to understand how visitors use the site (pages visited, time on site, referral sources). This data helps us improve content and user experience. Google Analytics sets cookies (<code>_ga</code>, <code>_ga_*</code>) to distinguish unique visitors. Data is processed by Google in accordance with their <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent-blue);">privacy policy</a>. You can opt out using the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent-blue);">Google Analytics opt-out browser add-on</a>.</li>
           <li><strong>Google Fonts</strong> — to deliver typefaces used on the site. Google may set cookies as part of this service. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent-blue);">Google's privacy policy</a>.</li>
           <li><strong>Gravatar</strong> — to display author profile images. See <a href="https://automattic.com/privacy/" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent-blue);">Automattic's privacy policy</a>.</li>
         </ul>
