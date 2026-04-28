@@ -23,6 +23,46 @@ const faqItems = [
     answer: "Fractional means you get a senior SEO consultant working as part of your team — without the full-time salary, benefits, or overhead. You pay for the expertise and time you actually need, making it a smart, scalable model for businesses at any growth stage."
   }
 ];
+
+// Real testimonials — rotated through automatically, 3 visible at a time
+const testimonials = [
+  {
+    quote: "Increased our visibility, traffic, and search rankings through a smart SEO + social strategy.",
+    name: "Amanda Herzog",
+    role: "Amanda Herzog",
+    initials: "AH",
+  },
+  {
+    quote: "Handled a complex 3-to-1 domain migration flawlessly while preserving our SEO performance.",
+    name: "Joseph Kuehn",
+    role: "IFA Tactical",
+    initials: "JK",
+  },
+  {
+    quote: "Fast, professional, and highly efficient. Delivered exactly what we needed.",
+    name: "Bruno Mirchevski",
+    role: "HostAdvice",
+    initials: "BM",
+  },
+  {
+    quote: "Clear communication, strong execution, and reliable outreach performance.",
+    name: "Bo Sasson",
+    role: "Verpex",
+    initials: "BS",
+  },
+  {
+    quote: "Hristijan demonstrated a strong, self-sufficient work ethic and delivered excellent results. He was a valuable addition to the team from day one.",
+    name: "David Fleisch",
+    role: "Veeva Systems",
+    initials: "DF",
+  },
+  {
+    quote: "Hristijan is an outstanding professional. Recognized as Training Coordinator of the Month at Veeva, he consistently delivered high-quality results while improving processes and supporting his team. His work ethic and ability to solve problems make him someone you can rely on to deliver.",
+    name: "Kristija Gjorgjoiski",
+    role: "Webtec",
+    initials: "KG",
+  },
+];
 ---
 
 <BaseLayout
@@ -614,56 +654,123 @@ const faqItems = [
         Results speak louder than words — but kind words help too.
       </p>
 
-      <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text">
-            "Hristijan transformed our SEO strategy from the ground up.
-            Within 6 months, our organic traffic tripled and we started
-            ranking for keywords we never thought possible."
-          </p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">JD</div>
-            <div>
-              <div class="testimonial-name">John Doe</div>
-              <div class="testimonial-role">CEO, TechStartup Inc.</div>
+      <div class="testimonials-rotator" id="testimonialsRotator" data-count={testimonials.length}>
+        <div class="testimonials-grid">
+          {testimonials.map((t, i) => (
+            <div class={`testimonial-card${i < 3 ? ' is-active' : ''}`} data-index={i}>
+              <div class="testimonial-stars">★★★★★</div>
+              <p class="testimonial-text">"{t.quote}"</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">{t.initials}</div>
+                <div>
+                  <div class="testimonial-name">{t.name}</div>
+                  <div class="testimonial-role">{t.role}</div>
+                </div>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
 
-        <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text">
-            "Working with Hristijan felt like having a senior SEO director
-            on staff. His strategic thinking and technical expertise are
-            exactly what our growing team needed."
-          </p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">SM</div>
-            <div>
-              <div class="testimonial-name">Sarah Mitchell</div>
-              <div class="testimonial-role">VP Marketing, SaaS Company</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text">
-            "The ROI from our SEO investment with Hristijan has been
-            incredible. He doesn't just drive traffic — he drives revenue.
-            Highly recommend for any serious business."
-          </p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">MR</div>
-            <div>
-              <div class="testimonial-name">Michael Roberts</div>
-              <div class="testimonial-role">Founder, E-commerce Brand</div>
-            </div>
-          </div>
+        <div class="testimonials-dots" id="testimonialsDots">
+          {Array.from({ length: Math.ceil(testimonials.length / 3) }).map((_, i) => (
+            <button class={`testimonials-dot${i === 0 ? ' is-active' : ''}`} data-page={i} aria-label={`Show testimonials page ${i + 1}`}></button>
+          ))}
         </div>
       </div>
     </div>
+
+    <style>
+      .testimonials-rotator {
+        position: relative;
+      }
+      .testimonials-rotator .testimonials-grid > .testimonial-card {
+        display: none;
+        animation: testimonialFade 0.5s ease;
+      }
+      .testimonials-rotator .testimonials-grid > .testimonial-card.is-active {
+        display: flex;
+      }
+      @keyframes testimonialFade {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .testimonials-dots {
+        display: flex;
+        justify-content: center;
+        gap: var(--space-3);
+        margin-top: var(--space-6);
+      }
+      .testimonials-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: none;
+        background: var(--color-border);
+        cursor: pointer;
+        padding: 0;
+        transition: background 200ms ease, transform 200ms ease;
+      }
+      .testimonials-dot:hover {
+        background: var(--color-text-muted);
+      }
+      .testimonials-dot.is-active {
+        background: var(--color-accent-blue);
+        transform: scale(1.25);
+      }
+    </style>
+
+    <script>
+      function initTestimonialsRotator() {
+        const rotator = document.getElementById('testimonialsRotator');
+        if (!rotator) return;
+
+        const total = parseInt(rotator.dataset.count || '0', 10);
+        const perPage = 3;
+        const pageCount = Math.ceil(total / perPage);
+        if (pageCount <= 1) return;
+
+        const cards = rotator.querySelectorAll<HTMLElement>('.testimonial-card');
+        const dots = rotator.querySelectorAll<HTMLElement>('.testimonials-dot');
+        let currentPage = 0;
+        let timer: number | undefined;
+
+        function showPage(page: number) {
+          currentPage = page;
+          const start = page * perPage;
+          const end = start + perPage;
+          cards.forEach((c, i) => c.classList.toggle('is-active', i >= start && i < end));
+          dots.forEach((d, i) => d.classList.toggle('is-active', i === page));
+        }
+
+        function next() {
+          showPage((currentPage + 1) % pageCount);
+        }
+
+        function startTimer() {
+          stopTimer();
+          timer = window.setInterval(next, 6000);
+        }
+        function stopTimer() {
+          if (timer) { clearInterval(timer); timer = undefined; }
+        }
+
+        dots.forEach((d) => {
+          d.addEventListener('click', () => {
+            const p = parseInt((d as HTMLElement).dataset.page || '0', 10);
+            showPage(p);
+            startTimer();
+          });
+        });
+
+        rotator.addEventListener('mouseenter', stopTimer);
+        rotator.addEventListener('mouseleave', startTimer);
+
+        startTimer();
+      }
+
+      initTestimonialsRotator();
+      document.addEventListener('astro:after-swap', initTestimonialsRotator);
+    </script>
   </section>
 
   <!-- FAQ Section -->
