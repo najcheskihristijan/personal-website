@@ -57,7 +57,7 @@ const testimonials = [
     initials: "DF",
   },
   {
-    quote: "Hristijan is an outstanding professional. Recognized as Training Coordinator of the Month at Veeva, he consistently delivered high-quality results while improving processes and supporting his team. His work ethic and ability to solve problems make him someone you can rely on to deliver.",
+    quote: "An outstanding professional — consistently delivered high-quality results, improved processes, and someone you can rely on to get things done.",
     name: "Kristija Gjorgjoiski",
     role: "Webtec",
     initials: "KG",
@@ -685,10 +685,14 @@ const testimonials = [
       }
       .testimonials-rotator .testimonials-grid > .testimonial-card {
         display: none;
+        flex-direction: column;
         animation: testimonialFade 0.5s ease;
       }
       .testimonials-rotator .testimonials-grid > .testimonial-card.is-active {
         display: flex;
+      }
+      .testimonials-rotator .testimonial-text {
+        flex-grow: 1;
       }
       @keyframes testimonialFade {
         from { opacity: 0; transform: translateY(8px); }
