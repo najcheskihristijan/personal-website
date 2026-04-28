@@ -159,9 +159,9 @@ export const contentCalendar: ContentPiece[] = [
     wordCountTarget: 2500,
     cluster: 'link-building',
     internalLinksTo: ['services/link-building', 'blog/content-strategy-eeat', 'services/seo-audits'],
-    publishDate: '2026-06-09',
-    status: 'planned',
-    notes: 'High-volume keyword. Supports the link building service page directly.',
+    publishDate: '2026-04-24',
+    status: 'published',
+    notes: 'High-volume keyword. Supports the link building service page directly. Pulled forward from June.',
   },
   {
     slug: 'seo-reporting-guide-stakeholders',

@@ -1140,6 +1140,372 @@ export const posts: Record<string, {
     `,
   },
 
+  'link-building-strategies-2026': {
+    title: '7 Link Building Strategies That Actually Work in 2026',
+    description: 'The link building tactics I rely on with clients in 2026 — what works, what is dead, and how to earn links Google actually counts.',
+    date: '2026-04-24',
+    readTime: '13 min read',
+    tag: 'Link Building',
+    image: '/images/blog/link-building-strategies-2026.webp',
+    content: `
+      <p>Link building has changed more in the last two years than in the previous ten. AI-generated content has flooded the web, Google has tightened its quality signals, and the old playbook of "publish a blog, do guest posts, buy a few links" is delivering diminishing returns. I want to walk you through the seven link building strategies I'm actually using with clients in 2026 — what's working, what I've stopped doing, and where the real opportunities are.</p>
+
+      <h2>Why I'm Writing This</h2>
+      <p>I work with growing businesses who often arrive having tried link building once or twice — usually with an agency that promised "high-DR backlinks" and delivered private blog network spam, or a freelancer who sent 200 cold outreach emails and got two "yes, $500 per link" replies. Both outcomes leave them sceptical that link building works at all.</p>
+      <p>It does work. But the strategies that work in 2026 require more thought, more creativity, and more patience than the tactics that worked in 2018. Here's my actual playbook.</p>
+
+      <h2>1. Digital PR With a Genuine Hook</h2>
+      <p>This is the single highest-leverage strategy I use today. The idea is simple: produce something newsworthy — original research, a survey, a tool, or a strong opinion piece — and pitch it to journalists who cover your niche.</p>
+      <p>What "genuine hook" actually means:</p>
+      <ul>
+        <li>Original data nobody else has (a survey of your customers, an analysis of public datasets, a benchmark study)</li>
+        <li>A counterintuitive finding that journalists can build a story around</li>
+        <li>Tied to a current trend or news cycle so the pitch has a "why now" reason</li>
+      </ul>
+      <p>I had a client in the e-commerce space who surveyed 500 of their customers about a specific buying behaviour. We turned the results into a 2,000-word report with charts and pitched it to trade press. Twelve articles linked back over six weeks — including two from publications with seven-figure monthly traffic. That's a year's worth of cold outreach in one campaign.</p>
+
+      <h2>2. The "Linkable Asset" Approach</h2>
+      <p>Most blog content doesn't earn links. Specific types of content do. I focus my clients' content investment on what I call linkable assets:</p>
+      <ul>
+        <li><strong>Statistics roundups</strong> — pages that aggregate stats on a topic become reference material that other writers cite</li>
+        <li><strong>Original research</strong> — surveys, data studies, benchmarks (overlap with digital PR)</li>
+        <li><strong>Free tools</strong> — calculators, generators, templates. These are evergreen link magnets. I built a <a href="/tools/serp-snippet-previewer/" style="color: var(--color-accent-blue);">SERP snippet previewer</a> for exactly this reason.</li>
+        <li><strong>Definitive guides</strong> — the kind of comprehensive resource people link to as "the best resource on X"</li>
+      </ul>
+      <p>If you're investing in content, ask one question before each piece: would another website link to this? If the honest answer is no, it's a content piece for your audience but not a link magnet. Both have a place — just don't confuse them.</p>
+
+      <div style="text-align: center; margin: 2.5rem 0; padding: var(--space-6); background: var(--color-bg-elevated); border: 1px solid var(--color-border); border-radius: var(--radius-xl);">
+        <p style="margin-bottom: var(--space-4); color: var(--color-text-secondary);">Want help building linkable assets that actually earn coverage?</p>
+        <a href="/contact/" class="btn btn-primary btn-lg">Book a Free Strategy Call →</a>
+      </div>
+
+      <h2>3. Unlinked Brand Mentions</h2>
+      <p>This is the lowest-hanging fruit nobody picks. People are already talking about you online — they just haven't linked. A simple monthly process:</p>
+      <ol>
+        <li>Set up a Google Alert (or use Ahrefs / Mention) for your brand name</li>
+        <li>Monthly, scan for mentions without links to your site</li>
+        <li>Reach out politely to the author and ask for a link</li>
+      </ol>
+      <p>Conversion rates on this are 30–50% because the relationship is already there. They mentioned you. You're just asking for the link they probably meant to add. I rarely see clients running this consistently — and the ones who do typically pick up 5–15 free links a year.</p>
+
+      <h2>4. Strategic Guest Posting (Yes, Still)</h2>
+      <p>Guest posting got a bad reputation because it was abused. Done properly, it still works in 2026 — but the bar is much higher. My rules:</p>
+      <ul>
+        <li><strong>Quality over quantity.</strong> One guest post on a genuinely authoritative site beats 20 on link farms.</li>
+        <li><strong>Relevance matters more than DR.</strong> A link from a niche-relevant site with 50 referring domains often outranks a generic high-DR link.</li>
+        <li><strong>Original, valuable content.</strong> If you wouldn't post it on your own site, it's not good enough for someone else's.</li>
+        <li><strong>Natural anchor text.</strong> Exact-match anchors are a flag now. Branded or natural-language anchors are safer and just as effective.</li>
+      </ul>
+
+      <h2>5. HARO and Expert Source Platforms</h2>
+      <p>HARO has been replaced/supplemented by tools like Qwoted, SourceBottle, and Connectively. The premise is the same: journalists request expert quotes; you respond; if they use your quote, you typically get a link.</p>
+      <p>It works if you commit to it. I tell clients: 30 minutes a day, three days a week, for three months. After that, you'll know if it's a fit for your niche. Some industries (B2B, finance, marketing, tech) have strong daily query flow. Others (very niche B2B verticals) get fewer relevant requests but higher conversion when they do appear.</p>
+
+      <h2>6. Broken Link Building (When It Fits)</h2>
+      <p>The classic tactic: find broken links on relevant resource pages, suggest your content as a replacement. It still works, but it's labour-intensive and the ROI varies hugely by niche.</p>
+      <p>I use it selectively — usually as a "fill-in" tactic when a client has a great piece of content that maps perfectly to a category of resource pages (industry directories, "best of" roundups, link lists from universities or non-profits). If I'm spending three hours finding one opportunity, it's not worth it. If I can identify 20 in an afternoon, it absolutely is.</p>
+
+      <h2>7. Internal Linking — The Forgotten Lever</h2>
+      <p>I include this in every link building list I make, because most people don't realise that internal linking is the cheapest, highest-leverage form of link building you have access to. Every piece of content you publish is a chance to pass link equity to important pages.</p>
+      <p>What I do for clients:</p>
+      <ul>
+        <li>Identify "money pages" (services, key product pages, top blog posts)</li>
+        <li>Audit how many internal links each receives</li>
+        <li>Add contextual links from related, high-authority pages on the site</li>
+        <li>Restructure navigation and footer linking to flow equity strategically</li>
+      </ul>
+      <p>I've seen pages move from page 2 to page 1 with nothing more than 30 well-placed internal links. It's not glamorous, but it's reliable.</p>
+
+      <h2>What I've Stopped Doing</h2>
+      <ul>
+        <li><strong>PBN links.</strong> Private blog networks are easier to detect than ever. Not worth the risk.</li>
+        <li><strong>Link exchanges with random sites.</strong> Three-way "link triangles" are still tracked and discounted.</li>
+        <li><strong>Cheap mass outreach.</strong> 500 emails sent through a sequencer with a generic template might get one link — and it's usually a bad one.</li>
+        <li><strong>Forum and comment spam.</strong> Hopefully obvious, but I still see "SEO services" companies offering this.</li>
+        <li><strong>Buying links from "guest post brokers."</strong> Most of their inventory is monitored. Google has gotten very good at spotting paid placements.</li>
+      </ul>
+
+      <h2>How to Prioritise If You're Just Starting</h2>
+      <p>If you have to pick where to start, my order is:</p>
+      <ol>
+        <li><strong>Internal linking audit</strong> — free, takes a few hours, immediate impact</li>
+        <li><strong>Unlinked brand mentions</strong> — easy wins, builds momentum</li>
+        <li><strong>One linkable asset</strong> — invest in producing one really strong piece you can pitch</li>
+        <li><strong>Digital PR campaign around that asset</strong> — convert the asset into coverage</li>
+        <li><strong>HARO + expert source work</strong> — drip-feed authority over time</li>
+      </ol>
+      <p>That sequence builds momentum without burning the entire budget on tactics that may or may not fit your niche.</p>
+
+      <h2>Closing Thought</h2>
+      <p>The most underrated truth about link building in 2026 is this: the businesses ranking well aren't doing more outreach than their competitors — they're producing better content and pitching it more thoughtfully. The link building strategy that compounds is the one that's tied to genuinely useful work. Everything else is noise.</p>
+
+      <div style="text-align: center; margin: 2.5rem 0; padding: var(--space-6); background: var(--color-bg-elevated); border: 1px solid var(--color-border); border-radius: var(--radius-xl);">
+        <p style="margin-bottom: var(--space-4); color: var(--color-text-secondary);">If you'd like me to look at your link profile and recommend where to start, I run dedicated link-building engagements as part of my fractional SEO work.</p>
+        <div style="display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap;">
+          <a href="/services/link-building/" class="btn btn-secondary btn-lg">View Link Building Service</a>
+          <a href="/contact/" class="btn btn-primary btn-lg">Book a Strategy Call →</a>
+        </div>
+      </div>
+    `,
+  },
+
+  'how-to-build-backlinks-from-scratch': {
+    title: 'How to Build Backlinks From Scratch (My 90-Day Playbook)',
+    description: 'A practical, first-person walkthrough of how I help new sites earn their first 50 backlinks — without spammy tactics or ten-thousand-pound budgets.',
+    date: '2026-05-01',
+    readTime: '12 min read',
+    tag: 'Link Building',
+    image: '/images/blog/how-to-build-backlinks-from-scratch.webp',
+    content: `
+      <p>One of the most common questions I get from founders and early-stage marketing leads: "We have zero backlinks. Where do we even start?" In this post I'll walk you through the exact 90-day playbook I use when I onboard a client with a young site or a domain with no real link history. No spam, no shortcuts — just the sequence that works.</p>
+
+      <h2>Before You Touch Outreach: Get the Basics Right</h2>
+      <p>Most people skip this step and wonder why their links aren't moving rankings. Before I send a single outreach email for a new client, I check three things:</p>
+      <ol>
+        <li><strong>The site is technically clean.</strong> No indexation issues, reasonable Core Web Vitals, working sitemap. Links to a broken site are wasted. If you haven't done a <a href="/services/seo-audits/" style="color: var(--color-accent-blue);">technical audit</a>, do that first.</li>
+        <li><strong>The pages you want to rank actually exist and are good.</strong> Building links to thin pages is throwing money away.</li>
+        <li><strong>The site has at least 8–12 pieces of substantive content.</strong> A site with three pages doesn't look credible to journalists or potential link partners.</li>
+      </ol>
+
+      <h2>Days 1–14: Foundation Links</h2>
+      <p>The goal of the first two weeks is to establish that your business actually exists. These aren't ranking-changing links, but Google looks for basic signals of legitimacy. I aim for:</p>
+      <ul>
+        <li><strong>Business directories</strong> relevant to your industry (and country, if local). Avoid generic spammy directories — focus on the 10–20 that real businesses use in your niche.</li>
+        <li><strong>Industry associations</strong> you're a member of (or could become one of)</li>
+        <li><strong>Profile pages</strong> on platforms like LinkedIn, Crunchbase, AngelList, G2, Trustpilot, and the appropriate industry-specific equivalents</li>
+        <li><strong>Local citations</strong> if you serve a geographic area — Google Business Profile, Yelp, Bing Places, plus the country/region-specific ones</li>
+      </ul>
+      <p>Realistic outcome: 15–25 foundation links, depending on the niche. Time investment: 8–12 hours total. Most of these don't move rankings, but they make the site look credible to both crawlers and humans.</p>
+
+      <h2>Days 15–30: Unlinked Mentions and Easy Wins</h2>
+      <p>Now I look for low-hanging fruit. Two specific tactics:</p>
+      <h3>Unlinked brand mentions</h3>
+      <p>I run searches for the brand name, founder names, and product names — looking for pages that mention them without linking. Reach out, politely ask for the link. For an established business, I usually find 5–15 of these on the first sweep.</p>
+      <h3>Existing relationships</h3>
+      <p>Suppliers, partners, customers, vendors, conferences attended, podcasts featured on, articles already written — every existing relationship is a potential link. I sit down with the founder for 30 minutes and map them all. Most have 10–20 they hadn't thought to ask for links from.</p>
+      <p>Realistic outcome: another 10–20 links, mostly higher quality than directories.</p>
+
+      <h2>Days 31–60: First Linkable Asset</h2>
+      <p>By day 30 we've got 25–40 foundation links and the site looks credible. Time to invest in something that will actually attract links.</p>
+      <p>I help the client choose one of these:</p>
+      <ul>
+        <li><strong>Original research</strong> — survey customers or analyse internal data into a public report</li>
+        <li><strong>Free tool</strong> — a calculator, template, or generator relevant to your audience</li>
+        <li><strong>Definitive guide</strong> — the most thorough resource on a specific topic in your niche</li>
+        <li><strong>Industry roundup</strong> — "X Best [things] in [year]" curated by someone with credibility (you)</li>
+      </ul>
+      <p>Then we spend three weeks producing it properly. Not a 1,200-word blog post — a real asset, with original thinking, charts, custom design where needed. The goal is something a journalist or another business owner would genuinely want to reference.</p>
+
+      <div style="text-align: center; margin: 2.5rem 0; padding: var(--space-6); background: var(--color-bg-elevated); border: 1px solid var(--color-border); border-radius: var(--radius-xl);">
+        <p style="margin-bottom: var(--space-4); color: var(--color-text-secondary);">Not sure what kind of asset would work for your business? I help clients identify the right one as part of my fractional engagements.</p>
+        <a href="/contact/" class="btn btn-primary btn-lg">Talk to Me About Your Strategy →</a>
+      </div>
+
+      <h2>Days 61–90: Pitch the Asset</h2>
+      <p>Once the asset is live, the outreach phase begins. I run two parallel motions:</p>
+      <h3>Cold outreach to relevant editors and writers</h3>
+      <p>I build a list of 50–100 journalists and bloggers who write about the topic and pitch them the asset. Personalised — referencing something they recently wrote, why this is relevant. Realistic conversion: 5–15% reply, 2–5% link. So 50 pitches → 2–8 links.</p>
+      <h3>Warm outreach to existing network</h3>
+      <p>Anyone who follows the founder, anyone who has linked or mentioned them before, anyone in their professional network who covers similar topics. Conversion is much higher — often 20–30% link rate.</p>
+      <p>Realistic outcome from the asset campaign: 8–20 high-quality contextual links.</p>
+
+      <h2>What 90 Days Looks Like in Numbers</h2>
+      <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0;">
+        <thead>
+          <tr style="border-bottom: 2px solid var(--color-border);">
+            <th style="text-align: left; padding: 0.75rem;">Phase</th>
+            <th style="text-align: left; padding: 0.75rem;">Activity</th>
+            <th style="text-align: left; padding: 0.75rem;">Realistic Links</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 0.75rem;">Days 1–14</td>
+            <td style="padding: 0.75rem;">Foundation (directories, profiles)</td>
+            <td style="padding: 0.75rem;">15–25</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 0.75rem;">Days 15–30</td>
+            <td style="padding: 0.75rem;">Unlinked mentions + relationships</td>
+            <td style="padding: 0.75rem;">10–20</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 0.75rem;">Days 31–60</td>
+            <td style="padding: 0.75rem;">Build linkable asset</td>
+            <td style="padding: 0.75rem;">0 (build phase)</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.75rem;">Days 61–90</td>
+            <td style="padding: 0.75rem;">Pitch + outreach</td>
+            <td style="padding: 0.75rem;">8–20</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Total realistic outcome at 90 days: <strong>33–65 backlinks</strong>, with the back half being meaningfully higher quality than the front half.</p>
+
+      <h2>Common Mistakes I See</h2>
+      <ul>
+        <li><strong>Skipping the foundation phase</strong> because directories feel "low quality" — they're not the goal, they're the floor</li>
+        <li><strong>Trying to scale before you have a process that works</strong> — get to 10 successful outreach replies before you send 500 emails</li>
+        <li><strong>Investing in content that has no link angle</strong> — every blog post is content, but only some are linkable</li>
+        <li><strong>Outsourcing outreach to a third-party with no domain context</strong> — generic outreach gets generic results</li>
+      </ul>
+
+      <h2>What Happens After 90 Days</h2>
+      <p>The first 90 days are about reaching escape velocity. The next 90 are about compounding. With a base of 30–60 links and a proven asset, you can:</p>
+      <ul>
+        <li>Scale outreach with confidence (the asset works)</li>
+        <li>Plan the next two assets</li>
+        <li>Add HARO/expert source platforms as a steady drip</li>
+        <li>Layer in <a href="/blog/link-building-strategies-2026/" style="color: var(--color-accent-blue);">more advanced strategies</a> like digital PR campaigns</li>
+      </ul>
+      <p>By month six, most clients are at 100–200 referring domains and starting to see meaningful ranking improvements on their target keywords.</p>
+
+      <div style="text-align: center; margin: 2.5rem 0; padding: var(--space-6); background: var(--color-bg-elevated); border: 1px solid var(--color-border); border-radius: var(--radius-xl);">
+        <p style="margin-bottom: var(--space-4); color: var(--color-text-secondary);">If you want help running this 90-day playbook (or a tailored version for your niche), this is exactly the kind of work I do as a fractional SEO consultant.</p>
+        <div style="display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap;">
+          <a href="/pricing/" class="btn btn-secondary btn-lg">View Engagement Models</a>
+          <a href="/contact/" class="btn btn-primary btn-lg">Book a Strategy Call →</a>
+        </div>
+      </div>
+    `,
+  },
+
+  'how-to-evaluate-backlink-quality': {
+    title: 'How to Evaluate Backlink Quality (Beyond DR and DA)',
+    description: 'The framework I use to evaluate whether a backlink will actually move rankings — including the metrics most agencies ignore.',
+    date: '2026-05-08',
+    readTime: '11 min read',
+    tag: 'Link Building',
+    image: '/images/blog/how-to-evaluate-backlink-quality.webp',
+    content: `
+      <p>Whenever a client forwards me an "opportunity" from a link-building vendor with the subject line "DR 78 contextual link, $400," I spend about 15 seconds evaluating it before saying no. The reason: domain rating is one of maybe ten things I look at — and on its own, it's a terrible quality signal in 2026. Here's the framework I actually use to decide whether a backlink is worth pursuing, accepting, or paying for.</p>
+
+      <h2>Why DR and DA Are Misleading on Their Own</h2>
+      <p>Domain Rating (Ahrefs) and Domain Authority (Moz) are third-party metrics that estimate how strong a domain is based on its backlink profile. They're useful — but they're also gameable. Here's what high DR doesn't tell you:</p>
+      <ul>
+        <li>Whether the domain is relevant to your niche</li>
+        <li>Whether the page itself has any internal authority</li>
+        <li>Whether real humans actually visit the site</li>
+        <li>Whether Google considers the domain trustworthy</li>
+        <li>Whether the link is contextual or buried in a footer</li>
+      </ul>
+      <p>I've seen DR 80 sites with no organic traffic, no content updates in two years, and link profiles built almost entirely from PBNs and paid placements. The DR number was real. The actual SEO value of a link from that site was close to zero.</p>
+
+      <h2>The 7 Metrics I Actually Check</h2>
+
+      <h3>1. Topical Relevance</h3>
+      <p>Is the linking site on a topic relevant to mine? A link from a fitness blog to my SEO consulting site is worth less than a link from a digital marketing publication, even if the fitness blog has higher DR. Google's algorithm has gotten very good at evaluating topical fit.</p>
+      <p>How to check: read the homepage and the page with the link. Is the content topically adjacent or random?</p>
+
+      <h3>2. Organic Traffic (Real Humans)</h3>
+      <p>This is my single favourite filter. A site with high DR but no organic traffic is almost always a site with manipulated metrics. Real authoritative sites get real visitors.</p>
+      <p>How to check: paste the domain into Ahrefs / Semrush / Similarweb and look at organic traffic. Anything under 1,000 monthly visits with high DR is suspicious. Under 500 is a hard pass.</p>
+
+      <h3>3. Referring Domains Profile</h3>
+      <p>Look at <em>where</em> the linking site gets its own links from. If it's getting links from real publications, I'm comfortable. If it's getting links from 200 other DR 60–80 sites that all link to each other and nothing else, that's a private blog network — and a link from it carries reputational risk, not value.</p>
+
+      <h3>4. Page-Level Authority</h3>
+      <p>Domain-level metrics are one thing. The specific page my link will appear on is another. A link from a high-DR domain on a page nobody links to is much weaker than a link from a moderate-DR domain on a page that already attracts inbound links.</p>
+      <p>How to check: look at URL Rating (Ahrefs) or Page Authority (Moz) of the specific URL — not just the domain.</p>
+
+      <h3>5. Link Placement</h3>
+      <p>Where on the page will the link appear?</p>
+      <ul>
+        <li><strong>Editorial / contextual</strong> within the body of an article — best</li>
+        <li><strong>Author bio</strong> — moderate value, but Google has discounted these somewhat</li>
+        <li><strong>Sidebar / widget</strong> — low value</li>
+        <li><strong>Footer</strong> — very low value, often discounted entirely</li>
+        <li><strong>Sponsored / "this content was created in partnership"</strong> — depends on whether it's <code>rel="sponsored"</code>, but generally low or zero SEO value</li>
+      </ul>
+
+      <h3>6. Anchor Text Pattern</h3>
+      <p>I look at the linking site's outbound anchor text patterns. If 80% of their outbound links use exact-match commercial anchors ("best CRM software", "buy SEO services"), that's a paid-link site Google has likely flagged. Real editorial sites use a mix of branded, naked URL, and natural-language anchors.</p>
+
+      <h3>7. Editorial Standards</h3>
+      <p>Final check, often the fastest: read three articles on the site. Are they written by humans with clear expertise? Or are they obviously AI-generated, padded with affiliate links, and grammatically off? The SEO industry has flooded the web with thin AI content trying to look authoritative. Google can tell. So can you, in about 90 seconds.</p>
+
+      <div style="text-align: center; margin: 2.5rem 0; padding: var(--space-6); background: var(--color-bg-elevated); border: 1px solid var(--color-border); border-radius: var(--radius-xl);">
+        <p style="margin-bottom: var(--space-4); color: var(--color-text-secondary);">Want me to audit your existing backlink profile and tell you which links are helping versus hurting?</p>
+        <a href="/contact/" class="btn btn-primary btn-lg">Book a Backlink Audit Call →</a>
+      </div>
+
+      <h2>The Quick Decision Framework</h2>
+      <p>When I evaluate a link opportunity, I score it across these dimensions and then ask one question: would I be proud to show this link to a thoughtful SEO peer? If the answer is no, I pass. If the answer is yes, I pursue it.</p>
+      <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0;">
+        <thead>
+          <tr style="border-bottom: 2px solid var(--color-border);">
+            <th style="text-align: left; padding: 0.75rem;">Signal</th>
+            <th style="text-align: left; padding: 0.75rem;">Green Flag</th>
+            <th style="text-align: left; padding: 0.75rem;">Red Flag</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 0.75rem;"><strong>Relevance</strong></td>
+            <td style="padding: 0.75rem;">Same niche or adjacent</td>
+            <td style="padding: 0.75rem;">Random, unrelated</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 0.75rem;"><strong>Organic traffic</strong></td>
+            <td style="padding: 0.75rem;">5,000+ monthly</td>
+            <td style="padding: 0.75rem;">Under 500 with high DR</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 0.75rem;"><strong>Linking neighbourhood</strong></td>
+            <td style="padding: 0.75rem;">Real publications</td>
+            <td style="padding: 0.75rem;">Other PBN-style sites</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 0.75rem;"><strong>Placement</strong></td>
+            <td style="padding: 0.75rem;">Editorial body content</td>
+            <td style="padding: 0.75rem;">Footer or sidebar widget</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 0.75rem;"><strong>Anchor pattern</strong></td>
+            <td style="padding: 0.75rem;">Mostly branded/natural</td>
+            <td style="padding: 0.75rem;">Mostly exact-match commercial</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.75rem;"><strong>Content quality</strong></td>
+            <td style="padding: 0.75rem;">Clearly human, expert</td>
+            <td style="padding: 0.75rem;">AI-generated filler</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>What About Toxic Links?</h2>
+      <p>I get asked about disavowing constantly. My honest take: most sites don't need to disavow. Google has gotten good at ignoring spammy links automatically. The exceptions:</p>
+      <ul>
+        <li>You actively bought links from a clearly spammy network (you'll know if you did)</li>
+        <li>You have a manual action in Search Console</li>
+        <li>You inherited a domain with a clearly negative link history</li>
+      </ul>
+      <p>Otherwise, leave them alone. Disavowing good links by mistake is more dangerous than ignoring bad ones.</p>
+
+      <h2>How This Changes What You Should Pursue</h2>
+      <p>If you apply this framework rigorously, you'll find that:</p>
+      <ul>
+        <li>Most "paid guest post" inventory fails the test</li>
+        <li>Genuine editorial mentions in publications you actually read pass it easily</li>
+        <li>Niche-relevant links from smaller sites often beat high-DR generic links</li>
+        <li>Building one good asset and pitching it to relevant journalists is far higher ROI than buying 20 mediocre links</li>
+      </ul>
+      <p>This is why I push clients toward <a href="/blog/link-building-strategies-2026/" style="color: var(--color-accent-blue);">strategies like digital PR and original research</a> rather than scaled outreach campaigns. Quality compounds; quantity discounts itself.</p>
+
+      <h2>Want a Real Audit?</h2>
+      <p>Evaluating individual links is one thing. Auditing an entire backlink profile to understand what's helping versus hurting is a different exercise — one I include in every <a href="/services/seo-audits/" style="color: var(--color-accent-blue);">SEO audit</a> I run.</p>
+
+      <div style="text-align: center; margin: 2.5rem 0; padding: var(--space-6); background: var(--color-bg-elevated); border: 1px solid var(--color-border); border-radius: var(--radius-xl);">
+        <p style="margin-bottom: var(--space-4); color: var(--color-text-secondary);">If you'd like a no-pressure conversation about your link profile or current SEO setup, I always start with a free strategy call.</p>
+        <div style="display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap;">
+          <a href="/services/seo-audits/" class="btn btn-secondary btn-lg">SEO Audit Service</a>
+          <a href="/contact/" class="btn btn-primary btn-lg">Book a Strategy Call →</a>
+        </div>
+      </div>
+    `,
+  },
+
   // Scheduled test post (Future date)
   'future-scheduled-post': {
     title: 'Future Scheduled Post (Test)',

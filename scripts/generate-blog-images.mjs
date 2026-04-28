@@ -106,6 +106,37 @@ const blogs = [
       { type: 'comparison', x: 680, items: ['CMO', 'SEO', 'Both'], highlight: 2, color: '#a855f7' },
     ],
   },
+  {
+    slug: 'link-building-strategies-2026',
+    title: '7 Link Building\nStrategies for 2026',
+    tag: 'LINK BUILDING',
+    accent: '#3b82f6',
+    icon: '🔗',
+    vizElements: [
+      { type: 'checklist', x: 680, items: ['Digital PR', 'Linkable Assets', 'Brand Mentions', 'Guest Posting', 'HARO'], color: '#3b82f6' },
+    ],
+  },
+  {
+    slug: 'how-to-build-backlinks-from-scratch',
+    title: 'Build Backlinks\nFrom Scratch',
+    tag: 'LINK BUILDING',
+    accent: '#10b981',
+    icon: '🚀',
+    vizElements: [
+      { type: 'bar', x: 680, heights: [50, 90, 50, 180], color: '#10b981' },
+      { type: 'badge', text: '90 Days', x: 860, y: 160, color: '#10b981' },
+    ],
+  },
+  {
+    slug: 'how-to-evaluate-backlink-quality',
+    title: 'Evaluate Backlink\nQuality the Right Way',
+    tag: 'LINK BUILDING',
+    accent: '#ec4899',
+    icon: '🎯',
+    vizElements: [
+      { type: 'pillars', x: 680, labels: ['Relevance', 'Traffic', 'Placement', 'Anchor'], color: '#ec4899' },
+    ],
+  },
 ];
 
 function buildBarChart(config) {
