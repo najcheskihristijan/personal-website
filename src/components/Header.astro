@@ -187,12 +187,28 @@ const navItems = [
     z-index: 999;
   }
 
+  /* Invisible bridge so the cursor can travel from the Services link
+     to the panel without losing the :hover state. */
+  .mega-menu::before {
+    content: '';
+    position: absolute;
+    top: -24px;
+    left: 0;
+    right: 0;
+    height: 24px;
+  }
+
   .nav-mega:hover .mega-menu,
+  .nav-mega:focus-within .mega-menu,
   .nav-mega.open .mega-menu {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
     transform: translateY(0);
+  }
+
+  .nav-mega:focus-within .dropdown-chevron {
+    transform: rotate(180deg);
   }
 
   .mega-inner {
