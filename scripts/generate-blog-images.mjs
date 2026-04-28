@@ -86,6 +86,26 @@ const blogs = [
       { type: 'badge', text: '316% ROI', x: 860, y: 160, color: '#10b981' },
     ],
   },
+  {
+    slug: 'seo-audit-checklist-what-to-expect',
+    title: 'What an SEO Audit\nActually Covers',
+    tag: 'SEO AUDITS',
+    accent: '#0ea5e9',
+    icon: '🔍',
+    vizElements: [
+      { type: 'checklist', x: 680, items: ['Technical', 'On-Page', 'Off-Page', 'Competitive', 'Analytics'], color: '#0ea5e9' },
+    ],
+  },
+  {
+    slug: 'fractional-cmo-vs-fractional-seo',
+    title: 'Fractional CMO vs\nFractional SEO',
+    tag: 'COMPARISON',
+    accent: '#a855f7',
+    icon: '⚖️',
+    vizElements: [
+      { type: 'comparison', x: 680, items: ['CMO', 'SEO', 'Both'], highlight: 2, color: '#a855f7' },
+    ],
+  },
 ];
 
 function buildBarChart(config) {
