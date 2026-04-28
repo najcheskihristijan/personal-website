@@ -30,36 +30,42 @@ const testimonials = [
     quote: "Increased our visibility, traffic, and search rankings through a smart SEO + social strategy.",
     name: "Amanda Herzog",
     role: "Amanda Herzog",
+    roleUrl: "https://www.amandaherzog.com/",
     initials: "AH",
   },
   {
     quote: "Handled a complex 3-to-1 domain migration flawlessly while preserving our SEO performance.",
     name: "Joseph Kuehn",
     role: "IFA Tactical",
+    roleUrl: "https://www.ifatactical.com/",
     initials: "JK",
   },
   {
     quote: "Fast, professional, and highly efficient. Delivered exactly what we needed.",
     name: "Bruno Mirchevski",
     role: "HostAdvice",
+    roleUrl: "https://hostadvice.com/",
     initials: "BM",
   },
   {
     quote: "Clear communication, strong execution, and reliable outreach performance.",
     name: "Bo Sasson",
     role: "Verpex",
+    roleUrl: "https://verpex.com/",
     initials: "BS",
   },
   {
     quote: "Hristijan demonstrated a strong, self-sufficient work ethic and delivered excellent results. He was a valuable addition to the team from day one.",
     name: "David Fleisch",
     role: "Veeva Systems",
+    roleUrl: "https://www.veeva.com/",
     initials: "DF",
   },
   {
     quote: "An outstanding professional — consistently delivered high-quality results, improved processes, and someone you can rely on to get things done.",
     name: "Kristija Gjorgjoiski",
     role: "Webtec",
+    roleUrl: "https://trywebtec.com/",
     initials: "KG",
   },
 ];
@@ -664,7 +670,9 @@ const testimonials = [
                 <div class="testimonial-avatar">{t.initials}</div>
                 <div>
                   <div class="testimonial-name">{t.name}</div>
-                  <div class="testimonial-role">{t.role}</div>
+                  <div class="testimonial-role">
+                    <a href={t.roleUrl} target="_blank" rel="noopener noreferrer">{t.role}</a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -693,6 +701,16 @@ const testimonials = [
       }
       .testimonials-rotator .testimonial-text {
         flex-grow: 1;
+      }
+      .testimonials-rotator .testimonial-role a {
+        color: inherit;
+        text-decoration: none;
+        border-bottom: 1px dotted var(--color-border-hover);
+        transition: color 150ms ease, border-color 150ms ease;
+      }
+      .testimonials-rotator .testimonial-role a:hover {
+        color: var(--color-accent-blue);
+        border-bottom-color: var(--color-accent-blue);
       }
       @keyframes testimonialFade {
         from { opacity: 0; transform: translateY(8px); }
