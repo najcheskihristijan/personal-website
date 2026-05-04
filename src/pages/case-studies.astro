@@ -1,0 +1,143 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Case Studies | Hristijan Najcheski | Fractional SEO Consultant"
+  description="Detailed SEO case studies from real fractional engagements — coming soon. In the meantime, see real outcomes on the homepage and book a free strategy call."
+>
+  <section class="page-header">
+    <div class="container">
+      <div class="page-header-content">
+        <span class="section-label">Case Studies</span>
+        <h1>Detailed case studies <br /><span class="text-gradient">coming soon</span></h1>
+        <p>I'm in the process of publishing full write-ups of recent fractional engagements — covering the brief, the work, the metrics, and what I'd do differently. Drop your email below and I'll send them as they go live.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="case-soon-grid">
+        <div class="case-soon-card">
+          <span class="case-soon-tag">Coming soon</span>
+          <h3>SaaS technical migration</h3>
+          <p>How a B2B SaaS platform consolidated three domains into one without losing rankings — and gained 220% organic traffic in 6 months.</p>
+          <ul>
+            <li>Industry: B2B SaaS</li>
+            <li>Engagement: 6 months</li>
+            <li>Outcome: +220% organic traffic, -35% paid CAC</li>
+          </ul>
+        </div>
+        <div class="case-soon-card">
+          <span class="case-soon-tag">Coming soon</span>
+          <h3>E-commerce category page strategy</h3>
+          <p>Optimising 400+ category and product pages for an online retailer — schema, internal linking, and content uplift that drove $180K in incremental organic revenue.</p>
+          <ul>
+            <li>Industry: E-commerce</li>
+            <li>Engagement: 4 months</li>
+            <li>Outcome: +$180K organic revenue</li>
+          </ul>
+        </div>
+        <div class="case-soon-card">
+          <span class="case-soon-tag">Coming soon</span>
+          <h3>Publishing content audit & pruning</h3>
+          <p>Why removing 40% of a publisher's content and rewriting the rest tripled their organic sessions in 8 months — and unlocked 50+ #1 rankings.</p>
+          <ul>
+            <li>Industry: Publishing & media</li>
+            <li>Engagement: 8 months</li>
+            <li>Outcome: 3x organic sessions</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="case-soon-cta">
+        <h2>Want a similar outcome?</h2>
+        <p>Don't wait for the case studies to drop. The free 60-minute consultation is the same starting point for everyone.</p>
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-3);">
+          <a href="/contact/" class="btn btn-orange btn-lg">Free 60-Min Consultation →</a>
+          <a href="/services/" class="btn btn-secondary btn-lg">See services →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .case-soon-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+    }
+    @media (max-width: 1024px) { .case-soon-grid { grid-template-columns: 1fr; } }
+    .case-soon-card {
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-7);
+      position: relative;
+    }
+    .case-soon-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #f97316;
+      background: rgba(249, 115, 22, 0.08);
+      border: 1px solid rgba(249, 115, 22, 0.25);
+      border-radius: 999px;
+      padding: 3px 10px;
+      margin-bottom: var(--space-4);
+    }
+    .case-soon-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      margin-bottom: var(--space-3);
+    }
+    .case-soon-card p {
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+      margin-bottom: var(--space-4);
+    }
+    .case-soon-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+    }
+    .case-soon-card li {
+      padding-left: 1.25rem;
+      position: relative;
+    }
+    .case-soon-card li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--color-accent-blue);
+      font-weight: 700;
+    }
+    .case-soon-cta {
+      margin-top: var(--space-12);
+      padding: var(--space-10);
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(37, 99, 235, 0.06));
+      border: 1px solid rgba(249, 115, 22, 0.2);
+      border-radius: var(--radius-xl);
+      text-align: center;
+    }
+    .case-soon-cta h2 {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      margin-bottom: var(--space-3);
+    }
+    .case-soon-cta p {
+      color: var(--color-text-secondary);
+      max-width: 560px;
+      margin: 0 auto var(--space-6);
+      line-height: 1.7;
+    }
+  </style>
+</BaseLayout>

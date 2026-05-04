@@ -120,13 +120,13 @@ const otherServices = services.filter((s) => s.slug !== service.slug);
             </ul>
           </div>
 
-          <div class="service-sidebar-card" style="margin-top: var(--space-6);">
-            <h3>Ready to get started?</h3>
+          <div class="service-sidebar-card service-sidebar-cta" style="margin-top: var(--space-6);">
+            <h3>Free 60-min consultation</h3>
             <p style="font-size: 0.9rem; color: var(--color-text-muted); margin-bottom: var(--space-4);">
-              Let's discuss how {service.title} can help your business grow.
+              No pitch, no fluff — just an honest conversation about whether {service.title} is what you need.
             </p>
-            <a href="/contact/" class="btn btn-primary" style="width: 100%; text-align: center; display: block;">
-              Get in Touch →
+            <a href="/contact/" class="btn btn-orange btn-lg" style="width: 100%; text-align: center; display: block;">
+              Free 60-Min Consultation →
             </a>
           </div>
         </aside>
@@ -172,13 +172,29 @@ const otherServices = services.filter((s) => s.slug !== service.slug);
     align-items: start;
   }
 
+  .service-page-sidebar {
+    position: sticky;
+    top: 100px;
+    align-self: start;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+  }
+
   @media (max-width: 900px) {
     .service-page-layout {
       grid-template-columns: 1fr;
     }
     .service-page-sidebar {
       order: -1;
+      position: static;
+      max-height: none;
+      overflow: visible;
     }
+  }
+
+  .service-sidebar-cta {
+    background: linear-gradient(135deg, rgba(249, 115, 22, 0.08), rgba(249, 115, 22, 0.02));
+    border-color: rgba(249, 115, 22, 0.25);
   }
 
   .service-page-intro {

@@ -30,15 +30,27 @@ function formatDate(dateStr: string) {
   });
 }
 
-
+const postUrl = `https://hristijannajcheski.com/blog/${slug}/`;
+const shareTitle = post.title;
+const aiPrompt = `Summarise this article in 5 bullet points and tell me the 3 most actionable takeaways:\n\n${postUrl}`;
+const enc = encodeURIComponent;
+const aiLinks = [
+  { label: 'Claude', url: `https://claude.ai/new?q=${enc(aiPrompt)}` },
+  { label: 'ChatGPT', url: `https://chat.openai.com/?q=${enc(aiPrompt)}` },
+  { label: 'Gemini', url: `https://gemini.google.com/app?q=${enc(aiPrompt)}` },
+  { label: 'Perplexity', url: `https://www.perplexity.ai/?q=${enc(aiPrompt)}` },
+];
 ---
 
 <BaseLayout
-  title={`${post.title} — Hristijan Najcheski`}
+  title={`${post.title} | Hristijan Najcheski`}
   description={post.description}
   schemaType="blogPost"
   datePublished={post.date}
 >
+  <!-- Reading progress bar -->
+  <div class="reading-progress" id="readingProgress" aria-hidden="true"><div class="reading-progress-bar" id="readingProgressBar"></div></div>
+
   <section class="page-header">
     <div class="container">
       <div class="page-header-content">
@@ -56,57 +68,599 @@ function formatDate(dateStr: string) {
 
   <section class="section" style="padding-top: var(--space-8);">
     <div class="container">
-      <article class="blog-post">
-        {post.image && (
-          <img
-            src={post.image}
-            alt={post.title}
-            width="1200"
-            height="630"
-            loading="eager"
-            style="width: 100%; height: auto; border-radius: 12px; margin-bottom: var(--space-8); border: 1px solid var(--color-border);"
-          />
-        )}
-        <div class="blog-post-content" set:html={post.content} />
+      <div class="blog-post-layout">
+        <!-- Sticky left rail: share + CTA -->
+        <aside class="blog-side-rail" aria-label="Share and call to action">
+          <div class="rail-share">
+            <span class="rail-label">Share</span>
+            <a class="rail-share-btn" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn"
+              href={`https://www.linkedin.com/sharing/share-offsite/?url=${enc(postUrl)}`}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a class="rail-share-btn" target="_blank" rel="noopener noreferrer" aria-label="Share on X / Twitter"
+              href={`https://twitter.com/intent/tweet?url=${enc(postUrl)}&text=${enc(shareTitle)}`}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a class="rail-share-btn" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook"
+              href={`https://www.facebook.com/sharer/sharer.php?u=${enc(postUrl)}`}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+            </a>
+            <a class="rail-share-btn" aria-label="Copy link" href="#" id="railCopyLink">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            </a>
+          </div>
+          <div class="rail-cta">
+            <div class="rail-cta-label">Need senior SEO help?</div>
+            <a href="/contact/" class="btn btn-orange" style="width:100%;text-align:center;display:block;font-size:0.85rem;">Free 60-Min Call →</a>
+          </div>
+        </aside>
 
-        <!-- Author Byline -->
-        <div class="blog-author-byline">
-          <img src="https://www.gravatar.com/avatar/7be017822cfe92e132a03733f068aba4?s=400" alt="Hristijan Najcheski" width="48" height="48" loading="lazy" />
-          <div>
-            <div class="author-name">
-              Written by <a href="/author/hristijan-najcheski/">Hristijan Najcheski</a>
+        <article class="blog-post">
+          <!-- Author byline at top -->
+          <div class="blog-author-byline blog-author-byline-top">
+            <img src="https://www.gravatar.com/avatar/7be017822cfe92e132a03733f068aba4?s=400" alt="Hristijan Najcheski" width="44" height="44" loading="lazy" />
+            <div>
+              <div class="author-name">
+                <a href="/author/hristijan-najcheski/">Hristijan Najcheski</a>
+              </div>
+              <div class="author-desc">Fractional SEO Consultant · 8+ years in SEO</div>
             </div>
-            <div class="author-desc">Fractional SEO Consultant · 8+ years in SEO</div>
           </div>
-        </div>
 
-        <!-- Related Articles -->
-        <div class="related-articles">
-          <h3>Related <span class="text-gradient">Articles</span></h3>
-          <div class="related-articles-grid">
-            {relatedPosts.map((related) => (
-              <a href={`/blog/${related.slug}/`} class="blog-card">
-                {related.image ? (
-                  <img src={related.image} alt={related.title} width="600" height="315" loading="lazy" class="blog-card-image" style="width: 100%; height: auto; object-fit: cover;" />
-                ) : (
-                  <div class="blog-card-image">📄</div>
-                )}
-                <div class="blog-card-body">
-                  <div class="blog-card-meta">
-                    <span class="blog-card-tag">{related.tag}</span>
-                    <span>{formatDate(related.date)}</span>
-                  </div>
-                  <h3>{related.title}</h3>
-                  <p>{related.description}</p>
-                  <span class="blog-read-more">Read article →</span>
-                </div>
-              </a>
-            ))}
+          <!-- Read in your AI assistant -->
+          <div class="ai-summary-block">
+            <div class="ai-summary-label">Read this in your AI assistant</div>
+            <div class="ai-summary-buttons">
+              {aiLinks.map((ai) => (
+                <a href={ai.url} target="_blank" rel="noopener noreferrer" class="ai-summary-btn">
+                  Open in {ai.label} →
+                </a>
+              ))}
+            </div>
           </div>
-        </div>
-      </article>
+
+          {post.image && (
+            <img
+              src={post.image}
+              alt={post.title}
+              width="1200"
+              height="630"
+              loading="eager"
+              style="width: 100%; height: auto; border-radius: 12px; margin: var(--space-6) 0 var(--space-8); border: 1px solid var(--color-border);"
+            />
+          )}
+          <div class="blog-post-content" id="blogPostContent" set:html={post.content} />
+
+          <!-- Standout end-of-post CTA -->
+          <aside class="blog-bottom-cta">
+            <div class="blog-bottom-cta-inner">
+              <div>
+                <div class="blog-bottom-cta-label">Free Strategy Call</div>
+                <h3>Want me to look at your SEO?</h3>
+                <p>I offer a free 60-minute consultation. No pitch, no homework — just an honest read on what's working and what to fix first.</p>
+              </div>
+              <a href="/contact/" class="btn btn-orange btn-lg">Free 60-Min Consultation →</a>
+            </div>
+          </aside>
+
+          <!-- Author bio (expanded) -->
+          <div class="blog-author-bio">
+            <img src="https://www.gravatar.com/avatar/7be017822cfe92e132a03733f068aba4?s=400" alt="Hristijan Najcheski" width="80" height="80" loading="lazy" />
+            <div>
+              <div class="author-bio-name">Hristijan Najcheski</div>
+              <p class="author-bio-text">
+                I'm a fractional SEO consultant with 8+ years of senior SEO experience across SaaS, e-commerce, publishing, and enterprise. I work with growing companies as an embedded strategist — owning the SEO roadmap without the cost of a full-time hire. Past clients include Veeva, Verpex, HostAdvice, IFA Tactical, and Webtec.
+              </p>
+              <div class="author-bio-links">
+                <a href="/about/">About me →</a>
+                <a href="/services/">Services →</a>
+                <a href="https://www.linkedin.com/in/najcheski/" target="_blank" rel="noopener noreferrer">LinkedIn →</a>
+                <a href="/contact/">Get in touch →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Share row -->
+          <div class="blog-share-bottom">
+            <span>Share this article:</span>
+            <a target="_blank" rel="noopener noreferrer" href={`https://www.linkedin.com/sharing/share-offsite/?url=${enc(postUrl)}`}>LinkedIn</a>
+            <a target="_blank" rel="noopener noreferrer" href={`https://twitter.com/intent/tweet?url=${enc(postUrl)}&text=${enc(shareTitle)}`}>X/Twitter</a>
+            <a target="_blank" rel="noopener noreferrer" href={`https://www.facebook.com/sharer/sharer.php?u=${enc(postUrl)}`}>Facebook</a>
+            <a href={`mailto:?subject=${enc(shareTitle)}&body=${enc(postUrl)}`}>Email</a>
+          </div>
+
+          <!-- Related Articles -->
+          <div class="related-articles">
+            <h3>Related <span class="text-gradient">Articles</span></h3>
+            <div class="related-articles-grid">
+              {relatedPosts.map((related) => (
+                <a href={`/blog/${related.slug}/`} class="blog-card">
+                  {related.image ? (
+                    <img src={related.image} alt={related.title} width="600" height="315" loading="lazy" class="blog-card-image" style="width: 100%; height: auto; object-fit: cover;" />
+                  ) : (
+                    <div class="blog-card-image">📄</div>
+                  )}
+                  <div class="blog-card-body">
+                    <div class="blog-card-meta">
+                      <span class="blog-card-tag">{related.tag}</span>
+                      <span>{formatDate(related.date)}</span>
+                    </div>
+                    <h3>{related.title}</h3>
+                    <p>{related.description}</p>
+                    <span class="blog-read-more">Read article →</span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </article>
+      </div>
     </div>
   </section>
+
+  <!-- Newsletter pop-up: fires once per visitor at ~50% scroll -->
+  <div class="newsletter-popup" id="newsletterPopup" hidden role="dialog" aria-modal="true" aria-labelledby="newsletterPopupTitle">
+    <div class="newsletter-popup-inner">
+      <button class="newsletter-popup-close" id="newsletterPopupClose" aria-label="Close">&times;</button>
+      <div class="newsletter-popup-eyebrow">Free SEO audit checklist</div>
+      <h3 id="newsletterPopupTitle">Get my SEO playbook in your inbox</h3>
+      <p>The audit checklist I run on every new client, plus monthly SEO tips for business owners. No fluff, unsubscribe anytime.</p>
+      <form class="newsletter-popup-form" id="newsletterPopupForm">
+        <input type="email" required placeholder="your@email.com" id="newsletterPopupEmail" aria-label="Email address" />
+        <button type="submit" class="btn btn-orange">Get the checklist →</button>
+      </form>
+      <div class="newsletter-popup-success" id="newsletterPopupSuccess" hidden>✓ You're on the list. Watch your inbox.</div>
+      <div class="newsletter-popup-error" id="newsletterPopupError" hidden>Something went wrong. Try again or email me directly.</div>
+    </div>
+    <div class="newsletter-popup-backdrop" id="newsletterPopupBackdrop"></div>
+  </div>
+
+  <style>
+    /* Reading progress bar */
+    .reading-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: transparent;
+      z-index: 1000;
+      pointer-events: none;
+    }
+    .reading-progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--color-accent-blue), #f97316);
+      transition: width 80ms linear;
+      box-shadow: 0 0 12px rgba(37, 99, 235, 0.4);
+    }
+
+    /* Layout: side rail + article */
+    .blog-post-layout {
+      display: grid;
+      grid-template-columns: 80px minmax(0, 1fr);
+      gap: var(--space-10);
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .blog-post-layout { grid-template-columns: 1fr; gap: var(--space-6); }
+      .blog-side-rail { display: none; }
+    }
+
+    .blog-side-rail {
+      position: sticky;
+      top: 100px;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+    }
+    .rail-share { display: flex; flex-direction: column; align-items: center; gap: var(--space-2); }
+    .rail-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-1);
+    }
+    .rail-share-btn {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: 50%;
+      color: var(--color-text-muted);
+      transition: color 150ms ease, border-color 150ms ease, transform 150ms ease;
+    }
+    .rail-share-btn:hover {
+      color: var(--color-accent-blue);
+      border-color: var(--color-accent-blue);
+      transform: translateY(-1px);
+    }
+    .rail-cta {
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-4);
+      text-align: center;
+    }
+    .rail-cta-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-2);
+      line-height: 1.4;
+    }
+
+    /* Author byline at top of article */
+    .blog-author-byline-top {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding-bottom: var(--space-5);
+      border-bottom: 1px solid var(--color-border);
+      margin-bottom: var(--space-5);
+    }
+    .blog-author-byline-top img {
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .blog-author-byline-top .author-name a {
+      color: var(--color-text-primary);
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .blog-author-byline-top .author-name a:hover {
+      color: var(--color-accent-blue);
+    }
+    .blog-author-byline-top .author-desc {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+    }
+
+    /* AI summary block */
+    .ai-summary-block {
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-left: 4px solid var(--color-accent-blue);
+      border-radius: var(--radius-xl);
+      padding: var(--space-5) var(--space-6);
+      margin-bottom: var(--space-6);
+    }
+    .ai-summary-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-accent-blue);
+      margin-bottom: var(--space-3);
+    }
+    .ai-summary-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+    .ai-summary-btn {
+      display: inline-block;
+      padding: 6px var(--space-3);
+      border: 1px solid var(--color-border);
+      border-radius: 999px;
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--color-text-secondary);
+      background: var(--color-bg-primary);
+      text-decoration: none;
+      transition: border-color 150ms ease, color 150ms ease;
+    }
+    .ai-summary-btn:hover {
+      border-color: var(--color-accent-blue);
+      color: var(--color-accent-blue);
+    }
+
+    /* Bottom CTA banner */
+    .blog-bottom-cta {
+      margin: var(--space-12) 0 var(--space-8);
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.12), rgba(37, 99, 235, 0.08));
+      border: 1px solid rgba(249, 115, 22, 0.25);
+      border-radius: var(--radius-xl);
+      padding: var(--space-8);
+    }
+    .blog-bottom-cta-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-6);
+      align-items: center;
+    }
+    @media (max-width: 720px) {
+      .blog-bottom-cta-inner { grid-template-columns: 1fr; }
+    }
+    .blog-bottom-cta-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #f97316;
+      margin-bottom: var(--space-2);
+    }
+    .blog-bottom-cta h3 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      margin-bottom: var(--space-2);
+    }
+    .blog-bottom-cta p {
+      color: var(--color-text-secondary);
+      margin: 0;
+    }
+
+    /* Expanded author bio */
+    .blog-author-bio {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: var(--space-5);
+      align-items: start;
+      padding: var(--space-7);
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      margin: var(--space-8) 0;
+    }
+    @media (max-width: 600px) {
+      .blog-author-bio { grid-template-columns: 1fr; text-align: left; }
+    }
+    .blog-author-bio img { border-radius: 50%; }
+    .author-bio-name {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-2);
+    }
+    .author-bio-text {
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+      font-size: 0.95rem;
+      margin-bottom: var(--space-3);
+    }
+    .author-bio-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      font-size: 0.9rem;
+    }
+    .author-bio-links a {
+      color: var(--color-accent-blue);
+      font-weight: 600;
+    }
+
+    /* Bottom share row */
+    .blog-share-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      align-items: center;
+      padding: var(--space-5) 0;
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+      margin-bottom: var(--space-8);
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+    }
+    .blog-share-bottom a {
+      color: var(--color-accent-blue);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .blog-share-bottom a:hover { text-decoration: underline; }
+
+    /* Newsletter pop-up */
+    .newsletter-popup[hidden] { display: none; }
+    .newsletter-popup {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-4);
+    }
+    .newsletter-popup-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(2px);
+      animation: popFade 200ms ease;
+    }
+    .newsletter-popup-inner {
+      position: relative;
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-width: 460px;
+      width: 100%;
+      padding: var(--space-8);
+      animation: popUp 250ms ease;
+    }
+    .newsletter-popup-close {
+      position: absolute;
+      top: var(--space-3);
+      right: var(--space-3);
+      background: none;
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      line-height: 1;
+      color: var(--color-text-muted);
+      cursor: pointer;
+      transition: background 150ms ease;
+    }
+    .newsletter-popup-close:hover { background: var(--color-bg-elevated); }
+    .newsletter-popup-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #f97316;
+      margin-bottom: var(--space-2);
+    }
+    .newsletter-popup h3 {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      margin-bottom: var(--space-3);
+    }
+    .newsletter-popup p {
+      color: var(--color-text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: var(--space-5);
+    }
+    .newsletter-popup-form {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    .newsletter-popup-form input {
+      width: 100%;
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-3) var(--space-4);
+      color: var(--color-text-primary);
+      font-family: inherit;
+      font-size: var(--text-base);
+    }
+    .newsletter-popup-form input:focus {
+      outline: none;
+      border-color: var(--color-accent-blue);
+    }
+    .newsletter-popup-success {
+      color: #10b981;
+      font-weight: 600;
+      margin-top: var(--space-3);
+    }
+    .newsletter-popup-error {
+      color: #ef4444;
+      font-weight: 600;
+      margin-top: var(--space-3);
+    }
+    @keyframes popFade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes popUp {
+      from { opacity: 0; transform: translateY(20px) scale(0.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+  </style>
+
+  <script>
+    function initReadingProgress() {
+      const bar = document.getElementById('readingProgressBar');
+      const article = document.getElementById('blogPostContent');
+      if (!bar || !article) return;
+      function update() {
+        const rect = article.getBoundingClientRect();
+        const total = rect.height;
+        const start = -rect.top;
+        const viewport = window.innerHeight;
+        const visibleProgress = Math.min(Math.max((start + viewport) / total, 0), 1);
+        bar.style.width = `${(visibleProgress * 100).toFixed(2)}%`;
+      }
+      update();
+      window.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+    }
+
+    function initNewsletterPopup() {
+      const popup = document.getElementById('newsletterPopup');
+      if (!popup) return;
+      const STORAGE_KEY = 'newsletter-popup-shown-v1';
+      if (localStorage.getItem(STORAGE_KEY) === '1') return;
+      const article = document.getElementById('blogPostContent');
+      if (!article) return;
+      const closeBtn = document.getElementById('newsletterPopupClose');
+      const backdrop = document.getElementById('newsletterPopupBackdrop');
+      const form = document.getElementById('newsletterPopupForm') as HTMLFormElement | null;
+      const emailInput = document.getElementById('newsletterPopupEmail') as HTMLInputElement | null;
+      const successEl = document.getElementById('newsletterPopupSuccess');
+      const errorEl = document.getElementById('newsletterPopupError');
+
+      let shown = false;
+      function show() {
+        if (shown) return;
+        shown = true;
+        popup!.hidden = false;
+        try { localStorage.setItem(STORAGE_KEY, '1'); } catch {}
+      }
+      function hide() {
+        popup!.hidden = true;
+      }
+      closeBtn?.addEventListener('click', hide);
+      backdrop?.addEventListener('click', hide);
+
+      function checkScroll() {
+        if (shown) return;
+        const rect = article!.getBoundingClientRect();
+        const total = rect.height;
+        const scrolled = -rect.top + window.innerHeight;
+        const ratio = scrolled / total;
+        if (ratio >= 0.5) {
+          show();
+          window.removeEventListener('scroll', checkScroll);
+        }
+      }
+      window.addEventListener('scroll', checkScroll, { passive: true });
+
+      form?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = emailInput?.value;
+        if (!email) return;
+        try {
+          const res = await fetch('/api/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email }),
+          });
+          if (res.ok) {
+            if (successEl) successEl.hidden = false;
+            if (errorEl) errorEl.hidden = true;
+            form.reset();
+            setTimeout(hide, 1800);
+          } else {
+            throw new Error('Failed');
+          }
+        } catch {
+          if (errorEl) errorEl.hidden = false;
+          if (successEl) successEl.hidden = true;
+        }
+      });
+    }
+
+    function initRailCopy() {
+      const btn = document.getElementById('railCopyLink');
+      btn?.addEventListener('click', (e) => {
+        e.preventDefault();
+        navigator.clipboard?.writeText(window.location.href);
+        const original = btn.getAttribute('aria-label') || '';
+        btn.setAttribute('aria-label', 'Copied!');
+        setTimeout(() => btn.setAttribute('aria-label', original), 1500);
+      });
+    }
+
+    initReadingProgress();
+    initNewsletterPopup();
+    initRailCopy();
+    document.addEventListener('astro:after-swap', () => {
+      initReadingProgress();
+      initNewsletterPopup();
+      initRailCopy();
+    });
+  </script>
 
   <!-- CTA -->
   <section class="cta-section">
@@ -114,7 +668,7 @@ function formatDate(dateStr: string) {
       <div class="cta-card">
         <h2>Want help with <span class="text-gradient">your SEO</span>?</h2>
         <p>Let's discuss how I can help your business grow through organic search.</p>
-        <a href="/contact/" class="btn btn-primary btn-lg">Get in Touch →</a>
+        <a href="/contact/" class="btn btn-orange btn-lg">Free 60-Min Consultation →</a>
       </div>
     </div>
   </section>

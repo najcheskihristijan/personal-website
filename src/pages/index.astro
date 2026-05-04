@@ -16,7 +16,7 @@ const faqItems = [
   },
   {
     question: "What types of businesses do you work with?",
-    answer: "Hristijan works primarily with SaaS companies, e-commerce brands, publishing and media businesses, and enterprise teams. The fractional model is ideal for growing companies that need senior SEO strategy without the cost of a full-time hire."
+    answer: "I work primarily with SaaS companies, e-commerce brands, publishing and media businesses, and enterprise teams. The fractional model is ideal for growing companies that need senior SEO strategy without the cost of a full-time hire."
   },
   {
     question: "What does 'fractional' actually mean?",
@@ -63,7 +63,7 @@ const testimonials = [
   },
   {
     quote: "An outstanding professional — consistently delivered high-quality results, improved processes, and someone you can rely on to get things done.",
-    name: "Kristija Gjorgjoiski",
+    name: "Kristijan Gjorgjoiski",
     role: "Webtec",
     roleUrl: "https://trywebtec.com/",
     initials: "KG",
@@ -85,15 +85,12 @@ const testimonials = [
     <div class="container">
       <div class="hero-layout">
         <div class="hero-content">
-          <span class="hero-badge">Available for Fractional Engagements</span>
           <h1>
-            Senior SEO Strategy,<br />
-            <span class="text-gradient">Without the Full-Time Hire</span>
+            Fractional SEO Consultant<br />
+            <span class="text-gradient">for the Fraction of the Full-Time Hire</span>
           </h1>
           <p class="hero-description">
-            Enterprise-level SEO expertise embedded directly in your team.
-            Data-driven, results-focused, and built for sustainable organic growth —
-            without the agency overhead.
+            Senior SEO strategy embedded with your team — built for both Google rankings and being cited by AI answer engines (ChatGPT, Perplexity, Gemini, Claude). Data-driven, revenue-focused, no agency overhead.
           </p>
           <div class="hero-actions">
             <a href="/contact/" class="btn btn-primary btn-lg">Book a Free Strategy Call</a>
@@ -241,21 +238,52 @@ const testimonials = [
       margin-bottom: var(--space-2);
     }
 
+    /* Service link cards (homepage services overview) */
+    .service-link-card {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .service-link-card:hover .card-title {
+      color: var(--color-accent-blue);
+    }
+
+    /* Custom SVG icon containers */
+    .card-icon-svg,
+    .icp-icon-svg {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(37, 99, 235, 0.04));
+      border: 1px solid rgba(37, 99, 235, 0.25);
+      border-radius: 12px;
+      color: var(--color-accent-blue);
+      margin-bottom: var(--space-4);
+      transition: background 200ms ease, transform 200ms ease;
+    }
+    .service-link-card:hover .card-icon-svg,
+    .icp-card:hover .icp-icon-svg {
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.22), rgba(37, 99, 235, 0.08));
+      transform: rotate(-3deg) scale(1.05);
+    }
+
     /* Case Studies */
     .case-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: var(--space-6);
-      margin-top: var(--space-10);
+      margin-top: var(--space-12);
     }
     .case-card {
       background: var(--color-bg-elevated);
       border: 1px solid var(--color-border);
       border-radius: var(--radius-xl);
-      padding: var(--space-7);
+      padding: var(--space-8);
       display: flex;
       flex-direction: column;
-      gap: var(--space-3);
+      gap: var(--space-4);
     }
     .case-industry {
       font-size: var(--text-xs);
@@ -431,65 +459,77 @@ const testimonials = [
   <section class="section" id="services-overview">
     <div class="container">
       <span class="section-label">What I Do</span>
-      <h2 class="section-title">SEO services that <span class="text-gradient">drive results</span></h2>
+      <h2 class="section-title">SEO & AEO services that <span class="text-gradient">drive results</span></h2>
       <p class="section-subtitle">
-        Comprehensive SEO consulting tailored to your business goals and growth stage.
+        Comprehensive SEO and Answer Engine Optimisation (AEO) consulting — tuned for both Google search and the AI assistants that increasingly answer your buyers' questions.
       </p>
 
       <div class="services-grid" style="margin-top: var(--space-10);">
-        <div class="card">
-          <div class="card-icon">⚙️</div>
+        <a href="/services/technical-seo/" class="card service-link-card">
+          <div class="card-icon-svg">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </div>
           <h3 class="card-title">Technical SEO</h3>
           <p class="card-text">
             Site architecture, Core Web Vitals, crawlability, indexation, and
             technical foundation that search engines love.
           </p>
-        </div>
+        </a>
 
-        <div class="card">
-          <div class="card-icon">📝</div>
+        <a href="/services/content-strategy/" class="card service-link-card">
+          <div class="card-icon-svg">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          </div>
           <h3 class="card-title">Content Strategy</h3>
           <p class="card-text">
             Keyword research, topic clusters, content calendars, and strategic
             content that ranks and converts.
           </p>
-        </div>
+        </a>
 
-        <div class="card">
-          <div class="card-icon">🔗</div>
+        <a href="/services/link-building/" class="card service-link-card">
+          <div class="card-icon-svg">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          </div>
           <h3 class="card-title">Link Building</h3>
           <p class="card-text">
             High-quality, white-hat link acquisition strategies that build
             domain authority and trust signals.
           </p>
-        </div>
+        </a>
 
-        <div class="card">
-          <div class="card-icon">🔍</div>
+        <a href="/services/seo-audits/" class="card service-link-card">
+          <div class="card-icon-svg">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
           <h3 class="card-title">SEO Audits</h3>
           <p class="card-text">
             Comprehensive technical and content audits that uncover opportunities
             and eliminate what's holding you back.
           </p>
-        </div>
+        </a>
 
-        <div class="card">
-          <div class="card-icon">📊</div>
+        <a href="/services/analytics-reporting/" class="card service-link-card">
+          <div class="card-icon-svg">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
           <h3 class="card-title">Analytics & Reporting</h3>
           <p class="card-text">
             Custom dashboards, KPI tracking, and actionable reporting that
             connects SEO performance to revenue.
           </p>
-        </div>
+        </a>
 
-        <div class="card">
-          <div class="card-icon">🌍</div>
+        <a href="/services/local-international-seo/" class="card service-link-card">
+          <div class="card-icon-svg">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
           <h3 class="card-title">Local & International SEO</h3>
           <p class="card-text">
             Multi-location and multi-language SEO strategies for businesses
             targeting local or global markets.
           </p>
-        </div>
+        </a>
       </div>
 
       <div style="text-align: center; margin-top: var(--space-10);">
@@ -509,22 +549,30 @@ const testimonials = [
       </p>
       <div class="icp-grid">
         <div class="icp-card">
-          <div class="icp-icon">🚀</div>
+          <div class="icp-icon-svg">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09zM12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2zM9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+          </div>
           <div class="icp-title">SaaS Companies</div>
           <p class="icp-desc">Growing platforms that need sustainable organic acquisition to reduce CAC and compound over time.</p>
         </div>
         <div class="icp-card">
-          <div class="icp-icon">🛒</div>
+          <div class="icp-icon-svg">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          </div>
           <div class="icp-title">E-commerce Brands</div>
           <p class="icp-desc">Online stores ready to reduce paid spend by building strong organic product and category page rankings.</p>
         </div>
         <div class="icp-card">
-          <div class="icp-icon">📰</div>
+          <div class="icp-icon-svg">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8v4h-8z"/></svg>
+          </div>
           <div class="icp-title">Publishing & Media</div>
           <p class="icp-desc">Content-driven businesses scaling organic traffic, ad revenue, and audience reach through search.</p>
         </div>
         <div class="icp-card">
-          <div class="icp-icon">🏢</div>
+          <div class="icp-icon-svg">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><path d="M9 22v-4h6v4M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01"/></svg>
+          </div>
           <div class="icp-title">Enterprise Teams</div>
           <p class="icp-desc">Large organisations that need a senior SEO strategist to lead, audit, and align cross-functional teams.</p>
         </div>

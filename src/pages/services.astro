@@ -4,7 +4,7 @@ import { services } from '../data/services';
 ---
 
 <BaseLayout
-  title="SEO Services — Hristijan Najcheski | Fractional SEO Consultant"
+  title="SEO Services | Hristijan Najcheski | Fractional SEO Consultant"
   description="Comprehensive SEO consulting services: Technical SEO, Content Strategy, SEO Audits, Link Building, Analytics & Reporting, Local & International SEO, and more."
   schemaType="service"
 >
@@ -21,23 +21,104 @@ import { services } from '../data/services';
     </div>
   </section>
 
-  <!-- Detailed Services -->
+  <!-- Why Fractional -->
   <section class="section">
     <div class="container">
-      <div class="services-detailed-grid">
+      <div class="why-fractional-grid">
+        <div class="why-fractional-text">
+          <span class="section-label">Why fractional?</span>
+          <h2>Senior SEO leadership, <span class="text-gradient">without the full-time cost</span></h2>
+          <p>Most growing businesses don't need a full-time SEO director — they need senior expertise embedded with their team. Hiring an in-house head of SEO can cost $150K+/year before benefits. A traditional agency gives you a rotating account team juggling fifty other clients. Fractional fits in between: senior strategy, direct ownership, no agency overhead.</p>
+          <p>Every engagement is scoped to the business. Sometimes that's a one-off audit or migration. Sometimes it's an ongoing retainer where I act as your interim head of SEO. The work is the same either way: prioritised, measurable, and tied directly to revenue.</p>
+        </div>
+        <div class="why-fractional-compare">
+          <div class="compare-card">
+            <div class="compare-label">Hiring full-time</div>
+            <div class="compare-cost">$150K+/yr</div>
+            <ul>
+              <li>Long ramp-up time</li>
+              <li>Single perspective</li>
+              <li>Hard to hire senior</li>
+            </ul>
+          </div>
+          <div class="compare-card compare-card-highlight">
+            <div class="compare-label">Fractional consulting</div>
+            <div class="compare-cost">A fraction of the cost</div>
+            <ul>
+              <li>Senior from day one</li>
+              <li>8+ years across industries</li>
+              <li>Scoped to your needs</li>
+            </ul>
+          </div>
+          <div class="compare-card">
+            <div class="compare-label">Traditional agency</div>
+            <div class="compare-cost">$5K–25K/mo</div>
+            <ul>
+              <li>Junior account managers</li>
+              <li>50+ accounts split focus</li>
+              <li>Generic playbooks</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detailed Services -->
+  <section class="section" style="background: var(--color-bg-secondary);">
+    <div class="container">
+      <span class="section-label">All services</span>
+      <h2 class="section-title">What I help <span class="text-gradient">teams with</span></h2>
+      <p class="section-subtitle">Every engagement starts with understanding your business and what's holding back organic growth. The work below is what typically follows.</p>
+      <div class="services-detailed-grid" style="margin-top: var(--space-10);">
         {services.map((service) => (
           <a href={`/services/${service.slug}/`} class="service-detailed-card" style="text-decoration: none; display: block;">
             <div class="service-icon">{service.icon}</div>
             <h3>{service.title}</h3>
             <p>{service.description}</p>
             <div class="service-features">
-              {service.features.map((f) => (
+              {service.features.slice(0, 4).map((f) => (
                 <span class="service-feature">{f}</span>
               ))}
             </div>
             <span class="service-learn-more">Learn more →</span>
           </a>
         ))}
+      </div>
+      <div style="text-align: center; margin-top: var(--space-10); display:flex;justify-content:center;flex-wrap:wrap;gap:var(--space-3);">
+        <a href="/contact/" class="btn btn-orange btn-lg">Free 60-Min Consultation →</a>
+        <a href="/pricing/" class="btn btn-secondary btn-lg">View pricing →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How an engagement works -->
+  <section class="section">
+    <div class="container">
+      <span class="section-label">How it works</span>
+      <h2 class="section-title">From first call to <span class="text-gradient">measurable results</span></h2>
+      <p class="section-subtitle">Every engagement follows roughly the same arc — adapted to whether it's a one-off project or an ongoing retainer.</p>
+      <div class="engagement-steps">
+        <div class="engagement-step">
+          <div class="step-num">1</div>
+          <h3>Free strategy call</h3>
+          <p>30 minutes to understand your business, current SEO state, and goals. If I'm not the right fit, I'll tell you and recommend who is.</p>
+        </div>
+        <div class="engagement-step">
+          <div class="step-num">2</div>
+          <h3>Scoped proposal</h3>
+          <p>A written proposal with engagement model, deliverables, timeline, and investment — built around your situation, not a template.</p>
+        </div>
+        <div class="engagement-step">
+          <div class="step-num">3</div>
+          <h3>Discovery & audit</h3>
+          <p>Every engagement starts with a real audit. Strategy is grounded in data — your data, not generic best practices.</p>
+        </div>
+        <div class="engagement-step">
+          <div class="step-num">4</div>
+          <h3>Execute & measure</h3>
+          <p>We implement, measure, and iterate. Monthly reporting tied to revenue and pipeline — not vanity metrics.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -122,6 +203,114 @@ import { services } from '../data/services';
     }
     .service-detailed-card:hover .service-learn-more {
       text-decoration: underline;
+    }
+
+    .why-fractional-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-12);
+      align-items: center;
+    }
+    @media (max-width: 900px) {
+      .why-fractional-grid { grid-template-columns: 1fr; gap: var(--space-8); }
+    }
+    .why-fractional-text h2 { margin-top: var(--space-4); margin-bottom: var(--space-5); }
+    .why-fractional-text p {
+      color: var(--color-text-secondary);
+      line-height: 1.8;
+      margin-bottom: var(--space-4);
+    }
+    .why-fractional-compare {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
+    }
+    .compare-card {
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+    }
+    .compare-card-highlight {
+      border-color: var(--color-accent-blue);
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(37, 99, 235, 0.02));
+      transform: scale(1.03);
+    }
+    .compare-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-2);
+    }
+    .compare-card-highlight .compare-label { color: var(--color-accent-blue); }
+    .compare-cost {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-3);
+    }
+    .compare-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    .compare-card li {
+      font-size: 0.9rem;
+      color: var(--color-text-secondary);
+      padding-left: 1.25rem;
+      position: relative;
+    }
+    .compare-card li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--color-accent-blue);
+      font-weight: 700;
+    }
+
+    .engagement-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-5);
+      margin-top: var(--space-10);
+    }
+    @media (max-width: 900px) { .engagement-steps { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .engagement-steps { grid-template-columns: 1fr; } }
+    .engagement-step {
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+    }
+    .engagement-step h3 {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      margin-bottom: var(--space-2);
+    }
+    .engagement-step p {
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .step-num {
+      width: 36px;
+      height: 36px;
+      background: var(--color-accent-blue);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-family: var(--font-heading);
+      margin-bottom: var(--space-3);
     }
   </style>
 

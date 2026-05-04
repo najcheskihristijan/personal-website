@@ -14,6 +14,13 @@ const posts = Object.entries(postsData)
   .filter((post) => import.meta.env.DEV || new Date(post.date) <= new Date())
   .sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf());
 
+const tagCounts = posts.reduce<Record<string, number>>((acc, p) => {
+  const tag = p.tag || 'Uncategorised';
+  acc[tag] = (acc[tag] || 0) + 1;
+  return acc;
+}, {});
+const tags = Object.entries(tagCounts).sort((a, b) => b[1] - a[1]);
+
 function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString('en-US', {
     year: 'numeric',
@@ -21,10 +28,14 @@ function formatDate(dateStr: string) {
     day: 'numeric',
   });
 }
+
+function slugifyTag(tag: string) {
+  return tag.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}
 ---
 
 <BaseLayout
-  title="SEO Blog — Hristijan Najcheski | Fractional SEO Consultant"
+  title="SEO Blog | Hristijan Najcheski | Fractional SEO Consultant"
   description="SEO insights, strategies, and tips from Hristijan Najcheski. Stay up to date with the latest in technical SEO, content strategy, and organic growth."
 >
   <!-- Page Header -->
@@ -40,12 +51,39 @@ function formatDate(dateStr: string) {
     </div>
   </section>
 
-  <!-- Blog Grid -->
-  <section class="section">
+  <!-- Blog Filters + Search -->
+  <section class="section" style="padding-top: var(--space-6); padding-bottom: var(--space-6);">
     <div class="container">
-      <div class="blog-grid">
+      <div class="blog-filters" id="blogFilters">
+        <div class="blog-search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="search" id="blogSearch" placeholder="Search posts…" aria-label="Search blog posts" />
+        </div>
+        <div class="blog-tag-filters" role="tablist" aria-label="Filter by tag">
+          <button class="blog-tag-filter is-active" data-tag="all" role="tab" aria-selected="true">
+            All <span class="tag-count">{posts.length}</span>
+          </button>
+          {tags.map(([tag, count]) => (
+            <button class="blog-tag-filter" data-tag={slugifyTag(tag)} role="tab" aria-selected="false">
+              {tag} <span class="tag-count">{count}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Grid -->
+  <section class="section" style="padding-top: var(--space-4);">
+    <div class="container">
+      <div class="blog-grid" id="blogGrid">
         {posts.map((post) => (
-          <a href={`/blog/${post.slug}/`} class="blog-card">
+          <a
+            href={`/blog/${post.slug}/`}
+            class="blog-card"
+            data-tag={slugifyTag(post.tag || 'Uncategorised')}
+            data-search={`${post.title} ${post.description} ${post.tag || ''}`.toLowerCase()}
+          >
             {post.image ? (
               <img src={post.image} alt={post.title} width="600" height="315" loading="lazy" class="blog-card-image" style="width: 100%; height: auto; object-fit: cover;" />
             ) : (
@@ -65,8 +103,157 @@ function formatDate(dateStr: string) {
           </a>
         ))}
       </div>
+      <div class="blog-empty" id="blogEmpty" hidden>
+        <p>No posts match your filter. <button class="link-btn" id="blogResetBtn">Reset filters</button>.</p>
+      </div>
     </div>
   </section>
+
+  <style>
+    .blog-filters {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      margin-bottom: var(--space-4);
+    }
+    .blog-search {
+      position: relative;
+      max-width: 480px;
+    }
+    .blog-search svg {
+      position: absolute;
+      left: var(--space-4);
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--color-text-muted);
+      pointer-events: none;
+    }
+    .blog-search input {
+      width: 100%;
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: 999px;
+      padding: var(--space-3) var(--space-5) var(--space-3) calc(var(--space-4) + 24px);
+      color: var(--color-text-primary);
+      font-family: inherit;
+      font-size: var(--text-base);
+    }
+    .blog-search input:focus {
+      outline: none;
+      border-color: var(--color-accent-blue);
+    }
+    .blog-tag-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+    .blog-tag-filter {
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: 999px;
+      padding: 6px var(--space-4);
+      color: var(--color-text-secondary);
+      font-family: inherit;
+      font-size: var(--text-sm);
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
+    }
+    .blog-tag-filter:hover {
+      border-color: var(--color-accent-blue);
+      color: var(--color-text-primary);
+    }
+    .blog-tag-filter.is-active {
+      background: var(--color-accent-blue);
+      border-color: var(--color-accent-blue);
+      color: #fff;
+    }
+    .tag-count {
+      display: inline-block;
+      margin-left: 4px;
+      font-size: 0.75rem;
+      opacity: 0.7;
+      font-weight: 700;
+    }
+    .blog-empty {
+      text-align: center;
+      padding: var(--space-12) 0;
+      color: var(--color-text-muted);
+    }
+    .link-btn {
+      background: none;
+      border: none;
+      color: var(--color-accent-blue);
+      cursor: pointer;
+      font: inherit;
+      padding: 0;
+      text-decoration: underline;
+    }
+  </style>
+
+  <script>
+    function initBlogFilters() {
+      const filters = document.querySelectorAll<HTMLButtonElement>('.blog-tag-filter');
+      const searchInput = document.getElementById('blogSearch') as HTMLInputElement | null;
+      const grid = document.getElementById('blogGrid');
+      const empty = document.getElementById('blogEmpty');
+      const resetBtn = document.getElementById('blogResetBtn');
+      if (!filters.length || !grid) return;
+
+      let activeTag = 'all';
+      let activeQuery = '';
+
+      function apply() {
+        const cards = grid!.querySelectorAll<HTMLElement>('.blog-card');
+        let visible = 0;
+        cards.forEach((card) => {
+          const tag = card.dataset.tag || '';
+          const search = card.dataset.search || '';
+          const tagMatch = activeTag === 'all' || tag === activeTag;
+          const queryMatch = !activeQuery || search.includes(activeQuery);
+          const show = tagMatch && queryMatch;
+          card.style.display = show ? '' : 'none';
+          if (show) visible += 1;
+        });
+        if (empty) empty.hidden = visible !== 0;
+      }
+
+      filters.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          filters.forEach((b) => {
+            b.classList.remove('is-active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          btn.classList.add('is-active');
+          btn.setAttribute('aria-selected', 'true');
+          activeTag = btn.dataset.tag || 'all';
+          apply();
+        });
+      });
+
+      searchInput?.addEventListener('input', () => {
+        activeQuery = searchInput.value.trim().toLowerCase();
+        apply();
+      });
+
+      resetBtn?.addEventListener('click', () => {
+        if (searchInput) searchInput.value = '';
+        activeQuery = '';
+        filters.forEach((b) => {
+          b.classList.remove('is-active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        const allBtn = document.querySelector<HTMLButtonElement>('.blog-tag-filter[data-tag="all"]');
+        allBtn?.classList.add('is-active');
+        allBtn?.setAttribute('aria-selected', 'true');
+        activeTag = 'all';
+        apply();
+      });
+    }
+
+    initBlogFilters();
+    document.addEventListener('astro:after-swap', initBlogFilters);
+  </script>
 
   <!-- CTA -->
   <section class="cta-section">

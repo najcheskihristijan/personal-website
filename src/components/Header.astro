@@ -11,9 +11,39 @@ const navItems = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about/' },
   { label: 'Pricing', href: '/pricing/' },
-  { label: 'Tools', href: '/tools/' },
   { label: 'Blog', href: '/blog/' },
   { label: 'Contact', href: '/contact/' },
+];
+
+const tools = [
+  {
+    slug: 'serp-snippet-previewer',
+    title: 'SERP Snippet Previewer',
+    desc: 'Preview Google desktop & mobile snippets',
+    icon: 'M11 4a7 7 0 1 1 0 14 7 7 0 0 1 0-14zM21 21l-4.35-4.35',
+    status: 'live',
+  },
+  {
+    slug: 'robots-txt-tester',
+    title: 'Robots.txt Tester',
+    desc: 'Test crawl rules per user-agent',
+    icon: 'M12 2v4M5 8h14M5 8v8a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4V8M9 14h.01M15 14h.01',
+    status: 'live',
+  },
+  {
+    slug: 'schema-generator',
+    title: 'Schema Markup Generator',
+    desc: 'JSON-LD for FAQ, Article, Product, more',
+    icon: 'M3 7h18M3 12h18M3 17h18',
+    status: 'soon',
+  },
+  {
+    slug: 'hreflang-generator',
+    title: 'Hreflang Tag Generator',
+    desc: 'Build valid hreflang link tags',
+    icon: 'M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zM2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z',
+    status: 'soon',
+  },
 ];
 ---
 
@@ -93,6 +123,47 @@ const navItems = [
         </div>
       </div>
 
+      <!-- Tools mega menu -->
+      <div class="nav-mega" id="toolsMega">
+        <a
+          href="/tools/"
+          class:list={['nav-link', { active: currentPath.startsWith('/tools') }]}
+          aria-haspopup="true"
+          aria-expanded="false"
+          id="toolsMegaBtn"
+        >
+          Tools
+          <svg class="dropdown-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div class="mega-menu" role="menu">
+          <div class="mega-inner">
+            <div class="mega-services">
+              {tools.map((tool) => (
+                tool.status === 'live' ? (
+                  <a href={`/tools/${tool.slug}/`} class="mega-item" role="menuitem">
+                    <span class="mega-icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d={tool.icon}/></svg></span>
+                    <div><span class="mega-title">{tool.title}</span><span class="mega-desc">{tool.desc}</span></div>
+                  </a>
+                ) : (
+                  <div class="mega-item mega-item-soon" role="menuitem" aria-disabled="true">
+                    <span class="mega-icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d={tool.icon}/></svg></span>
+                    <div><span class="mega-title">{tool.title} <span class="mega-soon-tag">Soon</span></span><span class="mega-desc">{tool.desc}</span></div>
+                  </div>
+                )
+              ))}
+            </div>
+            <div class="mega-sidebar">
+              <div class="mega-sidebar-label">Free SEO tools</div>
+              <p class="mega-sidebar-text">Practical, no-signup tools for the day-to-day of SEO. New ones added regularly.</p>
+              <a href="/tools/" class="btn btn-primary" style="width:100%;text-align:center;display:block;font-size:0.85rem;">View all tools →</a>
+              <a href="/contact/" class="mega-all-link">Suggest a tool →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {navItems.slice(2).map((item) => (
         <a
           href={item.href}
@@ -145,6 +216,7 @@ const navItems = [
       ))}
     </div>
   </div>
+  <a href="/tools/">Tools</a>
   <a href="/blog/">Blog</a>
   <a href="/contact/">Contact</a>
   <a href="/contact/" class="btn btn-primary" style="margin-top: auto; text-align: center;">
@@ -310,6 +382,45 @@ const navItems = [
     opacity: 0.8;
   }
 
+  /* Coming-soon mega items */
+  .mega-item-soon {
+    opacity: 0.6;
+    cursor: default;
+  }
+  .mega-item-soon:hover {
+    background: transparent;
+  }
+  .mega-item-soon .mega-icon-wrap {
+    background: var(--color-bg-secondary);
+    color: var(--color-text-muted);
+  }
+  .mega-soon-tag {
+    display: inline-block;
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 1px 5px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+
+  /* Scroll-aware header: hide on scroll-down, reveal on scroll-up */
+  .header {
+    transition: transform 250ms ease, box-shadow 250ms ease;
+    will-change: transform;
+  }
+  .header.is-hidden {
+    transform: translateY(-100%);
+  }
+  .header.is-scrolled {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  }
+
   @media (max-width: 1024px) {
     .mega-menu {
       display: none;
@@ -399,10 +510,45 @@ const navItems = [
     });
   }
 
+  function initScrollAwareHeader() {
+    const header = document.getElementById('header');
+    if (!header) return;
+    let lastY = window.scrollY;
+    let ticking = false;
+    const threshold = 8;
+    const reveal = () => {
+      const y = window.scrollY;
+      if (y > 80) header.classList.add('is-scrolled');
+      else header.classList.remove('is-scrolled');
+      if (Math.abs(y - lastY) < threshold) {
+        ticking = false;
+        return;
+      }
+      // Don't hide while a mega menu or mobile nav is open
+      const megaOpen = document.querySelector('.nav-mega:hover, .nav-mega.open');
+      const mobileOpen = document.getElementById('mobileNav')?.classList.contains('open');
+      if (y > lastY && y > 120 && !megaOpen && !mobileOpen) {
+        header.classList.add('is-hidden');
+      } else {
+        header.classList.remove('is-hidden');
+      }
+      lastY = y;
+      ticking = false;
+    };
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(reveal);
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+
   initTheme();
   initMobileMenu();
+  initScrollAwareHeader();
   document.addEventListener('astro:after-swap', () => {
     initTheme();
     initMobileMenu();
+    initScrollAwareHeader();
   });
 </script>

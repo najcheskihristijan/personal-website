@@ -18,7 +18,7 @@ export const services: Service[] = [
   {
     slug: 'technical-seo',
     title: 'Technical SEO',
-    metaTitle: 'Technical SEO Services — Hristijan Najcheski',
+    metaTitle: 'Technical SEO Services | Hristijan Najcheski',
     metaDescription:
       'Fix crawlability, Core Web Vitals, structured data, and site architecture issues that hold your rankings back. Technical SEO consulting by Hristijan Najcheski.',
     icon: '⚙️',
@@ -99,7 +99,7 @@ export const services: Service[] = [
   {
     slug: 'content-strategy',
     title: 'Content Strategy',
-    metaTitle: 'SEO Content Strategy Services — Hristijan Najcheski',
+    metaTitle: 'SEO Content Strategy Services | Hristijan Najcheski',
     metaDescription:
       'Strategic content planning that targets the right keywords, answers user intent, and drives qualified organic traffic. SEO content strategy by Hristijan Najcheski.',
     icon: '📝',
@@ -180,7 +180,7 @@ export const services: Service[] = [
   {
     slug: 'seo-audits',
     title: 'SEO Audits',
-    metaTitle: 'SEO Audit Services — Hristijan Najcheski',
+    metaTitle: 'SEO Audit Services | Hristijan Najcheski',
     metaDescription:
       'Comprehensive SEO audits covering technical, content, and off-page factors — with a clear, prioritized action plan. Book an SEO audit with Hristijan Najcheski.',
     icon: '🔍',
@@ -261,7 +261,7 @@ export const services: Service[] = [
   {
     slug: 'link-building',
     title: 'Link Building',
-    metaTitle: 'Link Building Services — Hristijan Najcheski',
+    metaTitle: 'Link Building Services | Hristijan Najcheski',
     metaDescription:
       'White-hat link acquisition strategies that build genuine domain authority through high-quality, relevant backlinks. Link building by Hristijan Najcheski.',
     icon: '🔗',
@@ -342,7 +342,7 @@ export const services: Service[] = [
   {
     slug: 'analytics-reporting',
     title: 'Analytics & Reporting',
-    metaTitle: 'SEO Analytics & Reporting Services — Hristijan Najcheski',
+    metaTitle: 'SEO Analytics & Reporting Services | Hristijan Najcheski',
     metaDescription:
       'Custom GA4 dashboards and SEO reporting that connects organic performance to business revenue. Analytics & reporting by Hristijan Najcheski.',
     icon: '📊',
@@ -418,7 +418,7 @@ export const services: Service[] = [
   {
     slug: 'local-international-seo',
     title: 'Local & International SEO',
-    metaTitle: 'Local & International SEO Services — Hristijan Najcheski',
+    metaTitle: 'Local & International SEO Services | Hristijan Najcheski',
     metaDescription:
       'SEO strategies for local businesses and global brands. Google Business Profile, multi-location, hreflang, and international keyword research. By Hristijan Najcheski.',
     icon: '🌍',
@@ -494,7 +494,7 @@ export const services: Service[] = [
   {
     slug: 'ecommerce-seo',
     title: 'E-Commerce SEO',
-    metaTitle: 'E-Commerce SEO Services — Hristijan Najcheski',
+    metaTitle: 'E-Commerce SEO Services | Hristijan Najcheski',
     metaDescription:
       'SEO strategies for online stores — product page optimization, category architecture, schema markup, and faceted navigation. E-commerce SEO by Hristijan Najcheski.',
     icon: '🛒',
@@ -575,7 +575,7 @@ export const services: Service[] = [
   {
     slug: 'seo-migration',
     title: 'SEO Migration & Relaunch',
-    metaTitle: 'SEO Migration & Website Relaunch Services — Hristijan Najcheski',
+    metaTitle: 'SEO Migration & Website Relaunch Services | Hristijan Najcheski',
     metaDescription:
       'Redesigning your site or migrating platforms? Protect and grow your organic traffic through the transition with expert SEO migration planning by Hristijan Najcheski.',
     icon: '🚀',
