@@ -1,0 +1,410 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export const prerender = false;
+---
+
+<BaseLayout
+  title="Free Hreflang Tag Generator | Valid Link Tags Instantly | Hristijan Najcheski"
+  description="Generate valid hreflang link tags for multilingual and multi-region sites. Automatic validation, reciprocal x-default included. Free, no signup."
+>
+  <section class="page-header">
+    <div class="container">
+      <div class="page-header-content">
+        <span class="section-label">SEO Tool · International</span>
+        <h1>Hreflang Tag <span class="text-gradient">Generator</span></h1>
+        <p>Input your language/region URLs, get validated hreflang link tags ready to drop into your <code>&lt;head&gt;</code>. Catches the most common mistakes: missing reciprocals, invalid codes, and missing <code>x-default</code>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="hreflang-layout">
+        <div class="hreflang-form">
+          <h3 class="form-heading">Language / region URLs</h3>
+          <div id="rowsList" class="rows-list"></div>
+          <button type="button" class="btn btn-secondary" id="addRowBtn">+ Add language/region</button>
+
+          <div class="form-field" style="margin-top: var(--space-6);">
+            <label>
+              <input type="checkbox" id="includeXDefault" checked />
+              Include <code>x-default</code> (recommended)
+            </label>
+            <p class="field-helper">Tells Google which URL to serve when no language matches. Strongly recommended.</p>
+          </div>
+
+          <div class="form-field">
+            <label for="xDefaultUrl"><code>x-default</code> URL</label>
+            <input type="url" id="xDefaultUrl" placeholder="https://yourdomain.com/" />
+            <p class="field-helper">Usually the language-picker page or the English version.</p>
+          </div>
+        </div>
+
+        <div class="hreflang-output">
+          <div class="output-head">
+            <h3>Generated tags</h3>
+            <div class="output-actions">
+              <button class="btn btn-secondary" id="copyBtn">Copy</button>
+              <button class="btn btn-secondary" id="downloadBtn">Download</button>
+            </div>
+          </div>
+          <pre id="hreflangOutput" class="hreflang-output-pre"># fill the form</pre>
+
+          <div id="validation" class="validation"></div>
+
+          <div class="email-gate-inline">
+            <h4>Want a full international SEO audit of your setup?</h4>
+            <form id="gateForm" class="gate-form">
+              <input type="email" id="gateEmail" placeholder="you@yourcompany.com" required />
+              <input type="text" name="company" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true" />
+              <button type="submit" class="btn btn-orange" id="gateSubmit">Email me the tags + audit →</button>
+            </form>
+            <p class="gate-fineprint">Free. I'll check your reciprocal tags, sitemap setup, and geo-targeting personally.</p>
+          </div>
+          <div class="gate-success" id="gateSuccess" hidden>
+            <div class="success-tick">✓</div>
+            <p id="successMsg">Sent! Check your inbox.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hreflang-notes">
+        <h3>How to use these tags</h3>
+        <ol>
+          <li>Drop the <code>&lt;link&gt;</code> tags inside the <code>&lt;head&gt;</code> of <strong>every</strong> language version.</li>
+          <li>The tags must be <strong>reciprocal</strong> — if your EN page lists FR, the FR page must list EN back.</li>
+          <li>Use full absolute URLs (not relative paths).</li>
+          <li>Alternative: send the same map via XML sitemap or HTTP <code>Link</code> headers (this tool's output is <code>&lt;head&gt;</code>-style).</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-card">
+        <h2>Hreflang is one piece. <span class="text-gradient-orange">International SEO is the system.</span></h2>
+        <p>Tags don't fix bad geo-targeting, mistranslated content, or fragmented authority across versions. If you're scaling internationally, you need a real plan.</p>
+        <a href="/contact/" class="btn btn-orange btn-lg">Book a Free Strategy Call →</a>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .hreflang-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+      gap: var(--space-8);
+      align-items: start;
+    }
+    @media (max-width: 980px) { .hreflang-layout { grid-template-columns: 1fr; } }
+
+    .hreflang-form {
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-7);
+    }
+    .form-heading {
+      font-family: var(--font-heading);
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-4);
+    }
+    .rows-list { display: flex; flex-direction: column; gap: var(--space-3); margin-bottom: var(--space-4); }
+    .lang-row {
+      display: grid;
+      grid-template-columns: 110px 1fr auto;
+      gap: var(--space-2);
+      align-items: center;
+    }
+    .lang-row input, .lang-row select {
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-2) var(--space-3);
+      color: var(--color-text-primary);
+      font-size: var(--text-sm);
+      font-family: inherit;
+    }
+    .lang-row button {
+      background: transparent;
+      border: 1px solid var(--color-border);
+      color: var(--color-text-muted);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      padding: 0 var(--space-3);
+      height: 36px;
+    }
+
+    .form-field label {
+      display: block;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: var(--text-sm);
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-2);
+    }
+    .form-field input {
+      width: 100%;
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-3) var(--space-4);
+      color: var(--color-text-primary);
+      font-family: inherit;
+      font-size: var(--text-sm);
+    }
+    .field-helper { margin-top: var(--space-2); font-size: var(--text-xs); color: var(--color-text-muted); line-height: 1.5; }
+
+    .hreflang-output {
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-7);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      position: sticky;
+      top: 100px;
+    }
+    @media (max-width: 980px) { .hreflang-output { position: static; } }
+    .output-head { display: flex; justify-content: space-between; align-items: center; }
+    .output-head h3 { font-family: var(--font-heading); font-size: 1.05rem; }
+    .output-actions { display: flex; gap: var(--space-2); }
+    .output-actions .btn { padding: var(--space-2) var(--space-4); font-size: var(--text-sm); }
+    .hreflang-output-pre {
+      background: #0b1220;
+      color: #e5e7eb;
+      padding: var(--space-5);
+      border-radius: var(--radius-md);
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-size: 12px;
+      line-height: 1.7;
+      overflow-x: auto;
+      white-space: pre;
+      max-height: 360px;
+    }
+
+    .validation { display: flex; flex-direction: column; gap: var(--space-2); font-size: var(--text-sm); }
+    .v-item { padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); }
+    .v-ok { background: rgba(16, 185, 129, 0.08); color: #10b981; border-left: 3px solid #10b981; }
+    .v-warn { background: rgba(245, 158, 11, 0.08); color: #d97706; border-left: 3px solid #f59e0b; }
+    .v-error { background: rgba(239, 68, 68, 0.08); color: #b91c1c; border-left: 3px solid #ef4444; }
+
+    .email-gate-inline {
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.08), rgba(37, 99, 235, 0.05));
+      border: 1px solid rgba(249, 115, 22, 0.2);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5);
+    }
+    .email-gate-inline h4 { font-family: var(--font-heading); font-size: 1rem; margin-bottom: var(--space-3); }
+    .gate-form { display: flex; gap: var(--space-2); }
+    @media (max-width: 500px) { .gate-form { flex-direction: column; } }
+    .gate-form input[type="email"] {
+      flex: 1;
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-3) var(--space-4);
+      font-size: var(--text-sm);
+      color: var(--color-text-primary);
+    }
+    .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+    .gate-fineprint { font-size: var(--text-xs); color: var(--color-text-muted); margin-top: var(--space-3); }
+    .gate-success {
+      text-align: center;
+      padding: var(--space-5);
+      background: var(--color-bg-secondary);
+      border-radius: var(--radius-md);
+    }
+    .success-tick {
+      width: 40px; height: 40px;
+      background: #10b981;
+      color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto var(--space-2);
+      font-size: 20px; font-weight: 800;
+    }
+
+    .hreflang-notes {
+      margin-top: var(--space-10);
+      background: var(--color-bg-secondary);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-7);
+      max-width: 820px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hreflang-notes h3 { font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: var(--space-3); }
+    .hreflang-notes ol { color: var(--color-text-secondary); line-height: 1.8; padding-left: 1.5rem; }
+  </style>
+
+  <script>
+    const LANG_OPTIONS = [
+      'en', 'en-US', 'en-GB', 'en-CA', 'en-AU', 'en-IN',
+      'es', 'es-ES', 'es-MX', 'es-AR',
+      'fr', 'fr-FR', 'fr-CA',
+      'de', 'de-DE', 'de-AT', 'de-CH',
+      'it', 'pt', 'pt-BR', 'pt-PT',
+      'nl', 'sv', 'no', 'da', 'fi', 'pl', 'cs',
+      'ru', 'uk', 'tr', 'el',
+      'ja', 'ko', 'zh-CN', 'zh-TW', 'zh-HK',
+      'ar', 'he', 'hi', 'th', 'vi', 'id', 'ms',
+    ];
+    const HREFLANG_RE = /^([a-z]{2,3})(-[A-Z]{2})?$/;
+
+    const rowsList = document.getElementById('rowsList')!;
+    const addBtn = document.getElementById('addRowBtn')!;
+    const includeXDefault = document.getElementById('includeXDefault') as HTMLInputElement;
+    const xDefaultUrl = document.getElementById('xDefaultUrl') as HTMLInputElement;
+    const output = document.getElementById('hreflangOutput')!;
+    const validation = document.getElementById('validation')!;
+
+    function makeRow(lang = 'en', url = '') {
+      const row = document.createElement('div');
+      row.className = 'lang-row';
+      const datalistId = 'langs-' + Math.random().toString(36).slice(2, 8);
+      row.innerHTML = `
+        <input type="text" list="${datalistId}" class="lang" value="${lang}" placeholder="en-US" />
+        <datalist id="${datalistId}">${LANG_OPTIONS.map((o) => `<option value="${o}">`).join('')}</datalist>
+        <input type="url" class="url" value="${url}" placeholder="https://yourdomain.com/en-us/" />
+        <button type="button" aria-label="Remove">×</button>
+      `;
+      row.querySelectorAll('input').forEach((el) => el.addEventListener('input', render));
+      row.querySelector('button')!.addEventListener('click', () => { row.remove(); render(); });
+      rowsList.appendChild(row);
+    }
+
+    makeRow('en-US', '');
+    makeRow('en-GB', '');
+    makeRow('de-DE', '');
+    makeRow('es-ES', '');
+
+    addBtn.addEventListener('click', () => { makeRow(); render(); });
+    [includeXDefault, xDefaultUrl].forEach((el) => {
+      el.addEventListener('input', render);
+      el.addEventListener('change', render);
+    });
+
+    function gather(): { lang: string; url: string }[] {
+      const rows = Array.from(rowsList.querySelectorAll('.lang-row')) as HTMLElement[];
+      return rows.map((r) => ({
+        lang: (r.querySelector('.lang') as HTMLInputElement).value.trim(),
+        url: (r.querySelector('.url') as HTMLInputElement).value.trim(),
+      })).filter((r) => r.lang && r.url);
+    }
+
+    function render() {
+      const rows = gather();
+      const lines: string[] = [];
+      const v: { kind: 'ok' | 'warn' | 'error'; msg: string }[] = [];
+
+      if (!rows.length) {
+        output.textContent = '# Add at least one language/region row';
+        validation.innerHTML = '';
+        return;
+      }
+
+      // Validate codes
+      for (const r of rows) {
+        if (!HREFLANG_RE.test(r.lang) && r.lang.toLowerCase() !== 'x-default') {
+          v.push({ kind: 'error', msg: `Invalid hreflang code: "${r.lang}". Use ISO 639-1 lang or lang-REGION (e.g. "en" or "en-US").` });
+        }
+        try { new URL(r.url); }
+        catch { v.push({ kind: 'error', msg: `Invalid URL for ${r.lang}: "${r.url}"` }); }
+      }
+
+      // Duplicates
+      const seen = new Set<string>();
+      for (const r of rows) {
+        if (seen.has(r.lang)) v.push({ kind: 'error', msg: `Duplicate hreflang: ${r.lang}` });
+        seen.add(r.lang);
+      }
+
+      // Build tags
+      for (const r of rows) {
+        lines.push(`<link rel="alternate" hreflang="${r.lang}" href="${r.url}" />`);
+      }
+      if (includeXDefault.checked) {
+        const xd = xDefaultUrl.value.trim();
+        if (xd) {
+          try { new URL(xd); lines.push(`<link rel="alternate" hreflang="x-default" href="${xd}" />`); v.push({ kind: 'ok', msg: 'x-default included — Google will use it as fallback.' }); }
+          catch { v.push({ kind: 'error', msg: 'x-default URL is not valid.' }); }
+        } else {
+          v.push({ kind: 'warn', msg: 'x-default checkbox is on but no URL is set.' });
+        }
+      } else {
+        v.push({ kind: 'warn', msg: 'x-default is missing — Google recommends including it.' });
+      }
+
+      if (rows.length < 2) v.push({ kind: 'warn', msg: 'Only one language present — hreflang only matters with 2+ versions.' });
+      if (rows.length >= 2 && !v.some((i) => i.kind === 'error')) v.push({ kind: 'ok', msg: `Tags generated for ${rows.length} language version${rows.length === 1 ? '' : 's'}. Remember: every version must list every other version (reciprocal).` });
+
+      output.textContent = lines.join('\n');
+      validation.innerHTML = v.map((i) => `<div class="v-item v-${i.kind === 'ok' ? 'ok' : i.kind === 'warn' ? 'warn' : 'error'}">${i.msg}</div>`).join('');
+    }
+
+    render();
+
+    document.getElementById('copyBtn')!.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(output.textContent || '');
+        const b = document.getElementById('copyBtn')!;
+        const orig = b.textContent;
+        b.textContent = 'Copied ✓';
+        setTimeout(() => (b.textContent = orig), 1500);
+      } catch { /* noop */ }
+    });
+    document.getElementById('downloadBtn')!.addEventListener('click', () => {
+      const blob = new Blob([output.textContent || ''], { type: 'text/html' });
+      const u = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = u; a.download = 'hreflang.html';
+      document.body.appendChild(a); a.click(); a.remove();
+      URL.revokeObjectURL(u);
+    });
+
+    // Email gate
+    const gateForm = document.getElementById('gateForm') as HTMLFormElement;
+    const gateEmail = document.getElementById('gateEmail') as HTMLInputElement;
+    const gateSubmit = document.getElementById('gateSubmit') as HTMLButtonElement;
+    const gateBox = document.querySelector('.email-gate-inline') as HTMLElement;
+    const gateSuccess = document.getElementById('gateSuccess')!;
+    const successMsg = document.getElementById('successMsg')!;
+
+    gateForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = gateEmail.value.trim();
+      const hp = (gateForm.querySelector('.hp') as HTMLInputElement).value;
+      gateSubmit.disabled = true; gateSubmit.textContent = 'Sending…';
+      try {
+        const rows = gather();
+        const res = await fetch('/api/lead-capture', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            tool: 'hreflang-generator',
+            email,
+            honeypot: hp,
+            payload: { rows, tags: output.textContent || '' },
+          }),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Failed');
+        successMsg.textContent = data.message || 'Sent! Check your inbox.';
+        gateBox.hidden = true;
+        gateSuccess.removeAttribute('hidden');
+      } catch (err: any) {
+        alert(err.message || 'Something went wrong.');
+      } finally {
+        gateSubmit.disabled = false; gateSubmit.textContent = 'Email me the tags + audit →';
+      }
+    });
+  </script>
+</BaseLayout>

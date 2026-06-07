@@ -3,60 +3,83 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const tools = [
   {
+    slug: 'aeo-readiness-audit',
+    title: 'AEO Readiness Audit',
+    description: 'Paste any URL and grade how AI-ready it is. Scores 20 signals ChatGPT, Perplexity, and Google AI Overview use to decide which pages to cite.',
+    icon: '🎯',
+    status: 'live',
+    featured: true,
+    tag: 'AEO',
+  },
+  {
+    slug: 'llms-txt-generator',
+    title: 'llms.txt Generator',
+    description: 'Build the new robots.txt-for-AI standard. Tell ChatGPT, Claude, Perplexity, and Gemini which content on your site to read first.',
+    icon: '🤖',
+    status: 'live',
+    tag: 'AEO',
+  },
+  {
     slug: 'serp-snippet-previewer',
     title: 'SERP Snippet Previewer',
     description: 'See how your title and meta description will appear in Google — desktop and mobile — with pixel-width and character-count warnings.',
     icon: '🔍',
     status: 'live',
+    tag: 'SEO',
   },
   {
     slug: 'robots-txt-tester',
     title: 'Robots.txt Tester',
-    description: 'Paste your robots.txt and a URL to check which rules apply for Googlebot, Bingbot, and other crawlers.',
-    icon: '🤖',
+    description: 'Paste your robots.txt and a URL to check which rules apply for Googlebot, Bingbot, GPTBot, ClaudeBot, and other crawlers.',
+    icon: '🛡️',
     status: 'live',
-  },
-  {
-    slug: 'schema-generator',
-    title: 'Schema Markup Generator',
-    description: 'Generate copy-ready JSON-LD for Organization, LocalBusiness, FAQ, Article, Product, and Breadcrumb schema.',
-    icon: '🧩',
-    status: 'soon',
-  },
-  {
-    slug: 'hreflang-generator',
-    title: 'Hreflang Tag Generator',
-    description: 'Input your languages and regions, get valid hreflang link tags — ready to drop into your <head>.',
-    icon: '🌍',
-    status: 'soon',
-  },
-  {
-    slug: 'core-web-vitals-checker',
-    title: 'Core Web Vitals Checker',
-    description: 'Run any URL through PageSpeed Insights and get a plain-English breakdown of LCP, INP, and CLS.',
-    icon: '⚡',
-    status: 'soon',
+    tag: 'SEO',
   },
   {
     slug: 'roi-calculator',
     title: 'Fractional SEO ROI Calculator',
-    description: 'Plug in your current traffic and conversion data to model projected revenue lift from a fractional SEO engagement.',
+    description: 'Plug in your current traffic and conversion data to model 12-month revenue lift, payback period, and ROI multiple. Three scenarios.',
     icon: '📈',
+    status: 'live',
+    tag: 'SEO',
+  },
+  {
+    slug: 'schema-generator',
+    title: 'Schema Markup Generator',
+    description: 'Generate copy-ready JSON-LD for Organization, LocalBusiness, FAQ, Article, Product, and Breadcrumb — the schema AI engines actually consume.',
+    icon: '🧩',
+    status: 'live',
+    tag: 'AEO',
+  },
+  {
+    slug: 'hreflang-generator',
+    title: 'Hreflang Tag Generator',
+    description: 'Input your languages and regions, get valid hreflang link tags with reciprocal x-default — ready to drop into your <head>.',
+    icon: '🌍',
+    status: 'live',
+    tag: 'SEO',
+  },
+  {
+    slug: 'ai-brand-visibility',
+    title: 'AI Brand Visibility Checker',
+    description: 'Find out what AI engines actually say about your brand. Side-by-side answers from Claude, GPT, and Perplexity for any domain.',
+    icon: '👁️',
     status: 'soon',
+    tag: 'AEO',
   },
 ];
 ---
 
 <BaseLayout
-  title="Free SEO Tools | Hristijan Najcheski"
-  description="A growing set of free, no-signup SEO tools — SERP snippet previewer, schema generators, robots.txt tester, and more. Built by a fractional SEO consultant."
+  title="Free AEO & SEO Tools | For the AI-Era of Search | Hristijan Najcheski"
+  description="Free, no-signup tools for AEO (Answer Engine Optimization) and traditional SEO. AEO readiness audit, llms.txt generator, schema, robots.txt tester, and more. Built by a fractional SEO consultant."
 >
   <section class="page-header">
     <div class="container">
       <div class="page-header-content">
-        <span class="section-label">Free SEO Tools</span>
-        <h1>Practical tools<br /><span class="text-gradient">for real SEO work</span></h1>
-        <p>A growing collection of free, no-signup tools for the day-to-day of SEO — previewing snippets, generating schema, checking vitals. Built because the existing versions are either bloated, paywalled, or broken.</p>
+        <span class="section-label">Free AEO & SEO Tools</span>
+        <h1>Tools built<br /><span class="text-gradient">for the AI era of search</span></h1>
+        <p>AEO (Answer Engine Optimization) is the new fight — ranking inside ChatGPT, Perplexity, Claude, and Google AI Overview. These tools help you get there, plus the SEO fundamentals underneath. Free, no signup to use.</p>
       </div>
     </div>
   </section>
@@ -66,7 +89,8 @@ const tools = [
       <div class="tools-grid">
         {tools.map((tool) => (
           tool.status === 'live' ? (
-            <a href={`/tools/${tool.slug}/`} class="tool-card">
+            <a href={`/tools/${tool.slug}/`} class:list={["tool-card", { 'tool-card-featured': tool.featured }]}>
+              {tool.tag && <span class={`tool-tag tool-tag-${(tool.tag || '').toLowerCase()}`}>{tool.tag}</span>}
               <div class="tool-icon">{tool.icon}</div>
               <h3 class="tool-title">{tool.title}</h3>
               <p class="tool-desc">{tool.description}</p>
@@ -74,6 +98,7 @@ const tools = [
             </a>
           ) : (
             <div class="tool-card tool-card-soon">
+              {tool.tag && <span class={`tool-tag tool-tag-${(tool.tag || '').toLowerCase()}`}>{tool.tag}</span>}
               <div class="tool-icon">{tool.icon}</div>
               <h3 class="tool-title">{tool.title}</h3>
               <p class="tool-desc">{tool.description}</p>
@@ -105,6 +130,7 @@ const tools = [
     .tool-card {
       display: flex;
       flex-direction: column;
+      position: relative;
       background: var(--color-bg-elevated);
       border: 1px solid var(--color-border);
       border-radius: var(--radius-xl);
@@ -112,6 +138,31 @@ const tools = [
       text-decoration: none;
       color: inherit;
       transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .tool-card-featured {
+      border-color: rgba(249, 115, 22, 0.5);
+      background: linear-gradient(135deg, var(--color-bg-elevated), rgba(249, 115, 22, 0.04));
+    }
+    .tool-tag {
+      position: absolute;
+      top: var(--space-4);
+      right: var(--space-5);
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+    .tool-tag-aeo {
+      background: rgba(249, 115, 22, 0.12);
+      color: #f97316;
+      border: 1px solid rgba(249, 115, 22, 0.3);
+    }
+    .tool-tag-seo {
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--color-accent-blue);
+      border: 1px solid rgba(37, 99, 235, 0.25);
     }
     a.tool-card:hover {
       border-color: var(--color-accent-blue);

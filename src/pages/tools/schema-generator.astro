@@ -1,0 +1,565 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export const prerender = false;
+---
+
+<BaseLayout
+  title="Free Schema Markup Generator | JSON-LD for AEO + SEO | Hristijan Najcheski"
+  description="Generate copy-ready JSON-LD schema for Organization, LocalBusiness, FAQ, Article, Product, and Breadcrumb. The structured data Google AI Overview, ChatGPT, and Perplexity actually use. Free."
+>
+  <section class="page-header">
+    <div class="container">
+      <div class="page-header-content">
+        <span class="section-label">AEO Tool · JSON-LD</span>
+        <h1>Schema Markup <span class="text-gradient">Generator</span></h1>
+        <p>Generate copy-paste JSON-LD for the schema types AI engines actually consume. Pick a type, fill the form, drop the output into your <code>&lt;head&gt;</code>. Free, no signup.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="type-tabs" role="tablist">
+        <button class="type-tab active" data-type="organization">Organization</button>
+        <button class="type-tab" data-type="localbusiness">LocalBusiness</button>
+        <button class="type-tab" data-type="faq">FAQ</button>
+        <button class="type-tab" data-type="article">Article</button>
+        <button class="type-tab" data-type="product">Product</button>
+        <button class="type-tab" data-type="breadcrumb">Breadcrumb</button>
+      </div>
+
+      <div class="schema-layout">
+        <div class="schema-form">
+          <!-- Organization -->
+          <div class="form-block" data-form="organization">
+            <div class="form-field"><label>Organization name</label><input data-k="name" type="text" placeholder="Acme Inc." /></div>
+            <div class="form-field"><label>Website URL</label><input data-k="url" type="url" placeholder="https://acme.com" /></div>
+            <div class="form-field"><label>Logo URL</label><input data-k="logo" type="url" placeholder="https://acme.com/logo.png" /></div>
+            <div class="form-field"><label>Brief description</label><textarea data-k="description" rows="3" placeholder="What you do, in 1-2 sentences."></textarea></div>
+            <div class="form-field"><label>Same-as profiles (one per line)</label><textarea data-k="sameAs" rows="4" placeholder="https://linkedin.com/company/acme&#10;https://x.com/acme&#10;https://github.com/acme"></textarea></div>
+          </div>
+          <!-- LocalBusiness -->
+          <div class="form-block" data-form="localbusiness" hidden>
+            <div class="form-field"><label>Business name</label><input data-k="name" type="text" /></div>
+            <div class="form-field"><label>Website URL</label><input data-k="url" type="url" /></div>
+            <div class="form-field"><label>Phone (E.164)</label><input data-k="telephone" type="text" placeholder="+1-555-555-5555" /></div>
+            <div class="form-field"><label>Street address</label><input data-k="street" type="text" /></div>
+            <div class="form-field grid-2">
+              <div><label>City</label><input data-k="city" type="text" /></div>
+              <div><label>Region / state</label><input data-k="region" type="text" /></div>
+            </div>
+            <div class="form-field grid-2">
+              <div><label>Postal code</label><input data-k="postal" type="text" /></div>
+              <div><label>Country (ISO)</label><input data-k="country" type="text" placeholder="US" /></div>
+            </div>
+            <div class="form-field"><label>Opening hours (e.g. Mo-Fr 09:00-17:00)</label><input data-k="hours" type="text" /></div>
+            <div class="form-field"><label>Price range</label><input data-k="priceRange" type="text" placeholder="$$" /></div>
+          </div>
+          <!-- FAQ -->
+          <div class="form-block" data-form="faq" hidden>
+            <div class="form-field">
+              <label>Frequently Asked Questions</label>
+              <div id="faqList" class="faq-list"></div>
+              <button type="button" class="btn btn-secondary" id="addFaqBtn" style="margin-top:var(--space-3);">+ Add Q&A</button>
+            </div>
+          </div>
+          <!-- Article -->
+          <div class="form-block" data-form="article" hidden>
+            <div class="form-field"><label>Headline</label><input data-k="headline" type="text" /></div>
+            <div class="form-field"><label>Page URL</label><input data-k="url" type="url" /></div>
+            <div class="form-field"><label>Featured image URL</label><input data-k="image" type="url" /></div>
+            <div class="form-field"><label>Description / dek</label><textarea data-k="description" rows="3"></textarea></div>
+            <div class="form-field grid-2">
+              <div><label>Author name</label><input data-k="authorName" type="text" /></div>
+              <div><label>Author profile URL</label><input data-k="authorUrl" type="url" /></div>
+            </div>
+            <div class="form-field grid-2">
+              <div><label>Date published (YYYY-MM-DD)</label><input data-k="datePublished" type="text" /></div>
+              <div><label>Date modified (YYYY-MM-DD)</label><input data-k="dateModified" type="text" /></div>
+            </div>
+            <div class="form-field grid-2">
+              <div><label>Publisher name</label><input data-k="publisherName" type="text" /></div>
+              <div><label>Publisher logo URL</label><input data-k="publisherLogo" type="url" /></div>
+            </div>
+          </div>
+          <!-- Product -->
+          <div class="form-block" data-form="product" hidden>
+            <div class="form-field"><label>Product name</label><input data-k="name" type="text" /></div>
+            <div class="form-field"><label>Image URL</label><input data-k="image" type="url" /></div>
+            <div class="form-field"><label>Description</label><textarea data-k="description" rows="3"></textarea></div>
+            <div class="form-field grid-2">
+              <div><label>Brand</label><input data-k="brand" type="text" /></div>
+              <div><label>SKU</label><input data-k="sku" type="text" /></div>
+            </div>
+            <div class="form-field grid-2">
+              <div><label>Price</label><input data-k="price" type="number" step="0.01" /></div>
+              <div><label>Currency</label><input data-k="currency" type="text" placeholder="USD" /></div>
+            </div>
+            <div class="form-field">
+              <label>Availability</label>
+              <select data-k="availability">
+                <option value="InStock">In stock</option>
+                <option value="OutOfStock">Out of stock</option>
+                <option value="PreOrder">Pre-order</option>
+                <option value="Discontinued">Discontinued</option>
+              </select>
+            </div>
+            <div class="form-field grid-2">
+              <div><label>Avg rating (0-5)</label><input data-k="rating" type="number" step="0.1" min="0" max="5" /></div>
+              <div><label>Review count</label><input data-k="ratingCount" type="number" min="0" /></div>
+            </div>
+          </div>
+          <!-- Breadcrumb -->
+          <div class="form-block" data-form="breadcrumb" hidden>
+            <div class="form-field">
+              <label>Breadcrumb trail (one per row: name, URL)</label>
+              <div id="crumbList" class="faq-list"></div>
+              <button type="button" class="btn btn-secondary" id="addCrumbBtn" style="margin-top:var(--space-3);">+ Add level</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="schema-output">
+          <div class="output-head">
+            <h3>Generated JSON-LD</h3>
+            <div class="output-actions">
+              <button class="btn btn-secondary" id="copyBtn">Copy</button>
+              <button class="btn btn-secondary" id="downloadBtn">Download</button>
+            </div>
+          </div>
+          <pre id="schemaOutput" class="schema-output-pre">// fill the form</pre>
+
+          <div class="email-gate-inline">
+            <h4>Want me to validate this on your live page + audit your schema setup?</h4>
+            <form id="gateForm" class="gate-form">
+              <input type="email" id="gateEmail" placeholder="you@yourcompany.com" required />
+              <input type="text" name="company" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true" />
+              <button type="submit" class="btn btn-orange" id="gateSubmit">Email me the schema + audit →</button>
+            </form>
+            <p class="gate-fineprint">Free. I will personally check your live implementation.</p>
+          </div>
+          <div class="gate-success" id="gateSuccess" hidden>
+            <div class="success-tick">✓</div>
+            <p id="successMsg">Sent! Check your inbox.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-card">
+        <h2>Schema is the foundation. <span class="text-gradient-orange">AEO is the strategy.</span></h2>
+        <p>Schema gets you eligible. AEO strategy gets you cited. If you want the full system — schema, content shape, citations, authority — that's what fractional SEO solves.</p>
+        <a href="/contact/" class="btn btn-orange btn-lg">Book a Free Strategy Call →</a>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .type-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      background: var(--color-bg-secondary);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 4px;
+      width: fit-content;
+      margin-bottom: var(--space-6);
+    }
+    .type-tab {
+      background: transparent;
+      border: none;
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius-sm);
+      color: var(--color-text-muted);
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: var(--text-sm);
+      cursor: pointer;
+    }
+    .type-tab.active {
+      background: var(--color-bg-primary);
+      color: var(--color-text-primary);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+    }
+
+    .schema-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+      gap: var(--space-8);
+      align-items: start;
+    }
+    @media (max-width: 980px) { .schema-layout { grid-template-columns: 1fr; } }
+
+    .schema-form {
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-7);
+    }
+    .form-block { display: flex; flex-direction: column; gap: var(--space-4); }
+    .form-field label {
+      display: block;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: var(--text-sm);
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-2);
+    }
+    .form-field input,
+    .form-field textarea,
+    .form-field select {
+      width: 100%;
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-3) var(--space-4);
+      color: var(--color-text-primary);
+      font-family: inherit;
+      font-size: var(--text-sm);
+    }
+    .form-field input:focus, .form-field textarea:focus, .form-field select:focus {
+      outline: none;
+      border-color: var(--color-accent-blue);
+    }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+
+    .faq-list { display: flex; flex-direction: column; gap: var(--space-4); }
+    .faq-row, .crumb-row {
+      display: grid;
+      gap: var(--space-2);
+      background: var(--color-bg-secondary);
+      padding: var(--space-3);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+      position: relative;
+    }
+    .faq-row { grid-template-columns: 1fr; }
+    .crumb-row { grid-template-columns: 1fr 1.4fr auto; }
+    .faq-row button, .crumb-row button {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      width: 22px; height: 22px;
+      background: transparent;
+      border: 1px solid var(--color-border);
+      color: var(--color-text-muted);
+      border-radius: 4px;
+      cursor: pointer;
+      line-height: 1;
+      font-size: 14px;
+    }
+    .crumb-row button { position: static; padding: 0 var(--space-3); }
+    .faq-row input, .faq-row textarea, .crumb-row input {
+      font-size: var(--text-sm);
+    }
+
+    .schema-output {
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-7);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      position: sticky;
+      top: 100px;
+    }
+    @media (max-width: 980px) { .schema-output { position: static; } }
+    .output-head { display: flex; justify-content: space-between; align-items: center; }
+    .output-head h3 { font-family: var(--font-heading); font-size: 1.05rem; }
+    .output-actions { display: flex; gap: var(--space-2); }
+    .output-actions .btn { padding: var(--space-2) var(--space-4); font-size: var(--text-sm); }
+    .schema-output-pre {
+      background: #0b1220;
+      color: #e5e7eb;
+      padding: var(--space-5);
+      border-radius: var(--radius-md);
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-size: 12px;
+      line-height: 1.6;
+      overflow-x: auto;
+      white-space: pre;
+      max-height: 460px;
+    }
+
+    .email-gate-inline {
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.08), rgba(37, 99, 235, 0.05));
+      border: 1px solid rgba(249, 115, 22, 0.2);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5);
+    }
+    .email-gate-inline h4 { font-family: var(--font-heading); font-size: 1rem; margin-bottom: var(--space-3); }
+    .gate-form { display: flex; gap: var(--space-2); }
+    @media (max-width: 500px) { .gate-form { flex-direction: column; } }
+    .gate-form input[type="email"] {
+      flex: 1;
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-3) var(--space-4);
+      font-size: var(--text-sm);
+      color: var(--color-text-primary);
+    }
+    .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+    .gate-fineprint { font-size: var(--text-xs); color: var(--color-text-muted); margin-top: var(--space-3); }
+
+    .gate-success {
+      text-align: center;
+      padding: var(--space-5);
+      background: var(--color-bg-secondary);
+      border-radius: var(--radius-md);
+    }
+    .success-tick {
+      width: 40px; height: 40px;
+      background: #10b981;
+      color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto var(--space-2);
+      font-size: 20px; font-weight: 800;
+    }
+  </style>
+
+  <script>
+    type Kind = 'organization' | 'localbusiness' | 'faq' | 'article' | 'product' | 'breadcrumb';
+    let current: Kind = 'organization';
+
+    function $$<T extends HTMLElement>(sel: string, root: Document | HTMLElement = document): T[] {
+      return Array.from(root.querySelectorAll(sel)) as T[];
+    }
+
+    function getInputs(kind: Kind): Record<string, string> {
+      const block = document.querySelector(`[data-form="${kind}"]`)!;
+      const obj: Record<string, string> = {};
+      $$<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>('input[data-k],textarea[data-k],select[data-k]', block as HTMLElement)
+        .forEach((el) => { obj[el.dataset.k!] = el.value.trim(); });
+      return obj;
+    }
+
+    function buildOrganization(i: Record<string, string>) {
+      const sameAs = i.sameAs.split('\n').map((s) => s.trim()).filter(Boolean);
+      const j: any = { '@context': 'https://schema.org', '@type': 'Organization' };
+      if (i.name) j.name = i.name;
+      if (i.url) j.url = i.url;
+      if (i.logo) j.logo = i.logo;
+      if (i.description) j.description = i.description;
+      if (sameAs.length) j.sameAs = sameAs;
+      return j;
+    }
+
+    function buildLocalBusiness(i: Record<string, string>) {
+      const j: any = { '@context': 'https://schema.org', '@type': 'LocalBusiness' };
+      if (i.name) j.name = i.name;
+      if (i.url) j.url = i.url;
+      if (i.telephone) j.telephone = i.telephone;
+      if (i.priceRange) j.priceRange = i.priceRange;
+      const addr: any = { '@type': 'PostalAddress' };
+      if (i.street) addr.streetAddress = i.street;
+      if (i.city) addr.addressLocality = i.city;
+      if (i.region) addr.addressRegion = i.region;
+      if (i.postal) addr.postalCode = i.postal;
+      if (i.country) addr.addressCountry = i.country;
+      if (Object.keys(addr).length > 1) j.address = addr;
+      if (i.hours) j.openingHours = i.hours;
+      return j;
+    }
+
+    function buildFaq() {
+      const rows = $$<HTMLElement>('#faqList .faq-row');
+      const mainEntity = rows.map((r) => {
+        const q = (r.querySelector('input') as HTMLInputElement)?.value.trim();
+        const a = (r.querySelector('textarea') as HTMLTextAreaElement)?.value.trim();
+        if (!q || !a) return null;
+        return {
+          '@type': 'Question',
+          name: q,
+          acceptedAnswer: { '@type': 'Answer', text: a },
+        };
+      }).filter(Boolean);
+      return { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity };
+    }
+
+    function buildArticle(i: Record<string, string>) {
+      const j: any = { '@context': 'https://schema.org', '@type': 'Article' };
+      if (i.headline) j.headline = i.headline;
+      if (i.url) { j.mainEntityOfPage = { '@type': 'WebPage', '@id': i.url }; j.url = i.url; }
+      if (i.image) j.image = i.image;
+      if (i.description) j.description = i.description;
+      if (i.authorName) j.author = { '@type': 'Person', name: i.authorName, ...(i.authorUrl ? { url: i.authorUrl } : {}) };
+      if (i.datePublished) j.datePublished = i.datePublished;
+      if (i.dateModified) j.dateModified = i.dateModified;
+      if (i.publisherName) j.publisher = { '@type': 'Organization', name: i.publisherName, ...(i.publisherLogo ? { logo: { '@type': 'ImageObject', url: i.publisherLogo } } : {}) };
+      return j;
+    }
+
+    function buildProduct(i: Record<string, string>) {
+      const j: any = { '@context': 'https://schema.org', '@type': 'Product' };
+      if (i.name) j.name = i.name;
+      if (i.image) j.image = i.image;
+      if (i.description) j.description = i.description;
+      if (i.brand) j.brand = { '@type': 'Brand', name: i.brand };
+      if (i.sku) j.sku = i.sku;
+      if (i.price) {
+        j.offers = {
+          '@type': 'Offer',
+          price: i.price,
+          priceCurrency: i.currency || 'USD',
+          availability: `https://schema.org/${i.availability || 'InStock'}`,
+        };
+      }
+      if (i.rating && i.ratingCount) {
+        j.aggregateRating = {
+          '@type': 'AggregateRating',
+          ratingValue: i.rating,
+          reviewCount: i.ratingCount,
+        };
+      }
+      return j;
+    }
+
+    function buildBreadcrumb() {
+      const rows = $$<HTMLElement>('#crumbList .crumb-row');
+      const itemListElement = rows.map((r, idx) => {
+        const inputs = r.querySelectorAll('input') as NodeListOf<HTMLInputElement>;
+        const name = inputs[0]?.value.trim();
+        const url = inputs[1]?.value.trim();
+        if (!name || !url) return null;
+        return { '@type': 'ListItem', position: idx + 1, name, item: url };
+      }).filter(Boolean);
+      return { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement };
+    }
+
+    function render() {
+      let json: any = {};
+      if (current === 'organization') json = buildOrganization(getInputs('organization'));
+      if (current === 'localbusiness') json = buildLocalBusiness(getInputs('localbusiness'));
+      if (current === 'faq') json = buildFaq();
+      if (current === 'article') json = buildArticle(getInputs('article'));
+      if (current === 'product') json = buildProduct(getInputs('product'));
+      if (current === 'breadcrumb') json = buildBreadcrumb();
+      const wrapped = `<script type="application/ld+json">\n${JSON.stringify(json, null, 2)}\n<\/script>`;
+      (document.getElementById('schemaOutput') as HTMLElement).textContent = wrapped;
+    }
+
+    function bindInputs() {
+      $$<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>('input[data-k],textarea[data-k],select[data-k]')
+        .forEach((el) => {
+          el.addEventListener('input', render);
+          el.addEventListener('change', render);
+        });
+    }
+
+    function addFaqRow(q = '', a = '') {
+      const row = document.createElement('div');
+      row.className = 'faq-row';
+      row.innerHTML = `
+        <input type="text" placeholder="Question" value="${q.replace(/"/g, '&quot;')}" />
+        <textarea rows="2" placeholder="Answer">${a}</textarea>
+        <button type="button" aria-label="Remove">×</button>
+      `;
+      row.querySelectorAll('input,textarea').forEach((el) => el.addEventListener('input', render));
+      row.querySelector('button')!.addEventListener('click', () => { row.remove(); render(); });
+      document.getElementById('faqList')!.appendChild(row);
+    }
+    function addCrumbRow(name = '', url = '') {
+      const row = document.createElement('div');
+      row.className = 'crumb-row';
+      row.innerHTML = `
+        <input type="text" placeholder="Name" value="${name.replace(/"/g, '&quot;')}" />
+        <input type="text" placeholder="URL" value="${url.replace(/"/g, '&quot;')}" />
+        <button type="button" aria-label="Remove">×</button>
+      `;
+      row.querySelectorAll('input').forEach((el) => el.addEventListener('input', render));
+      row.querySelector('button')!.addEventListener('click', () => { row.remove(); render(); });
+      document.getElementById('crumbList')!.appendChild(row);
+    }
+
+    addFaqRow('What is your refund policy?', '30-day money-back guarantee, no questions asked.');
+    addFaqRow('Do you offer support?', 'Yes — email and chat, M-F 9am-5pm.');
+    addCrumbRow('Home', 'https://example.com/');
+    addCrumbRow('Blog', 'https://example.com/blog/');
+    addCrumbRow('This post', 'https://example.com/blog/post/');
+
+    document.getElementById('addFaqBtn')!.addEventListener('click', () => { addFaqRow(); render(); });
+    document.getElementById('addCrumbBtn')!.addEventListener('click', () => { addCrumbRow(); render(); });
+
+    $$<HTMLButtonElement>('.type-tab').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        $$<HTMLButtonElement>('.type-tab').forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        current = btn.dataset.type as Kind;
+        $$<HTMLElement>('.form-block').forEach((b) => {
+          b.hidden = b.dataset.form !== current;
+        });
+        render();
+      });
+    });
+
+    bindInputs();
+    render();
+
+    document.getElementById('copyBtn')!.addEventListener('click', async () => {
+      const txt = (document.getElementById('schemaOutput') as HTMLElement).textContent || '';
+      try {
+        await navigator.clipboard.writeText(txt);
+        const b = document.getElementById('copyBtn')!;
+        const orig = b.textContent;
+        b.textContent = 'Copied ✓';
+        setTimeout(() => (b.textContent = orig), 1500);
+      } catch { /* noop */ }
+    });
+    document.getElementById('downloadBtn')!.addEventListener('click', () => {
+      const txt = (document.getElementById('schemaOutput') as HTMLElement).textContent || '';
+      const blob = new Blob([txt], { type: 'text/html' });
+      const u = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = u; a.download = `${current}.json-ld.html`;
+      document.body.appendChild(a); a.click(); a.remove();
+      URL.revokeObjectURL(u);
+    });
+
+    // Email gate
+    const gateForm = document.getElementById('gateForm') as HTMLFormElement;
+    const gateEmail = document.getElementById('gateEmail') as HTMLInputElement;
+    const gateSubmit = document.getElementById('gateSubmit') as HTMLButtonElement;
+    const gateBox = document.querySelector('.email-gate-inline') as HTMLElement;
+    const gateSuccess = document.getElementById('gateSuccess')!;
+    const successMsg = document.getElementById('successMsg')!;
+
+    gateForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = gateEmail.value.trim();
+      const hp = (gateForm.querySelector('.hp') as HTMLInputElement).value;
+      gateSubmit.disabled = true; gateSubmit.textContent = 'Sending…';
+      try {
+        const schemaHtml = (document.getElementById('schemaOutput') as HTMLElement).textContent || '';
+        const url = (document.querySelector('[data-form="organization"] input[data-k="url"], [data-form="article"] input[data-k="url"], [data-form="localbusiness"] input[data-k="url"]') as HTMLInputElement | null)?.value.trim();
+        const res = await fetch('/api/lead-capture', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            tool: 'schema-generator',
+            email,
+            url,
+            honeypot: hp,
+            payload: { schemaType: current, schemaHtml },
+          }),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Failed');
+        successMsg.textContent = data.message || 'Sent! Check your inbox.';
+        gateBox.hidden = true;
+        gateSuccess.removeAttribute('hidden');
+      } catch (err: any) {
+        alert(err.message || 'Something went wrong.');
+      } finally {
+        gateSubmit.disabled = false; gateSubmit.textContent = 'Email me the schema + audit →';
+      }
+    });
+  </script>
+</BaseLayout>

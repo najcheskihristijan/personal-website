@@ -1,0 +1,397 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export const prerender = false;
+---
+
+<BaseLayout
+  title="Free AEO Readiness Audit | Will AI Cite Your Page? | Hristijan Najcheski"
+  description="Paste any URL and instantly grade how AI-ready it is. Checks schema, structure, citations, freshness — every signal ChatGPT, Perplexity, and Google AI Overview look for. Free, no signup."
+>
+  <section class="page-header">
+    <div class="container">
+      <div class="page-header-content">
+        <span class="section-label">AEO Tool · Most popular</span>
+        <h1>AEO Readiness <span class="text-gradient">Audit</span></h1>
+        <p>Paste any URL and get an instant grade on how AI-ready it is. Scores 20 signals AI engines use to decide which pages to cite — schema, structure, freshness, authority, the works. Full report emailed to you.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="audit-shell">
+        <form id="auditForm" class="audit-form">
+          <label for="auditUrl" class="audit-label">URL to audit</label>
+          <div class="audit-row">
+            <input
+              type="url"
+              id="auditUrl"
+              required
+              placeholder="https://yourdomain.com/page-to-audit"
+              autocomplete="off"
+            />
+            <button type="submit" class="btn btn-orange btn-lg" id="auditSubmit">Run audit →</button>
+          </div>
+          <p class="audit-helper">Free · no signup to see the grade · full report emailed when you're ready</p>
+        </form>
+
+        <div id="auditLoading" class="audit-state" hidden>
+          <div class="spinner"></div>
+          <p>Fetching and scoring your URL — usually ~5 seconds.</p>
+        </div>
+
+        <div id="auditError" class="audit-state audit-state-error" hidden>
+          <strong>Could not audit that URL.</strong>
+          <p id="auditErrorMsg">Make sure it is publicly reachable and starts with http(s)://</p>
+        </div>
+
+        <div id="auditPreview" class="audit-preview" hidden>
+          <div class="audit-summary">
+            <div class="grade-badge" id="gradeBadge">?</div>
+            <div class="grade-info">
+              <div class="grade-score" id="gradeScore">— / —</div>
+              <div class="grade-meta" id="gradeMeta">— pass · — warn · — fail</div>
+              <div class="grade-url" id="gradeUrl"></div>
+            </div>
+          </div>
+
+          <div class="preview-section">
+            <h3>Top issues holding the page back</h3>
+            <ol class="top-issues" id="topIssues"></ol>
+          </div>
+
+          <div class="page-summary">
+            <h3>What I found on the page</h3>
+            <dl class="page-meta">
+              <dt>Title</dt><dd id="metaTitle">—</dd>
+              <dt>H1</dt><dd id="metaH1">—</dd>
+              <dt>Word count</dt><dd id="metaWordCount">—</dd>
+              <dt>Schema detected</dt><dd id="metaSchema">—</dd>
+            </dl>
+          </div>
+
+          <div class="email-gate" id="emailGate">
+            <div class="gate-header">
+              <h3>Want the full 20-point audit + the exact fix for every issue?</h3>
+              <p>Drop your email and I'll send the full audit — every check, every recommendation, copy-paste-ready — straight to your inbox. No spam, ever.</p>
+            </div>
+            <form id="gateForm" class="gate-form">
+              <input type="email" id="gateEmail" placeholder="you@yourcompany.com" required />
+              <input type="text" name="company" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true" />
+              <button type="submit" class="btn btn-orange btn-lg" id="gateSubmit">Send me the full report →</button>
+            </form>
+            <p class="gate-fineprint">By submitting, you agree I may follow up personally with relevant SEO insights. Unsubscribe anytime.</p>
+          </div>
+
+          <div class="gate-success" id="gateSuccess" hidden>
+            <div class="success-tick">✓</div>
+            <h3 id="successHeading">Check your inbox</h3>
+            <p id="successMsg">The full report is on its way.</p>
+            <a href="/contact/" class="btn btn-orange btn-lg" style="margin-top:var(--space-4);">Book a Free 60-Min Call →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-bg-secondary);">
+    <div class="container">
+      <div style="max-width: 760px; margin: 0 auto;">
+        <span class="section-label">What this tool checks</span>
+        <h2 class="section-title" style="margin-bottom: var(--space-6);">20 signals AI engines actually use</h2>
+        <p style="color: var(--color-text-secondary); line-height: 1.8;">Most "SEO audits" still grade you on 2014 ranking factors. This one grades the page on what <strong>Google AI Overview, ChatGPT browsing, Perplexity, and Claude</strong> look for when deciding which source to cite: structured data, question-shaped headings, named authors, fresh dates, outbound citations, entity coverage, and the technical fundamentals underneath.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:var(--space-3);margin-top:var(--space-6);">
+          <a href="/contact/" class="btn btn-orange btn-lg">Free 60-Min Consultation →</a>
+          <a href="/tools/" class="btn btn-secondary btn-lg">More AEO tools →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .audit-shell { max-width: 820px; margin: 0 auto; }
+    .audit-form {
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-8);
+    }
+    .audit-label {
+      display: block;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: var(--text-sm);
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-3);
+    }
+    .audit-row {
+      display: flex;
+      gap: var(--space-3);
+    }
+    .audit-row input {
+      flex: 1;
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-4) var(--space-5);
+      color: var(--color-text-primary);
+      font-size: var(--text-base);
+      font-family: inherit;
+    }
+    .audit-row input:focus {
+      outline: none;
+      border-color: var(--color-accent-blue);
+    }
+    @media (max-width: 700px) {
+      .audit-row { flex-direction: column; }
+    }
+    .audit-helper {
+      margin-top: var(--space-3);
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+    }
+
+    .audit-state {
+      margin-top: var(--space-6);
+      padding: var(--space-6);
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      text-align: center;
+      color: var(--color-text-secondary);
+    }
+    .audit-state-error {
+      border-color: #ef4444;
+      color: #ef4444;
+    }
+    .spinner {
+      width: 28px; height: 28px;
+      border: 3px solid var(--color-border);
+      border-top-color: var(--color-accent-blue);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto var(--space-3);
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .audit-preview {
+      margin-top: var(--space-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+
+    .audit-summary {
+      display: flex;
+      align-items: center;
+      gap: var(--space-6);
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-7);
+    }
+    .grade-badge {
+      font-size: 4rem;
+      font-weight: 900;
+      line-height: 1;
+      width: 100px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 24px;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .grade-badge.grade-A { background: linear-gradient(135deg, #10b981, #059669); }
+    .grade-badge.grade-B { background: linear-gradient(135deg, #34d399, #10b981); }
+    .grade-badge.grade-C { background: linear-gradient(135deg, #fbbf24, #f59e0b); }
+    .grade-badge.grade-D { background: linear-gradient(135deg, #fb923c, #f97316); }
+    .grade-badge.grade-F { background: linear-gradient(135deg, #f87171, #ef4444); }
+    .grade-score { font-family: var(--font-heading); font-size: 1.6rem; font-weight: 800; }
+    .grade-meta { color: var(--color-text-muted); margin-top: var(--space-1); font-size: var(--text-sm); }
+    .grade-url { color: var(--color-accent-blue); font-size: var(--text-sm); margin-top: var(--space-2); word-break: break-all; }
+
+    .preview-section, .page-summary {
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-7);
+    }
+    .preview-section h3, .page-summary h3 {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      margin-bottom: var(--space-4);
+    }
+    .top-issues {
+      padding-left: var(--space-5);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+    }
+    .top-issues strong { color: var(--color-text-primary); }
+    .top-issues li::marker { color: #f97316; font-weight: 700; }
+    .page-meta { display: grid; grid-template-columns: 140px 1fr; gap: var(--space-2) var(--space-4); font-size: var(--text-sm); }
+    .page-meta dt { color: var(--color-text-muted); }
+    .page-meta dd { color: var(--color-text-primary); margin: 0; word-break: break-word; }
+
+    .email-gate {
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.08), rgba(37, 99, 235, 0.05));
+      border: 1px solid rgba(249, 115, 22, 0.25);
+      border-radius: var(--radius-xl);
+      padding: var(--space-7);
+    }
+    .gate-header h3 {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      margin-bottom: var(--space-3);
+    }
+    .gate-header p {
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+      margin-bottom: var(--space-5);
+    }
+    .gate-form {
+      display: flex;
+      gap: var(--space-3);
+    }
+    .gate-form input[type="email"] {
+      flex: 1;
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-4) var(--space-5);
+      color: var(--color-text-primary);
+      font-size: var(--text-base);
+      font-family: inherit;
+    }
+    .gate-form input[type="email"]:focus {
+      outline: none;
+      border-color: var(--color-accent-blue);
+    }
+    @media (max-width: 700px) {
+      .gate-form { flex-direction: column; }
+    }
+    .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+    .gate-fineprint { font-size: var(--text-xs); color: var(--color-text-muted); margin-top: var(--space-3); }
+
+    .gate-success {
+      text-align: center;
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-8);
+    }
+    .success-tick {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: #10b981;
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 32px; font-weight: 800;
+      margin: 0 auto var(--space-4);
+    }
+    .gate-success h3 {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+    }
+    .gate-success p { color: var(--color-text-secondary); margin-top: var(--space-2); }
+  </style>
+
+  <script>
+    const form = document.getElementById('auditForm') as HTMLFormElement;
+    const urlInput = document.getElementById('auditUrl') as HTMLInputElement;
+    const submit = document.getElementById('auditSubmit') as HTMLButtonElement;
+    const loading = document.getElementById('auditLoading')!;
+    const errorBox = document.getElementById('auditError')!;
+    const errorMsg = document.getElementById('auditErrorMsg')!;
+    const preview = document.getElementById('auditPreview')!;
+    const gradeBadge = document.getElementById('gradeBadge')!;
+    const gradeScore = document.getElementById('gradeScore')!;
+    const gradeMeta = document.getElementById('gradeMeta')!;
+    const gradeUrl = document.getElementById('gradeUrl')!;
+    const topIssues = document.getElementById('topIssues')!;
+    const metaTitle = document.getElementById('metaTitle')!;
+    const metaH1 = document.getElementById('metaH1')!;
+    const metaWordCount = document.getElementById('metaWordCount')!;
+    const metaSchema = document.getElementById('metaSchema')!;
+    const gateForm = document.getElementById('gateForm') as HTMLFormElement;
+    const gateEmail = document.getElementById('gateEmail') as HTMLInputElement;
+    const gateSubmit = document.getElementById('gateSubmit') as HTMLButtonElement;
+    const gateBox = document.getElementById('emailGate')!;
+    const gateSuccess = document.getElementById('gateSuccess')!;
+    const successMsg = document.getElementById('successMsg')!;
+
+    let currentUrl: string | null = null;
+
+    function show(el: HTMLElement) { el.removeAttribute('hidden'); }
+    function hide(el: HTMLElement) { el.setAttribute('hidden', ''); }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const url = urlInput.value.trim();
+      if (!url) return;
+      hide(preview); hide(errorBox); show(loading);
+      submit.disabled = true; submit.textContent = 'Auditing…';
+      try {
+        const res = await fetch('/api/aeo-audit-preview', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url }),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Failed');
+        currentUrl = data.url;
+        gradeBadge.textContent = data.grade;
+        gradeBadge.className = `grade-badge grade-${data.grade}`;
+        gradeScore.textContent = `${data.score} / ${data.maxScore} points`;
+        gradeMeta.textContent = `${data.passes} pass · ${data.warns} warn · ${data.fails} fail`;
+        gradeUrl.textContent = data.finalUrl;
+        topIssues.innerHTML = '';
+        (data.topIssues || []).forEach((i: any) => {
+          const li = document.createElement('li');
+          li.innerHTML = `<strong>${i.label}</strong> — ${i.detail}`;
+          topIssues.appendChild(li);
+        });
+        metaTitle.textContent = data.meta.title || '— (missing)';
+        metaH1.textContent = data.meta.h1 || '— (missing)';
+        metaWordCount.textContent = String(data.meta.wordCount || 0);
+        metaSchema.textContent = (data.meta.schemaTypes || []).length ? data.meta.schemaTypes.join(', ') : '— (no JSON-LD found)';
+        hide(loading); show(preview);
+        hide(gateSuccess); show(gateBox);
+      } catch (err: any) {
+        hide(loading);
+        errorMsg.textContent = err.message || 'Try again with a publicly reachable URL.';
+        show(errorBox);
+      } finally {
+        submit.disabled = false; submit.textContent = 'Run audit →';
+      }
+    });
+
+    gateForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = gateEmail.value.trim();
+      const hp = (gateForm.querySelector('.hp') as HTMLInputElement).value;
+      if (!email || !currentUrl) return;
+      gateSubmit.disabled = true; gateSubmit.textContent = 'Sending…';
+      try {
+        const res = await fetch('/api/lead-capture', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ tool: 'aeo-audit', email, url: currentUrl, honeypot: hp }),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Failed');
+        successMsg.textContent = data.message || 'The full report is on its way.';
+        hide(gateBox); show(gateSuccess);
+      } catch (err: any) {
+        alert(err.message || 'Something went wrong. Try again.');
+      } finally {
+        gateSubmit.disabled = false; gateSubmit.textContent = 'Send me the full report →';
+      }
+    });
+  </script>
+</BaseLayout>
