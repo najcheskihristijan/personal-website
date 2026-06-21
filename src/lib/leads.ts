@@ -61,7 +61,11 @@ export function listLeads(): Lead[] {
   return read();
 }
 
-// Simple in-memory rate limit: 5 requests / minute / IP
+// Simple in-memory rate limit: max requests / windowMs / IP.
+// NOTE: per-process, not shared. If Coolify runs multiple workers, the real
+// limit is `max * N_workers`. Behind a reverse proxy, ensure the adapter is
+// trusting X-Forwarded-For or `ip` is the proxy's address (which makes the
+// limit effectively global). For real global limiting, swap to Redis.
 const hits = new Map<string, number[]>();
 export function rateLimit(ip: string, max = 5, windowMs = 60_000): boolean {
   const now = Date.now();
@@ -69,6 +73,15 @@ export function rateLimit(ip: string, max = 5, windowMs = 60_000): boolean {
   if (arr.length >= max) return false;
   arr.push(now);
   hits.set(ip, arr);
+  // Best-effort prune: roughly 1% of calls, drop empty buckets so the map
+  // doesn't grow unbounded under wide IP scanning.
+  if (arr.length === 1 && Math.random() < 0.01) {
+    for (const [k, v] of hits) {
+      const fresh = v.filter((t) => now - t < windowMs);
+      if (!fresh.length) hits.delete(k);
+      else if (fresh.length !== v.length) hits.set(k, fresh);
+    }
+  }
   return true;
 }
 

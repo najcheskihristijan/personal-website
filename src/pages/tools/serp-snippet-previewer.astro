@@ -3,15 +3,15 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
-  title="Free SERP Snippet Previewer | Google Desktop & Mobile | Hristijan Najcheski"
-  description="Preview how your page title and meta description will appear in Google's desktop and mobile search results. Pixel-width and character-count warnings included, no signup."
+  title="Free SERP Snippet Previewer | Google + AI Overview, Perplexity, ChatGPT | Hristijan Najcheski"
+  description="Paste any URL — autofill the title and meta, preview how it renders in Google Desktop, Mobile, AI Overview, Perplexity, and ChatGPT. Live CTR score, rewrite-risk detector, rich-result simulators. Free, no signup."
 >
   <section class="page-header">
     <div class="container">
       <div class="page-header-content">
-        <span class="section-label">SEO Tool</span>
+        <span class="section-label">SEO + AEO Tool</span>
         <h1>SERP Snippet <span class="text-gradient">Previewer</span></h1>
-        <p>See exactly how your page will appear in Google — desktop and mobile — before it goes live. Catches truncated titles and descriptions by both character count and pixel width.</p>
+        <p>Paste any URL — it autofills the title and meta description. Preview how the page renders in Google Desktop, Mobile, <strong>AI Overview, Perplexity, and ChatGPT</strong>. Live CTR scoring, rewrite-risk detector, and rich-result simulators.</p>
       </div>
     </div>
   </section>
@@ -19,77 +19,312 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   <section class="section">
     <div class="container">
       <div class="tool-layout">
-        <!-- Form -->
-        <div class="tool-form">
+        <!-- =============== FORM =============== -->
+        <aside class="tool-form">
+          <!-- URL fetch -->
+          <div class="form-field fetch-block">
+            <label for="fetchUrl">Paste any URL — autofill the snippet</label>
+            <div class="fetch-row">
+              <input type="text" id="fetchUrl" placeholder="https://example.com/page" autocomplete="off" />
+              <button type="button" id="fetchBtn" class="btn btn-orange">Fetch</button>
+            </div>
+            <div id="fetchStatus" class="fetch-status"></div>
+          </div>
+
+          <hr class="form-sep" />
+
+          <!-- Target keyword -->
+          <div class="form-field">
+            <label for="keyword">Target keyword <span class="label-muted">(optional)</span></label>
+            <input type="text" id="keyword" placeholder="e.g. fractional seo consultant" autocomplete="off" />
+            <div class="hint">Used to bold matches and score CTR. Comma-separate multiple keywords.</div>
+          </div>
+
+          <!-- Title -->
           <div class="form-field">
             <label for="title">Page title</label>
             <input type="text" id="title" maxlength="120" placeholder="e.g. Free SERP Snippet Previewer — Hristijan Najcheski" />
             <div class="field-meter">
-              <span id="titleChars">0</span> chars ·
-              <span id="titlePx">0</span>px
+              <span id="titleChars">0</span> chars · <span id="titlePx">0</span>px
               <span id="titleStatus" class="status"></span>
             </div>
           </div>
 
+          <!-- URL display -->
           <div class="form-field">
-            <label for="url">URL</label>
+            <label for="url">URL shown in snippet</label>
             <input type="text" id="url" placeholder="https://hristijannajcheski.com/tools/serp-snippet-previewer/" />
           </div>
 
+          <!-- Description -->
           <div class="form-field">
             <label for="description">Meta description</label>
             <textarea id="description" rows="4" maxlength="320" placeholder="Preview how your page will appear in Google's search results. Get pixel-width and character-count warnings for titles and meta descriptions."></textarea>
             <div class="field-meter">
-              <span id="descChars">0</span> chars ·
-              <span id="descPx">0</span>px
+              <span id="descChars">0</span> chars · <span id="descPx">0</span>px
               <span id="descStatus" class="status"></span>
             </div>
           </div>
 
-          <div class="form-field">
-            <label for="date">Show date in snippet?</label>
-            <select id="date">
-              <option value="">None</option>
-              <option value="Apr 15, 2026 — ">Today</option>
-              <option value="3 days ago — ">3 days ago</option>
-              <option value="Mar 1, 2026 — ">Mar 1, 2026</option>
-            </select>
-          </div>
-        </div>
+          <!-- SERP features -->
+          <details class="form-section" open>
+            <summary>SERP rich-result features</summary>
+            <div class="form-section-body">
+              <div class="toggles">
+                <label class="toggle"><input type="checkbox" id="ftDate" /> <span>Show date</span></label>
+                <label class="toggle"><input type="checkbox" id="ftRating" /> <span>Star rating</span></label>
+                <label class="toggle"><input type="checkbox" id="ftSitelinks" /> <span>Sitelinks</span></label>
+                <label class="toggle"><input type="checkbox" id="ftFaq" /> <span>FAQ accordion</span></label>
+                <label class="toggle"><input type="checkbox" id="ftImage" /> <span>Image thumbnail</span></label>
+              </div>
 
-        <!-- Preview -->
+              <div class="feature-detail" data-for="ftDate">
+                <label class="sub-label">Date prefix</label>
+                <select id="dateChoice">
+                  <option value="today">Today</option>
+                  <option value="2 days ago">2 days ago</option>
+                  <option value="1 week ago">1 week ago</option>
+                  <option value="1 month ago">1 month ago</option>
+                </select>
+              </div>
+
+              <div class="feature-detail" data-for="ftRating">
+                <div class="row-2">
+                  <div>
+                    <label class="sub-label">Rating</label>
+                    <input type="number" id="ratingValue" min="0" max="5" step="0.1" value="4.7" />
+                  </div>
+                  <div>
+                    <label class="sub-label">Review count</label>
+                    <input type="number" id="reviewCount" min="0" value="328" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="feature-detail" data-for="ftSitelinks">
+                <label class="sub-label">Sitelinks (up to 4)</label>
+                <input type="text" id="sl1" placeholder="Sitelink 1 — Pricing" />
+                <input type="text" id="sl2" placeholder="Sitelink 2 — About" />
+                <input type="text" id="sl3" placeholder="Sitelink 3 — Contact" />
+                <input type="text" id="sl4" placeholder="Sitelink 4 — Blog" />
+              </div>
+
+              <div class="feature-detail" data-for="ftFaq">
+                <label class="sub-label">FAQ questions (up to 3)</label>
+                <input type="text" id="faq1" placeholder="How does X work?" />
+                <input type="text" id="faq2" placeholder="What is Y?" />
+                <input type="text" id="faq3" placeholder="Why should I use Z?" />
+              </div>
+
+              <div class="feature-detail" data-for="ftImage">
+                <label class="sub-label">Image URL <span class="label-muted">(leave blank for placeholder)</span></label>
+                <input type="text" id="imageUrl" placeholder="https://example.com/thumb.jpg" />
+              </div>
+            </div>
+          </details>
+
+          <hr class="form-sep" />
+
+          <!-- Email gate -->
+          <div class="email-gate">
+            <h3>Get the full optimization report</h3>
+            <p>I'll run a full snippet analysis <strong>plus an AEO audit</strong> of your URL and email a fix-list. Free.</p>
+            <input type="email" id="leadEmail" placeholder="you@company.com" autocomplete="email" aria-label="Email address" />
+            <input type="text" id="hp" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <button type="button" id="reportBtn" class="btn btn-orange btn-block">Email me the report →</button>
+            <div id="leadStatus" class="lead-status"></div>
+          </div>
+        </aside>
+
+        <!-- =============== PREVIEW =============== -->
         <div class="tool-preview">
-          <div class="preview-tabs">
-            <button class="preview-tab active" data-view="desktop">Desktop</button>
-            <button class="preview-tab" data-view="mobile">Mobile</button>
+          <div class="preview-tabs" role="tablist" aria-label="Preview surface">
+            <button class="preview-tab active" data-view="desktop" type="button" role="tab" aria-selected="true" aria-controls="desktopPreview" id="tab-desktop">Google Desktop</button>
+            <button class="preview-tab" data-view="mobile" type="button" role="tab" aria-selected="false" aria-controls="mobilePreview" id="tab-mobile">Google Mobile</button>
+            <button class="preview-tab" data-view="aiOverview" type="button" role="tab" aria-selected="false" aria-controls="aiOverviewPreview" id="tab-aiOverview">AI Overview</button>
+            <button class="preview-tab" data-view="perplexity" type="button" role="tab" aria-selected="false" aria-controls="perplexityPreview" id="tab-perplexity">Perplexity</button>
+            <button class="preview-tab" data-view="chatgpt" type="button" role="tab" aria-selected="false" aria-controls="chatgptPreview" id="tab-chatgpt">ChatGPT</button>
           </div>
 
-          <div id="desktopPreview" class="preview-pane active">
+          <!-- Google Desktop -->
+          <div id="desktopPreview" class="preview-pane active" role="tabpanel" aria-labelledby="tab-desktop">
             <div class="serp-snippet serp-desktop">
               <div class="serp-site">
-                <div class="serp-favicon">H</div>
+                <div class="serp-favicon" id="dFavicon">H</div>
                 <div class="serp-site-info">
                   <div class="serp-sitename" id="dSiteName">hristijannajcheski.com</div>
                   <div class="serp-url" id="dUrl">https://hristijannajcheski.com › tools › serp-snippet-previewer</div>
                 </div>
               </div>
-              <h3 class="serp-title" id="dTitle">Your page title will appear here</h3>
-              <p class="serp-desc" id="dDesc"><span class="serp-date" id="dDate"></span>Your meta description will appear here. Start typing in the form to see the preview update in real time.</p>
+              <div class="serp-flex">
+                <div class="serp-main">
+                  <h3 class="serp-title" id="dTitle">Your page title will appear here</h3>
+                  <div class="serp-rating" id="dRating" style="display:none;"></div>
+                  <p class="serp-desc"><span class="serp-date" id="dDate"></span><span id="dDesc">Your meta description will appear here. Start typing in the form to see the preview update in real time.</span></p>
+                </div>
+                <div class="serp-image" id="dImage" style="display:none;"></div>
+              </div>
+              <div class="serp-sitelinks" id="dSitelinks" style="display:none;"></div>
+              <div class="serp-faq" id="dFaq" style="display:none;"></div>
             </div>
           </div>
 
-          <div id="mobilePreview" class="preview-pane">
+          <!-- Google Mobile -->
+          <div id="mobilePreview" class="preview-pane" role="tabpanel" aria-labelledby="tab-mobile">
             <div class="serp-snippet serp-mobile">
               <div class="serp-site">
-                <div class="serp-favicon">H</div>
+                <div class="serp-favicon" id="mFavicon">H</div>
                 <div class="serp-site-info">
                   <div class="serp-sitename" id="mSiteName">hristijannajcheski.com</div>
                   <div class="serp-url" id="mUrl">https://hristijannajcheski.com › tools</div>
                 </div>
               </div>
-              <h3 class="serp-title" id="mTitle">Your page title will appear here</h3>
-              <p class="serp-desc" id="mDesc"><span class="serp-date" id="mDate"></span>Your meta description will appear here. Start typing in the form to see the preview update in real time.</p>
+              <div class="serp-flex">
+                <div class="serp-main">
+                  <h3 class="serp-title" id="mTitle">Your page title will appear here</h3>
+                  <div class="serp-rating" id="mRating" style="display:none;"></div>
+                  <p class="serp-desc"><span class="serp-date" id="mDate"></span><span id="mDesc">Your meta description will appear here. Start typing in the form to see the preview update in real time.</span></p>
+                </div>
+                <div class="serp-image" id="mImage" style="display:none;"></div>
+              </div>
+              <div class="serp-sitelinks serp-sitelinks-mobile" id="mSitelinks" style="display:none;"></div>
+              <div class="serp-faq" id="mFaq" style="display:none;"></div>
             </div>
+          </div>
+
+          <!-- AI Overview -->
+          <div id="aiOverviewPreview" class="preview-pane" role="tabpanel" aria-labelledby="tab-aiOverview">
+            <div class="ai-card ai-overview">
+              <div class="ai-overview-head">
+                <div class="ai-overview-pill">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+                  AI Overview
+                </div>
+                <div class="ai-overview-meta">Generated · From <strong id="aoBrand">your site</strong> + 4 other sources</div>
+              </div>
+              <p class="ai-overview-body" id="aoBody">Your meta description text will appear here, rephrased and grounded in citations. Train your snippet to be the source — the cleaner your title and description, the higher the citation eligibility.<sup class="ai-cite">[1]</sup></p>
+              <div class="ai-overview-srclist">
+                <div class="ai-src-head">Sources</div>
+                <div class="ai-src">
+                  <div class="ai-src-num">1</div>
+                  <div class="ai-src-favicon" id="aoFavicon">H</div>
+                  <div class="ai-src-body">
+                    <div class="ai-src-title" id="aoTitle">Your page title</div>
+                    <div class="ai-src-host" id="aoHost">hristijannajcheski.com</div>
+                  </div>
+                </div>
+                <div class="ai-src ai-src-dim">
+                  <div class="ai-src-num">2</div>
+                  <div class="ai-src-favicon" style="background:#888;">W</div>
+                  <div class="ai-src-body">
+                    <div class="ai-src-title">Competing source (your competitor's snippet)</div>
+                    <div class="ai-src-host">othersite.com</div>
+                  </div>
+                </div>
+              </div>
+              <div class="ai-cite-note">Tip: AI Overview prefers concise titles and Q-shaped headings. Title + first 160 chars of description are the strongest signals.</div>
+            </div>
+          </div>
+
+          <!-- Perplexity -->
+          <div id="perplexityPreview" class="preview-pane" role="tabpanel" aria-labelledby="tab-perplexity">
+            <div class="ai-card ai-perplexity">
+              <div class="px-question">
+                <span class="px-icon">?</span>
+                <span id="pxQuery">What does the page describe?</span>
+              </div>
+              <div class="px-sources">
+                <div class="px-source px-source-1">
+                  <div class="px-src-host"><span class="px-favicon" id="pxFavicon">H</span><span id="pxHost">hristijannajcheski.com</span></div>
+                  <div class="px-src-title" id="pxTitle">Your page title</div>
+                  <div class="px-src-num">1</div>
+                </div>
+                <div class="px-source">
+                  <div class="px-src-host"><span class="px-favicon" style="background:#0ea5e9;">R</span>reddit.com</div>
+                  <div class="px-src-title">Related discussion</div>
+                  <div class="px-src-num">2</div>
+                </div>
+                <div class="px-source">
+                  <div class="px-src-host"><span class="px-favicon" style="background:#16a34a;">G</span>github.com</div>
+                  <div class="px-src-title">Related repo</div>
+                  <div class="px-src-num">3</div>
+                </div>
+              </div>
+              <div class="px-answer">
+                <p id="pxBody">Your meta description, rewritten as a direct answer to the user's question. <sup class="px-cite">1</sup> Pages with clear, scannable structure are cited more often. <sup class="px-cite">1</sup></p>
+              </div>
+              <div class="ai-cite-note">Tip: Perplexity ranks sources by clarity, freshness, and outbound citation count. Your snippet drives the citation — but the page content drives the rank.</div>
+            </div>
+          </div>
+
+          <!-- ChatGPT -->
+          <div id="chatgptPreview" class="preview-pane" role="tabpanel" aria-labelledby="tab-chatgpt">
+            <div class="ai-card ai-chatgpt">
+              <div class="gpt-row gpt-user">
+                <div class="gpt-avatar gpt-avatar-user">U</div>
+                <div class="gpt-body"><div id="gptQuery">What does this page describe?</div></div>
+              </div>
+              <div class="gpt-row gpt-assistant">
+                <div class="gpt-avatar gpt-avatar-bot">★</div>
+                <div class="gpt-body">
+                  <div class="gpt-tool">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+                    Searched the web · 3 sources
+                  </div>
+                  <p id="gptBody">Based on the page, your meta description is what the model summarizes. Pages whose snippet directly answers the user prompt get the highest citation odds.</p>
+                  <div class="gpt-cite-card">
+                    <div class="gpt-cite-favicon" id="gptFavicon">H</div>
+                    <div class="gpt-cite-body">
+                      <div class="gpt-cite-title" id="gptTitle">Your page title</div>
+                      <div class="gpt-cite-host" id="gptHost">hristijannajcheski.com</div>
+                      <div class="gpt-cite-snippet" id="gptSnippet">Your meta description excerpt…</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="ai-cite-note">Tip: ChatGPT browse mode pulls the page title verbatim, then a 1-2 sentence excerpt from your description or first paragraph. Front-load the answer.</div>
+            </div>
+          </div>
+
+          <!-- Analysis -->
+          <div class="analysis">
+            <div class="analysis-metrics">
+              <div class="metric">
+                <div class="metric-head">
+                  <div class="metric-label">CTR signals</div>
+                  <div class="metric-value" id="ctrScoreText">— / 100</div>
+                </div>
+                <div class="metric-bar"><div id="ctrFill" class="metric-fill metric-fill-ctr"></div></div>
+              </div>
+              <div class="metric">
+                <div class="metric-head">
+                  <div class="metric-label">Rewrite risk</div>
+                  <div class="metric-value" id="rwLevelText">—</div>
+                </div>
+                <div class="metric-bar"><div id="rwFill" class="metric-fill metric-fill-rw"></div></div>
+              </div>
+            </div>
+
+            <div class="analysis-section">
+              <div class="analysis-section-label">Power-word + structure checks</div>
+              <div class="chips" id="ctrChips"></div>
+            </div>
+
+            <div class="analysis-section" id="ctrTipsSection" style="display:none;">
+              <div class="analysis-section-label">How to lift this score</div>
+              <ul class="tips" id="ctrTips"></ul>
+            </div>
+
+            <div class="analysis-section" id="rwReasonsSection" style="display:none;">
+              <div class="analysis-section-label">Why Google may rewrite this</div>
+              <ul class="tips" id="rwReasons"></ul>
+            </div>
+          </div>
+
+          <div class="action-bar">
+            <button type="button" id="copyShareBtn" class="btn btn-secondary">Copy share link</button>
+            <button type="button" id="resetBtn" class="btn btn-secondary">Reset</button>
+            <span id="copyShareStatus" class="action-status"></span>
           </div>
 
           <div class="preview-notes">
@@ -97,7 +332,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             <ul>
               <li><strong>Title:</strong> Google truncates at ~600px (desktop), roughly 50–60 characters. This tool measures pixel width directly — more accurate than character count alone.</li>
               <li><strong>Meta description:</strong> ~920px desktop (~155–160 chars), ~680px mobile (~120 chars). Google rewrites ~70% of meta descriptions anyway, so focus on titles first.</li>
-              <li><strong>Important:</strong> Google picks what to display. A compelling snippet increases CTR; a truncated one reduces it.</li>
+              <li><strong>Bolding:</strong> Google bolds query matches in the snippet. Enter your target keyword above to see how it looks rendered.</li>
+              <li><strong>AI engines:</strong> AI Overview, Perplexity, and ChatGPT pull the title verbatim but rephrase the description. Title is the cite-eligibility signal; description is the rephrase source.</li>
             </ul>
           </div>
         </div>
@@ -109,11 +345,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <div class="container">
       <div style="max-width: 760px; margin: 0 auto;">
         <span class="section-label">Related resources</span>
-        <h2 class="section-title" style="margin-bottom: var(--space-6);">Going <span class="text-gradient">beyond snippets</span></h2>
-        <p style="color: var(--color-text-secondary); line-height: 1.8;">A good snippet helps CTR, but real SEO gains come from the page underneath. If you want a full read on what's helping — or hurting — your rankings, an <a href="/services/seo-audits/" style="color: var(--color-accent-blue);">SEO audit</a> is the starting point. For ongoing support, see <a href="/blog/what-is-fractional-seo/" style="color: var(--color-accent-blue);">what a fractional SEO consultant does</a>.</p>
+        <h2 class="section-title" style="margin-bottom: var(--space-6);">Beyond <span class="text-gradient">the snippet</span></h2>
+        <p style="color: var(--color-text-secondary); line-height: 1.8;">A clean snippet helps CTR, but the page underneath is what wins citations. Run a <a href="/tools/aeo-readiness-audit/" style="color: var(--color-accent-blue);">free AEO readiness audit</a> on the same URL, or generate the <a href="/tools/schema-generator/" style="color: var(--color-accent-blue);">JSON-LD schema</a> AI engines actually consume. For ongoing help, see <a href="/blog/what-is-fractional-seo/" style="color: var(--color-accent-blue);">what a fractional SEO consultant does</a>.</p>
         <div style="display:flex;flex-wrap:wrap;gap:var(--space-3);margin-top:var(--space-6);">
           <a href="/contact/" class="btn btn-orange btn-lg">Free 60-Min Consultation →</a>
-          <a href="/tools/" class="btn btn-secondary btn-lg">More SEO tools →</a>
+          <a href="/tools/" class="btn btn-secondary btn-lg">More AEO & SEO tools →</a>
         </div>
       </div>
     </div>
@@ -123,7 +359,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <div class="container">
       <div class="cta-card">
         <h2>Snippet looks great. <span class="text-gradient-orange">What about the page?</span></h2>
-        <p>The snippet is the headline. The page underneath is what ranks. If you want a senior SEO read on the full picture, let's talk.</p>
+        <p>The snippet is the headline. The page underneath is what gets cited. If you want a senior SEO read on the full picture, let's talk.</p>
         <a href="/contact/" class="btn btn-orange btn-lg">Book a Free Strategy Call →</a>
       </div>
     </div>
@@ -132,10 +368,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   <style>
     .tool-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
       gap: var(--space-8);
+      align-items: start;
     }
-    @media (max-width: 900px) {
+    @media (max-width: 1024px) {
       .tool-layout { grid-template-columns: 1fr; }
     }
 
@@ -143,12 +380,17 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       background: var(--color-bg-elevated);
       border: 1px solid var(--color-border);
       border-radius: var(--radius-xl);
-      padding: var(--space-8);
+      padding: var(--space-7);
       display: flex;
       flex-direction: column;
       gap: var(--space-5);
-      align-self: start;
+      position: sticky;
+      top: var(--space-6);
     }
+    @media (max-width: 1024px) {
+      .tool-form { position: static; }
+    }
+
     .form-field label {
       display: block;
       font-family: var(--font-heading);
@@ -157,7 +399,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       color: var(--color-text-primary);
       margin-bottom: var(--space-3);
     }
-    .form-field input,
+    .label-muted {
+      color: var(--color-text-muted);
+      font-weight: 400;
+      font-size: 0.85em;
+    }
+    .form-field input[type="text"],
+    .form-field input[type="email"],
+    .form-field input[type="number"],
     .form-field textarea,
     .form-field select {
       width: 100%;
@@ -175,6 +424,35 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       outline: none;
       border-color: var(--color-accent-blue);
     }
+    .form-field .hint {
+      margin-top: var(--space-2);
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+    }
+
+    .form-sep {
+      border: none;
+      border-top: 1px solid var(--color-border);
+      margin: 0;
+    }
+
+    /* URL fetch row */
+    .fetch-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-3);
+    }
+    .fetch-row .btn { padding-left: var(--space-5); padding-right: var(--space-5); }
+    .fetch-status {
+      margin-top: var(--space-2);
+      font-size: var(--text-xs);
+      min-height: 16px;
+      color: var(--color-text-muted);
+    }
+    .fetch-status.fetch-ok { color: #10b981; }
+    .fetch-status.fetch-err { color: #ef4444; }
+    .fetch-status.fetch-loading { color: var(--color-accent-blue); }
+
     .field-meter {
       margin-top: var(--space-2);
       font-size: var(--text-xs);
@@ -186,26 +464,141 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     .status.warn { color: #f59e0b; }
     .status.bad { color: #ef4444; }
 
-    .tool-preview { display: flex; flex-direction: column; gap: var(--space-5); }
+    /* SERP feature toggles */
+    .form-section {
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 0;
+    }
+    .form-section > summary {
+      cursor: pointer;
+      padding: var(--space-3) var(--space-4);
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: var(--text-sm);
+      color: var(--color-text-primary);
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .form-section > summary::-webkit-details-marker { display: none; }
+    .form-section > summary::after {
+      content: '▾';
+      color: var(--color-text-muted);
+      font-size: 0.7em;
+      transition: transform 0.15s ease;
+    }
+    .form-section[open] > summary::after { transform: rotate(180deg); }
+    .form-section-body {
+      padding: 0 var(--space-4) var(--space-4);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .toggles {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-2) var(--space-3);
+    }
+    .toggle {
+      display: flex !important;
+      align-items: center;
+      gap: var(--space-2);
+      margin-bottom: 0 !important;
+      font-size: var(--text-sm) !important;
+      font-weight: 500 !important;
+      cursor: pointer;
+      color: var(--color-text-secondary) !important;
+    }
+    .toggle input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: #f97316;
+      cursor: pointer;
+    }
+    .feature-detail {
+      display: none;
+      padding: var(--space-3);
+      background: var(--color-bg-secondary);
+      border-radius: var(--radius-sm);
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    .feature-detail.show { display: flex; }
+    .feature-detail .sub-label {
+      font-size: var(--text-xs) !important;
+      color: var(--color-text-muted) !important;
+      margin-bottom: var(--space-1) !important;
+      font-weight: 500 !important;
+    }
+    .feature-detail input,
+    .feature-detail select { font-size: var(--text-sm) !important; padding: var(--space-2) var(--space-3) !important; }
+    .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+
+    /* Email gate */
+    .email-gate {
+      background: linear-gradient(135deg, rgba(249,115,22,0.06), rgba(249,115,22,0.02));
+      border: 1px solid rgba(249,115,22,0.25);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .email-gate h3 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: var(--text-base);
+      color: var(--color-text-primary);
+      margin: 0;
+    }
+    .email-gate p {
+      margin: 0;
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.55;
+    }
+    .email-gate input {
+      width: 100%;
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-3) var(--space-4);
+      color: var(--color-text-primary);
+      font-family: inherit;
+      font-size: var(--text-base);
+    }
+    .btn-block { width: 100%; justify-content: center; }
+    .hp { position: absolute; left: -9999px; top: -9999px; height: 0; opacity: 0; }
+    .lead-status { font-size: var(--text-xs); min-height: 16px; color: var(--color-text-muted); }
+    .lead-status.ok { color: #10b981; }
+    .lead-status.err { color: #ef4444; }
+
+    /* Preview side */
+    .tool-preview { display: flex; flex-direction: column; gap: var(--space-5); min-width: 0; }
     .preview-tabs {
-      display: inline-flex;
+      display: flex;
+      flex-wrap: wrap;
       gap: 4px;
       background: var(--color-bg-secondary);
       border: 1px solid var(--color-border);
       border-radius: var(--radius-md);
       padding: 4px;
-      width: fit-content;
     }
     .preview-tab {
+      flex: 1 1 auto;
       background: transparent;
       border: none;
-      padding: var(--space-2) var(--space-4);
+      padding: var(--space-2) var(--space-3);
       border-radius: var(--radius-sm);
       color: var(--color-text-muted);
       font-family: var(--font-heading);
       font-weight: 600;
-      font-size: var(--text-sm);
+      font-size: var(--text-xs);
       cursor: pointer;
+      white-space: nowrap;
     }
     .preview-tab.active {
       background: var(--color-bg-primary);
@@ -215,7 +608,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     .preview-pane { display: none; }
     .preview-pane.active { display: block; }
 
-    /* Google-like snippet styling */
+    /* === Google snippet base === */
     .serp-snippet {
       background: #ffffff;
       border: 1px solid #e5e7eb;
@@ -234,9 +627,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       font-size: 14px; font-weight: 700;
+      overflow: hidden;
+      flex-shrink: 0;
     }
+    .serp-favicon img { width: 100%; height: 100%; object-fit: cover; }
     .serp-sitename { font-size: 14px; color: #202124; line-height: 1.2; }
     .serp-url { font-size: 12px; color: #4d5156; line-height: 1.2; }
+    .serp-flex { display: flex; gap: 16px; align-items: flex-start; }
+    .serp-main { flex: 1; min-width: 0; }
     .serp-title {
       color: #1a0dab;
       font-size: 20px;
@@ -246,13 +644,398 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       font-family: arial, sans-serif;
     }
     .serp-mobile .serp-title { font-size: 18px; }
+    .serp-title strong { font-weight: 700; color: #1a0dab; }
     .serp-desc {
       color: #4d5156;
       font-size: 14px;
       line-height: 1.58;
       margin: 0;
     }
+    .serp-desc strong { color: #202124; font-weight: 700; }
     .serp-date { color: #70757a; }
+
+    .serp-rating {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: #4d5156;
+      margin: 4px 0 6px;
+    }
+    .serp-stars { color: #f59e0b; letter-spacing: 1px; }
+
+    .serp-image {
+      width: 96px; height: 96px;
+      background: #e5e7eb url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%239ca3af" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>') no-repeat center;
+      background-size: 32px;
+      border-radius: 8px;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .serp-image img { width: 100%; height: 100%; object-fit: cover; }
+
+    .serp-sitelinks {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 24px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid #f0f1f4;
+    }
+    .serp-sitelinks-mobile { grid-template-columns: 1fr; gap: 8px; }
+    .serp-sitelink {
+      color: #1a0dab;
+      font-size: 14px;
+      font-family: arial, sans-serif;
+      text-decoration: none;
+    }
+    .serp-sitelink-desc { color: #4d5156; font-size: 12px; line-height: 1.4; }
+
+    .serp-faq {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid #f0f1f4;
+    }
+    .serp-faq-item {
+      padding: 8px 0;
+      border-bottom: 1px solid #f0f1f4;
+      font-size: 14px;
+      color: #202124;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .serp-faq-item:last-child { border-bottom: none; }
+    .serp-faq-chev { color: #70757a; font-size: 18px; line-height: 1; }
+
+    /* === AI Overview === */
+    .ai-card {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 20px 22px;
+      color: #1f2937;
+      font-family: -apple-system, BlinkMacSystemFont, 'Inter', arial, sans-serif;
+    }
+    .ai-overview {
+      background: linear-gradient(180deg, #f1f8ff 0%, #ffffff 30%);
+      border-color: #cfe1f6;
+    }
+    .ai-overview-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .ai-overview-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #4285f4, #34a853);
+      color: #fff;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .ai-overview-meta { font-size: 12px; color: #6b7280; }
+    .ai-overview-meta strong { color: #1f2937; }
+    .ai-overview-body {
+      font-size: 15px;
+      line-height: 1.65;
+      margin: 6px 0 16px;
+      color: #1f2937;
+    }
+    .ai-overview-body strong { font-weight: 700; }
+    .ai-cite { color: #4285f4; font-weight: 600; font-size: 11px; vertical-align: super; margin-left: 2px; }
+    .ai-overview-srclist {
+      background: #f9fafb;
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+    .ai-src-head { font-size: 12px; color: #6b7280; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+    .ai-src {
+      display: grid;
+      grid-template-columns: 22px 26px 1fr;
+      gap: 10px;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid #eef0f4;
+    }
+    .ai-src:last-child { border-bottom: none; }
+    .ai-src-dim { opacity: 0.6; }
+    .ai-src-num { font-size: 12px; color: #6b7280; font-weight: 600; text-align: center; }
+    .ai-src-favicon {
+      width: 26px; height: 26px;
+      background: #1a73e8;
+      color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700;
+      overflow: hidden;
+    }
+    .ai-src-favicon img { width: 100%; height: 100%; object-fit: cover; }
+    .ai-src-title { font-size: 13px; color: #1f2937; line-height: 1.3; font-weight: 500; }
+    .ai-src-host { font-size: 11px; color: #6b7280; }
+    .ai-cite-note {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 12px;
+      color: #78350f;
+      line-height: 1.5;
+    }
+
+    /* === Perplexity === */
+    .ai-perplexity {
+      background: #ffffff;
+      border-color: #e5e7eb;
+    }
+    .px-question {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid #eef0f4;
+      font-size: 15px;
+      font-weight: 600;
+      color: #1f2937;
+    }
+    .px-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px; height: 24px;
+      background: #20808d;
+      color: #fff;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .px-sources {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .px-source {
+      background: #f9fafb;
+      border-radius: 8px;
+      padding: 10px 12px;
+      position: relative;
+      border: 1px solid #eef0f4;
+    }
+    .px-source-1 { background: #ecfdf5; border-color: #a7f3d0; }
+    .px-src-host { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #6b7280; margin-bottom: 4px; }
+    .px-favicon {
+      width: 14px; height: 14px;
+      background: #1a73e8;
+      color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 8px;
+      font-weight: 700;
+      overflow: hidden;
+    }
+    .px-favicon img { width: 100%; height: 100%; object-fit: cover; }
+    .px-src-title { font-size: 12px; color: #1f2937; line-height: 1.3; font-weight: 500; }
+    .px-src-num {
+      position: absolute;
+      top: 6px; right: 8px;
+      font-size: 10px;
+      color: #9ca3af;
+      font-weight: 700;
+    }
+    .px-answer p { font-size: 14px; line-height: 1.65; color: #1f2937; margin: 0 0 12px; }
+    .px-answer strong { font-weight: 700; }
+    .px-cite {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 14px; height: 14px;
+      background: #ecfdf5;
+      color: #20808d;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      vertical-align: super;
+      margin: 0 2px;
+    }
+
+    /* === ChatGPT === */
+    .ai-chatgpt {
+      background: #ffffff;
+      border-color: #e5e7eb;
+      padding: 16px 18px;
+    }
+    .gpt-row { display: flex; gap: 12px; padding: 12px 0; }
+    .gpt-row + .gpt-row { border-top: 1px solid #eef0f4; }
+    .gpt-avatar {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+    .gpt-avatar-user { background: #d1fae5; color: #065f46; }
+    .gpt-avatar-bot { background: #1f2937; color: #fff; }
+    .gpt-body { flex: 1; font-size: 14px; line-height: 1.6; color: #1f2937; min-width: 0; }
+    .gpt-body p { margin: 0 0 10px; }
+    .gpt-body strong { font-weight: 700; }
+    .gpt-tool {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #f3f4f6;
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 11px;
+      color: #6b7280;
+      margin-bottom: 8px;
+    }
+    .gpt-cite-card {
+      display: flex;
+      gap: 12px;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin-top: 8px;
+    }
+    .gpt-cite-favicon {
+      width: 28px; height: 28px;
+      background: #1a73e8;
+      color: #fff;
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .gpt-cite-favicon img { width: 100%; height: 100%; object-fit: cover; }
+    .gpt-cite-body { flex: 1; min-width: 0; }
+    .gpt-cite-title { font-size: 13px; color: #1f2937; line-height: 1.3; font-weight: 600; }
+    .gpt-cite-host { font-size: 11px; color: #6b7280; margin: 2px 0; }
+    .gpt-cite-snippet { font-size: 12px; color: #4b5563; line-height: 1.5; }
+
+    /* === Analysis panel === */
+    .analysis {
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+    }
+    .analysis-metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-5);
+    }
+    @media (max-width: 600px) { .analysis-metrics { grid-template-columns: 1fr; } }
+    .metric { display: flex; flex-direction: column; gap: var(--space-2); }
+    .metric-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .metric-label {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: var(--text-sm);
+      color: var(--color-text-primary);
+    }
+    .metric-value {
+      font-family: var(--font-mono, ui-monospace, monospace);
+      font-size: var(--text-sm);
+      font-weight: 700;
+      color: var(--color-text-primary);
+    }
+    .metric-bar {
+      width: 100%;
+      height: 8px;
+      background: var(--color-bg-primary);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .metric-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      transition: width 0.3s ease, background 0.3s ease;
+    }
+    .metric-fill-ctr { background: linear-gradient(90deg, #ef4444, #f59e0b 50%, #10b981); }
+    .metric-fill-rw { background: linear-gradient(90deg, #10b981, #f59e0b 50%, #ef4444); }
+
+    .analysis-section { display: flex; flex-direction: column; gap: var(--space-2); }
+    .analysis-section-label {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: var(--text-xs);
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid;
+    }
+    .chip-ok { background: rgba(16,185,129,0.12); color: #10b981; border-color: rgba(16,185,129,0.3); }
+    .chip-miss { background: var(--color-bg-secondary); color: var(--color-text-muted); border-color: var(--color-border); }
+    .tips {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    .tips li {
+      font-size: var(--text-sm);
+      line-height: 1.55;
+      color: var(--color-text-secondary);
+      padding-left: 18px;
+      position: relative;
+    }
+    .tips li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: #f97316;
+      font-weight: 700;
+    }
+
+    .action-bar {
+      display: flex;
+      gap: var(--space-3);
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .action-status {
+      font-size: var(--text-xs);
+      color: #10b981;
+      font-weight: 600;
+    }
 
     .preview-notes {
       background: var(--color-bg-elevated);
@@ -267,57 +1050,271 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       color: var(--color-text-primary);
       margin: 0 0 var(--space-3);
     }
-    .preview-notes ul { color: var(--color-text-secondary); font-size: var(--text-sm); line-height: 1.7; padding-left: 1.25rem; }
+    .preview-notes ul { color: var(--color-text-secondary); font-size: var(--text-sm); line-height: 1.7; padding-left: 1.25rem; margin: 0; }
     .preview-notes li { margin-bottom: var(--space-2); }
   </style>
 
   <script>
-    // Measure pixel width using a canvas so we can predict truncation
+    // ============ State ============
+    const PLACEHOLDER_TITLE = 'Your page title will appear here';
+    const PLACEHOLDER_DESC = "Your meta description will appear here. Start typing in the form to see the preview update in real time.";
+
+    // Tracked input ids
+    const FIELDS = {
+      fetchUrl: 'fetchUrl',
+      keyword: 'keyword',
+      title: 'title',
+      url: 'url',
+      description: 'description',
+      ftDate: 'ftDate',
+      dateChoice: 'dateChoice',
+      ftRating: 'ftRating',
+      ratingValue: 'ratingValue',
+      reviewCount: 'reviewCount',
+      ftSitelinks: 'ftSitelinks',
+      sl1: 'sl1', sl2: 'sl2', sl3: 'sl3', sl4: 'sl4',
+      ftFaq: 'ftFaq',
+      faq1: 'faq1', faq2: 'faq2', faq3: 'faq3',
+      ftImage: 'ftImage',
+      imageUrl: 'imageUrl',
+    } as const;
+
+    const $ = (id: string) => document.getElementById(id)!;
+    const $i = (id: string) => $(id) as HTMLInputElement;
+    const $t = (id: string) => $(id) as HTMLTextAreaElement;
+    const $s = (id: string) => $(id) as HTMLSelectElement;
+
+    // ============ Pixel measurement ============
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d')!;
-
     function measure(text: string, font: string): number {
       ctx.font = font;
       return Math.round(ctx.measureText(text).width);
     }
-
-    const titleInput = document.getElementById('title') as HTMLInputElement;
-    const urlInput = document.getElementById('url') as HTMLInputElement;
-    const descInput = document.getElementById('description') as HTMLTextAreaElement;
-    const dateSelect = document.getElementById('date') as HTMLSelectElement;
-
-    const dTitle = document.getElementById('dTitle')!;
-    const dDesc = document.getElementById('dDesc')!;
-    const dUrl = document.getElementById('dUrl')!;
-    const dSiteName = document.getElementById('dSiteName')!;
-    const dDate = document.getElementById('dDate')!;
-
-    const mTitle = document.getElementById('mTitle')!;
-    const mDesc = document.getElementById('mDesc')!;
-    const mUrl = document.getElementById('mUrl')!;
-    const mSiteName = document.getElementById('mSiteName')!;
-    const mDate = document.getElementById('mDate')!;
-
-    const titleChars = document.getElementById('titleChars')!;
-    const titlePx = document.getElementById('titlePx')!;
-    const titleStatus = document.getElementById('titleStatus')!;
-    const descChars = document.getElementById('descChars')!;
-    const descPx = document.getElementById('descPx')!;
-    const descStatus = document.getElementById('descStatus')!;
-
     const TITLE_FONT = '400 20px arial, sans-serif';
     const DESC_FONT = '400 14px arial, sans-serif';
     const TITLE_MAX_PX = 600;
     const DESC_DESKTOP_MAX_PX = 920;
 
-    function setStatus(el: HTMLElement, px: number, max: number) {
-      el.classList.remove('ok', 'warn', 'bad');
-      if (px === 0) { el.textContent = ''; return; }
-      if (px <= max * 0.85) { el.textContent = '· Good length'; el.classList.add('ok'); }
-      else if (px <= max) { el.textContent = '· Close to limit'; el.classList.add('warn'); }
-      else { el.textContent = '· Too long (will be truncated)'; el.classList.add('bad'); }
+    // ============ Escape + bold ============
+    function escapeHtml(s: string): string {
+      return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+    }
+    function escapeRegex(s: string): string {
+      return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+    function getKeywordTokens(): string[] {
+      const k = $i(FIELDS.keyword).value || '';
+      return k.split(/[,\n]+/).map(s => s.trim()).filter(s => s.length >= 2);
+    }
+    function safeUrl(raw: string): string {
+      try {
+        const u = new URL(raw);
+        if (u.protocol === 'http:' || u.protocol === 'https:') return u.toString();
+      } catch {
+        // fall through
+      }
+      return '';
     }
 
+    function boldKeyword(text: string): string {
+      const tokens = getKeywordTokens();
+      const esc = escapeHtml(text);
+      if (!tokens.length) return esc;
+      // Sort longest-first so 'seo tips' wins over 'seo' for overlapping matches.
+      // Escape each token AFTER escapeHtml so '&' in keyword matches '&amp;' in text.
+      const sorted = [...tokens].sort((a, b) => b.length - a.length);
+      const re = new RegExp(`(${sorted.map(t => escapeRegex(escapeHtml(t))).join('|')})`, 'gi');
+      return esc.replace(re, '<strong>$1</strong>');
+    }
+
+    // ============ Truncation simulation ============
+    function truncateAtPixel(text: string, font: string, maxPx: number): string {
+      if (!text) return text;
+      if (measure(text, font) <= maxPx) return text;
+      const words = text.split(/(\s+)/);
+      let cur = '';
+      for (const w of words) {
+        const candidate = cur + w;
+        if (measure(candidate + '…', font) > maxPx) break;
+        cur = candidate;
+      }
+      if (cur.trim()) return cur.trimEnd() + '…';
+      // No whole word fits (CJK with no whitespace, or single overflowing word).
+      // Fall back to per-glyph truncation. Array.from handles surrogate pairs.
+      const chars = Array.from(text);
+      let out = '';
+      for (const c of chars) {
+        if (measure(out + c + '…', font) > maxPx) break;
+        out += c;
+      }
+      return (out || chars[0] || '') + '…';
+    }
+
+    // ============ CTR analysis (client-side; mirrored to email payload) ============
+    const POWER_WORDS = [
+      'free','best','top','easy','simple','proven','ultimate',
+      'guide','how to','why','now','today','fast','instant',
+      'expert','complete','essential','powerful','effective',
+      'new','updated','latest','step-by-step','checklist',
+      'tips','tricks','secrets','mistakes','avoid','results','win',
+    ];
+
+    type CtrSignals = {
+      hasNumber: boolean;
+      hasYear: boolean;
+      hasBracket: boolean;
+      hasPowerWord: boolean;
+      matchedPowerWords: string[];
+      hasQuestion: boolean;
+      titleHasKeyword: boolean;
+      descHasKeyword: boolean;
+      keywordEarlyInTitle: boolean;
+      score: number;
+      tips: string[];
+    };
+
+    // Word-boundary detector. Each power word is matched against the lowercased
+    // title with \b on both sides so 'now' doesn't match 'snowboarding'. Multi-word
+    // phrases ('how to', 'step-by-step') anchor on outer word boundaries only.
+    function matchPowerWords(tLower: string): string[] {
+      const out: string[] = [];
+      for (const w of POWER_WORDS) {
+        const re = new RegExp(`\\b${escapeRegex(w)}\\b`, 'i');
+        if (re.test(tLower)) out.push(w);
+      }
+      return out;
+    }
+
+    function keywordIndexWordSafe(tLower: string, kw: string): number {
+      if (!kw) return -1;
+      const re = new RegExp(`\\b${escapeRegex(kw)}\\b`, 'i');
+      const m = tLower.match(re);
+      return m && m.index !== undefined ? m.index : tLower.indexOf(kw);
+    }
+
+    function analyzeCtr(title: string, desc: string): CtrSignals {
+      const tLower = title.toLowerCase();
+      const dLower = desc.toLowerCase();
+      const tokens = getKeywordTokens();
+      const primaryKw = (tokens[0] || '').toLowerCase();
+      const currentYear = new Date().getFullYear();
+
+      const hasNumber = /\d/.test(title);
+      const hasYear = /\b20\d{2}\b/.test(title);
+      // Require properly matched bracket pairs — '[Free)' should not pass.
+      const hasBracket = /\[[^\]]+\]|\([^)]+\)|\{[^}]+\}/.test(title);
+      const hasQuestion = /\?/.test(title) || /^(how|what|why|when|where|which)\b/i.test(title.trim());
+      const matchedPowerWords = matchPowerWords(tLower);
+      const hasPowerWord = matchedPowerWords.length > 0;
+      const titleHasKeyword = !!primaryKw && keywordIndexWordSafe(tLower, primaryKw) >= 0;
+      const descHasKeyword = !!primaryKw && keywordIndexWordSafe(dLower, primaryKw) >= 0;
+      const KEYWORD_EARLY_THRESHOLD = 30;
+      const keywordEarlyInTitle = titleHasKeyword && keywordIndexWordSafe(tLower, primaryKw) <= KEYWORD_EARLY_THRESHOLD;
+
+      let score = 0;
+      if (hasNumber) score += 12;
+      if (hasYear) score += 10;
+      if (hasBracket) score += 10;
+      if (hasPowerWord) score += Math.min(matchedPowerWords.length * 7, 20);
+      if (hasQuestion) score += 10;
+      if (titleHasKeyword) score += 20;
+      if (keywordEarlyInTitle) score += 8;
+      if (descHasKeyword) score += 10;
+      if (title.trim().length >= 30) score += 5;
+      score = Math.min(100, score);
+
+      const tips: string[] = [];
+
+      // If there's no title at all, that's the only thing worth telling them.
+      // Adding 'use a number' / 'add a year' to an empty title is noise.
+      if (title.trim().length === 0) {
+        tips.push('Add a page title — this is the single biggest CTR signal. Without it Google substitutes whatever it finds.');
+        if (desc.trim().length === 0) {
+          tips.push('Add a meta description — otherwise Google pulls a snippet from page body, often awkwardly.');
+        }
+        return {
+          hasNumber, hasYear, hasBracket, hasPowerWord, matchedPowerWords,
+          hasQuestion, titleHasKeyword, descHasKeyword, keywordEarlyInTitle,
+          score, tips,
+        };
+      }
+
+      if (primaryKw && !titleHasKeyword) {
+        tips.push(`Add "${tokens[0]}" to the title — exact-match keyword is the strongest CTR signal.`);
+      } else if (primaryKw && titleHasKeyword && !keywordEarlyInTitle) {
+        tips.push(`Move "${tokens[0]}" closer to the start of the title — first ${KEYWORD_EARLY_THRESHOLD} characters get scanned first.`);
+      }
+      if (primaryKw && !descHasKeyword && desc.trim().length > 0) {
+        tips.push(`Mention "${tokens[0]}" once in the meta description so Google bolds the match.`);
+      }
+      if (!hasNumber) tips.push('Add a number ("12 tips", "5 reasons", "3 ways"). Numerals beat words for CTR.');
+      if (!hasYear) tips.push(`Add the current year ("${currentYear}") if the page is fresh — signals recency.`);
+      if (!hasBracket) tips.push(`Try a bracket modifier — "[Free]", "(Updated)", "[${currentYear}]". Brackets pull the eye.`);
+      if (!hasPowerWord) tips.push('Use a power word — "free", "ultimate", "essential", "proven".');
+      if (measure(title, TITLE_FONT) > TITLE_MAX_PX) {
+        tips.push('Title overflows the SERP — trim until the meter shows under the limit.');
+      }
+      if (title.length < 30) tips.push('Title is short. Aim for ~40–55 characters for a stronger snippet.');
+      if (desc.trim().length === 0) {
+        tips.push('Add a meta description — Google will pull from page body otherwise.');
+      } else {
+        if (desc.length < 80) tips.push('Description is short. Google may rewrite using page body content.');
+        if (desc.length > 160) tips.push('Description may be truncated. Trim to ~155 chars to keep the full message visible.');
+      }
+
+      return {
+        hasNumber, hasYear, hasBracket, hasPowerWord, matchedPowerWords,
+        hasQuestion, titleHasKeyword, descHasKeyword, keywordEarlyInTitle,
+        score, tips,
+      };
+    }
+
+    type RewriteRisk = { level: 'low' | 'medium' | 'high'; score: number; reasons: string[] };
+    function rewriteRisk(title: string, desc: string): RewriteRisk {
+      let risk = 25; // baseline — Google rewrites titles ~60% of the time
+      const reasons: string[] = [];
+      const tokens = getKeywordTokens();
+      const primaryKw = (tokens[0] || '').toLowerCase();
+
+      if (title.length === 0) {
+        risk += 40;
+        reasons.push('No title provided — Google will substitute one from the page H1 or body.');
+      } else {
+        if (title.length < 20) { risk += 18; reasons.push('Title is too short — Google often pads short titles with brand or related text.'); }
+        if (title.length > 60) { risk += 12; reasons.push('Title may be truncated — Google often substitutes a shorter alternative from the H1.'); }
+        if (primaryKw && keywordIndexWordSafe(title.toLowerCase(), primaryKw) < 0) {
+          risk += 15;
+          reasons.push('Title does not contain the target keyword — Google will likely substitute one that does.');
+        }
+        // Brand delimiter check: require a space-flanked separator near the end
+        // (last 25 chars) so 'step-by-step' or '12-month' don't false-positive.
+        const tail = title.slice(Math.max(0, title.length - 25));
+        const hasBrandDelimiter = /\s[\|—·]\s|\s-\s/.test(tail);
+        if (!hasBrandDelimiter) {
+          risk += 5;
+          reasons.push('No brand delimiter near the end — Google often appends "| Brand" itself.');
+        }
+        // ALL-CAPS: require at least one letter AND no lowercase letters.
+        if (/[A-Za-z]/.test(title) && !/[a-z]/.test(title) && title.length > 10) {
+          risk += 10;
+          reasons.push('Title is in ALL CAPS — Google typically rewrites these to title case.');
+        }
+      }
+      if (desc.length === 0) {
+        risk += 20;
+        reasons.push('No meta description — Google will pull a snippet from page body.');
+      } else {
+        if (desc.length < 80) { risk += 12; reasons.push('Description is short — Google may rewrite using page body content.'); }
+        if (desc.length > 160) { risk += 8; reasons.push('Description may be truncated — Google may rewrite to fit the snippet box.'); }
+      }
+
+      risk = Math.min(100, risk);
+      const level: RewriteRisk['level'] = risk < 35 ? 'low' : risk < 65 ? 'medium' : 'high';
+      return { level, score: risk, reasons };
+    }
+
+    // ============ URL formatting ============
     function formatUrlForSerp(raw: string): { sitename: string; breadcrumb: string } {
       try {
         const u = new URL(raw);
@@ -330,46 +1327,547 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       }
     }
 
-    function update() {
-      const title = titleInput.value || 'Your page title will appear here';
-      const desc = descInput.value || 'Your meta description will appear here. Start typing in the form to see the preview update in real time.';
-      const { sitename, breadcrumb } = formatUrlForSerp(urlInput.value);
-      const datePrefix = dateSelect.value;
-
-      dTitle.textContent = title;
-      mTitle.textContent = title;
-      dDesc.innerHTML = `<span class="serp-date">${datePrefix}</span>${desc}`;
-      mDesc.innerHTML = `<span class="serp-date">${datePrefix}</span>${desc}`;
-      dUrl.textContent = breadcrumb;
-      mUrl.textContent = breadcrumb;
-      dSiteName.textContent = sitename;
-      mSiteName.textContent = sitename;
-
-      const tPx = measure(titleInput.value, TITLE_FONT);
-      const dPx = measure(descInput.value, DESC_FONT);
-      titleChars.textContent = String(titleInput.value.length);
-      titlePx.textContent = String(tPx);
-      setStatus(titleStatus, tPx, TITLE_MAX_PX);
-      descChars.textContent = String(descInput.value.length);
-      descPx.textContent = String(dPx);
-      setStatus(descStatus, dPx, DESC_DESKTOP_MAX_PX);
+    // ============ Update everything ============
+    function setStatus(el: HTMLElement, px: number, max: number) {
+      el.classList.remove('ok', 'warn', 'bad');
+      if (px === 0) { el.textContent = ''; return; }
+      if (px <= max * 0.85) { el.textContent = '· Good length'; el.classList.add('ok'); }
+      else if (px <= max) { el.textContent = '· Close to limit'; el.classList.add('warn'); }
+      else { el.textContent = '· Too long (will be truncated)'; el.classList.add('bad'); }
     }
 
-    [titleInput, urlInput, descInput, dateSelect].forEach((el) => {
-      el.addEventListener('input', update);
-      el.addEventListener('change', update);
-    });
-    update();
+    function renderRatingHtml(value: number, count: number): string {
+      const v = Math.max(0, Math.min(5, value));
+      const filled = Math.round(v);
+      const stars = '★★★★★'.slice(0, filled) + '☆☆☆☆☆'.slice(0, 5 - filled);
+      return `<span class="serp-stars">${stars}</span> Rating: ${v.toFixed(1)} · <strong>${count.toLocaleString()}</strong> review${count === 1 ? '' : 's'}`;
+    }
 
-    // Tab switching
-    document.querySelectorAll('.preview-tab').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const view = (btn as HTMLElement).dataset.view;
-        document.querySelectorAll('.preview-tab').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        document.querySelectorAll('.preview-pane').forEach(p => p.classList.remove('active'));
-        document.getElementById(view + 'Preview')?.classList.add('active');
+    function renderSitelinksHtml(items: string[]): string {
+      return items.filter(Boolean).slice(0, 4).map(item => {
+        const parts = item.split('—');
+        const name = (parts[0] || item).trim();
+        const desc = parts.slice(1).join('—').trim();
+        return `<div><a class="serp-sitelink" href="#">${escapeHtml(name)}</a>${desc ? `<div class="serp-sitelink-desc">${escapeHtml(desc)}</div>` : ''}</div>`;
+      }).join('');
+    }
+
+    function renderFaqHtml(items: string[]): string {
+      return items.filter(Boolean).slice(0, 3).map(q =>
+        `<div class="serp-faq-item"><span>${boldKeyword(q)}</span><span class="serp-faq-chev">⌄</span></div>`
+      ).join('');
+    }
+
+    let faviconUrl: string | null = null;
+    function setFavicon(el: HTMLElement, fallback: string) {
+      const safe = faviconUrl ? safeUrl(faviconUrl) : '';
+      if (!safe) {
+        el.textContent = fallback;
+        return;
+      }
+      el.textContent = '';
+      const img = document.createElement('img');
+      img.alt = '';
+      img.src = safe;
+      img.addEventListener('error', () => { el.textContent = fallback; });
+      el.appendChild(img);
+    }
+
+    function update() {
+      const titleRaw = $i(FIELDS.title).value;
+      const descRaw = $t(FIELDS.description).value;
+      const title = titleRaw || PLACEHOLDER_TITLE;
+      const desc = descRaw || PLACEHOLDER_DESC;
+      const { sitename, breadcrumb } = formatUrlForSerp($i(FIELDS.url).value);
+      const sitenameInitial = sitename[0]?.toUpperCase() || 'H';
+
+      // Mobile breadcrumb is shorter
+      const breadcrumbMobile = (() => {
+        try {
+          const u = new URL($i(FIELDS.url).value);
+          const host = u.hostname.replace(/^www\./, '');
+          const parts = u.pathname.split('/').filter(Boolean).slice(0, 2);
+          return host + (parts.length ? ' › ' + parts.join(' › ') : '');
+        } catch { return sitename; }
+      })();
+
+      // Title truncation for each surface
+      const truncatedTitleDesktop = truncateAtPixel(title, TITLE_FONT, TITLE_MAX_PX);
+      const truncatedTitleMobile = truncateAtPixel(title, '400 18px arial, sans-serif', TITLE_MAX_PX - 80);
+      const truncatedDescDesktop = truncateAtPixel(desc, DESC_FONT, DESC_DESKTOP_MAX_PX);
+      const truncatedDescMobile = truncateAtPixel(desc, DESC_FONT, 680);
+
+      // === Google Desktop ===
+      $('dTitle').innerHTML = boldKeyword(truncatedTitleDesktop);
+      $('dDesc').innerHTML = boldKeyword(truncatedDescDesktop);
+      $('dUrl').textContent = breadcrumb;
+      $('dSiteName').textContent = sitename;
+      setFavicon($('dFavicon'), sitenameInitial);
+
+      // === Google Mobile ===
+      $('mTitle').innerHTML = boldKeyword(truncatedTitleMobile);
+      $('mDesc').innerHTML = boldKeyword(truncatedDescMobile);
+      $('mUrl').textContent = breadcrumbMobile;
+      $('mSiteName').textContent = sitename;
+      setFavicon($('mFavicon'), sitenameInitial);
+
+      // === Date prefix ===
+      const datePrefix = $i(FIELDS.ftDate).checked
+        ? ($s(FIELDS.dateChoice).value === 'today' ? 'Today — ' : `${$s(FIELDS.dateChoice).value} — `)
+        : '';
+      $('dDate').textContent = datePrefix;
+      $('mDate').textContent = datePrefix;
+
+      // === Rating ===
+      const ratingOn = $i(FIELDS.ftRating).checked;
+      if (ratingOn) {
+        const v = parseFloat($i(FIELDS.ratingValue).value || '0') || 0;
+        const c = parseInt($i(FIELDS.reviewCount).value || '0', 10) || 0;
+        const html = renderRatingHtml(v, c);
+        $('dRating').innerHTML = html;
+        $('dRating').style.display = '';
+        $('mRating').innerHTML = html;
+        $('mRating').style.display = '';
+      } else {
+        $('dRating').style.display = 'none';
+        $('mRating').style.display = 'none';
+      }
+
+      // === Sitelinks ===
+      const slOn = $i(FIELDS.ftSitelinks).checked;
+      if (slOn) {
+        const items = [$i('sl1').value, $i('sl2').value, $i('sl3').value, $i('sl4').value];
+        const html = renderSitelinksHtml(items);
+        if (html) {
+          $('dSitelinks').innerHTML = html;
+          $('dSitelinks').style.display = '';
+          $('mSitelinks').innerHTML = html;
+          $('mSitelinks').style.display = '';
+        } else {
+          $('dSitelinks').style.display = 'none';
+          $('mSitelinks').style.display = 'none';
+        }
+      } else {
+        $('dSitelinks').style.display = 'none';
+        $('mSitelinks').style.display = 'none';
+      }
+
+      // === FAQ ===
+      const faqOn = $i(FIELDS.ftFaq).checked;
+      if (faqOn) {
+        const items = [$i('faq1').value, $i('faq2').value, $i('faq3').value].filter(Boolean);
+        if (items.length) {
+          const html = renderFaqHtml(items);
+          $('dFaq').innerHTML = html;
+          $('dFaq').style.display = '';
+          $('mFaq').innerHTML = html;
+          $('mFaq').style.display = '';
+        } else {
+          $('dFaq').style.display = 'none';
+          $('mFaq').style.display = 'none';
+        }
+      } else {
+        $('dFaq').style.display = 'none';
+        $('mFaq').style.display = 'none';
+      }
+
+      // === Image thumbnail ===
+      const imgOn = $i(FIELDS.ftImage).checked;
+      if (imgOn) {
+        const safe = safeUrl($i(FIELDS.imageUrl).value);
+        if (safe) {
+          $('dImage').innerHTML = `<img src="${escapeHtml(safe)}" alt="" />`;
+          $('mImage').innerHTML = `<img src="${escapeHtml(safe)}" alt="" />`;
+        } else {
+          $('dImage').innerHTML = '';
+          $('mImage').innerHTML = '';
+        }
+        $('dImage').style.display = '';
+        $('mImage').style.display = '';
+      } else {
+        $('dImage').style.display = 'none';
+        $('mImage').style.display = 'none';
+      }
+
+      // === AI Overview ===
+      $('aoTitle').innerHTML = boldKeyword(truncatedTitleDesktop);
+      $('aoHost').textContent = sitename;
+      $('aoBrand').textContent = sitename;
+      const aoBody = descRaw ? `${descRaw.replace(/\s+/g, ' ').slice(0, 280)}` : PLACEHOLDER_DESC;
+      $('aoBody').innerHTML = boldKeyword(aoBody) + '<sup class="ai-cite">[1]</sup>';
+      setFavicon($('aoFavicon'), sitenameInitial);
+
+      // === Perplexity ===
+      const primaryKw = getKeywordTokens()[0];
+      $('pxQuery').textContent = primaryKw ? `What is ${primaryKw}?` : 'What does the page describe?';
+      $('pxTitle').innerHTML = boldKeyword(truncatedTitleMobile);
+      $('pxHost').textContent = sitename;
+      const pxAnswer = descRaw
+        ? `${descRaw.replace(/\s+/g, ' ').slice(0, 220)}`
+        : 'Your meta description, rewritten as a direct answer to the user\'s question.';
+      $('pxBody').innerHTML = boldKeyword(pxAnswer) + ' <sup class="px-cite">1</sup>';
+      setFavicon($('pxFavicon'), sitenameInitial);
+
+      // === ChatGPT ===
+      $('gptQuery').textContent = primaryKw ? `Tell me about ${primaryKw}` : 'What does this page describe?';
+      $('gptTitle').innerHTML = boldKeyword(truncatedTitleDesktop);
+      $('gptHost').textContent = sitename;
+      $('gptSnippet').innerHTML = boldKeyword(descRaw ? descRaw.slice(0, 160) : PLACEHOLDER_DESC.slice(0, 160)) + '…';
+      $('gptBody').innerHTML = `Based on <strong>${escapeHtml(sitename)}</strong>, ${boldKeyword(descRaw ? descRaw.replace(/\s+/g, ' ').slice(0, 220) : 'the page describes ' + (primaryKw || 'the topic') + ' with structured guidance.')}`;
+      setFavicon($('gptFavicon'), sitenameInitial);
+
+      // === Meters ===
+      const tPx = measure(titleRaw, TITLE_FONT);
+      const dPx = measure(descRaw, DESC_FONT);
+      $('titleChars').textContent = String(titleRaw.length);
+      $('titlePx').textContent = String(tPx);
+      setStatus($('titleStatus'), tPx, TITLE_MAX_PX);
+      $('descChars').textContent = String(descRaw.length);
+      $('descPx').textContent = String(dPx);
+      setStatus($('descStatus'), dPx, DESC_DESKTOP_MAX_PX);
+
+      // === Analysis ===
+      const ctr = analyzeCtr(titleRaw, descRaw);
+      const rw = rewriteRisk(titleRaw, descRaw);
+
+      $('ctrScoreText').textContent = `${ctr.score} / 100`;
+      ($('ctrFill') as HTMLElement).style.width = `${ctr.score}%`;
+      $('rwLevelText').textContent = `${rw.level.toUpperCase()} · ${rw.score}/100`;
+      ($('rwFill') as HTMLElement).style.width = `${rw.score}%`;
+
+      // Chips
+      const chipDefs: { ok: boolean; label: string }[] = [
+        { ok: ctr.hasNumber, label: 'Number' },
+        { ok: ctr.hasYear, label: 'Year (20XX)' },
+        { ok: ctr.hasBracket, label: 'Bracket modifier' },
+        { ok: ctr.hasPowerWord, label: ctr.matchedPowerWords.length ? `Power word: ${ctr.matchedPowerWords.slice(0, 2).join(', ')}` : 'Power word' },
+        { ok: ctr.hasQuestion, label: 'Question hook' },
+        { ok: ctr.titleHasKeyword, label: 'Keyword in title' },
+        { ok: ctr.descHasKeyword, label: 'Keyword in desc' },
+        { ok: ctr.keywordEarlyInTitle, label: 'Keyword early in title' },
+      ];
+      $('ctrChips').innerHTML = chipDefs.map(c =>
+        `<span class="chip ${c.ok ? 'chip-ok' : 'chip-miss'}">${c.ok ? '✓' : '○'} ${escapeHtml(c.label)}</span>`
+      ).join('');
+
+      // Tips
+      if (ctr.tips.length) {
+        $('ctrTips').innerHTML = ctr.tips.map(t => `<li>${escapeHtml(t)}</li>`).join('');
+        $('ctrTipsSection').style.display = '';
+      } else {
+        $('ctrTipsSection').style.display = 'none';
+      }
+
+      // Rewrite reasons
+      if (rw.reasons.length) {
+        $('rwReasons').innerHTML = rw.reasons.map(r => `<li>${escapeHtml(r)}</li>`).join('');
+        $('rwReasonsSection').style.display = '';
+      } else {
+        $('rwReasonsSection').style.display = 'none';
+      }
+
+      // Show/hide feature-detail blocks
+      ['ftDate','ftRating','ftSitelinks','ftFaq','ftImage'].forEach(id => {
+        const on = $i(id).checked;
+        const detail = document.querySelector(`.feature-detail[data-for="${id}"]`) as HTMLElement | null;
+        if (detail) detail.classList.toggle('show', on);
       });
-    });
+    }
+
+    // ============ URL Fetch ============
+    async function doFetch() {
+      const raw = $i(FIELDS.fetchUrl).value.trim();
+      const statusEl = $('fetchStatus');
+      if (!raw) {
+        statusEl.className = 'fetch-status fetch-err';
+        statusEl.textContent = 'Paste a URL first.';
+        return;
+      }
+      statusEl.className = 'fetch-status fetch-loading';
+      statusEl.textContent = 'Fetching… (up to 10 seconds)';
+      ($('fetchBtn') as HTMLButtonElement).disabled = true;
+      try {
+        const r = await fetch('/api/serp-fetch', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url: raw }),
+        });
+        const j = await r.json();
+        if (!r.ok || !j.ok) {
+          statusEl.className = 'fetch-status fetch-err';
+          statusEl.textContent = j.error || 'Could not fetch that URL.';
+          return;
+        }
+        const d = j.data;
+        if (d.title) $i(FIELDS.title).value = d.title;
+        if (d.metaDescription) $t(FIELDS.description).value = d.metaDescription;
+        if (d.finalUrl) $i(FIELDS.url).value = d.finalUrl;
+        if (d.faviconUrl) faviconUrl = d.faviconUrl;
+
+        // Auto-detect rich results and toggle them
+        if (d.hasReview && d.ratingValue) {
+          $i(FIELDS.ftRating).checked = true;
+          if (d.ratingValue) $i(FIELDS.ratingValue).value = String(d.ratingValue);
+          if (d.reviewCount) $i(FIELDS.reviewCount).value = String(d.reviewCount);
+        }
+        if (d.hasFaq && d.faqQuestions && d.faqQuestions.length) {
+          $i(FIELDS.ftFaq).checked = true;
+          if (d.faqQuestions[0]) $i('faq1').value = d.faqQuestions[0];
+          if (d.faqQuestions[1]) $i('faq2').value = d.faqQuestions[1];
+          if (d.faqQuestions[2]) $i('faq3').value = d.faqQuestions[2];
+        }
+        if (d.hasArticle && d.publishDate) {
+          $i(FIELDS.ftDate).checked = true;
+        }
+        if (d.ogImage) {
+          $i(FIELDS.ftImage).checked = true;
+          $i(FIELDS.imageUrl).value = d.ogImage;
+        }
+
+        const detected: string[] = [];
+        if (d.hasArticle) detected.push('Article');
+        if (d.hasFaq) detected.push('FAQ');
+        if (d.hasReview) detected.push('Review/Rating');
+        if (d.hasProduct) detected.push('Product');
+        if (d.hasBreadcrumb) detected.push('Breadcrumb');
+        if (d.hasLocalBusiness) detected.push('Organization');
+
+        statusEl.className = 'fetch-status fetch-ok';
+        statusEl.textContent = `Loaded · HTTP ${d.httpStatus} · ${d.durationMs}ms${detected.length ? ' · Schema: ' + detected.join(', ') : ' · No schema detected'}`;
+
+        update();
+      } catch (e) {
+        statusEl.className = 'fetch-status fetch-err';
+        statusEl.textContent = 'Network error. Try again.';
+      } finally {
+        ($('fetchBtn') as HTMLButtonElement).disabled = false;
+      }
+    }
+
+    // ============ Lead capture (full report) ============
+    async function submitLead() {
+      const email = $i('leadEmail').value.trim();
+      const hp = $i('hp').value;
+      const statusEl = $('leadStatus');
+      if (!email) {
+        statusEl.className = 'lead-status err';
+        statusEl.textContent = 'Email is required.';
+        return;
+      }
+      ($('reportBtn') as HTMLButtonElement).disabled = true;
+      statusEl.className = 'lead-status';
+      statusEl.textContent = 'Generating report…';
+
+      const titleRaw = $i(FIELDS.title).value;
+      const descRaw = $t(FIELDS.description).value;
+      const tokens = getKeywordTokens();
+      const ctr = analyzeCtr(titleRaw, descRaw);
+      const rw = rewriteRisk(titleRaw, descRaw);
+
+      const detected: string[] = [];
+      if ($i(FIELDS.ftDate).checked) detected.push('Date');
+      if ($i(FIELDS.ftRating).checked) detected.push('Star rating');
+      if ($i(FIELDS.ftSitelinks).checked) detected.push('Sitelinks');
+      if ($i(FIELDS.ftFaq).checked) detected.push('FAQ');
+      if ($i(FIELDS.ftImage).checked) detected.push('Image');
+
+      try {
+        const r = await fetch('/api/lead-capture', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            tool: 'serp-optimizer',
+            email,
+            url: $i(FIELDS.url).value || $i(FIELDS.fetchUrl).value,
+            honeypot: hp,
+            payload: {
+              title: titleRaw,
+              description: descRaw,
+              keyword: tokens.join(', '),
+              titleChars: titleRaw.length,
+              titlePx: measure(titleRaw, TITLE_FONT),
+              descChars: descRaw.length,
+              descPx: measure(descRaw, DESC_FONT),
+              ctr: { score: ctr.score, tips: ctr.tips, matchedPowerWords: ctr.matchedPowerWords },
+              rewriteRisk: { level: rw.level, score: rw.score, reasons: rw.reasons },
+              detectedRichResults: detected,
+            },
+          }),
+        });
+        const j = await r.json();
+        if (!r.ok || j.ok === false) {
+          statusEl.className = 'lead-status err';
+          statusEl.textContent = j.error || j.message || 'Something went wrong. Try again.';
+          return;
+        }
+        statusEl.className = 'lead-status ok';
+        statusEl.textContent = j.message || 'Sent — check your inbox.';
+        $i('leadEmail').value = '';
+      } catch {
+        statusEl.className = 'lead-status err';
+        statusEl.textContent = 'Network error. Try again.';
+      } finally {
+        ($('reportBtn') as HTMLButtonElement).disabled = false;
+      }
+    }
+
+    // ============ Share link ============
+    function buildShareLink(): string {
+      const params = new URLSearchParams();
+      const setIf = (key: string, val: string) => { if (val) params.set(key, val); };
+      setIf('t', $i(FIELDS.title).value);
+      setIf('d', $t(FIELDS.description).value);
+      setIf('u', $i(FIELDS.url).value);
+      setIf('k', $i(FIELDS.keyword).value);
+      // Feature toggles + values
+      const feats: string[] = [];
+      if ($i(FIELDS.ftDate).checked) feats.push('date');
+      if ($i(FIELDS.ftRating).checked) feats.push('rating');
+      if ($i(FIELDS.ftSitelinks).checked) feats.push('sitelinks');
+      if ($i(FIELDS.ftFaq).checked) feats.push('faq');
+      if ($i(FIELDS.ftImage).checked) feats.push('image');
+      if (feats.length) params.set('f', feats.join(','));
+      if ($i(FIELDS.ftRating).checked) {
+        params.set('rv', $i(FIELDS.ratingValue).value);
+        params.set('rc', $i(FIELDS.reviewCount).value);
+      }
+      if ($i(FIELDS.ftSitelinks).checked) {
+        const sl = [$i('sl1').value, $i('sl2').value, $i('sl3').value, $i('sl4').value].filter(Boolean).join('|');
+        if (sl) params.set('sl', sl);
+      }
+      if ($i(FIELDS.ftFaq).checked) {
+        const fq = [$i('faq1').value, $i('faq2').value, $i('faq3').value].filter(Boolean).join('|');
+        if (fq) params.set('fq', fq);
+      }
+      if ($i(FIELDS.ftImage).checked && $i(FIELDS.imageUrl).value) params.set('img', $i(FIELDS.imageUrl).value);
+      if ($i(FIELDS.ftDate).checked) params.set('dt', $s(FIELDS.dateChoice).value);
+      return `${window.location.origin}${window.location.pathname}?${params.toString()}`;
+    }
+
+    async function copyShareLink() {
+      const link = buildShareLink();
+      const statusEl = $('copyShareStatus');
+      try {
+        await navigator.clipboard.writeText(link);
+        statusEl.textContent = 'Copied!';
+        setTimeout(() => { statusEl.textContent = ''; }, 2000);
+      } catch {
+        // Fallback: open in new tab so user can copy
+        window.prompt('Copy this link:', link);
+      }
+    }
+
+    function loadFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      if (params.has('t')) $i(FIELDS.title).value = params.get('t') || '';
+      if (params.has('d')) $t(FIELDS.description).value = params.get('d') || '';
+      if (params.has('u')) $i(FIELDS.url).value = params.get('u') || '';
+      if (params.has('k')) $i(FIELDS.keyword).value = params.get('k') || '';
+      const feats = (params.get('f') || '').split(',').filter(Boolean);
+      const featMap: Record<string, string> = {
+        date: 'ftDate', rating: 'ftRating', sitelinks: 'ftSitelinks',
+        faq: 'ftFaq', image: 'ftImage',
+      };
+      for (const f of feats) {
+        const id = featMap[f];
+        if (id) $i(id).checked = true;
+      }
+      if (params.has('rv')) $i(FIELDS.ratingValue).value = params.get('rv') || '';
+      if (params.has('rc')) $i(FIELDS.reviewCount).value = params.get('rc') || '';
+      if (params.has('sl')) {
+        const sls = (params.get('sl') || '').split('|');
+        if (sls[0]) $i('sl1').value = sls[0];
+        if (sls[1]) $i('sl2').value = sls[1];
+        if (sls[2]) $i('sl3').value = sls[2];
+        if (sls[3]) $i('sl4').value = sls[3];
+      }
+      if (params.has('fq')) {
+        const fqs = (params.get('fq') || '').split('|');
+        if (fqs[0]) $i('faq1').value = fqs[0];
+        if (fqs[1]) $i('faq2').value = fqs[1];
+        if (fqs[2]) $i('faq3').value = fqs[2];
+      }
+      if (params.has('img')) $i(FIELDS.imageUrl).value = params.get('img') || '';
+      if (params.has('dt')) $s(FIELDS.dateChoice).value = params.get('dt') || 'today';
+      // Drop the query string after loading so a refresh shows the user's
+      // current edits, not the original snapshot.
+      if (params.toString()) {
+        window.history.replaceState(null, '', window.location.pathname);
+      }
+    }
+
+    function resetAll() {
+      const ids = Object.values(FIELDS);
+      for (const id of ids) {
+        const el = document.getElementById(id) as
+          | HTMLInputElement
+          | HTMLTextAreaElement
+          | HTMLSelectElement
+          | null;
+        if (!el) continue;
+        if ('checked' in el && (el as HTMLInputElement).type === 'checkbox') {
+          (el as HTMLInputElement).checked = false;
+        } else if (el.tagName === 'SELECT') {
+          (el as HTMLSelectElement).value = 'today';
+        } else {
+          (el as HTMLInputElement | HTMLTextAreaElement).value = '';
+        }
+      }
+      faviconUrl = null;
+      $('fetchStatus').textContent = '';
+      $('fetchStatus').className = 'fetch-status';
+      window.history.replaceState(null, '', window.location.pathname);
+      update();
+    }
+
+    // ============ Wire up ============
+    function wire() {
+      // Watch all inputs for live updates
+      Object.values(FIELDS).forEach(id => {
+        const el = $(id);
+        if (el) {
+          el.addEventListener('input', update);
+          el.addEventListener('change', update);
+        }
+      });
+
+      $('fetchBtn').addEventListener('click', doFetch);
+      $i(FIELDS.fetchUrl).addEventListener('keydown', (e) => {
+        if ((e as KeyboardEvent).key === 'Enter') {
+          e.preventDefault();
+          doFetch();
+        }
+      });
+
+      $('reportBtn').addEventListener('click', submitLead);
+      $i('leadEmail').addEventListener('keydown', (e) => {
+        if ((e as KeyboardEvent).key === 'Enter') {
+          e.preventDefault();
+          submitLead();
+        }
+      });
+
+      $('copyShareBtn').addEventListener('click', copyShareLink);
+      $('resetBtn').addEventListener('click', resetAll);
+
+      // Tab switching
+      document.querySelectorAll('.preview-tab').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const view = (btn as HTMLElement).dataset.view;
+          document.querySelectorAll('.preview-tab').forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
+          document.querySelectorAll('.preview-pane').forEach(p => p.classList.remove('active'));
+          $(view + 'Preview')?.classList.add('active');
+        });
+      });
+    }
+
+    loadFromUrl();
+    wire();
+    update();
   </script>
 </BaseLayout>
