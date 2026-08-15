@@ -138,7 +138,7 @@ export const posts: Record<string, {
       <h2>Why Technical SEO Still Matters in 2026</h2>
       <p>In 2026, technical SEO remains the foundation of any successful search strategy. No matter how great your content is, if search engines can't efficiently crawl, render, and index your site, you're leaving rankings on the table.</p>
       <p>Whether you're working with a <a href="/blog/why-fractional-seo/" style="color: var(--color-accent-blue);">fractional SEO consultant</a> or managing SEO in-house, this checklist will keep your technical foundation solid.</p>
-      <p>Technical SEO has evolved significantly. It's no longer just about meta tags and sitemaps. Modern technical SEO encompasses performance engineering, JavaScript rendering, structured data, and ensuring your site is optimised for both traditional search and AI-driven discovery.</p>
+      <p>Technical SEO has evolved significantly. It's no longer just about meta tags and sitemaps. Modern technical SEO encompasses performance engineering, JavaScript rendering, structured data, and ensuring your site is optimised for both traditional search and AI-driven discovery. If that second half is new territory, start with <a href="/blog/how-answer-engines-choose-sources/" style="color: var(--color-accent-blue);">how answer engines decide which sources to cite</a>.</p>
 
       <h2>1. Crawlability & Indexation</h2>
       <p>If Google can't find and crawl your pages, nothing else matters. This is where every technical audit should start.</p>
@@ -355,7 +355,7 @@ export const posts: Record<string, {
       </ul>
 
       <h2>Trustworthiness: The Foundation of Everything</h2>
-      <p>Google has stated that Trustworthiness is the most important element of E-E-A-T. Without trust, experience, expertise, and authority don't matter.</p>
+      <p>Google has stated that Trustworthiness is the most important element of E-E-A-T. Without trust, experience, expertise, and authority don't matter. Those same quality signals shape <a href="/blog/how-answer-engines-choose-sources/" style="color: var(--color-accent-blue);">which sources answer engines actually cite</a> in AI Overviews.</p>
       <h3>How to Build Trust</h3>
       <ul>
         <li><strong>Keep your site secure:</strong> HTTPS is non-negotiable. See the security section in my <a href="/blog/technical-seo-checklist-2026/" style="color: var(--color-accent-blue);">technical SEO checklist</a></li>
