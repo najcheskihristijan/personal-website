@@ -1515,4 +1515,76 @@ export const posts: Record<string, {
     tag: 'Test',
     content: `<h2>Future Content</h2><p>This content should only appear after the date passes.</p>`,
   },
+  'how-answer-engines-choose-sources': {
+    title: 'How Answer Engines Decide Which Sources to Cite (and How to Be One)',
+    description: "A technical SEO's evidence-based guide to Answer Engine Optimization: how AI Overviews pick sources, why there is no magic schema, and what actually earns citations.",
+    date: '2026-08-15',
+    readTime: '9 min read',
+    tag: 'AEO',
+    content: `
+      <p>Answer Engine Optimization (AEO) is the practice of structuring content so an AI answer engine can retrieve it, extract a clean passage from it, trust that passage, and cite your page inside a generated answer. That is the whole job. It is not a new markup language, and it is not a file you upload to bribe the model. Most of what gets sold as AEO is either repackaged SEO or outright folklore, so I want to walk through what these systems actually do when they build an answer, and what the evidence says you can do about it.</p>
+      <p>I write this as a technical SEO who spends a lot of time watching which of my clients' pages get pulled into AI Overviews and which get ignored. The short version: the mechanics are knowable, Google has documented more of them than people realise, and there is one peer-reviewed study that tells you which content changes actually raise citation rates. Let me connect those.</p>
+
+      <h2>What actually happens when an answer engine builds a response?</h2>
+      <p>An answer engine does not read your page the way a human does. It runs a retrieval-and-generation loop, often called grounding. When Google announced AI Mode, it described a "query fan-out" technique: the engine takes one question, issues multiple related searches concurrently across subtopics, then brings those results back together into a single response (<a href="https://blog.google/products/search/ai-mode-search/" target="_blank" rel="noopener" style="color: var(--color-accent-blue);">Google, "Expanding AI Overviews and introducing AI Mode"</a>). AI Overviews work the same way. Your original query becomes a handful of parallel sub-queries, each hitting the index, each returning candidate passages.</p>
+      <p>The unit of retrieval is the passage, not the page. A model can ground one sentence of its answer in your third paragraph and ignore everything else you wrote. Then it attributes an inline citation to the passages that most strongly supported each claim it generated. This is why a thin page can get cited for one crisp fact while a comprehensive guide gets skipped: the comprehensive guide buried its answer inside three qualifying clauses, and the retrieval system could not lift a clean, standalone chunk out of it.</p>
+      <p>So the practical question is never "how do I rank a page." It is "how do I write passages that survive being torn out of context and dropped into someone else's answer."</p>
+
+      <h2>Do you need special schema, an llms.txt file, or AI-specific markup to get cited?</h2>
+      <p>No. This is the single most important thing to get right, because a whole cottage industry is selling the opposite.</p>
+      <p>Google's own documentation on AI features is blunt: "There are no additional requirements to appear in AI Overviews or AI Mode, nor other special optimizations necessary." It continues, "You don't need to create new machine readable files, AI text files, or markup to appear in these features. There's also no special schema.org structured data that you need to add" (<a href="https://developers.google.com/search/docs/appearance/ai-features" target="_blank" rel="noopener" style="color: var(--color-accent-blue);">Google Search Central, "AI Features and Your Website"</a>). The only technical bar is the ordinary one: a page must be indexed and eligible to appear in Google Search with a snippet.</p>
+      <p>That kills a few popular myths at once. There is no <code>llms.txt</code> that Google honours for AI Overviews. There is no FAQPage schema trick that forces a citation. Structured data still matters for what it was always for, helping search engines understand your content and qualify you for rich results, but it is not a backdoor into AI answers. If someone's AEO pitch leads with a proprietary markup file, you have learned something useful about that pitch.</p>
+      <p>The corollary is freeing: the work that earns AI citations is mostly the work that earns featured snippets and strong rankings. Which brings up the second myth.</p>
+
+      <h2>Can you mark a page to force it into a snippet or an AI answer?</h2>
+      <p>You cannot, and Google says so directly. Asked whether you can designate a page as a featured snippet, the documentation answers: "You can't. Google systems determine whether a page would make a good featured snippet for a user's search request, and if so, elevates it" (<a href="https://developers.google.com/search/docs/appearance/featured-snippets" target="_blank" rel="noopener" style="color: var(--color-accent-blue);">Google Search Central, "Featured Snippets and Your Website"</a>).</p>
+      <p>Selection is programmatic. You do not opt in, you make yourself the obvious choice. The featured snippet is worth studying because it is the closest thing we have to a public preview of extraction logic: Google has been pulling standalone answer passages out of pages for years, and the pages that win snippets tend to be the same pages that get grounded in AI Overviews. If you already track your snippet wins, you already have a proxy signal for AEO.</p>
+
+      <h2>What does the research actually say increases AI citations?</h2>
+      <p>Here is where AEO stops being vibes. In 2024 a team from Princeton, Georgia Tech, the Allen Institute for AI, and IIT Delhi published "GEO: Generative Engine Optimization" at KDD, the first large-scale study of what content changes move citation rates inside generative engines. They built GEO-bench, a benchmark of 10,000 queries across 25 domains, and tested nine content modifications against it (<a href="https://arxiv.org/abs/2311.09735" target="_blank" rel="noopener" style="color: var(--color-accent-blue);">Aggarwal et al., 2024, arXiv:2311.09735</a>).</p>
+      <p>The results are specific and, if you write for a living, unsurprising. Measured on the paper's visibility metric, the changes that helped most were:</p>
+      <ul>
+        <li><strong>Adding relevant quotations</strong> from experts or primary sources: roughly a 43% relative lift.</li>
+        <li><strong>Adding statistics</strong> with concrete numbers in place of vague claims: roughly a 33% lift.</li>
+        <li><strong>Improving fluency</strong> and clarity of the writing: roughly a 29% lift.</li>
+        <li><strong>Citing your own sources</strong> with authoritative references: roughly a 28% lift.</li>
+      </ul>
+      <p>The headline the authors report is visibility gains of up to 40%, and they stress the effect is domain-dependent, so what lifts a health page is not identical to what lifts a page about games. The finding I point clients to most, though, is the one that failed: keyword stuffing did not help. It reduced visibility, by roughly 9% in their tests. The old lever of repeating your target phrase does not just fail to work on answer engines, it actively hurts.</p>
+      <p>Read those results together and a pattern falls out. Generative engines reward the markers of credible, verifiable writing: named sources, hard numbers, direct quotes, clean prose. They punish the markers of content written for a crawler instead of a reader. That is the same direction Google's <a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" target="_blank" rel="noopener" style="color: var(--color-accent-blue);">people-first content guidance</a> has pushed for years, now with an empirical citation-rate number attached.</p>
+
+      <h2>How should you structure a page so an answer engine can extract it?</h2>
+      <p>Given the mechanics above, here is what I actually change on a page when the goal is citation, not just ranking.</p>
+      <p><strong>Answer the question in the first two sentences.</strong> Put the direct answer immediately under a question-shaped heading, then expand. Retrieval systems favour passages that resolve the query on their own, without the reader needing the paragraph before or after.</p>
+      <p><strong>Write self-contained passages.</strong> Assume any single paragraph might be lifted out and shown with no surrounding context. Resolve your pronouns, name the subject rather than saying "it" or "this approach," and do not split one idea across a heading boundary.</p>
+      <p><strong>Lead with numbers and named sources.</strong> The GEO study is not subtle here: replace "many businesses" with a figure and a citation, replace "experts say" with a named expert and a quote. This is good editorial practice that now doubles as extraction bait.</p>
+      <p><strong>Match structure to the question type.</strong> A "how many" question wants a number in a sentence. A "steps to" question wants an ordered list. A comparison wants a table. Answer engines lift whichever format cleanly satisfies the query, so give them the format the query implies.</p>
+      <p><strong>Get your entities and facts consistent.</strong> Make sure your name, your organisation, your claims, and your figures agree across your own pages and with reliable external sources. Grounding cross-checks claims against multiple sources, so a fact that only you assert, and that contradicts everyone else, is a fact the engine will hesitate to repeat.</p>
+      <p>None of this requires a new file format. It requires writing that a machine can quote without embarrassing itself.</p>
+
+      <h2>How is AEO different from SEO in 2026?</h2>
+      <p>They share a foundation and diverge at the finish. Classic SEO optimises a page to rank as a clickable result, so the win is a position and a click. AEO optimises passages to be extracted and cited inside a synthesised answer, so the win is an attribution, and sometimes a click that follows it.</p>
+      <p>The overlap is large: indexing, crawlability, quality, and authority feed both. The difference is the unit of optimisation. SEO thinks in pages and rankings. AEO thinks in passages and extractability. In practice I do not run two separate programmes. I run one content programme that ranks well and is also easy to quote, because on informational queries the AI answer increasingly sits above the blue links, and being the source it cites is the new top of the page.</p>
+
+      <h2>How do you know it is working?</h2>
+      <p>Honestly, measurement is still the weakest part of AEO, and anyone claiming a clean dashboard is overselling. Google Search Console does not yet break out AI Overview impressions and clicks as their own line. What I do instead: track featured-snippet ownership for target queries as a leading indicator, run your priority questions through the actual answer engines on a schedule and log whether you are cited and how you are described, and watch for the pattern of high impressions with softening click-through on informational terms, which usually means an AI answer is intercepting the click. It is manual and imperfect, but it beats guessing.</p>
+
+      <h2>Key takeaways</h2>
+      <ul>
+        <li>Answer engines retrieve and cite passages, not pages. Optimise the paragraph, not just the URL.</li>
+        <li>There is no special markup, schema, or <code>llms.txt</code> that earns AI citations. Google says so plainly. Standard indexing and snippet eligibility is the bar.</li>
+        <li>You cannot mark a page to force a snippet or citation. Selection is programmatic, so make the page the obvious choice.</li>
+        <li>The one large study on this (Princeton's GEO, KDD 2024) found quotations, statistics, fluent writing, and cited sources lifted visibility meaningfully, while keyword stuffing lowered it.</li>
+        <li>Write self-contained, answer-first passages with named sources and hard numbers. That is most of AEO.</li>
+        <li>SEO and AEO are one programme with two units of measurement: rankings and clicks for one, extractable citations for the other.</li>
+      </ul>
+
+      <div style="text-align: center; margin: 2.5rem 0; padding: var(--space-6); background: var(--color-bg-elevated); border: 1px solid var(--color-border); border-radius: var(--radius-xl);">
+        <p style="margin-bottom: var(--space-4); color: var(--color-text-secondary);">Want your pages structured to get cited in AI answers, not just ranked? I start every engagement with a free strategy call.</p>
+        <div style="display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap;">
+          <a href="/services/seo-audits/" class="btn btn-secondary btn-lg">SEO Audit Service</a>
+          <a href="/contact/" class="btn btn-primary btn-lg">Book a Strategy Call →</a>
+        </div>
+      </div>
+    `,
+  },
 };
