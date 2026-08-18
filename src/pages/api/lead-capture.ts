@@ -53,6 +53,59 @@ async function buildReport(
     };
   }
 
+  if (tool === 'ai-visibility' && body.payload) {
+    const p = body.payload as {
+      domain?: string;
+      report?: {
+        readiness?: {
+          score: number;
+          maxScore: number;
+          crawlers: { ua: string; engine: string; allowed: boolean; reason: string }[];
+          checks: { label: string; status: string; detail: string; fix?: string }[];
+        };
+      };
+    };
+    const domain = p.domain || 'your site';
+    const r = p.report?.readiness;
+    const blocked = (r?.crawlers ?? []).filter((c) => !c.allowed);
+    const rows = (r?.checks ?? [])
+      .map((c) => {
+        const colour = c.status === 'pass' ? '#16a34a' : c.status === 'warn' ? '#f59e0b' : '#dc2626';
+        return `<tr>
+            <td style="padding:10px 12px;border-bottom:1px solid #e5e7eb;vertical-align:top;">
+              <strong>${escapeHtml(c.label)}</strong><br>
+              <span style="color:#475569;font-size:13px;">${escapeHtml(c.detail)}</span>
+              ${c.fix ? `<br><span style="font-size:13px;">Fix: ${escapeHtml(c.fix)}</span>` : ''}
+            </td>
+            <td style="padding:10px 12px;border-bottom:1px solid #e5e7eb;color:${colour};font-weight:700;text-transform:uppercase;font-size:12px;vertical-align:top;">${escapeHtml(c.status)}</td>
+          </tr>`;
+      })
+      .join('');
+
+    return {
+      subject: `AI visibility for ${domain} — ${r?.score ?? 0}/${r?.maxScore ?? 40}`,
+      preheader: blocked.length
+        ? `${blocked.length} AI crawler${blocked.length === 1 ? '' : 's'} blocked from your site`
+        : 'All AI crawlers can reach you',
+      bodyHtml: `
+        <p>Here is the full AI visibility breakdown for <strong>${escapeHtml(domain)}</strong>.</p>
+        ${
+          blocked.length
+            ? `<p style="padding:12px 14px;background:#fef2f2;border-left:3px solid #dc2626;border-radius:6px;">
+                 <strong>${blocked.length} answer engine crawler${blocked.length === 1 ? ' is' : 's are'} blocked in your robots.txt:</strong>
+                 ${escapeHtml(blocked.map((b) => `${b.ua} (${b.engine})`).join(', '))}.
+                 Until that changes, those engines never read your pages, so nothing else on this list can help.
+               </p>`
+            : `<p style="padding:12px 14px;background:#f0fdf4;border-left:3px solid #16a34a;border-radius:6px;">
+                 Every answer engine crawler is allowed through. That is the foundation in place.
+               </p>`
+        }
+        <table style="width:100%;border-collapse:collapse;margin-top:16px;">${rows}</table>
+        <p style="margin-top:24px;">Want the citation side of this — which competitors get named when someone asks about your category? That is what I do on the free 60-minute call.</p>
+      `,
+    };
+  }
+
   if (tool === 'llms-txt' && body.payload) {
     const p = body.payload as { llmsTxt?: string; domain?: string };
     const domain = p.domain || 'your site';

@@ -1,0 +1,264 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export const prerender = false;
+---
+
+<BaseLayout
+  title="AI Brand Visibility Checker | Do Answer Engines Cite You? | Hristijan Najcheski"
+  description="Check whether answer engines can see and cite your site. Grades AI crawler access, llms.txt, entity schema, and content freshness across your whole domain. Free, no signup to see the result."
+>
+  <section class="page-header">
+    <div class="container">
+      <div class="page-header-content">
+        <span class="section-label">AEO Tool</span>
+        <h1>AI Brand <span class="text-gradient">Visibility Checker</span></h1>
+        <p>
+          Enter your domain and find out whether answer engines are even allowed to read your site,
+          and whether there is anything there for them to cite. Full breakdown emailed to you.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="audit-shell">
+        <form id="visForm" class="audit-form">
+          <label for="visDomain" class="audit-label">Your domain</label>
+          <div class="audit-row">
+            <input type="text" id="visDomain" required placeholder="yourdomain.com" autocomplete="off" />
+            <button type="submit" class="btn btn-orange btn-lg" id="visSubmit">Check visibility →</button>
+          </div>
+          <p class="audit-helper">Free · no signup to see the result · takes about 10 seconds</p>
+        </form>
+
+        <div id="visLoading" class="audit-state" hidden>
+          <div class="spinner"></div>
+          <p>Reading robots.txt, llms.txt, your sitemap, and the homepage…</p>
+        </div>
+
+        <div id="visError" class="audit-state audit-error" hidden></div>
+
+        <div id="visResult" hidden>
+          <div class="vis-headline">
+            <div class="vis-score">
+              <span class="vis-score-value" id="visScore">—</span>
+              <span class="vis-score-max" id="visScoreMax"></span>
+            </div>
+            <div>
+              <h2 id="visDomainLabel">—</h2>
+              <p class="vis-basis" id="visBasis"></p>
+            </div>
+          </div>
+
+          <h3 class="vis-h3">Can answer engines reach you?</h3>
+          <div class="vis-crawlers" id="visCrawlers"></div>
+
+          <h3 class="vis-h3">What decides whether you get cited</h3>
+          <ul class="vis-checks" id="visChecks"></ul>
+
+          <div class="vis-engines" id="visEngines"></div>
+
+          <form class="vis-gate" id="visGate">
+            <div>
+              <strong>Get the full breakdown</strong>
+              <p>Every check, the exact robots.txt lines to change, and the fixes in priority order.</p>
+            </div>
+            <div class="audit-row">
+              <input type="email" id="visEmail" required placeholder="you@company.com" />
+              <button type="submit" class="btn btn-primary" id="visGateBtn">Email it to me</button>
+            </div>
+            <p class="vis-gate-note" id="visGateNote"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .vis-headline {
+      display: flex;
+      align-items: center;
+      gap: var(--space-5);
+      padding: var(--space-5);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      background: var(--color-bg-elevated);
+      margin-bottom: var(--space-6);
+    }
+    .vis-score {
+      display: flex;
+      align-items: baseline;
+      gap: 2px;
+      font-family: var(--font-heading);
+    }
+    .vis-score-value { font-size: 3rem; font-weight: 800; color: var(--color-accent-blue); line-height: 1; }
+    .vis-score-max { font-size: 1.1rem; color: var(--color-text-secondary); white-space: nowrap; }
+    .vis-headline h2 { margin: 0; font-size: var(--text-xl); }
+    .vis-basis { margin: 4px 0 0; color: var(--color-text-secondary); font-size: 0.9rem; }
+    .vis-h3 { font-size: var(--text-lg); margin: var(--space-6) 0 var(--space-3); }
+
+
+    .vis-engines {
+      margin-top: var(--space-6);
+      padding: var(--space-4);
+      border: 1px dashed var(--color-border);
+      border-radius: var(--radius-md);
+      color: var(--color-text-secondary);
+      font-size: 0.88rem;
+    }
+
+    .vis-gate {
+      margin-top: var(--space-6);
+      padding: var(--space-5);
+      border-radius: var(--radius-lg);
+      background: var(--color-bg-secondary);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .vis-gate p { margin: 4px 0 0; color: var(--color-text-secondary); font-size: 0.92rem; }
+    .vis-gate-note { min-height: 1.2em; }
+    @media (max-width: 640px) {
+      .vis-headline { flex-direction: column; align-items: flex-start; gap: var(--space-3); }
+    }
+  </style>
+
+  <!-- These style markup the script injects, so they cannot be scoped. -->
+  <style is:global>
+    .vis-crawlers { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--space-2); }
+    .vis-crawler {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-3);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      font-size: 0.9rem;
+    }
+    .vis-dot { width: 9px; height: 9px; border-radius: 50%; flex: 0 0 auto; }
+    .vis-dot.ok { background: #16a34a; }
+    .vis-dot.no { background: #dc2626; }
+    .vis-crawler-reason { display: block; color: var(--color-text-secondary); font-size: 0.78rem; }
+
+    .vis-checks { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--space-2); }
+    .vis-check {
+      padding: var(--space-4);
+      border: 1px solid var(--color-border);
+      border-left-width: 3px;
+      border-radius: var(--radius-md);
+    }
+    .vis-check.pass { border-left-color: #16a34a; }
+    .vis-check.warn { border-left-color: #f59e0b; }
+    .vis-check.fail { border-left-color: #dc2626; }
+    .vis-check strong { display: block; margin-bottom: 2px; }
+    .vis-check p { margin: 0; color: var(--color-text-secondary); font-size: 0.92rem; }
+    .vis-check .vis-fix { margin-top: var(--space-2); color: var(--color-text-primary); font-size: 0.9rem; }
+  </style>
+
+  <script>
+    const form = document.getElementById('visForm') as HTMLFormElement;
+    const domainInput = document.getElementById('visDomain') as HTMLInputElement;
+    const submitBtn = document.getElementById('visSubmit') as HTMLButtonElement;
+    const loading = document.getElementById('visLoading')!;
+    const errorBox = document.getElementById('visError')!;
+    const result = document.getElementById('visResult')!;
+    const gate = document.getElementById('visGate') as HTMLFormElement;
+    const gateNote = document.getElementById('visGateNote')!;
+
+    let lastReport: unknown = null;
+    let lastDomain = '';
+
+    function show(el: Element, on: boolean) {
+      if (on) el.removeAttribute('hidden');
+      else el.setAttribute('hidden', '');
+    }
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const domain = domainInput.value.trim();
+      if (!domain) return;
+
+      show(errorBox, false);
+      show(result, false);
+      show(loading, true);
+      submitBtn.disabled = true;
+
+      try {
+        const res = await fetch('/api/ai-visibility', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ domain }),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Check failed');
+
+        lastReport = data;
+        lastDomain = data.domain;
+        render(data);
+        show(result, true);
+      } catch (err) {
+        errorBox.textContent = err instanceof Error ? err.message : 'Check failed';
+        show(errorBox, true);
+      } finally {
+        show(loading, false);
+        submitBtn.disabled = false;
+      }
+    });
+
+    function render(data: any) {
+      const r = data.readiness;
+      document.getElementById('visScore')!.textContent = String(r.score);
+      document.getElementById('visScoreMax')!.textContent = `/ ${r.maxScore}`;
+      document.getElementById('visDomainLabel')!.textContent = data.domain;
+
+      const live = data.engines.filter((e: any) => e.configured).map((e: any) => e.engine);
+      document.getElementById('visBasis')!.textContent = live.length
+        ? `Readiness plus live citation data from ${live.join(', ')}.`
+        : 'Readiness score only. Live citation checks are not switched on yet, so this measures whether engines can cite you, not whether they do.';
+
+      document.getElementById('visCrawlers')!.innerHTML = r.crawlers
+        .map(
+          (c: any) => `<div class="vis-crawler"><span class="vis-dot ${c.allowed ? 'ok' : 'no'}"></span>
+            <span><strong>${c.engine}</strong><span class="vis-crawler-reason">${c.ua} — ${c.reason}</span></span></div>`
+        )
+        .join('');
+
+      document.getElementById('visChecks')!.innerHTML = r.checks
+        .map(
+          (c: any) => `<li class="vis-check ${c.status}"><strong>${c.label}</strong><p>${c.detail}</p>
+            ${c.fix ? `<p class="vis-fix">Fix: ${c.fix}</p>` : ''}</li>`
+        )
+        .join('');
+
+      document.getElementById('visEngines')!.textContent = live.length
+        ? ''
+        : 'Citation checks across Google AI Overviews, Perplexity, and Bing Copilot are being wired up. This tool will never show a number it cannot source.';
+    }
+
+    gate?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = (document.getElementById('visEmail') as HTMLInputElement).value.trim();
+      const btn = document.getElementById('visGateBtn') as HTMLButtonElement;
+      if (!email || !lastReport) return;
+
+      btn.disabled = true;
+      gateNote.textContent = 'Sending…';
+      try {
+        const res = await fetch('/api/lead-capture', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ tool: 'ai-visibility', email, payload: { domain: lastDomain, report: lastReport } }),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Could not send it');
+        gateNote.textContent = 'Sent. Check your inbox.';
+        gate.querySelector('.audit-row')?.setAttribute('hidden', '');
+      } catch (err) {
+        gateNote.textContent = err instanceof Error ? err.message : 'Could not send it';
+        btn.disabled = false;
+      }
+    });
+  </script>
+</BaseLayout>
