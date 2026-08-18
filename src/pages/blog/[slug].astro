@@ -242,11 +242,6 @@ const aiLinks = [
       gap: var(--space-8);
       align-items: start;
     }
-    @media (max-width: 900px) {
-      .blog-post-layout { grid-template-columns: 1fr; gap: var(--space-6); }
-      .blog-side-rail { display: none; }
-    }
-
     .blog-side-rail {
       position: sticky;
       top: 100px;
@@ -300,6 +295,11 @@ const aiLinks = [
       font-size: 0.78rem;
       border-radius: var(--radius-md);
       gap: 4px;
+    }
+
+    @media (max-width: 1024px) {
+      .blog-post-layout { grid-template-columns: 1fr; gap: var(--space-6); }
+      .blog-side-rail { display: none; }
     }
 
     /* Author byline at top of article */
