@@ -1857,18 +1857,39 @@ p {
   }
 }
 
-@media (max-width: 768px) {
-  .nav-links {
+/* Header collapses at the same width the mega menus stop working (1024px).
+   Above 768px the desktop nav used to render with dead Services/Tools
+   dropdowns, and on a tablet with larger text the row overflowed into the
+   logo. The rest of the phone layout rules stay at 768px. */
+@media (max-width: 1024px) {
+  /* Keep the nav container in flow and empty it out, so the booking CTA
+     stays where it has always been. Hiding the whole container would drop
+     the one control the header exists for. */
+  .nav-links > *:not(.nav-cta) {
     display: none;
+  }
+
+  .nav-links {
+    gap: 0;
+    margin-left: auto;
+    margin-right: var(--space-3);
   }
 
   .mobile-menu-btn {
     display: flex;
   }
 
+  /* The toggle sits in its own flex wrapper beside the burger, so an auto
+     left margin here shoved the burger past the right edge on phones. */
   .theme-toggle {
-    margin-left: auto;
-    margin-right: var(--space-2);
+    margin-right: var(--space-1);
+  }
+}
+
+@media (max-width: 768px) {
+  /* No room beside the burger on a phone, so the CTA goes into the menu. */
+  .nav-links {
+    display: none;
   }
 
   .hero h1 {
