@@ -1,4 +1,5 @@
 ---
+import Icon from '../../components/Icon.astro';
 export const prerender = false;
 
 import BaseLayout from '../../layouts/BaseLayout.astro';
@@ -34,7 +35,7 @@ const otherServices = services.filter((s) => s.slug !== service.slug);
       <div class="page-header-content">
         <a href="/services/" class="section-label" style="text-decoration: none;">← All Services</a>
         <h1>
-          <span style="font-size: 2rem; margin-right: 0.5rem;">{service.icon}</span>
+          <span class="service-hero-icon"><Icon name={service.slug} size={34} /></span>
           {service.title}
         </h1>
         <p>{service.tagline}</p>
@@ -142,7 +143,7 @@ const otherServices = services.filter((s) => s.slug !== service.slug);
       <div class="services-grid" style="margin-top: var(--space-8);">
         {otherServices.slice(0, 3).map((s) => (
           <a href={`/services/${s.slug}/`} class="card" style="text-decoration: none; display: block;">
-            <div class="card-icon">{s.icon}</div>
+            <div class="card-icon"><Icon name={s.slug} size={26} /></div>
             <h3 class="card-title">{s.title}</h3>
             <p class="card-text">{s.tagline}</p>
             <span style="color: var(--color-accent-blue); font-size: 0.9rem; margin-top: var(--space-2); display: inline-block;">Learn more →</span>
@@ -317,5 +318,12 @@ const otherServices = services.filter((s) => s.slug !== service.slug);
     color: var(--color-text-muted);
     line-height: 1.6;
     margin: 0;
+  }
+  .service-hero-icon {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 0.6rem;
+    vertical-align: -0.15em;
+    color: var(--color-accent-blue);
   }
 </style>

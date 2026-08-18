@@ -1,4 +1,5 @@
 ---
+import Icon from '../components/Icon.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { services } from '../data/services';
 ---
@@ -73,7 +74,7 @@ import { services } from '../data/services';
       <div class="services-detailed-grid" style="margin-top: var(--space-10);">
         {services.map((service) => (
           <a href={`/services/${service.slug}/`} class="service-detailed-card" style="text-decoration: none; display: block;">
-            <div class="service-icon">{service.icon}</div>
+            <div class="service-icon"><Icon name={service.slug} size={30} /></div>
             <h3>{service.title}</h3>
             <p>{service.description}</p>
             <div class="service-features">

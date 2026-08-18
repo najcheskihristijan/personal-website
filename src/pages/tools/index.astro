@@ -1,4 +1,5 @@
 ---
+import Icon from '../../components/Icon.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const tools = [
@@ -91,7 +92,7 @@ const tools = [
           tool.status === 'live' ? (
             <a href={`/tools/${tool.slug}/`} class:list={["tool-card", { 'tool-card-featured': tool.featured }]}>
               {tool.tag && <span class={`tool-tag tool-tag-${(tool.tag || '').toLowerCase()}`}>{tool.tag}</span>}
-              <div class="tool-icon">{tool.icon}</div>
+              <div class="tool-icon"><Icon name={tool.slug} size={30} /></div>
               <h3 class="tool-title">{tool.title}</h3>
               <p class="tool-desc">{tool.description}</p>
               <span class="tool-cta">Open tool →</span>
@@ -99,7 +100,7 @@ const tools = [
           ) : (
             <div class="tool-card tool-card-soon">
               {tool.tag && <span class={`tool-tag tool-tag-${(tool.tag || '').toLowerCase()}`}>{tool.tag}</span>}
-              <div class="tool-icon">{tool.icon}</div>
+              <div class="tool-icon"><Icon name={tool.slug} size={30} /></div>
               <h3 class="tool-title">{tool.title}</h3>
               <p class="tool-desc">{tool.description}</p>
               <span class="tool-cta tool-cta-soon">Coming soon</span>
