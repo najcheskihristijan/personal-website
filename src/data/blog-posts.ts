@@ -19,6 +19,8 @@ export const posts: Record<string, {
       <p>The traditional agency model is broken for many growing businesses. You're paying for a team of juniors managed by one senior strategist who's spread across 20+ accounts. The result? Generic playbooks, slow communication, and strategies that don't move the needle.</p>
       <p>Enter the <strong>fractional SEO consultant</strong> — a senior-level professional who embeds directly with your team on a part-time basis. You get the strategic depth of a VP-level hire at a fraction of the cost.</p>
       <p>This model has exploded in popularity across the C-suite over the past five years. Fractional CFOs, CMOs, and CTOs are now commonplace. SEO — which sits at the intersection of marketing, technology, and content — is a natural fit for this approach.</p>
+      <div data-diagram="why-fractional-seo"></div>
+
 
       <h2>Why the Agency Model Falls Short</h2>
       <p>Before we dig into fractional SEO, it helps to understand why the dominant model — the SEO agency — leaves so many businesses frustrated.</p>
@@ -139,6 +141,8 @@ export const posts: Record<string, {
       <p>In 2026, technical SEO remains the foundation of any successful search strategy. No matter how great your content is, if search engines can't efficiently crawl, render, and index your site, you're leaving rankings on the table.</p>
       <p>Whether you're working with a <a href="/blog/why-fractional-seo/" style="color: var(--color-accent-blue);">fractional SEO consultant</a> or managing SEO in-house, this checklist will keep your technical foundation solid.</p>
       <p>Technical SEO has evolved significantly. It's no longer just about meta tags and sitemaps. Modern technical SEO encompasses performance engineering, JavaScript rendering, structured data, and ensuring your site is optimised for both traditional search and AI-driven discovery. If that second half is new territory, start with <a href="/blog/how-answer-engines-choose-sources/" style="color: var(--color-accent-blue);">how answer engines decide which sources to cite</a>.</p>
+      <div data-diagram="technical-seo-checklist-2026"></div>
+
 
       <h2>1. Crawlability & Indexation</h2>
       <p>If Google can't find and crawl your pages, nothing else matters. This is where every technical audit should start.</p>
@@ -300,6 +304,8 @@ export const posts: Record<string, {
       <p>E-E-A-T stands for <strong>Experience, Expertise, Authoritativeness, and Trustworthiness</strong>. It's a framework Google uses to evaluate the quality of web content, especially for topics that impact people's health, finances, or safety (known as YMYL — "Your Money or Your Life" topics).</p>
       <p>E-E-A-T isn't a direct ranking factor — Google doesn't have an "E-E-A-T score." Instead, it's a set of principles that Google's quality raters use to evaluate search results, and Google's algorithms are designed to surface content that exhibits these qualities.</p>
       <p>The extra "E" for Experience was added in December 2022, reflecting Google's growing emphasis on first-hand knowledge. This was a clear signal: Google wants content from people who have actually <em>done</em> the thing, not just researched it.</p>
+      <div data-diagram="content-strategy-eeat"></div>
+
 
       <h2>Why E-E-A-T Matters More Than Ever</h2>
       <p>Several trends have made E-E-A-T more important in 2026:</p>
@@ -408,6 +414,8 @@ export const posts: Record<string, {
       <p>For years, businesses had two main choices for SEO: hire an expensive full-time in-house manager or retain a generalist marketing agency. Both have significant flaws.</p>
       <p>A full-time hire is a massive fixed cost that many startups and mid-market companies can't justify — a competent Head of SEO commands $120k–$180k+ in total compensation. Meanwhile, agencies often lack the dedicated focus required to move the needle in competitive verticals, spreading one strategist across dozens of accounts.</p>
       <p>Enter the <strong>Fractional SEO Consultant</strong> — a model that's been quietly transforming how growth-oriented companies approach organic search.</p>
+      <div data-diagram="what-is-fractional-seo"></div>
+
 
       <h2>What Exactly Is a Fractional SEO Consultant?</h2>
       <p>A fractional SEO consultant is a senior-level expert who works with your company on a retainer basis, acting as a de facto "Head of SEO" but for a fraction of the time (and cost) of a full-time executive.</p>
@@ -527,6 +535,8 @@ export const posts: Record<string, {
       <p>Every growing company eventually faces the "SEO Dilemma": How do we resource organic search? Do we hire someone, outsource to an agency, or find a consultant?</p>
       <p>There's no universally correct answer. The best model depends entirely on your stage, budget, culture, and growth ambitions. This guide will help you make the right choice for where you are today — and where you're heading.</p>
       <p>If you're not sure what a fractional SEO consultant is, start with our <a href="/blog/what-is-fractional-seo/" style="color: var(--color-accent-blue);">complete guide to the fractional model</a> first.</p>
+      <div data-diagram="fractional-seo-vs-agency"></div>
+
 
       <h2>Model 1: The SEO Agency</h2>
       <h3>The Proposition</h3>
@@ -731,6 +741,8 @@ export const posts: Record<string, {
       <h2>SEO Is an Investment, Not an Expense</h2>
       <p>If you treat SEO as a line item expense like office supplies, you've already lost. SEO is a capital asset — like buying real estate. You build it once, and it pays you dividends for years. Every blog post that ranks, every product page that converts, every backlink you earn — they compound over time.</p>
       <p>The challenge is that SEO's returns are delayed. You invest today and see returns in 3–6 months. This makes it hard to justify to CFOs who want monthly ROI. But the math is overwhelmingly in favour of investing, especially when you do it smartly through a <a href="/blog/what-is-fractional-seo/" style="color: var(--color-accent-blue);">fractional model</a>.</p>
+      <div data-diagram="roi-of-fractional-seo"></div>
+
 
       <h2>The ROI Formula</h2>
       <p>The basic calculation is straightforward:</p>
@@ -890,6 +902,8 @@ export const posts: Record<string, {
       <h2>What an SEO Audit Is (and Isn't)</h2>
       <p>An SEO audit is a diagnostic review of your website's ability to rank in organic search. It answers three questions: <em>what's working, what's broken, and what's missing</em>. A good audit ends with a prioritised roadmap — not a spreadsheet of 3,000 issues dumped from a crawler.</p>
       <p>What an audit is <strong>not</strong>: a deliverable you implement yourself based on vague recommendations. The value of an audit comes from senior judgement applied to your specific business context — not from listing every 301 redirect chain on the site.</p>
+      <div data-diagram="seo-audit-checklist-what-to-expect"></div>
+
 
       <h2>The Five Layers of a Complete SEO Audit</h2>
       <p>Any audit worth paying for covers these five layers. If yours skips one, you're getting a partial picture.</p>
@@ -1031,6 +1045,8 @@ export const posts: Record<string, {
         <li>Makes channel trade-off decisions (e.g. more SEO budget vs more paid)</li>
       </ul>
       <p>Their value is breadth: they see the full marketing picture. Their limitation is depth: they won't personally optimise your crawl budget, build your link profile, or restructure your content architecture.</p>
+      <div data-diagram="fractional-cmo-vs-fractional-seo"></div>
+
 
       <h2>What a Fractional SEO Consultant Does</h2>
       <p>A <a href="/blog/what-is-fractional-seo/" style="color: var(--color-accent-blue);">fractional SEO consultant</a> is a senior specialist who owns your organic search strategy end to end. They go deep on one channel — SEO — rather than wide across many.</p>
@@ -1153,6 +1169,8 @@ export const posts: Record<string, {
       <h2>Why I'm Writing This</h2>
       <p>I work with growing businesses who often arrive having tried link building once or twice — usually with an agency that promised "high-DR backlinks" and delivered private blog network spam, or a freelancer who sent 200 cold outreach emails and got two "yes, $500 per link" replies. Both outcomes leave them sceptical that link building works at all.</p>
       <p>It does work. But the strategies that work in 2026 require more thought, more creativity, and more patience than the tactics that worked in 2018. Here's my actual playbook.</p>
+      <div data-diagram="link-building-strategies-2026"></div>
+
 
       <h2>1. Digital PR With a Genuine Hook</h2>
       <p>This is the single highest-leverage strategy I use today. The idea is simple: produce something newsworthy — original research, a survey, a tool, or a strong opinion piece — and pitch it to journalists who cover your niche.</p>
@@ -1266,6 +1284,8 @@ export const posts: Record<string, {
         <li><strong>The pages you want to rank actually exist and are good.</strong> Building links to thin pages is throwing money away.</li>
         <li><strong>The site has at least 8–12 pieces of substantive content.</strong> A site with three pages doesn't look credible to journalists or potential link partners.</li>
       </ol>
+      <div data-diagram="how-to-build-backlinks-from-scratch"></div>
+
 
       <h2>Days 1–14: Foundation Links</h2>
       <p>The goal of the first two weeks is to establish that your business actually exists. These aren't ranking-changing links, but Google looks for basic signals of legitimacy. I aim for:</p>
@@ -1391,6 +1411,8 @@ export const posts: Record<string, {
         <li>Whether the link is contextual or buried in a footer</li>
       </ul>
       <p>I've seen DR 80 sites with no organic traffic, no content updates in two years, and link profiles built almost entirely from PBNs and paid placements. The DR number was real. The actual SEO value of a link from that site was close to zero.</p>
+      <div data-diagram="how-to-evaluate-backlink-quality"></div>
+
 
       <h2>The 7 Metrics I Actually Check</h2>
 
@@ -1529,6 +1551,8 @@ export const posts: Record<string, {
       <p>An answer engine does not read your page the way a human does. It runs a retrieval-and-generation loop, often called grounding. When Google announced AI Mode, it described a "query fan-out" technique: the engine takes one question, issues multiple related searches concurrently across subtopics, then brings those results back together into a single response (<a href="https://blog.google/products/search/ai-mode-search/" target="_blank" rel="noopener" style="color: var(--color-accent-blue);">Google, "Expanding AI Overviews and introducing AI Mode"</a>). AI Overviews work the same way. Your original query becomes a handful of parallel sub-queries, each hitting the index, each returning candidate passages.</p>
       <p>The unit of retrieval is the passage, not the page. A model can ground one sentence of its answer in your third paragraph and ignore everything else you wrote. Then it attributes an inline citation to the passages that most strongly supported each claim it generated. This is why a thin page can get cited for one crisp fact while a comprehensive guide gets skipped: the comprehensive guide buried its answer inside three qualifying clauses, and the retrieval system could not lift a clean, standalone chunk out of it.</p>
       <p>So the practical question is never "how do I rank a page." It is "how do I write passages that survive being torn out of context and dropped into someone else's answer."</p>
+      <div data-diagram="how-answer-engines-choose-sources"></div>
+
 
       <h2>Do you need special schema, an llms.txt file, or AI-specific markup to get cited?</h2>
       <p>No. This is the single most important thing to get right, because a whole cottage industry is selling the opposite.</p>

@@ -4,6 +4,8 @@ export const prerender = false;
 
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { posts } from '../../data/blog-posts';
+import { blogDiagrams } from '../../data/blog-diagrams';
+import { renderDiagram } from '../../lib/diagram';
 
 const { slug } = Astro.params;
 const post = slug ? posts[slug] : null;
@@ -12,6 +14,14 @@ const post = slug ? posts[slug] : null;
 if (!post || (!import.meta.env.DEV && new Date(post.date) > new Date())) {
   return Astro.redirect('/404');
 }
+
+// Diagrams live outside the post body: the body carries a marker, the SVG is
+// rendered here. Keeps 126KB of prose free of markup nobody wants to edit by
+// hand, and a restyle reaches every post at once.
+const diagram = slug ? blogDiagrams[slug] : undefined;
+const content = diagram
+  ? post.content.replace(/<div data-diagram="[a-z0-9-]+"><\/div>/, renderDiagram(diagram))
+  : post.content;
 
 // Get related articles (exclude current, sort by date, limit to 3)
 const allSlugs = Object.keys(posts);
@@ -129,7 +139,7 @@ const aiLinks = [
               style="width: 100%; height: auto; border-radius: 12px; margin: var(--space-6) 0 var(--space-8); border: 1px solid var(--color-border);"
             />
           )}
-          <div class="blog-post-content" id="blogPostContent" set:html={post.content} />
+          <div class="blog-post-content" id="blogPostContent" set:html={content} />
 
           <!-- Standout end-of-post CTA -->
           <aside class="blog-bottom-cta">
@@ -679,4 +689,33 @@ const aiLinks = [
       </div>
     </div>
   </section>
+
+  <!-- Diagrams are injected into the post body, so their styles cannot be scoped. -->
+  <style is:global>
+    .post-diagram {
+      margin: var(--space-8) 0;
+      padding: var(--space-5) var(--space-5) var(--space-4);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      background: var(--color-bg-secondary);
+      /* Wide diagrams scroll inside their own frame rather than pushing the
+         article sideways on a phone. */
+      overflow-x: auto;
+    }
+    .post-diagram svg {
+      display: block;
+      width: 100%;
+      min-width: 460px;
+      height: auto;
+      font-family: var(--font-body);
+    }
+    .post-diagram figcaption {
+      margin-top: var(--space-3);
+      padding-top: var(--space-3);
+      border-top: 1px solid var(--color-border);
+      color: var(--color-text-secondary);
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+  </style>
 </BaseLayout>
