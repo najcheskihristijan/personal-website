@@ -1,4 +1,5 @@
 ---
+import Icon from '../components/Icon.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const faqItems = [
@@ -59,7 +60,7 @@ const faqItems = [
         <!-- Audit -->
         <div class="pricing-card">
           <div class="pricing-tag">One-Time</div>
-          <div class="pricing-icon">🔍</div>
+          <div class="pricing-icon"><span class="icon-tile"><Icon name="seo-audits" size={24} /></span></div>
           <h3 class="pricing-title">SEO Audit</h3>
           <p class="pricing-desc">
             A comprehensive deep-dive into your site's technical health, content gaps, and competitive positioning. Delivered as a prioritised action plan your team can execute immediately.
@@ -80,7 +81,7 @@ const faqItems = [
         <!-- Retainer -->
         <div class="pricing-card pricing-card-featured">
           <div class="pricing-tag pricing-tag-featured">Most Popular</div>
-          <div class="pricing-icon">📈</div>
+          <div class="pricing-icon"><span class="icon-tile"><Icon name="analytics-reporting" size={24} /></span></div>
           <h3 class="pricing-title">Monthly Retainer</h3>
           <p class="pricing-desc">
             Embedded SEO strategy and execution, month after month. I work as an extension of your team — attending key meetings, owning the SEO roadmap, and reporting directly to you.
@@ -102,7 +103,7 @@ const faqItems = [
         <!-- Sprint -->
         <div class="pricing-card">
           <div class="pricing-tag">Fixed Scope</div>
-          <div class="pricing-icon">⚡</div>
+          <div class="pricing-icon"><span class="icon-tile"><Icon name="speed" size={24} /></span></div>
           <h3 class="pricing-title">Strategy Sprint</h3>
           <p class="pricing-desc">
             A focused 30-day engagement built around one specific goal — a site migration, a content strategy, a penalty recovery, or a new market launch. Fast, targeted, and actionable.
@@ -251,8 +252,7 @@ const faqItems = [
     }
 
     .pricing-icon {
-      font-size: 2.5rem;
-    }
+      }
 
     .pricing-title {
       font-family: var(--font-heading);

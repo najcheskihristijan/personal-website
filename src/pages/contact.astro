@@ -1,4 +1,5 @@
 ---
+import Icon from '../components/Icon.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
@@ -33,7 +34,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
           <div class="contact-methods">
             <div class="contact-method">
-              <div class="contact-method-icon">✉️</div>
+              <div class="contact-method-icon"><span class="icon-tile"><Icon name="email" size={24} /></span></div>
               <div>
                 <div class="contact-method-label">Email</div>
                 <div class="contact-method-value">
@@ -43,7 +44,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </div>
 
             <div class="contact-method">
-              <div class="contact-method-icon">🌍</div>
+              <div class="contact-method-icon"><span class="icon-tile"><Icon name="globe" size={24} /></span></div>
               <div>
                 <div class="contact-method-label">Availability</div>
                 <div class="contact-method-value">Worldwide (Remote)</div>

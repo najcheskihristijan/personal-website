@@ -188,7 +188,7 @@ const aiLinks = [
                   {related.image ? (
                     <img src={related.image} alt={related.title} width="600" height="315" loading="lazy" class="blog-card-image" style="width: 100%; height: auto; object-fit: cover;" />
                   ) : (
-                    <div class="blog-card-image">📄</div>
+                    <div class="blog-card-image blog-card-image-empty" aria-hidden="true"></div>
                   )}
                   <div class="blog-card-body">
                     <div class="blog-card-meta">

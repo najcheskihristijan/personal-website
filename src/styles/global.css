@@ -2039,3 +2039,35 @@ p {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
+
+
+/* Fallback for a post with no artwork. Previously a document emoji, which
+   rendered differently on every platform and sat beside real hero images. */
+.blog-card-image-empty {
+  aspect-ratio: 600 / 315;
+  background:
+    radial-gradient(120% 120% at 80% 0%, rgba(59, 130, 246, 0.22), transparent 60%),
+    var(--color-bg-secondary);
+  border-bottom: 1px solid var(--color-border);
+}
+
+
+/* Shared icon tile. Matches the homepage service and audience cards. */
+.icon-tile {
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(37, 99, 235, 0.04));
+  border: 1px solid rgba(37, 99, 235, 0.25);
+  border-radius: 12px;
+  color: var(--color-accent-blue);
+  margin-bottom: var(--space-4);
+  transition: background 200ms ease, transform 200ms ease;
+}
+.pricing-card:hover .icon-tile,
+.pain-card:hover .icon-tile,
+.contact-method:hover .icon-tile {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(37, 99, 235, 0.08));
+}

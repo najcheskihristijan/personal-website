@@ -1,4 +1,5 @@
 ---
+import Icon from '../components/Icon.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const faqItems = [
@@ -55,10 +56,10 @@ const faqItems = [
       <span class="section-label">The Problem</span>
       <h2 class="section-title">Why publishing sites plateau <span class="text-gradient">in organic search</span></h2>
       <div class="pain-grid">
-        <div class="pain-card"><div class="pain-icon">📉</div><h3>Content bloat dragging rankings</h3><p class="card-text">Years of publishing create thousands of thin, outdated, and duplicate pages that dilute your overall quality signals — causing even your best content to rank lower than it should.</p></div>
-        <div class="pain-card"><div class="pain-icon">🔀</div><h3>Cannibalistic content</h3><p class="card-text">Multiple articles targeting the same keyword split link equity and confuse Google about which page to rank. Without a consolidation strategy, you compete against yourself.</p></div>
-        <div class="pain-card"><div class="pain-icon">🏛️</div><h3>Weak topical authority</h3><p class="card-text">Publishing broadly without depth means Google doesn't see you as the authoritative source on any one topic. Depth beats breadth in modern search.</p></div>
-        <div class="pain-card"><div class="pain-icon">🤖</div><h3>Missing from AI-generated answers</h3><p class="card-text">As more readers get answers directly from AI tools, publishers not cited by ChatGPT and Perplexity are losing referral traffic. GEO is no longer optional.</p></div>
+        <div class="pain-card"><div class="pain-icon"><span class="icon-tile"><Icon name="decline" size={24} /></span></div><h3>Content bloat dragging rankings</h3><p class="card-text">Years of publishing create thousands of thin, outdated, and duplicate pages that dilute your overall quality signals — causing even your best content to rank lower than it should.</p></div>
+        <div class="pain-card"><div class="pain-icon"><span class="icon-tile"><Icon name="duplicate" size={24} /></span></div><h3>Cannibalistic content</h3><p class="card-text">Multiple articles targeting the same keyword split link equity and confuse Google about which page to rank. Without a consolidation strategy, you compete against yourself.</p></div>
+        <div class="pain-card"><div class="pain-icon"><span class="icon-tile"><Icon name="authority" size={24} /></span></div><h3>Weak topical authority</h3><p class="card-text">Publishing broadly without depth means Google doesn't see you as the authoritative source on any one topic. Depth beats breadth in modern search.</p></div>
+        <div class="pain-card"><div class="pain-icon"><span class="icon-tile"><Icon name="robots-txt-tester" size={24} /></span></div><h3>Missing from AI-generated answers</h3><p class="card-text">As more readers get answers directly from AI tools, publishers not cited by ChatGPT and Perplexity are losing referral traffic. GEO is no longer optional.</p></div>
       </div>
     </div>
   </section>
@@ -68,12 +69,12 @@ const faqItems = [
       <span class="section-label">The Solution</span>
       <h2 class="section-title">What I do for <span class="text-gradient-orange">publishers & media</span></h2>
       <div class="services-grid" style="margin-top:var(--space-10);">
-        <div class="card"><div class="card-icon">🔬</div><h3 class="card-title">Content Audit & Pruning</h3><p class="card-text">Systematic review of every page — keep, improve, consolidate, or remove — to lift overall site quality and free up crawl budget for high-value content.</p></div>
-        <div class="card"><div class="card-icon">🏛️</div><h3 class="card-title">Topical Authority Strategy</h3><p class="card-text">Topic mapping, pillar content planning, and internal linking architecture that signals depth and expertise to search engines across your core subjects.</p></div>
-        <div class="card"><div class="card-icon">⚡</div><h3 class="card-title">Programmatic SEO</h3><p class="card-text">Template-driven pages at scale using your data — statistics, comparisons, locations — capturing long-tail traffic that manual publishing can't reach.</p></div>
-        <div class="card"><div class="card-icon">🔗</div><h3 class="card-title">Internal Linking Systems</h3><p class="card-text">Architecting how pages link to each other so link equity flows to your most important content and readers naturally move deeper into your site.</p></div>
-        <div class="card"><div class="card-icon">🤖</div><h3 class="card-title">AI Search Visibility (GEO)</h3><p class="card-text">Structuring content with clear definitions, concise answers, and authoritative sourcing so AI tools cite your articles when answering reader questions.</p></div>
-        <div class="card"><div class="card-icon">📊</div><h3 class="card-title">Traffic & Revenue Analytics</h3><p class="card-text">Connecting organic traffic to ad revenue, subscriptions, and affiliate income — so every SEO decision is tied to business outcomes.</p></div>
+        <div class="card"><div class="card-icon"><span class="icon-tile"><Icon name="research" size={24} /></span></div><h3 class="card-title">Content Audit & Pruning</h3><p class="card-text">Systematic review of every page — keep, improve, consolidate, or remove — to lift overall site quality and free up crawl budget for high-value content.</p></div>
+        <div class="card"><div class="card-icon"><span class="icon-tile"><Icon name="authority" size={24} /></span></div><h3 class="card-title">Topical Authority Strategy</h3><p class="card-text">Topic mapping, pillar content planning, and internal linking architecture that signals depth and expertise to search engines across your core subjects.</p></div>
+        <div class="card"><div class="card-icon"><span class="icon-tile"><Icon name="speed" size={24} /></span></div><h3 class="card-title">Programmatic SEO</h3><p class="card-text">Template-driven pages at scale using your data — statistics, comparisons, locations — capturing long-tail traffic that manual publishing can't reach.</p></div>
+        <div class="card"><div class="card-icon"><span class="icon-tile"><Icon name="link-building" size={24} /></span></div><h3 class="card-title">Internal Linking Systems</h3><p class="card-text">Architecting how pages link to each other so link equity flows to your most important content and readers naturally move deeper into your site.</p></div>
+        <div class="card"><div class="card-icon"><span class="icon-tile"><Icon name="robots-txt-tester" size={24} /></span></div><h3 class="card-title">AI Search Visibility (GEO)</h3><p class="card-text">Structuring content with clear definitions, concise answers, and authoritative sourcing so AI tools cite your articles when answering reader questions.</p></div>
+        <div class="card"><div class="card-icon"><span class="icon-tile"><Icon name="analytics-reporting" size={24} /></span></div><h3 class="card-title">Traffic & Revenue Analytics</h3><p class="card-text">Connecting organic traffic to ad revenue, subscriptions, and affiliate income — so every SEO decision is tied to business outcomes.</p></div>
       </div>
     </div>
   </section>
@@ -116,7 +117,7 @@ const faqItems = [
     .geo-definition p{color:var(--color-text-secondary);line-height:1.8;}
     .pain-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-6);margin-top:var(--space-10);}
     .pain-card{background:var(--color-bg-elevated);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-7);}
-    .pain-icon{font-size:2rem;margin-bottom:var(--space-3);}
+    .pain-icon{margin-bottom:var(--space-3);}
     .pain-card h3{font-family:var(--font-heading);font-size:var(--text-lg);font-weight:700;color:var(--color-text-primary);margin-bottom:var(--space-2);}
     .result-card{background:var(--color-bg-elevated);border:1px solid var(--color-border);border-radius:var(--radius-2xl);padding:var(--space-10);max-width:760px;margin:var(--space-10) auto 0;}
     .result-tag{font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-accent-blue);margin-bottom:var(--space-4);}

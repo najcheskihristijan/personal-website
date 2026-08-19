@@ -1,4 +1,5 @@
 ---
+import Icon from '../components/Icon.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const faqItems = [
@@ -58,22 +59,22 @@ const faqItems = [
       <h2 class="section-title">Why SaaS companies struggle <span class="text-gradient">with SEO</span></h2>
       <div class="pain-grid">
         <div class="pain-card">
-          <div class="pain-icon">💸</div>
+          <div class="pain-icon"><span class="icon-tile"><Icon name="cost-leak" size={24} /></span></div>
           <h3>Over-reliance on paid ads</h3>
           <p class="card-text">CAC from Google Ads and LinkedIn climbs every year. Without organic, you're permanently renting traffic — and one algorithm or policy change can cut your pipeline overnight.</p>
         </div>
         <div class="pain-card">
-          <div class="pain-icon">🎯</div>
+          <div class="pain-icon"><span class="icon-tile"><Icon name="target" size={24} /></span></div>
           <h3>Missing bottom-of-funnel searches</h3>
           <p class="card-text">Your highest-intent buyers — searching "[competitor] alternatives" or "best [category] tool for [use case]" — aren't finding you. Those searches have direct trial and demo intent.</p>
         </div>
         <div class="pain-card">
-          <div class="pain-icon">🏗️</div>
+          <div class="pain-icon"><span class="icon-tile"><Icon name="architecture" size={24} /></span></div>
           <h3>Weak technical foundation</h3>
           <p class="card-text">SaaS products often have crawlability issues from SPAs, thin pages, and duplicate content from feature flags. This prevents even good content from ranking.</p>
         </div>
         <div class="pain-card">
-          <div class="pain-icon">👥</div>
+          <div class="pain-icon"><span class="icon-tile"><Icon name="team" size={24} /></span></div>
           <h3>Can't justify a full-time hire yet</h3>
           <p class="card-text">A VP of SEO costs $180–250K+. An agency costs $5–15K/mo and gives you a junior account manager. Neither makes sense at your stage.</p>
         </div>
@@ -88,32 +89,32 @@ const faqItems = [
       <h2 class="section-title">What I do for <span class="text-gradient-orange">SaaS companies</span></h2>
       <div class="services-grid" style="margin-top:var(--space-10);">
         <div class="card">
-          <div class="card-icon">⚙️</div>
+          <div class="card-icon"><span class="icon-tile"><Icon name="process" size={24} /></span></div>
           <h3 class="card-title">Technical SEO Audit & Fixes</h3>
           <p class="card-text">JavaScript rendering, crawl budget, duplicate content, internal linking — fixing the foundation so every page you publish has a chance to rank.</p>
         </div>
         <div class="card">
-          <div class="card-icon">🎯</div>
+          <div class="card-icon"><span class="icon-tile"><Icon name="target" size={24} /></span></div>
           <h3 class="card-title">Bottom-of-Funnel Content Strategy</h3>
           <p class="card-text">Comparison pages, alternative pages, use-case landing pages, and integration pages — the content your highest-intent buyers are searching for right now.</p>
         </div>
         <div class="card">
-          <div class="card-icon">📊</div>
+          <div class="card-icon"><span class="icon-tile"><Icon name="analytics-reporting" size={24} /></span></div>
           <h3 class="card-title">Pipeline-Tied Reporting</h3>
           <p class="card-text">Dashboards that connect organic sessions to trials, demos, and MQLs — so every SEO decision is tied to revenue, not just rankings.</p>
         </div>
         <div class="card">
-          <div class="card-icon">🔗</div>
+          <div class="card-icon"><span class="icon-tile"><Icon name="link-building" size={24} /></span></div>
           <h3 class="card-title">Authority & Link Building</h3>
           <p class="card-text">Building topical authority through digital PR, thought leadership placement, and strategic link acquisition in your niche.</p>
         </div>
         <div class="card">
-          <div class="card-icon">🤖</div>
+          <div class="card-icon"><span class="icon-tile"><Icon name="robots-txt-tester" size={24} /></span></div>
           <h3 class="card-title">AI Search Visibility (GEO)</h3>
           <p class="card-text">Structuring your content so ChatGPT, Perplexity, and Google AI Overviews recommend your tool when buyers ask AI for software recommendations.</p>
         </div>
         <div class="card">
-          <div class="card-icon">🚀</div>
+          <div class="card-icon"><span class="icon-tile"><Icon name="launch" size={24} /></span></div>
           <h3 class="card-title">Product-Led SEO</h3>
           <p class="card-text">Programmatic pages at scale — templates, integrations, use-case pages — leveraging your product's data to create thousands of ranking pages.</p>
         </div>
@@ -205,7 +206,7 @@ const faqItems = [
     .geo-definition p { color:var(--color-text-secondary); line-height:1.8; }
     .pain-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:var(--space-6); margin-top:var(--space-10); }
     .pain-card { background:var(--color-bg-elevated); border:1px solid var(--color-border); border-radius:var(--radius-xl); padding:var(--space-7); }
-    .pain-icon { font-size:2rem; margin-bottom:var(--space-3); }
+    .pain-icon { margin-bottom:var(--space-3); }
     .pain-card h3 { font-family:var(--font-heading); font-size:var(--text-lg); font-weight:700; color:var(--color-text-primary); margin-bottom:var(--space-2); }
     .result-card { background:var(--color-bg-elevated); border:1px solid var(--color-border); border-radius:var(--radius-2xl); padding:var(--space-10); max-width:760px; margin:var(--space-10) auto 0; }
     .result-tag { font-size:var(--text-xs); font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--color-accent-blue); margin-bottom:var(--space-4); }

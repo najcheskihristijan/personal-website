@@ -1,4 +1,5 @@
 ---
+import Icon from '../components/Icon.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const faqItems = [
@@ -55,10 +56,10 @@ const faqItems = [
       <span class="section-label">The Problem</span>
       <h2 class="section-title">Where enterprise SEO <span class="text-gradient">typically breaks down</span></h2>
       <div class="pain-grid">
-        <div class="pain-card"><div class="pain-icon">🏗️</div><h3>No senior strategic layer</h3><p class="card-text">In-house teams and agencies are good at execution but rarely have the seniority to set the roadmap, challenge product decisions, or report to the C-suite with confidence. That gap costs growth.</p></div>
-        <div class="pain-card"><div class="pain-icon">🔧</div><h3>Engineering doesn't prioritise SEO</h3><p class="card-text">Without a senior SEO advocate in cross-functional planning, SEO requirements consistently get deprioritised in sprints. Technical debt compounds, and major changes ship without SEO review.</p></div>
-        <div class="pain-card"><div class="pain-icon">📊</div><h3>SEO isn't tied to revenue</h3><p class="card-text">Organic traffic reports go to the marketing team but don't make it to the boardroom. Without revenue attribution, SEO struggles to justify investment and loses budget battles.</p></div>
-        <div class="pain-card"><div class="pain-icon">🚨</div><h3>Risky migrations and redesigns</h3><p class="card-text">Every major platform migration or site redesign is a traffic risk. Without senior SEO involvement from day one, these projects routinely cause massive — and avoidable — organic traffic losses.</p></div>
+        <div class="pain-card"><div class="pain-icon"><span class="icon-tile"><Icon name="architecture" size={24} /></span></div><h3>No senior strategic layer</h3><p class="card-text">In-house teams and agencies are good at execution but rarely have the seniority to set the roadmap, challenge product decisions, or report to the C-suite with confidence. That gap costs growth.</p></div>
+        <div class="pain-card"><div class="pain-icon"><span class="icon-tile"><Icon name="fix" size={24} /></span></div><h3>Engineering doesn't prioritise SEO</h3><p class="card-text">Without a senior SEO advocate in cross-functional planning, SEO requirements consistently get deprioritised in sprints. Technical debt compounds, and major changes ship without SEO review.</p></div>
+        <div class="pain-card"><div class="pain-icon"><span class="icon-tile"><Icon name="analytics-reporting" size={24} /></span></div><h3>SEO isn't tied to revenue</h3><p class="card-text">Organic traffic reports go to the marketing team but don't make it to the boardroom. Without revenue attribution, SEO struggles to justify investment and loses budget battles.</p></div>
+        <div class="pain-card"><div class="pain-icon"><span class="icon-tile"><Icon name="alert" size={24} /></span></div><h3>Risky migrations and redesigns</h3><p class="card-text">Every major platform migration or site redesign is a traffic risk. Without senior SEO involvement from day one, these projects routinely cause massive — and avoidable — organic traffic losses.</p></div>
       </div>
     </div>
   </section>
@@ -68,12 +69,12 @@ const faqItems = [
       <span class="section-label">The Solution</span>
       <h2 class="section-title">What I bring to <span class="text-gradient-orange">enterprise engagements</span></h2>
       <div class="services-grid" style="margin-top:var(--space-10);">
-        <div class="card"><div class="card-icon">🗺️</div><h3 class="card-title">SEO Strategy & Roadmap</h3><p class="card-text">Annual and quarterly SEO roadmaps tied to business goals — prioritised, resourced, and aligned with product and engineering timelines.</p></div>
-        <div class="card"><div class="card-icon">🤝</div><h3 class="card-title">Cross-Functional Alignment</h3><p class="card-text">Embedding SEO requirements into product roadmaps, engineering sprints, and content calendars so nothing ships without organic impact considered.</p></div>
-        <div class="card"><div class="card-icon">🚀</div><h3 class="card-title">Site Migration Leadership</h3><p class="card-text">Full migration oversight from pre-launch audit through to post-migration monitoring — protecting your organic traffic through one of the highest-risk SEO events.</p></div>
-        <div class="card"><div class="card-icon">📈</div><h3 class="card-title">Executive-Level Reporting</h3><p class="card-text">Dashboards and narrative reporting that translate organic performance into revenue, market share, and competitive position — in language that resonates with the C-suite.</p></div>
-        <div class="card"><div class="card-icon">👥</div><h3 class="card-title">Team Leadership & Training</h3><p class="card-text">Upskilling in-house SEO teams, setting quality standards, and building processes that maintain performance long after the engagement concludes.</p></div>
-        <div class="card"><div class="card-icon">🌍</div><h3 class="card-title">International SEO</h3><p class="card-text">Hreflang strategy, international architecture, and localisation guidance for enterprises operating across multiple languages and regions.</p></div>
+        <div class="card"><div class="card-icon"><span class="icon-tile"><Icon name="roadmap" size={24} /></span></div><h3 class="card-title">SEO Strategy & Roadmap</h3><p class="card-text">Annual and quarterly SEO roadmaps tied to business goals — prioritised, resourced, and aligned with product and engineering timelines.</p></div>
+        <div class="card"><div class="card-icon"><span class="icon-tile"><Icon name="partnership" size={24} /></span></div><h3 class="card-title">Cross-Functional Alignment</h3><p class="card-text">Embedding SEO requirements into product roadmaps, engineering sprints, and content calendars so nothing ships without organic impact considered.</p></div>
+        <div class="card"><div class="card-icon"><span class="icon-tile"><Icon name="launch" size={24} /></span></div><h3 class="card-title">Site Migration Leadership</h3><p class="card-text">Full migration oversight from pre-launch audit through to post-migration monitoring — protecting your organic traffic through one of the highest-risk SEO events.</p></div>
+        <div class="card"><div class="card-icon"><span class="icon-tile"><Icon name="analytics-reporting" size={24} /></span></div><h3 class="card-title">Executive-Level Reporting</h3><p class="card-text">Dashboards and narrative reporting that translate organic performance into revenue, market share, and competitive position — in language that resonates with the C-suite.</p></div>
+        <div class="card"><div class="card-icon"><span class="icon-tile"><Icon name="team" size={24} /></span></div><h3 class="card-title">Team Leadership & Training</h3><p class="card-text">Upskilling in-house SEO teams, setting quality standards, and building processes that maintain performance long after the engagement concludes.</p></div>
+        <div class="card"><div class="card-icon"><span class="icon-tile"><Icon name="globe" size={24} /></span></div><h3 class="card-title">International SEO</h3><p class="card-text">Hreflang strategy, international architecture, and localisation guidance for enterprises operating across multiple languages and regions.</p></div>
       </div>
     </div>
   </section>
@@ -104,7 +105,7 @@ const faqItems = [
     .geo-definition p{color:var(--color-text-secondary);line-height:1.8;}
     .pain-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-6);margin-top:var(--space-10);}
     .pain-card{background:var(--color-bg-elevated);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-7);}
-    .pain-icon{font-size:2rem;margin-bottom:var(--space-3);}
+    .pain-icon{margin-bottom:var(--space-3);}
     .pain-card h3{font-family:var(--font-heading);font-size:var(--text-lg);font-weight:700;color:var(--color-text-primary);margin-bottom:var(--space-2);}
     .faq-list{margin-top:var(--space-10);display:flex;flex-direction:column;gap:var(--space-3);max-width:800px;margin-left:auto;margin-right:auto;}
     .faq-item{background:var(--color-bg-elevated);border:1px solid var(--color-border);border-radius:var(--radius-xl);overflow:hidden;}
