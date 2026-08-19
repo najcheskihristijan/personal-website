@@ -2121,3 +2121,11 @@ p {
   max-width: none;
   width: 100%;
 }
+
+
+/* The header ran nav, a credibility pill, and a primary CTA side by side, which
+   crowds just above the 1024px collapse. The pill is the least load-bearing. */
+@media (max-width: 1200px) {
+  .nav-social-proof { display: none; }
+  .nav-links { gap: var(--space-5); }
+}

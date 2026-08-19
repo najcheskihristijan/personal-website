@@ -1,0 +1,158 @@
+---
+/**
+ * The one FAQ accordion.
+ *
+ * There were two visibly different systems: the shared one in global.css used a
+ * plus sign, 14px answers, margin-separated items, and a max-height animation;
+ * the homepage, pricing, and audience pages used SVG chevrons, 16px answers,
+ * flex gaps, and display:none. Same component to a reader, four different
+ * implementations to maintain.
+ *
+ * Own class namespace (faqx-) so no page's leftover .faq-* rules reach it.
+ */
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  items: FAQItem[];
+  /** Unique per instance so ids stay stable if a page ever renders two. */
+  idPrefix?: string;
+}
+
+const { items, idPrefix = 'faq' } = Astro.props;
+---
+
+<div class="faqx-list">
+  {items.map((item, i) => (
+    <div class="faqx-item">
+      <button
+        class="faqx-question"
+        type="button"
+        aria-expanded="false"
+        aria-controls={`${idPrefix}-answer-${i}`}
+        id={`${idPrefix}-question-${i}`}
+      >
+        <span>{item.question}</span>
+        <svg class="faqx-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </button>
+      <div class="faqx-answer" id={`${idPrefix}-answer-${i}`} role="region" aria-labelledby={`${idPrefix}-question-${i}`}>
+        <div class="faqx-answer-inner" set:html={item.answer} />
+      </div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .faqx-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    max-width: 800px;
+    margin: var(--space-10) auto 0;
+  }
+
+  .faqx-item {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-bg-elevated);
+    overflow: hidden;
+  }
+
+  .faqx-question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: 20px 24px;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    text-align: left;
+    font-family: var(--font-heading);
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .faqx-question:hover {
+    background: var(--color-bg-card-hover);
+  }
+
+  .faqx-chevron {
+    flex-shrink: 0;
+    color: var(--color-accent-blue);
+    transition: transform 220ms ease;
+  }
+
+  .faqx-item.is-open .faqx-chevron {
+    transform: rotate(180deg);
+  }
+
+  /* Rows animate from 0fr to 1fr, so the answer opens smoothly at any length.
+     A max-height guess either clips long answers or lags on short ones. */
+  .faqx-answer {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 240ms ease;
+  }
+
+  .faqx-item.is-open .faqx-answer {
+    grid-template-rows: 1fr;
+  }
+
+  .faqx-answer-inner {
+    overflow: hidden;
+  }
+
+  .faqx-item.is-open .faqx-answer-inner {
+    padding: 0 24px 20px;
+  }
+
+  .faqx-answer-inner :global(p) {
+    margin: 0 0 var(--space-3);
+  }
+
+  .faqx-answer-inner {
+    font-size: var(--text-base);
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .faqx-answer,
+    .faqx-chevron {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  // One listener per list, delegated, and guarded so multiple instances on a
+  // page do not bind the document repeatedly.
+  document.querySelectorAll<HTMLElement>('.faqx-list').forEach((list) => {
+    if (list.dataset.bound === 'true') return;
+    list.dataset.bound = 'true';
+
+    list.addEventListener('click', (event) => {
+      const btn = (event.target as HTMLElement).closest('.faqx-question');
+      if (!btn) return;
+      const item = btn.closest('.faqx-item');
+      if (!item) return;
+
+      const willOpen = !item.classList.contains('is-open');
+      list.querySelectorAll('.faqx-item.is-open').forEach((open) => {
+        open.classList.remove('is-open');
+        open.querySelector('.faqx-question')?.setAttribute('aria-expanded', 'false');
+      });
+
+      item.classList.toggle('is-open', willOpen);
+      btn.setAttribute('aria-expanded', String(willOpen));
+    });
+  });
+</script>

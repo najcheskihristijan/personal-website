@@ -1,7 +1,16 @@
 ---
+import FAQAccordion from '../components/FAQAccordion.astro';
 import Icon from '../components/Icon.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { services } from '../data/services';
+
+const serviceFaqs = [
+  { question: 'What does "fractional" SEO consultant mean?', answer: "A fractional consultant works as a part-time, embedded member of your team — typically a few days per week or month. You get senior-level SEO expertise without the cost of a full-time hire, and more focused attention than you'd get from a traditional agency." },
+  { question: 'How long does it take to see SEO results?', answer: 'SEO is a long-term investment. Most clients start seeing meaningful improvements in 3-6 months, with compounding returns over time. Quick wins from technical fixes can show impact within weeks, while content and link strategies build momentum over months.' },
+  { question: 'What industries do you work with?', answer: "I've worked across SaaS, e-commerce, publishing, healthcare, finance, real estate, and more. SEO principles are universal — what changes is the strategy and competitive landscape. I adapt my approach to each industry's unique challenges." },
+  { question: 'How do you measure success?', answer: 'Success is measured through agreed-upon KPIs that tie back to business goals — organic traffic growth, keyword rankings, conversion rates, revenue from organic search, and more. I provide transparent monthly reports so you always know where things stand.' },
+  { question: "What's your engagement model?", answer: "I offer flexible engagement models: retainer-based fractional consulting (ongoing), project-based work (audits, migrations), and advisory/mentorship. We'll find the model that best fits your needs and budget during our initial conversation." },
+];
 ---
 
 <BaseLayout
@@ -130,69 +139,9 @@ import { services } from '../data/services';
       <span class="section-label">FAQ</span>
       <h2 class="section-title">Frequently asked <span class="text-gradient">questions</span></h2>
 
-      <div class="faq-list">
-        <div class="faq-item">
-          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-            What does "fractional" SEO consultant mean?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              A fractional consultant works as a part-time, embedded member of your team — typically a few days per week or month. You get senior-level SEO expertise without the cost of a full-time hire, and more focused attention than you'd get from a traditional agency.
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-            How long does it take to see SEO results?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              SEO is a long-term investment. Most clients start seeing meaningful improvements in 3-6 months, with compounding returns over time. Quick wins from technical fixes can show impact within weeks, while content and link strategies build momentum over months.
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-            What industries do you work with?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              I've worked across SaaS, e-commerce, publishing, healthcare, finance, real estate, and more. SEO principles are universal — what changes is the strategy and competitive landscape. I adapt my approach to each industry's unique challenges.
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-            How do you measure success?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              Success is measured through agreed-upon KPIs that tie back to business goals — organic traffic growth, keyword rankings, conversion rates, revenue from organic search, and more. I provide transparent monthly reports so you always know where things stand.
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-            What's your engagement model?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              I offer flexible engagement models: retainer-based fractional consulting (ongoing), project-based work (audits, migrations), and advisory/mentorship. We'll find the model that best fits your needs and budget during our initial conversation.
-            </div>
-          </div>
-        </div>
+      <FAQAccordion items={serviceFaqs} idPrefix="services-faq" />
       </div>
-    </div>
-  </section>
+    </section>
 
   <style>
     .service-learn-more {
