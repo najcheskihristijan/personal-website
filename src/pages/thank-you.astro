@@ -1,4 +1,5 @@
 ---
+import BlogCard from '../components/BlogCard.astro';
 export const prerender = false;
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { posts } from '../data/blog-posts';
@@ -46,22 +47,7 @@ function formatDate(dateStr: string) {
       <p class="section-subtitle">Latest SEO insights and strategies to grow your organic traffic.</p>
       <div class="blog-grid" style="margin-top: var(--space-10);">
         {recentPosts.map((post) => (
-          <a href={`/blog/${post.slug}/`} class="blog-card">
-            {post.image ? (
-              <img src={post.image} alt={post.title} width="600" height="315" loading="lazy" class="blog-card-image" style="width: 100%; height: auto; object-fit: cover;" />
-            ) : (
-              <div class="blog-card-image blog-card-image-empty" aria-hidden="true"></div>
-            )}
-            <div class="blog-card-body">
-              <div class="blog-card-meta">
-                <span class="blog-card-tag">{post.tag}</span>
-                <span>{formatDate(post.date)}</span>
-              </div>
-              <h3>{post.title}</h3>
-              <p>{post.description}</p>
-              <span class="blog-read-more">Read article →</span>
-            </div>
-          </a>
+          <BlogCard slug={post.slug} title={post.title} description={post.description} tag={post.tag} date={post.date} image={post.image} />
         ))}
       </div>
     </div>

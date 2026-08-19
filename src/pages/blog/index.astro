@@ -1,4 +1,5 @@
 ---
+import BlogCard from '../../components/BlogCard.astro';
 // Enable SSR for dynamic date checking
 export const prerender = false;
 
@@ -78,29 +79,7 @@ function slugifyTag(tag: string) {
     <div class="container">
       <div class="blog-grid" id="blogGrid">
         {posts.map((post) => (
-          <a
-            href={`/blog/${post.slug}/`}
-            class="blog-card"
-            data-tag={slugifyTag(post.tag || 'Uncategorised')}
-            data-search={`${post.title} ${post.description} ${post.tag || ''}`.toLowerCase()}
-          >
-            {post.image ? (
-              <img src={post.image} alt={post.title} width="600" height="315" loading="lazy" class="blog-card-image" style="width: 100%; height: auto; object-fit: cover;" />
-            ) : (
-              <div class="blog-card-image blog-card-image-empty" aria-hidden="true"></div>
-            )}
-            <div class="blog-card-body">
-              <div class="blog-card-meta">
-                <span class="blog-card-tag">{post.tag}</span>
-                <span>{formatDate(post.date)}</span>
-                <span>·</span>
-                <span>{post.readTime}</span>
-              </div>
-              <h3>{post.title}</h3>
-              <p>{post.description}</p>
-              <span class="blog-read-more">Read Article →</span>
-            </div>
-          </a>
+          <BlogCard slug={post.slug} title={post.title} description={post.description} tag={post.tag} date={post.date} readTime={post.readTime} image={post.image} filterable tagSlug={slugifyTag(post.tag || 'Uncategorised')} />
         ))}
       </div>
       <div class="blog-empty" id="blogEmpty" hidden>

@@ -1543,6 +1543,7 @@ export const posts: Record<string, {
     date: '2026-08-15',
     readTime: '9 min read',
     tag: 'AEO',
+    image: '/images/blog/how-answer-engines-choose-sources.webp',
     content: `
       <p>Answer Engine Optimization (AEO) is the practice of structuring content so an AI answer engine can retrieve it, extract a clean passage from it, trust that passage, and cite your page inside a generated answer. That is the whole job. It is not a new markup language, and it is not a file you upload to bribe the model. Most of what gets sold as AEO is either repackaged SEO or outright folklore, so I want to walk through what these systems actually do when they build an answer, and what the evidence says you can do about it.</p>
       <p>I write this as a technical SEO who spends a lot of time watching which of my clients' pages get pulled into AI Overviews and which get ignored. The short version: the mechanics are knowable, Google has documented more of them than people realise, and there is one peer-reviewed study that tells you which content changes actually raise citation rates. Let me connect those.</p>

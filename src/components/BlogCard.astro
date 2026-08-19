@@ -1,0 +1,60 @@
+---
+/**
+ * One blog card, used by the blog index, related posts, the author page, the
+ * thank-you page, and 404.
+ *
+ * Written five separate times before this, which is how three of them ended up
+ * showing a document emoji for articles that have real artwork while the other
+ * two showed the image.
+ */
+interface Props {
+  slug: string;
+  title: string;
+  description: string;
+  tag?: string;
+  date?: string;
+  readTime?: string;
+  image?: string;
+  /** The index page filters client-side and needs these hooks. */
+  filterable?: boolean;
+  tagSlug?: string;
+}
+
+const { slug, title, description, tag, date, readTime, image, filterable = false, tagSlug } = Astro.props;
+
+const formatted = date
+  ? new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+  : null;
+---
+
+<a
+  href={`/blog/${slug}/`}
+  class="blog-card"
+  data-tag={filterable ? tagSlug : undefined}
+  data-search={filterable ? `${title} ${description} ${tag ?? ''}`.toLowerCase() : undefined}
+>
+  {image ? (
+    <img
+      src={image}
+      alt={title}
+      width="600"
+      height="315"
+      loading="lazy"
+      class="blog-card-image"
+      style="width: 100%; height: auto; object-fit: cover;"
+    />
+  ) : (
+    <div class="blog-card-image blog-card-image-empty" aria-hidden="true"></div>
+  )}
+  <div class="blog-card-body">
+    <div class="blog-card-meta">
+      {tag && <span class="blog-card-tag">{tag}</span>}
+      {formatted && <span>{formatted}</span>}
+      {readTime && <span>·</span>}
+      {readTime && <span>{readTime}</span>}
+    </div>
+    <h3>{title}</h3>
+    <p>{description}</p>
+    <span class="blog-read-more">Read Article →</span>
+  </div>
+</a>
