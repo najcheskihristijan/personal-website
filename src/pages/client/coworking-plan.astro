@@ -18,6 +18,11 @@ const planHTML = styles + (bodyMatch ? bodyMatch[1] : raw);
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex, nofollow" />
     <title>CoWork Prilep — Business Plan 2026</title>
+    <script is:inline>
+      // Set before styles resolve, otherwise the dark :root paints first and
+      // the document visibly flips to light when the end-of-body script runs.
+      document.documentElement.setAttribute('data-theme', localStorage.getItem('cwp-theme') || 'light');
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />

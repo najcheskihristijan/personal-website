@@ -2071,3 +2071,53 @@ p {
 .contact-method:hover .icon-tile {
   background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(37, 99, 235, 0.08));
 }
+
+
+/* Hero actions follow the header's own alignment. These were centred inline on
+   the audience pages while the heading and copy above them were left-aligned. */
+.page-header-actions {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: var(--space-8);
+}
+
+
+/* Tool pages stacked 64px of page-header padding on 96px of section padding
+   before the utility itself, and several inner grids never collapsed. */
+@media (max-width: 600px) {
+  .audit-shell,
+  .tool-shell {
+    padding-top: var(--space-4);
+  }
+
+  .lang-row,
+  .page-row,
+  .grid-2,
+  .crumb-row,
+  .page-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .audit-summary {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Long-form prose: 760px at 16px runs long for comfortable scanning. */
+.blog-post-content,
+.policy-content {
+  max-width: 68ch;
+  margin-inline: auto;
+}
+
+/* Media and interactive blocks keep the wider measure. */
+.blog-post-content > figure,
+.blog-post-content > .post-diagram,
+.blog-post-content > table,
+.blog-post-content > .blog-cta-card {
+  max-width: none;
+  width: 100%;
+}

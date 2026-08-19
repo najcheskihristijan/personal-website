@@ -1,6 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
+// Rendered on demand so a direct hit on /404 works. As a prerendered page the
+// SSR router had no page function for that path and returned a 500, which is
+// how it behaves in production today.
+export const prerender = false;
+
 const blogPosts = [
   {
     slug: 'why-fractional-seo',

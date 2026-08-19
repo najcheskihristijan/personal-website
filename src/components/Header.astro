@@ -8,6 +8,11 @@ export interface Props {
 
 const { currentPath } = Astro.props;
 
+// Exact equality meant /blog/<slug>/ never highlighted Blog. Home stays exact,
+// everything else matches its section.
+const isActive = (href: string) => (href === '/' ? currentPath === '/' : currentPath.startsWith(href));
+const servicesActive = currentPath.startsWith('/services') || currentPath.startsWith('/fractional-seo-');
+
 const navItems = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about/' },
@@ -78,7 +83,7 @@ const tools = [
       {navItems.slice(0, 2).map((item) => (
         <a
           href={item.href}
-          class:list={['nav-link', { active: currentPath === item.href }]}
+          class:list={['nav-link', { active: isActive(item.href) }]}
         >
           {item.label}
         </a>
@@ -88,7 +93,7 @@ const tools = [
       <div class="nav-mega" id="servicesMega">
         <a
           href="/services/"
-          class:list={['nav-link', { active: currentPath.startsWith('/services') }]}
+          class:list={['nav-link', { active: servicesActive }]}
           aria-haspopup="true"
           aria-expanded="false"
           id="servicesMegaBtn"
@@ -188,7 +193,7 @@ const tools = [
       {navItems.slice(2).map((item) => (
         <a
           href={item.href}
-          class:list={['nav-link', { active: currentPath === item.href }]}
+          class:list={['nav-link', { active: isActive(item.href) }]}
         >
           {item.label}
         </a>
@@ -238,6 +243,7 @@ const tools = [
     </div>
   </div>
   <a href="/tools/">Tools</a>
+  <a href="/pricing/">Pricing</a>
   <a href="/blog/">Blog</a>
   <a href="/contact/">Contact</a>
   <a href="/contact/" class="btn btn-primary" style="margin-top: auto; text-align: center;">
