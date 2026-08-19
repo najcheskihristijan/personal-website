@@ -323,7 +323,14 @@ export const prerender = false;
       margin: 0 auto var(--space-2);
       font-size: 20px; font-weight: 800;
     }
-  </style>
+    /* These repeatable form rows reuse the .faq-list class name and were
+     inheriting the public FAQ list's 40px top margin and 800px cap. */
+  .form-block .faq-list,
+  .schema-output .faq-list {
+    margin: 0;
+    max-width: none;
+  }
+</style>
 
   <script>
     type Kind = 'organization' | 'localbusiness' | 'faq' | 'article' | 'product' | 'breadcrumb';

@@ -385,7 +385,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       flex-direction: column;
       gap: var(--space-5);
       position: sticky;
-      top: var(--space-6);
+      top: calc(var(--header-height) + var(--space-4));
     }
     @media (max-width: 1024px) {
       .tool-form { position: static; }
