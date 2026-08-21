@@ -23,5 +23,7 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
-# Lead capture + email outbox
-data/
+# Lead capture, email outbox, client review decisions.
+# Anchored with a leading slash ON PURPOSE: a bare 'data/' also matches src/data/,
+# which silently stops new content modules from ever being committed.
+/data/

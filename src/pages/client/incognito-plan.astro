@@ -1,0 +1,518 @@
+---
+export const prerender = false;
+
+import BaseHead from '../../components/BaseHead.astro';
+import '../../styles/global.css';
+import { PODCASTS, CREATORS } from '../../data/incognito-outreach';
+import {
+  DEAD_KEYWORDS, DUTY_KEYWORDS, CONFIG_KEYWORDS, PER_MODEL_KEYWORDS,
+  PLAN_ACTIONS, BLOG_IDEAS, CAVEATS,
+} from '../../data/incognito-plan';
+import { getDecisions, summarise } from '../../lib/reviews';
+
+const COOKIE_NAME = 'incognito_auth';
+const authed = Astro.cookies.get(COOKIE_NAME)?.value === 'granted';
+
+const livePodcasts = PODCASTS.filter((p) => p.live);
+const cutPodcasts = PODCASTS.filter((p) => !p.live);
+const liveCreators = CREATORS.filter((c) => c.live);
+const cutCreators = CREATORS.filter((c) => !c.live);
+
+// Only decided-upon things count toward progress. Cut lists are context, not ballots.
+const reviewableIds = [
+  ...livePodcasts.map((p) => p.id),
+  ...liveCreators.map((c) => c.id),
+  ...PLAN_ACTIONS.map((a) => a.id),
+  ...BLOG_IDEAS.map((b) => b.id),
+];
+
+const decisions = authed ? getDecisions('incognito') : {};
+const summary = summarise(decisions, reviewableIds);
+
+const phases = [...new Set(PLAN_ACTIONS.map((a) => a.phase))];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title="SEO Plan & Outreach Review | Incognito Concealment"
+      description="Outreach targets and the wholesale keyword plan for Incognito Concealment."
+      noindex={true}
+    />
+    <style>
+      body { max-width: 1040px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
+
+      .doc-header { padding: 2.5rem 0 2rem; border-bottom: 2px solid var(--color-border); margin-bottom: 2rem; }
+      .doc-meta { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+      .doc-logo { font-family: var(--font-heading); font-size: 1.25rem; font-weight: 800; color: var(--color-text-primary); }
+      .doc-logo span { color: var(--color-accent-blue); }
+      .doc-badge { padding: 0.25rem 0.75rem; background: var(--badge-bg); border: 1px solid var(--badge-border);
+        border-radius: 999px; font-size: 0.75rem; font-weight: 600; color: var(--color-accent-blue);
+        letter-spacing: 0.05em; text-transform: uppercase; }
+      .doc-title { font-family: var(--font-heading); font-size: 2.4rem; font-weight: 800; line-height: 1.1;
+        letter-spacing: -0.03em; color: var(--color-text-primary); margin-bottom: 0.75rem; }
+      .doc-subtitle { color: var(--color-text-secondary); font-size: 1.05rem; line-height: 1.6; max-width: 68ch; }
+
+      /* ---- gate ---- */
+      .gate { max-width: 420px; margin: 4rem auto; padding: 2rem; border: 1px solid var(--color-border);
+        border-radius: 14px; background: var(--color-bg-card); }
+      .gate h1 { font-family: var(--font-heading); font-size: 1.4rem; margin-bottom: 0.5rem; }
+      .gate p { color: var(--color-text-secondary); font-size: 0.92rem; margin-bottom: 1.25rem; }
+      .gate input { width: 100%; padding: 0.7rem 0.85rem; border: 1px solid var(--color-border); border-radius: 9px;
+        background: var(--color-bg-primary); color: var(--color-text-primary); font-size: 0.95rem; margin-bottom: 0.85rem; }
+      .gate button { width: 100%; padding: 0.7rem; border: none; border-radius: 9px; background: var(--color-accent-blue);
+        color: #fff; font-weight: 600; font-size: 0.95rem; cursor: pointer; }
+      .gate .err { color: var(--color-accent-orange-text); font-size: 0.85rem; margin-bottom: 0.85rem; }
+
+      /* ---- progress ---- */
+      .progress { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.75rem; }
+      .pchip { padding: 0.4rem 0.8rem; border-radius: 999px; font-size: 0.82rem; font-weight: 600;
+        border: 1px solid var(--color-border); background: var(--color-bg-card); color: var(--color-text-secondary); }
+      .pchip b { color: var(--color-text-primary); }
+
+      /* ---- tabs ---- */
+      .tabs { display: flex; gap: 0.35rem; border-bottom: 1px solid var(--color-border); margin-bottom: 2rem;
+        overflow-x: auto; }
+      .tab { padding: 0.7rem 1rem; background: none; border: none; border-bottom: 2px solid transparent;
+        font-family: var(--font-body); font-size: 0.95rem; font-weight: 600; color: var(--color-text-muted);
+        cursor: pointer; white-space: nowrap; }
+      .tab[aria-selected='true'] { color: var(--color-accent-blue); border-bottom-color: var(--color-accent-blue); }
+      .panel[hidden] { display: none; }
+
+      /* ---- cards ---- */
+      .intro { color: var(--color-text-secondary); line-height: 1.65; margin-bottom: 1.75rem; max-width: 74ch; }
+      .item { border: 1px solid var(--color-border); border-radius: 14px; background: var(--color-bg-card);
+        padding: 1.25rem 1.35rem; margin-bottom: 1rem; }
+      .item-top { display: flex; align-items: baseline; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
+      .item-name { font-family: var(--font-heading); font-size: 1.12rem; font-weight: 700; color: var(--color-text-primary); }
+      .item-who { color: var(--color-text-muted); font-size: 0.88rem; }
+      .tier { padding: 0.15rem 0.55rem; border-radius: 6px; font-size: 0.72rem; font-weight: 700;
+        background: var(--badge-bg); border: 1px solid var(--badge-border); color: var(--color-accent-blue); }
+      .tier.warnt { background: rgba(234,88,12,0.09); border-color: rgba(234,88,12,0.2); color: var(--color-accent-orange-text); }
+      .chips { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.7rem; }
+      .chip { font-size: 0.76rem; padding: 0.2rem 0.55rem; border-radius: 999px; background: var(--color-bg-secondary);
+        color: var(--color-text-secondary); border: 1px solid var(--color-border); }
+      .item p { color: var(--color-text-secondary); line-height: 1.6; font-size: 0.93rem; margin-bottom: 0.6rem; }
+      .lbl { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+        color: var(--color-text-muted); margin-right: 0.45rem; }
+      .hook { background: var(--color-bg-secondary); border-left: 3px solid var(--color-accent-blue);
+        padding: 0.7rem 0.9rem; border-radius: 0 9px 9px 0; font-size: 0.92rem; color: var(--color-text-secondary);
+        line-height: 1.55; margin-bottom: 0.6rem; }
+      .item a { color: var(--color-accent-blue); }
+
+      /* ---- decision controls ---- */
+      .decide { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; margin-top: 0.9rem;
+        padding-top: 0.9rem; border-top: 1px dashed var(--color-border); }
+      .decide select, .decide textarea { font-family: var(--font-body); border: 1px solid var(--color-border);
+        border-radius: 8px; background: var(--color-bg-primary); color: var(--color-text-primary); font-size: 0.9rem; }
+      .decide select { padding: 0.45rem 0.6rem; font-weight: 600; }
+      .decide textarea { flex: 1; min-width: 220px; padding: 0.45rem 0.6rem; resize: vertical; min-height: 38px; }
+      .saved { font-size: 0.78rem; color: var(--color-text-muted); min-width: 62px; }
+      .saved.ok { color: #16a34a; }
+      .saved.fail { color: var(--color-accent-orange-text); }
+      .item[data-verdict='approved'] { border-color: rgba(22,163,74,0.4); }
+      .item[data-verdict='rejected'] { border-color: rgba(234,88,12,0.4); opacity: 0.72; }
+      .item[data-verdict='unsure'] { border-color: rgba(37,99,235,0.35); }
+
+      /* ---- tables ---- */
+      .tbl-wrap { overflow-x: auto; margin-bottom: 1.75rem; border: 1px solid var(--color-border); border-radius: 12px; }
+      table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+      th, td { padding: 0.6rem 0.8rem; text-align: left; border-bottom: 1px solid var(--color-border); }
+      th { background: var(--color-bg-secondary); font-weight: 700; color: var(--color-text-primary); font-size: 0.82rem;
+        text-transform: uppercase; letter-spacing: 0.04em; }
+      td { color: var(--color-text-secondary); }
+      tbody tr:last-child td { border-bottom: none; }
+      .num { text-align: right; font-variant-numeric: tabular-nums; }
+      .kd0 { color: #16a34a; font-weight: 700; }
+
+      h2.sec { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: var(--color-text-primary);
+        margin: 2.5rem 0 0.6rem; letter-spacing: -0.02em; }
+      h3.sub { font-family: var(--font-heading); font-size: 1.12rem; font-weight: 700; color: var(--color-text-primary);
+        margin: 1.75rem 0 0.75rem; }
+      .callout { display: flex; gap: 0.7rem; padding: 1rem 1.15rem; border-radius: 12px; margin-bottom: 1.75rem;
+        background: rgba(234,88,12,0.07); border: 1px solid rgba(234,88,12,0.18); color: var(--color-text-secondary);
+        font-size: 0.93rem; line-height: 1.6; }
+      .callout b { color: var(--color-text-primary); }
+      ul.caveats { margin: 0 0 1.5rem 1.1rem; color: var(--color-text-secondary); font-size: 0.92rem; line-height: 1.65; }
+      ul.caveats li { margin-bottom: 0.5rem; }
+      .doc-footer { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-top: 3.5rem;
+        padding-top: 1.5rem; border-top: 1px solid var(--color-border); color: var(--color-text-muted); font-size: 0.82rem; }
+    </style>
+  </head>
+  <body>
+    {!authed ? (
+      <form class="gate" id="gate">
+        <h1>Incognito Concealment</h1>
+        <p>SEO plan and outreach review. Enter the password you were sent.</p>
+        <div class="err" id="gate-err" hidden></div>
+        <input type="password" id="gate-pw" placeholder="Password" autocomplete="current-password" required />
+        <button type="submit">View the plan</button>
+      </form>
+    ) : (
+      <>
+        <header class="doc-header">
+          <div class="doc-meta">
+            <span class="doc-logo">Incognito<span>Concealment</span></span>
+            <span class="doc-badge">For review</span>
+          </div>
+          <h1 class="doc-title">Outreach targets &amp; the wholesale growth plan</h1>
+          <p class="doc-subtitle">
+            Everything below was verified in August 2026. Set each item to Approve, Reject or Not sure —
+            your choices save automatically, so you can leave and come back. Where you reject something,
+            the comment box is the useful part: it tells me why.
+          </p>
+        </header>
+
+        <div class="progress">
+          <span class="pchip">Decided <b>{summary.approved + summary.rejected + summary.unsure}</b> of <b>{summary.total}</b></span>
+          <span class="pchip">Approved <b>{summary.approved}</b></span>
+          <span class="pchip">Rejected <b>{summary.rejected}</b></span>
+          <span class="pchip">Not sure <b>{summary.unsure}</b></span>
+        </div>
+
+        <div class="tabs" role="tablist">
+          <button class="tab" role="tab" aria-selected="true" data-panel="podcasts">Podcasts ({livePodcasts.length})</button>
+          <button class="tab" role="tab" aria-selected="false" data-panel="creators">Creators ({liveCreators.length})</button>
+          <button class="tab" role="tab" aria-selected="false" data-panel="plan">Keywords &amp; content plan</button>
+        </div>
+
+        {/* ============ PODCASTS ============ */}
+        <section class="panel" id="panel-podcasts">
+          <p class="intro">
+            Shows where you would appear as a guest. Every one was checked against its live feed in
+            August 2026 — five were removed for being dead or dormant, and those are listed at the
+            bottom so you can see what was ruled out. Contact addresses came from published contact
+            pages or the shows' own feeds; none are guessed.
+          </p>
+
+          {livePodcasts.map((p) => (
+            <article class="item" data-verdict={decisions[p.id]?.verdict || ''}>
+              <div class="item-top">
+                <span class={`tier${p.priority.startsWith('C') ? ' warnt' : ''}`}>{p.priority}</span>
+                <span class="item-name">{p.name}</span>
+                <span class="item-who">{p.host}</span>
+              </div>
+              <div class="chips">
+                <span class="chip">{p.activity}</span>
+                {p.reach && <span class="chip">{p.reach}</span>}
+              </div>
+              <p>{p.why}</p>
+              <div class="hook"><span class="lbl">Pitch angle</span>{p.hook}</div>
+              <p>
+                <span class="lbl">Contact</span>
+                {p.email ? <a href={`mailto:${p.email}`}>{p.email}</a> : null}
+                {p.email && p.form ? ' · ' : ''}
+                {p.form ? <a href={p.form} target="_blank" rel="noopener">Contact form</a> : null}
+                {p.website ? <> · <a href={p.website} target="_blank" rel="noopener">Website</a></> : null}
+              </p>
+              <div class="decide" data-item={p.id}>
+                <select class="verdict" aria-label={`Decision for ${p.name}`}>
+                  <option value="" selected={!decisions[p.id]?.verdict}>— Decide —</option>
+                  <option value="approved" selected={decisions[p.id]?.verdict === 'approved'}>Approve</option>
+                  <option value="rejected" selected={decisions[p.id]?.verdict === 'rejected'}>Reject</option>
+                  <option value="unsure" selected={decisions[p.id]?.verdict === 'unsure'}>Not sure</option>
+                </select>
+                <textarea class="comment" rows="1" placeholder="Comment (optional)"
+                  aria-label={`Comment on ${p.name}`}>{decisions[p.id]?.comment || ''}</textarea>
+                <span class="saved" aria-live="polite"></span>
+              </div>
+            </article>
+          ))}
+
+          <h3 class="sub">Shows we checked and cut</h3>
+          <div class="tbl-wrap">
+            <table>
+              <thead><tr><th>Show</th><th>Status</th><th>Why</th></tr></thead>
+              <tbody>
+                {cutPodcasts.map((p) => (
+                  <tr><td>{p.name}</td><td>{p.activity}</td><td>{p.notes}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* ============ CREATORS ============ */}
+        <section class="panel" id="panel-creators" hidden>
+          <div class="callout">
+            <span>
+              <b>Worth knowing before you read these.</b> Of fifteen creators originally drafted, only two
+              survived the check — the rest were already tied to a holster brand, and sending a unit to a
+              creator who is sponsored by a competitor wastes the holster and damages the relationship.
+              Replacements were researched and conflict-checked to fill the gaps. The full cut list is at
+              the bottom.
+            </span>
+          </div>
+
+          {liveCreators.map((c) => (
+            <article class="item" data-verdict={decisions[c.id]?.verdict || ''}>
+              <div class="item-top">
+                <span class={`tier${c.priority.startsWith('B') ? ' warnt' : ''}`}>{c.priority}</span>
+                <span class="item-name">{c.name}</span>
+                <span class="item-who">{c.who}</span>
+              </div>
+              <div class="chips">
+                <span class="chip">{c.activity}</span>
+                {c.reach && <span class="chip">{c.reach}</span>}
+                {c.product && c.product !== 'NONE' && <span class="chip">Send: {c.product}</span>}
+              </div>
+              <p>{c.audience}</p>
+              <div class="hook"><span class="lbl">Content angle</span>{c.angle}</div>
+              <p><span class="lbl">Conflict check</span>{c.relationship}</p>
+              <p>
+                <span class="lbl">Contact</span>
+                {c.email ? <a href={`mailto:${c.email}`}>{c.email}</a> : null}
+                {c.email && c.form ? ' · ' : ''}
+                {c.form && c.form.startsWith('http')
+                  ? <a href={c.form} target="_blank" rel="noopener">Contact form</a>
+                  : c.form}
+                {c.youtube ? <> · <a href={c.youtube} target="_blank" rel="noopener">YouTube</a></> : null}
+              </p>
+              <div class="decide" data-item={c.id}>
+                <select class="verdict" aria-label={`Decision for ${c.name}`}>
+                  <option value="" selected={!decisions[c.id]?.verdict}>— Decide —</option>
+                  <option value="approved" selected={decisions[c.id]?.verdict === 'approved'}>Approve</option>
+                  <option value="rejected" selected={decisions[c.id]?.verdict === 'rejected'}>Reject</option>
+                  <option value="unsure" selected={decisions[c.id]?.verdict === 'unsure'}>Not sure</option>
+                </select>
+                <textarea class="comment" rows="1" placeholder="Comment (optional)"
+                  aria-label={`Comment on ${c.name}`}>{decisions[c.id]?.comment || ''}</textarea>
+                <span class="saved" aria-live="polite"></span>
+              </div>
+            </article>
+          ))}
+
+          <h3 class="sub">Creators we checked and cut</h3>
+          <div class="tbl-wrap">
+            <table>
+              <thead><tr><th>Creator</th><th>Reason</th><th>Tied to</th><th>Detail</th></tr></thead>
+              <tbody>
+                {cutCreators.map((c) => (
+                  <tr>
+                    <td>{c.name}</td>
+                    <td>{c.priority.replace('REMOVED - ', '')}</td>
+                    <td>{c.relationship}</td>
+                    <td>{c.notes}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* ============ PLAN ============ */}
+        <section class="panel" id="panel-plan" hidden>
+          <div class="callout">
+            <span>
+              <b>Nobody searches "wholesale holsters."</b> We pulled the real numbers and the term gets
+              20 searches a month at high difficulty. The demand is real — it just uses different words.
+              Agency and dealer buyers search by <b>retention level</b> and <b>gun model</b>, and those
+              terms have volume, almost no competition, and buyers behind them.
+            </span>
+          </div>
+
+          <h3 class="sub">The terms everyone assumes we should chase</h3>
+          <div class="tbl-wrap">
+            <table>
+              <thead><tr><th>Keyword</th><th class="num">Searches / mo</th><th class="num">Difficulty</th></tr></thead>
+              <tbody>
+                {DEAD_KEYWORDS.map((k) => (
+                  <tr><td>{k.term}</td><td class="num">{k.volume}</td><td class="num">{k.kd}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="sub">Where the agency buyer actually searches</h3>
+          <div class="tbl-wrap">
+            <table>
+              <thead><tr><th>Keyword</th><th class="num">Searches / mo</th><th class="num">Difficulty</th><th class="num">Ad cost / click</th><th>Note</th></tr></thead>
+              <tbody>
+                {DUTY_KEYWORDS.map((k) => (
+                  <tr>
+                    <td>{k.term}</td>
+                    <td class="num">{k.volume}</td>
+                    <td class={`num${k.kd === '0' ? ' kd0' : ''}`}>{k.kd}</td>
+                    <td class="num">{k.cpc}</td>
+                    <td>{k.note || ''}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p class="intro">
+            A difficulty of 0 on an 800-a-month term is unusual, and an ad cost of $40–80 a click means
+            advertisers pay real money for these visitors — that is a buyer, not a browser. You already
+            make Level 2 retention holsters and have no page for them.
+          </p>
+
+          <h3 class="sub">The configurations nobody else fits</h3>
+          <div class="tbl-wrap">
+            <table>
+              <thead><tr><th>Keyword</th><th class="num">Searches / mo</th><th class="num">Difficulty</th><th class="num">Ad cost / click</th></tr></thead>
+              <tbody>
+                {CONFIG_KEYWORDS.map((k) => (
+                  <tr><td>{k.term}</td><td class="num">{k.volume}</td><td class={`num${k.kd === '0' ? ' kd0' : ''}`}>{k.kd}</td><td class="num">{k.cpc}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p class="intro">Per-model duty terms tell the same story: {PER_MODEL_KEYWORDS}.</p>
+
+          <h2 class="sec">The plan — approve what you want built</h2>
+          {phases.map((phase) => (
+            <>
+              <h3 class="sub">{phase}</h3>
+              {PLAN_ACTIONS.filter((a) => a.phase === phase).map((a) => (
+                <article class="item" data-verdict={decisions[a.id]?.verdict || ''}>
+                  <div class="item-top">
+                    <span class="tier">{a.n}</span>
+                    <span class="item-name">{a.title}</span>
+                  </div>
+                  <p>{a.detail}</p>
+                  {a.target && <p><span class="lbl">Targets</span>{a.target}</p>}
+                  <div class="decide" data-item={a.id}>
+                    <select class="verdict" aria-label={`Decision for ${a.title}`}>
+                      <option value="" selected={!decisions[a.id]?.verdict}>— Decide —</option>
+                      <option value="approved" selected={decisions[a.id]?.verdict === 'approved'}>Approve</option>
+                      <option value="rejected" selected={decisions[a.id]?.verdict === 'rejected'}>Reject</option>
+                      <option value="unsure" selected={decisions[a.id]?.verdict === 'unsure'}>Not sure</option>
+                    </select>
+                    <textarea class="comment" rows="1" placeholder="Comment (optional)"
+                      aria-label={`Comment on ${a.title}`}>{decisions[a.id]?.comment || ''}</textarea>
+                    <span class="saved" aria-live="polite"></span>
+                  </div>
+                </article>
+              ))}
+            </>
+          ))}
+
+          <h2 class="sec">Supporting articles</h2>
+          {BLOG_IDEAS.map((b) => (
+            <article class="item" data-verdict={decisions[b.id]?.verdict || ''}>
+              <div class="item-top">
+                <span class="tier">{b.n}</span>
+                <span class="item-name">{b.title}</span>
+              </div>
+              <div class="chips">
+                <span class="chip">Targets: {b.target}</span>
+                <span class="chip">Reader: {b.buyer}</span>
+              </div>
+              <div class="decide" data-item={b.id}>
+                <select class="verdict" aria-label={`Decision for ${b.title}`}>
+                  <option value="" selected={!decisions[b.id]?.verdict}>— Decide —</option>
+                  <option value="approved" selected={decisions[b.id]?.verdict === 'approved'}>Approve</option>
+                  <option value="rejected" selected={decisions[b.id]?.verdict === 'rejected'}>Reject</option>
+                  <option value="unsure" selected={decisions[b.id]?.verdict === 'unsure'}>Not sure</option>
+                </select>
+                <textarea class="comment" rows="1" placeholder="Comment (optional)"
+                  aria-label={`Comment on ${b.title}`}>{decisions[b.id]?.comment || ''}</textarea>
+                <span class="saved" aria-live="polite"></span>
+              </div>
+            </article>
+          ))}
+
+          <h2 class="sec">Honest caveats</h2>
+          <ul class="caveats">
+            {CAVEATS.map((c) => <li>{c}</li>)}
+          </ul>
+        </section>
+
+        <div class="doc-footer">
+          <span>Prepared by Hristijan Najcheski · hristijannajcheski.com</span>
+          <span>Confidential — not for distribution</span>
+        </div>
+      </>
+    )}
+
+    <script is:inline>
+      (function () {
+        // --- password gate -------------------------------------------------------------
+        const gate = document.getElementById('gate');
+        if (gate) {
+          const err = document.getElementById('gate-err');
+          const pw = document.getElementById('gate-pw');
+          gate.addEventListener('submit', function (e) {
+            e.preventDefault();
+            err.hidden = true;
+            fetch('/api/incognito-auth', {
+              method: 'POST',
+              headers: { 'content-type': 'application/json' },
+              body: JSON.stringify({ password: pw.value }),
+            })
+              .then(function (r) { return r.json().then(function (b) { return { ok: r.ok, body: b }; }); })
+              .then(function (res) {
+                if (res.ok && res.body.ok) { location.reload(); return; }
+                err.textContent = res.body.error === 'config'
+                  ? 'This page is not configured yet - contact Hristijan.'
+                  : 'That password was not correct.';
+                err.hidden = false;
+              })
+              .catch(function () {
+                err.textContent = 'Could not reach the server. Try again.';
+                err.hidden = false;
+              });
+          });
+          return;
+        }
+
+        const tabs = Array.from(document.querySelectorAll('.tab'));
+        if (!tabs.length) return;
+
+        function show(name) {
+          tabs.forEach((t) => t.setAttribute('aria-selected', String(t.dataset.panel === name)));
+          document.querySelectorAll('.panel').forEach((p) => {
+            p.hidden = p.id !== 'panel-' + name;
+          });
+          history.replaceState(null, '', '#' + name);
+        }
+        tabs.forEach((t) => t.addEventListener('click', () => show(t.dataset.panel)));
+        const initial = location.hash.replace('#', '');
+        if (tabs.some((t) => t.dataset.panel === initial)) show(initial);
+
+        // --- autosave -----------------------------------------------------------------
+        // Verdict saves immediately; the comment is debounced so we are not posting on every
+        // keystroke. Both send the CURRENT value of both fields, so a comment typed before a
+        // verdict is chosen is not lost when the verdict lands.
+        const timers = new WeakMap();
+
+        function save(row) {
+          const itemId = row.dataset.item;
+          const verdict = row.querySelector('.verdict').value;
+          const comment = row.querySelector('.comment').value;
+          const flag = row.querySelector('.saved');
+          flag.textContent = 'Saving…';
+          flag.className = 'saved';
+
+          fetch('/api/incognito-review', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ itemId, verdict, comment }),
+          })
+            .then((r) => (r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status))))
+            .then(() => {
+              flag.textContent = 'Saved';
+              flag.className = 'saved ok';
+              row.closest('.item').dataset.verdict = verdict;
+              setTimeout(() => { if (flag.textContent === 'Saved') flag.textContent = ''; }, 2200);
+            })
+            .catch(() => {
+              // Never silently swallow this — an unsaved decision the client believes is saved is
+              // worse than no control at all.
+              flag.textContent = 'Not saved';
+              flag.className = 'saved fail';
+            });
+        }
+
+        document.querySelectorAll('.decide').forEach((row) => {
+          row.querySelector('.verdict').addEventListener('change', () => save(row));
+          row.querySelector('.comment').addEventListener('input', () => {
+            clearTimeout(timers.get(row));
+            timers.set(row, setTimeout(() => save(row), 900));
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
